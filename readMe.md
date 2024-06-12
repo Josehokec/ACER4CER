@@ -33,7 +33,7 @@
 
 ## Section 1 Running
 
-Open ```ACER4CER``` folder with IDEA, then you can run the target java file.
+Firstly, create `store` folder. Secondly, uncompress data. Thirdly, open `ACER4CER` folder with IDEA and run the target java file.
 
 **Example**. Suppose you want to run ```Test_ACER_Nasdaq.java```,then you will see the code in the main function.
 
