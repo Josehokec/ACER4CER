@@ -1,0 +1,37 @@
+choose NFA engine to match
+build cost: 1115ms
+
+0-th query starting...
+scan cost: 157.074ms
+filter cost: 229.582ms
+match cost: 682.345ms
+number of tuples: 9
+0-th query cost: 1080ms.
+
+1-th query starting...
+scan cost: 120.571ms
+filter cost: 226.186ms
+match cost: 644.725ms
+number of tuples: 3
+1-th query cost: 993ms.
+
+2-th query starting...
+scan cost: 120.440ms
+filter cost: 198.106ms
+match cost: 639.854ms
+number of tuples: 9
+2-th query cost: 960ms.
+
+3-th query starting...
+scan cost: 113.259ms
+filter cost: 204.521ms
+match cost: 481.325ms
+number of tuples: 3
+3-th query cost: 800ms.
+
+4-th query starting...
+scan cost: 109.989ms
+filter cost: 198.750ms
+match cost: 628.061ms
+number of tuples: 77
+4-th query cost: 938ms.

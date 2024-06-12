@@ -1,0 +1,4087 @@
+choose OrderJoin engine to match
+build cost: 1715ms
+
+0-th query starting...
+filter cost: 50.247ms
+scan cost: 1.068ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.599ms
+number of tuples: 9
+0-th query cost: 54ms.
+
+1-th query starting...
+filter cost: 59.475ms
+scan cost: 40.810ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 9.925ms
+number of tuples: 1
+1-th query cost: 110ms.
+
+2-th query starting...
+filter cost: 44.029ms
+scan cost: 8.551ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.911ms
+number of tuples: 9
+2-th query cost: 54ms.
+
+3-th query starting...
+filter cost: 30.479ms
+scan cost: 5.749ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.680ms
+number of tuples: 3
+3-th query cost: 37ms.
+
+4-th query starting...
+filter cost: 83.317ms
+scan cost: 17.075ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 1.531ms
+number of tuples: 47
+4-th query cost: 102ms.
+
+5-th query starting...
+filter cost: 10.902ms
+scan cost: 0.133ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.033ms
+number of tuples: 1
+5-th query cost: 11ms.
+
+6-th query starting...
+filter cost: 34.951ms
+scan cost: 16.356ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 2.023ms
+number of tuples: 5
+6-th query cost: 54ms.
+
+7-th query starting...
+filter cost: 120.783ms
+scan cost: 54.202ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 3.510ms
+number of tuples: 100
+7-th query cost: 179ms.
+
+8-th query starting...
+filter cost: 217.840ms
+scan cost: 52.996ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 3.342ms
+number of tuples: 100
+8-th query cost: 274ms.
+
+9-th query starting...
+filter cost: 12.533ms
+scan cost: 0.127ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.022ms
+number of tuples: 1
+9-th query cost: 13ms.
+
+10-th query starting...
+filter cost: 170.931ms
+scan cost: 78.310ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 13.170ms
+number of tuples: 304
+10-th query cost: 262ms.
+
+11-th query starting...
+filter cost: 174.722ms
+scan cost: 28.921ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.937ms
+number of tuples: 16
+11-th query cost: 205ms.
+
+12-th query starting...
+filter cost: 12.587ms
+scan cost: 0.162ms
+bucket sizes: [ 11 11 11 ]
+match cost: 0.021ms
+number of tuples: 1
+12-th query cost: 13ms.
+
+13-th query starting...
+filter cost: 82.260ms
+scan cost: 35.708ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 1.054ms
+number of tuples: 12
+13-th query cost: 119ms.
+
+14-th query starting...
+filter cost: 184.067ms
+scan cost: 53.723ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 2.001ms
+number of tuples: 100
+14-th query cost: 240ms.
+
+15-th query starting...
+filter cost: 49.600ms
+scan cost: 13.176ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.224ms
+number of tuples: 0
+15-th query cost: 63ms.
+
+16-th query starting...
+filter cost: 54.843ms
+scan cost: 8.048ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.165ms
+number of tuples: 9
+16-th query cost: 64ms.
+
+17-th query starting...
+filter cost: 125.404ms
+scan cost: 4.293ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.125ms
+number of tuples: 1
+17-th query cost: 130ms.
+
+18-th query starting...
+filter cost: 128.071ms
+scan cost: 4.236ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.132ms
+number of tuples: 1
+18-th query cost: 132ms.
+
+19-th query starting...
+filter cost: 44.046ms
+scan cost: 15.344ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.378ms
+number of tuples: 5
+19-th query cost: 60ms.
+
+20-th query starting...
+filter cost: 146.647ms
+scan cost: 16.821ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.334ms
+number of tuples: 47
+20-th query cost: 164ms.
+
+21-th query starting...
+filter cost: 43.429ms
+scan cost: 10.800ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.222ms
+number of tuples: 31
+21-th query cost: 55ms.
+
+22-th query starting...
+filter cost: 11.228ms
+scan cost: 0.168ms
+bucket sizes: [ 11 11 11 ]
+match cost: 0.018ms
+number of tuples: 1
+22-th query cost: 11ms.
+
+23-th query starting...
+filter cost: 43.815ms
+scan cost: 38.699ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 1.197ms
+number of tuples: 216
+23-th query cost: 84ms.
+
+24-th query starting...
+filter cost: 120.029ms
+scan cost: 2.590ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.127ms
+number of tuples: 14
+24-th query cost: 123ms.
+
+25-th query starting...
+filter cost: 69.768ms
+scan cost: 2.574ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.077ms
+number of tuples: 14
+25-th query cost: 72ms.
+
+26-th query starting...
+filter cost: 189.822ms
+scan cost: 52.196ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.602ms
+number of tuples: 100
+26-th query cost: 244ms.
+
+27-th query starting...
+filter cost: 11.262ms
+scan cost: 0.253ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.020ms
+number of tuples: 1
+27-th query cost: 12ms.
+
+28-th query starting...
+filter cost: 43.366ms
+scan cost: 76.959ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.828ms
+number of tuples: 12
+28-th query cost: 121ms.
+
+29-th query starting...
+filter cost: 123.448ms
+scan cost: 76.740ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 6.767ms
+number of tuples: 304
+29-th query cost: 207ms.
+
+30-th query starting...
+filter cost: 111.257ms
+scan cost: 12.698ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.303ms
+number of tuples: 10
+30-th query cost: 125ms.
+
+31-th query starting...
+filter cost: 51.387ms
+scan cost: 16.724ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.311ms
+number of tuples: 47
+31-th query cost: 68ms.
+
+32-th query starting...
+filter cost: 88.199ms
+scan cost: 11.235ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.285ms
+number of tuples: 4
+32-th query cost: 100ms.
+
+33-th query starting...
+filter cost: 56.649ms
+scan cost: 39.865ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 1.058ms
+number of tuples: 216
+33-th query cost: 98ms.
+
+34-th query starting...
+filter cost: 110.695ms
+scan cost: 59.720ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.933ms
+number of tuples: 30
+34-th query cost: 173ms.
+
+35-th query starting...
+filter cost: 36.771ms
+scan cost: 27.111ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.798ms
+number of tuples: 8
+35-th query cost: 65ms.
+
+36-th query starting...
+filter cost: 66.965ms
+scan cost: 29.671ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.813ms
+number of tuples: 12
+36-th query cost: 98ms.
+
+37-th query starting...
+filter cost: 111.562ms
+scan cost: 29.904ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.695ms
+number of tuples: 16
+37-th query cost: 142ms.
+
+38-th query starting...
+filter cost: 56.894ms
+scan cost: 28.468ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.893ms
+number of tuples: 8
+38-th query cost: 86ms.
+
+39-th query starting...
+filter cost: 18.900ms
+scan cost: 0.250ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.020ms
+number of tuples: 1
+39-th query cost: 20ms.
+
+40-th query starting...
+filter cost: 80.324ms
+scan cost: 13.270ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.195ms
+number of tuples: 0
+40-th query cost: 94ms.
+
+41-th query starting...
+filter cost: 51.927ms
+scan cost: 38.631ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 1.088ms
+number of tuples: 216
+41-th query cost: 91ms.
+
+42-th query starting...
+filter cost: 98.795ms
+scan cost: 2.549ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.100ms
+number of tuples: 14
+42-th query cost: 102ms.
+
+43-th query starting...
+filter cost: 38.160ms
+scan cost: 15.363ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.322ms
+number of tuples: 5
+43-th query cost: 54ms.
+
+44-th query starting...
+filter cost: 81.937ms
+scan cost: 13.239ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.145ms
+number of tuples: 0
+44-th query cost: 95ms.
+
+45-th query starting...
+filter cost: 55.595ms
+scan cost: 15.103ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.324ms
+number of tuples: 5
+45-th query cost: 72ms.
+
+46-th query starting...
+filter cost: 161.418ms
+scan cost: 78.665ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 7.706ms
+number of tuples: 304
+46-th query cost: 247ms.
+
+47-th query starting...
+filter cost: 75.901ms
+scan cost: 39.875ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.955ms
+number of tuples: 216
+47-th query cost: 117ms.
+
+48-th query starting...
+filter cost: 39.446ms
+scan cost: 0.271ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.023ms
+number of tuples: 1
+48-th query cost: 40ms.
+
+49-th query starting...
+filter cost: 177.695ms
+scan cost: 77.171ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 7.326ms
+number of tuples: 304
+49-th query cost: 263ms.
+
+50-th query starting...
+filter cost: 108.707ms
+scan cost: 39.234ms
+bucket sizes: [ 6147 5464 5067 ]
+match cost: 1.236ms
+number of tuples: 20
+50-th query cost: 149ms.
+
+51-th query starting...
+filter cost: 50.395ms
+scan cost: 29.389ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.808ms
+number of tuples: 12
+51-th query cost: 81ms.
+
+52-th query starting...
+filter cost: 82.016ms
+scan cost: 29.341ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.827ms
+number of tuples: 16
+52-th query cost: 112ms.
+
+53-th query starting...
+filter cost: 99.173ms
+scan cost: 29.736ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.817ms
+number of tuples: 12
+53-th query cost: 130ms.
+
+54-th query starting...
+filter cost: 42.152ms
+scan cost: 7.874ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.164ms
+number of tuples: 9
+54-th query cost: 50ms.
+
+55-th query starting...
+filter cost: 42.410ms
+scan cost: 7.982ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.172ms
+number of tuples: 9
+55-th query cost: 51ms.
+
+56-th query starting...
+filter cost: 169.892ms
+scan cost: 4.202ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.117ms
+number of tuples: 1
+56-th query cost: 174ms.
+
+57-th query starting...
+filter cost: 43.217ms
+scan cost: 16.603ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.266ms
+number of tuples: 47
+57-th query cost: 60ms.
+
+58-th query starting...
+filter cost: 35.586ms
+scan cost: 11.162ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.230ms
+number of tuples: 4
+58-th query cost: 47ms.
+
+59-th query starting...
+filter cost: 71.697ms
+scan cost: 11.120ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.239ms
+number of tuples: 4
+59-th query cost: 83ms.
+
+60-th query starting...
+filter cost: 44.015ms
+scan cost: 38.630ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.875ms
+number of tuples: 216
+60-th query cost: 83ms.
+
+61-th query starting...
+filter cost: 104.648ms
+scan cost: 38.728ms
+bucket sizes: [ 6147 5464 5067 ]
+match cost: 0.960ms
+number of tuples: 20
+61-th query cost: 145ms.
+
+62-th query starting...
+filter cost: 44.808ms
+scan cost: 27.510ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.838ms
+number of tuples: 8
+62-th query cost: 73ms.
+
+63-th query starting...
+filter cost: 59.437ms
+scan cost: 38.138ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 1.722ms
+number of tuples: 1
+63-th query cost: 100ms.
+
+64-th query starting...
+filter cost: 11.322ms
+scan cost: 0.241ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.018ms
+number of tuples: 1
+64-th query cost: 11ms.
+
+65-th query starting...
+filter cost: 10.089ms
+scan cost: 0.186ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.017ms
+number of tuples: 1
+65-th query cost: 11ms.
+
+66-th query starting...
+filter cost: 24.815ms
+scan cost: 5.663ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.118ms
+number of tuples: 3
+66-th query cost: 30ms.
+
+67-th query starting...
+filter cost: 70.950ms
+scan cost: 7.910ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.152ms
+number of tuples: 9
+67-th query cost: 80ms.
+
+68-th query starting...
+filter cost: 74.320ms
+scan cost: 38.091ms
+bucket sizes: [ 6147 5464 5067 ]
+match cost: 0.950ms
+number of tuples: 20
+68-th query cost: 113ms.
+
+69-th query starting...
+filter cost: 117.069ms
+scan cost: 4.115ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.125ms
+number of tuples: 1
+69-th query cost: 121ms.
+
+70-th query starting...
+filter cost: 11.360ms
+scan cost: 0.256ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.028ms
+number of tuples: 1
+70-th query cost: 11ms.
+
+71-th query starting...
+filter cost: 134.947ms
+scan cost: 12.935ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.163ms
+number of tuples: 0
+71-th query cost: 148ms.
+
+72-th query starting...
+filter cost: 44.294ms
+scan cost: 8.075ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.176ms
+number of tuples: 9
+72-th query cost: 53ms.
+
+73-th query starting...
+filter cost: 122.816ms
+scan cost: 4.234ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.121ms
+number of tuples: 1
+73-th query cost: 127ms.
+
+74-th query starting...
+filter cost: 129.016ms
+scan cost: 7.396ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.162ms
+number of tuples: 3
+74-th query cost: 137ms.
+
+75-th query starting...
+filter cost: 77.221ms
+scan cost: 12.586ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.163ms
+number of tuples: 0
+75-th query cost: 90ms.
+
+76-th query starting...
+filter cost: 76.022ms
+scan cost: 2.446ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.069ms
+number of tuples: 14
+76-th query cost: 79ms.
+
+77-th query starting...
+filter cost: 116.564ms
+scan cost: 4.220ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.124ms
+number of tuples: 1
+77-th query cost: 121ms.
+
+78-th query starting...
+filter cost: 155.525ms
+scan cost: 37.604ms
+bucket sizes: [ 6147 5464 5067 ]
+match cost: 0.971ms
+number of tuples: 20
+78-th query cost: 194ms.
+
+79-th query starting...
+filter cost: 41.095ms
+scan cost: 0.403ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.021ms
+number of tuples: 2
+79-th query cost: 42ms.
+
+80-th query starting...
+filter cost: 52.966ms
+scan cost: 38.281ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.922ms
+number of tuples: 216
+80-th query cost: 92ms.
+
+81-th query starting...
+filter cost: 47.486ms
+scan cost: 12.740ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.255ms
+number of tuples: 10
+81-th query cost: 61ms.
+
+82-th query starting...
+filter cost: 60.130ms
+scan cost: 38.094ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 1.815ms
+number of tuples: 1
+82-th query cost: 100ms.
+
+83-th query starting...
+filter cost: 88.647ms
+scan cost: 10.941ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.237ms
+number of tuples: 4
+83-th query cost: 100ms.
+
+84-th query starting...
+filter cost: 67.051ms
+scan cost: 2.533ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.077ms
+number of tuples: 14
+84-th query cost: 70ms.
+
+85-th query starting...
+filter cost: 35.680ms
+scan cost: 15.184ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.332ms
+number of tuples: 5
+85-th query cost: 51ms.
+
+86-th query starting...
+filter cost: 43.133ms
+scan cost: 12.572ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.241ms
+number of tuples: 10
+86-th query cost: 56ms.
+
+87-th query starting...
+filter cost: 132.412ms
+scan cost: 59.810ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.871ms
+number of tuples: 30
+87-th query cost: 195ms.
+
+88-th query starting...
+filter cost: 68.459ms
+scan cost: 2.534ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.076ms
+number of tuples: 14
+88-th query cost: 71ms.
+
+89-th query starting...
+filter cost: 11.398ms
+scan cost: 0.180ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.016ms
+number of tuples: 1
+89-th query cost: 12ms.
+
+90-th query starting...
+filter cost: 41.959ms
+scan cost: 0.969ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.039ms
+number of tuples: 9
+90-th query cost: 43ms.
+
+91-th query starting...
+filter cost: 96.635ms
+scan cost: 16.710ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.266ms
+number of tuples: 47
+91-th query cost: 114ms.
+
+92-th query starting...
+filter cost: 113.889ms
+scan cost: 4.297ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.114ms
+number of tuples: 1
+92-th query cost: 118ms.
+
+93-th query starting...
+filter cost: 44.180ms
+scan cost: 1.010ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.039ms
+number of tuples: 9
+93-th query cost: 46ms.
+
+94-th query starting...
+filter cost: 220.032ms
+scan cost: 77.447ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 7.800ms
+number of tuples: 304
+94-th query cost: 305ms.
+
+95-th query starting...
+filter cost: 45.473ms
+scan cost: 5.576ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.143ms
+number of tuples: 3
+95-th query cost: 51ms.
+
+96-th query starting...
+filter cost: 157.338ms
+scan cost: 29.621ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.803ms
+number of tuples: 12
+96-th query cost: 188ms.
+
+97-th query starting...
+filter cost: 39.694ms
+scan cost: 11.135ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.243ms
+number of tuples: 4
+97-th query cost: 52ms.
+
+98-th query starting...
+filter cost: 121.615ms
+scan cost: 31.837ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.859ms
+number of tuples: 16
+98-th query cost: 154ms.
+
+99-th query starting...
+filter cost: 50.114ms
+scan cost: 12.673ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.153ms
+number of tuples: 0
+99-th query cost: 63ms.
+
+100-th query starting...
+filter cost: 72.644ms
+scan cost: 12.592ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.161ms
+number of tuples: 0
+100-th query cost: 86ms.
+
+101-th query starting...
+filter cost: 73.494ms
+scan cost: 61.065ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.959ms
+number of tuples: 30
+101-th query cost: 137ms.
+
+102-th query starting...
+filter cost: 37.241ms
+scan cost: 0.249ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.021ms
+number of tuples: 1
+102-th query cost: 38ms.
+
+103-th query starting...
+filter cost: 44.571ms
+scan cost: 0.952ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.039ms
+number of tuples: 9
+103-th query cost: 46ms.
+
+104-th query starting...
+filter cost: 50.832ms
+scan cost: 7.793ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.158ms
+number of tuples: 9
+104-th query cost: 59ms.
+
+105-th query starting...
+filter cost: 133.760ms
+scan cost: 62.662ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.470ms
+number of tuples: 125
+105-th query cost: 199ms.
+
+106-th query starting...
+filter cost: 14.164ms
+scan cost: 0.126ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.018ms
+number of tuples: 1
+106-th query cost: 14ms.
+
+107-th query starting...
+filter cost: 13.076ms
+scan cost: 0.161ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.019ms
+number of tuples: 1
+107-th query cost: 13ms.
+
+108-th query starting...
+filter cost: 91.879ms
+scan cost: 143.632ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.838ms
+number of tuples: 30
+108-th query cost: 239ms.
+
+109-th query starting...
+filter cost: 43.387ms
+scan cost: 12.748ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.250ms
+number of tuples: 10
+109-th query cost: 56ms.
+
+110-th query starting...
+filter cost: 123.585ms
+scan cost: 77.405ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 6.898ms
+number of tuples: 304
+110-th query cost: 208ms.
+
+111-th query starting...
+filter cost: 26.389ms
+scan cost: 5.576ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.122ms
+number of tuples: 3
+111-th query cost: 33ms.
+
+112-th query starting...
+filter cost: 37.984ms
+scan cost: 11.214ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.295ms
+number of tuples: 4
+112-th query cost: 49ms.
+
+113-th query starting...
+filter cost: 132.859ms
+scan cost: 37.999ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.862ms
+number of tuples: 216
+113-th query cost: 172ms.
+
+114-th query starting...
+filter cost: 73.009ms
+scan cost: 29.088ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.652ms
+number of tuples: 16
+114-th query cost: 103ms.
+
+115-th query starting...
+filter cost: 205.773ms
+scan cost: 61.878ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.233ms
+number of tuples: 125
+115-th query cost: 270ms.
+
+116-th query starting...
+filter cost: 35.897ms
+scan cost: 0.407ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.022ms
+number of tuples: 2
+116-th query cost: 36ms.
+
+117-th query starting...
+filter cost: 11.527ms
+scan cost: 0.251ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.023ms
+number of tuples: 1
+117-th query cost: 12ms.
+
+118-th query starting...
+filter cost: 117.071ms
+scan cost: 2.491ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.074ms
+number of tuples: 14
+118-th query cost: 120ms.
+
+119-th query starting...
+filter cost: 62.609ms
+scan cost: 38.016ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 1.781ms
+number of tuples: 1
+119-th query cost: 103ms.
+
+120-th query starting...
+filter cost: 72.289ms
+scan cost: 13.378ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.287ms
+number of tuples: 10
+120-th query cost: 86ms.
+
+121-th query starting...
+filter cost: 104.008ms
+scan cost: 29.718ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.830ms
+number of tuples: 12
+121-th query cost: 134ms.
+
+122-th query starting...
+filter cost: 42.548ms
+scan cost: 0.399ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.026ms
+number of tuples: 2
+122-th query cost: 43ms.
+
+123-th query starting...
+filter cost: 13.177ms
+scan cost: 0.158ms
+bucket sizes: [ 11 11 11 ]
+match cost: 0.016ms
+number of tuples: 1
+123-th query cost: 14ms.
+
+124-th query starting...
+filter cost: 38.881ms
+scan cost: 26.970ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.899ms
+number of tuples: 8
+124-th query cost: 67ms.
+
+125-th query starting...
+filter cost: 102.200ms
+scan cost: 59.896ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.862ms
+number of tuples: 30
+125-th query cost: 165ms.
+
+126-th query starting...
+filter cost: 43.691ms
+scan cost: 0.966ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.038ms
+number of tuples: 9
+126-th query cost: 45ms.
+
+127-th query starting...
+filter cost: 81.755ms
+scan cost: 16.880ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.289ms
+number of tuples: 47
+127-th query cost: 99ms.
+
+128-th query starting...
+filter cost: 76.524ms
+scan cost: 60.482ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.858ms
+number of tuples: 30
+128-th query cost: 140ms.
+
+129-th query starting...
+filter cost: 149.820ms
+scan cost: 62.246ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 3.268ms
+number of tuples: 30
+129-th query cost: 215ms.
+
+130-th query starting...
+filter cost: 66.214ms
+scan cost: 11.259ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.212ms
+number of tuples: 31
+130-th query cost: 78ms.
+
+131-th query starting...
+filter cost: 137.350ms
+scan cost: 2.636ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.090ms
+number of tuples: 14
+131-th query cost: 140ms.
+
+132-th query starting...
+filter cost: 51.143ms
+scan cost: 8.089ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.177ms
+number of tuples: 9
+132-th query cost: 60ms.
+
+133-th query starting...
+filter cost: 52.615ms
+scan cost: 0.172ms
+bucket sizes: [ 11 11 11 ]
+match cost: 0.019ms
+number of tuples: 1
+133-th query cost: 53ms.
+
+134-th query starting...
+filter cost: 155.280ms
+scan cost: 4.394ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.143ms
+number of tuples: 1
+134-th query cost: 160ms.
+
+135-th query starting...
+filter cost: 94.127ms
+scan cost: 10.671ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.204ms
+number of tuples: 31
+135-th query cost: 105ms.
+
+136-th query starting...
+filter cost: 62.686ms
+scan cost: 19.175ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.289ms
+number of tuples: 47
+136-th query cost: 82ms.
+
+137-th query starting...
+filter cost: 65.972ms
+scan cost: 16.890ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.320ms
+number of tuples: 47
+137-th query cost: 84ms.
+
+138-th query starting...
+filter cost: 67.738ms
+scan cost: 0.303ms
+bucket sizes: [ 23 20 20 ]
+match cost: 0.028ms
+number of tuples: 0
+138-th query cost: 68ms.
+
+139-th query starting...
+filter cost: 52.112ms
+scan cost: 18.114ms
+bucket sizes: [ 1799 1759 1640 ]
+match cost: 0.321ms
+number of tuples: 0
+139-th query cost: 70ms.
+
+140-th query starting...
+interval set size is 0
+filter cost: 2.177ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+140-th query cost: 3ms.
+
+141-th query starting...
+filter cost: 39.375ms
+scan cost: 0.365ms
+bucket sizes: [ 23 20 20 ]
+match cost: 0.021ms
+number of tuples: 0
+141-th query cost: 40ms.
+
+142-th query starting...
+filter cost: 73.081ms
+scan cost: 14.793ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.185ms
+number of tuples: 31
+142-th query cost: 88ms.
+
+143-th query starting...
+filter cost: 35.382ms
+scan cost: 2.016ms
+bucket sizes: [ 134 129 125 ]
+match cost: 0.038ms
+number of tuples: 0
+143-th query cost: 37ms.
+
+144-th query starting...
+filter cost: 38.784ms
+scan cost: 3.152ms
+bucket sizes: [ 226 213 200 ]
+match cost: 0.046ms
+number of tuples: 1
+144-th query cost: 42ms.
+
+145-th query starting...
+interval set size is 0
+filter cost: 12.213ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.006ms
+number of tuples: 0
+145-th query cost: 13ms.
+
+146-th query starting...
+filter cost: 109.623ms
+scan cost: 62.271ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.927ms
+number of tuples: 30
+146-th query cost: 175ms.
+
+147-th query starting...
+interval set size is 0
+filter cost: 5.986ms
+scan cost: 0.002ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.006ms
+number of tuples: 0
+147-th query cost: 6ms.
+
+148-th query starting...
+filter cost: 0.229ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+148-th query cost: 0ms.
+
+149-th query starting...
+filter cost: 0.162ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.016ms
+number of tuples: 0
+149-th query cost: 0ms.
+
+150-th query starting...
+filter cost: 43.409ms
+scan cost: 1.830ms
+bucket sizes: [ 134 129 125 ]
+match cost: 0.040ms
+number of tuples: 0
+150-th query cost: 46ms.
+
+151-th query starting...
+interval set size is 0
+filter cost: 4.032ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.006ms
+number of tuples: 0
+151-th query cost: 4ms.
+
+152-th query starting...
+filter cost: 160.982ms
+scan cost: 63.228ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.376ms
+number of tuples: 125
+152-th query cost: 227ms.
+
+153-th query starting...
+filter cost: 11.048ms
+scan cost: 0.112ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.014ms
+number of tuples: 1
+153-th query cost: 11ms.
+
+154-th query starting...
+filter cost: 34.639ms
+scan cost: 11.440ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.239ms
+number of tuples: 4
+154-th query cost: 46ms.
+
+155-th query starting...
+filter cost: 171.998ms
+scan cost: 61.935ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.089ms
+number of tuples: 125
+155-th query cost: 237ms.
+
+156-th query starting...
+filter cost: 0.223ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+156-th query cost: 0ms.
+
+157-th query starting...
+interval set size is 0
+filter cost: 3.888ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+157-th query cost: 4ms.
+
+158-th query starting...
+filter cost: 114.405ms
+scan cost: 53.021ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.732ms
+number of tuples: 100
+158-th query cost: 169ms.
+
+159-th query starting...
+interval set size is 0
+filter cost: 6.941ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+159-th query cost: 7ms.
+
+160-th query starting...
+filter cost: 42.666ms
+scan cost: 28.650ms
+bucket sizes: [ 4174 4585 3866 ]
+match cost: 0.853ms
+number of tuples: 0
+160-th query cost: 72ms.
+
+161-th query starting...
+filter cost: 44.540ms
+scan cost: 38.555ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.897ms
+number of tuples: 216
+161-th query cost: 85ms.
+
+162-th query starting...
+filter cost: 130.340ms
+scan cost: 0.448ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.022ms
+number of tuples: 2
+162-th query cost: 130ms.
+
+163-th query starting...
+interval set size is 0
+filter cost: 9.760ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.007ms
+number of tuples: 0
+163-th query cost: 10ms.
+
+164-th query starting...
+interval set size is 0
+filter cost: 5.718ms
+scan cost: 0.002ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.007ms
+number of tuples: 0
+164-th query cost: 6ms.
+
+165-th query starting...
+filter cost: 43.745ms
+scan cost: 12.580ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.250ms
+number of tuples: 10
+165-th query cost: 57ms.
+
+166-th query starting...
+filter cost: 119.201ms
+scan cost: 52.167ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.581ms
+number of tuples: 100
+166-th query cost: 173ms.
+
+167-th query starting...
+filter cost: 131.953ms
+scan cost: 0.134ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.016ms
+number of tuples: 0
+167-th query cost: 132ms.
+
+168-th query starting...
+filter cost: 44.736ms
+scan cost: 17.132ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.260ms
+number of tuples: 47
+168-th query cost: 62ms.
+
+169-th query starting...
+filter cost: 0.121ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+169-th query cost: 1ms.
+
+170-th query starting...
+filter cost: 44.221ms
+scan cost: 0.919ms
+bucket sizes: [ 75 65 66 ]
+match cost: 0.037ms
+number of tuples: 0
+170-th query cost: 45ms.
+
+171-th query starting...
+filter cost: 87.468ms
+scan cost: 17.464ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.293ms
+number of tuples: 47
+171-th query cost: 105ms.
+
+172-th query starting...
+interval set size is 0
+filter cost: 5.762ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+172-th query cost: 6ms.
+
+173-th query starting...
+filter cost: 53.326ms
+scan cost: 38.357ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 1.709ms
+number of tuples: 1
+173-th query cost: 94ms.
+
+174-th query starting...
+filter cost: 65.990ms
+scan cost: 38.108ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.874ms
+number of tuples: 216
+174-th query cost: 105ms.
+
+175-th query starting...
+filter cost: 0.221ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+175-th query cost: 0ms.
+
+176-th query starting...
+filter cost: 0.094ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+176-th query cost: 0ms.
+
+177-th query starting...
+interval set size is 0
+filter cost: 2.307ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+177-th query cost: 3ms.
+
+178-th query starting...
+filter cost: 52.042ms
+scan cost: 38.430ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 1.749ms
+number of tuples: 1
+178-th query cost: 92ms.
+
+179-th query starting...
+filter cost: 0.224ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+179-th query cost: 0ms.
+
+180-th query starting...
+filter cost: 110.133ms
+scan cost: 4.161ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.111ms
+number of tuples: 1
+180-th query cost: 115ms.
+
+181-th query starting...
+filter cost: 73.622ms
+scan cost: 119.016ms
+bucket sizes: [ 6147 5464 5067 ]
+match cost: 0.954ms
+number of tuples: 20
+181-th query cost: 193ms.
+
+182-th query starting...
+filter cost: 36.950ms
+scan cost: 11.316ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.236ms
+number of tuples: 4
+182-th query cost: 49ms.
+
+183-th query starting...
+filter cost: 51.000ms
+scan cost: 12.857ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.140ms
+number of tuples: 0
+183-th query cost: 64ms.
+
+184-th query starting...
+filter cost: 37.715ms
+scan cost: 15.308ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.303ms
+number of tuples: 5
+184-th query cost: 54ms.
+
+185-th query starting...
+filter cost: 83.132ms
+scan cost: 0.152ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.015ms
+number of tuples: 0
+185-th query cost: 83ms.
+
+186-th query starting...
+filter cost: 26.729ms
+scan cost: 0.097ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.013ms
+number of tuples: 0
+186-th query cost: 27ms.
+
+187-th query starting...
+filter cost: 106.247ms
+scan cost: 60.401ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.909ms
+number of tuples: 30
+187-th query cost: 170ms.
+
+188-th query starting...
+filter cost: 26.196ms
+scan cost: 0.107ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.033ms
+number of tuples: 0
+188-th query cost: 26ms.
+
+189-th query starting...
+filter cost: 186.384ms
+scan cost: 79.648ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 6.822ms
+number of tuples: 304
+189-th query cost: 273ms.
+
+190-th query starting...
+filter cost: 43.201ms
+scan cost: 0.983ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.040ms
+number of tuples: 9
+190-th query cost: 44ms.
+
+191-th query starting...
+filter cost: 94.149ms
+scan cost: 12.797ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.265ms
+number of tuples: 10
+191-th query cost: 108ms.
+
+192-th query starting...
+filter cost: 37.943ms
+scan cost: 26.929ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.791ms
+number of tuples: 8
+192-th query cost: 65ms.
+
+193-th query starting...
+filter cost: 12.289ms
+scan cost: 0.198ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.017ms
+number of tuples: 1
+193-th query cost: 13ms.
+
+194-th query starting...
+interval set size is 0
+filter cost: 2.206ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+194-th query cost: 2ms.
+
+195-th query starting...
+filter cost: 56.193ms
+scan cost: 26.896ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.837ms
+number of tuples: 8
+195-th query cost: 84ms.
+
+196-th query starting...
+filter cost: 0.121ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+196-th query cost: 1ms.
+
+197-th query starting...
+filter cost: 45.108ms
+scan cost: 29.875ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.810ms
+number of tuples: 12
+197-th query cost: 76ms.
+
+198-th query starting...
+interval set size is 0
+filter cost: 3.723ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+198-th query cost: 3ms.
+
+199-th query starting...
+filter cost: 0.199ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+199-th query cost: 1ms.
+
+200-th query starting...
+filter cost: 36.134ms
+scan cost: 0.131ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.018ms
+number of tuples: 0
+200-th query cost: 36ms.
+
+201-th query starting...
+filter cost: 46.034ms
+scan cost: 39.982ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.875ms
+number of tuples: 216
+201-th query cost: 87ms.
+
+202-th query starting...
+filter cost: 61.299ms
+scan cost: 12.312ms
+bucket sizes: [ 1209 1181 1137 ]
+match cost: 0.247ms
+number of tuples: 0
+202-th query cost: 74ms.
+
+203-th query starting...
+filter cost: 12.412ms
+scan cost: 0.239ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.022ms
+number of tuples: 1
+203-th query cost: 13ms.
+
+204-th query starting...
+filter cost: 49.208ms
+scan cost: 9.212ms
+bucket sizes: [ 941 864 845 ]
+match cost: 0.110ms
+number of tuples: 0
+204-th query cost: 58ms.
+
+205-th query starting...
+filter cost: 88.119ms
+scan cost: 60.448ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.897ms
+number of tuples: 30
+205-th query cost: 152ms.
+
+206-th query starting...
+interval set size is 0
+filter cost: 3.761ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+206-th query cost: 4ms.
+
+207-th query starting...
+filter cost: 39.448ms
+scan cost: 12.062ms
+bucket sizes: [ 1209 1181 1137 ]
+match cost: 0.254ms
+number of tuples: 0
+207-th query cost: 52ms.
+
+208-th query starting...
+filter cost: 0.221ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+208-th query cost: 0ms.
+
+209-th query starting...
+filter cost: 42.312ms
+scan cost: 0.172ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.018ms
+number of tuples: 1
+209-th query cost: 43ms.
+
+210-th query starting...
+interval set size is 0
+filter cost: 3.440ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+210-th query cost: 3ms.
+
+211-th query starting...
+filter cost: 71.713ms
+scan cost: 2.611ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.074ms
+number of tuples: 14
+211-th query cost: 75ms.
+
+212-th query starting...
+interval set size is 0
+filter cost: 3.797ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+212-th query cost: 4ms.
+
+213-th query starting...
+interval set size is 0
+filter cost: 41.783ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.010ms
+number of tuples: 0
+213-th query cost: 41ms.
+
+214-th query starting...
+filter cost: 38.158ms
+scan cost: 0.438ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.021ms
+number of tuples: 2
+214-th query cost: 39ms.
+
+215-th query starting...
+filter cost: 12.579ms
+scan cost: 0.128ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.015ms
+number of tuples: 1
+215-th query cost: 13ms.
+
+216-th query starting...
+filter cost: 64.057ms
+scan cost: 12.783ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.157ms
+number of tuples: 0
+216-th query cost: 77ms.
+
+217-th query starting...
+filter cost: 55.918ms
+scan cost: 30.511ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.819ms
+number of tuples: 12
+217-th query cost: 87ms.
+
+218-th query starting...
+filter cost: 46.011ms
+scan cost: 16.742ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.255ms
+number of tuples: 47
+218-th query cost: 64ms.
+
+219-th query starting...
+filter cost: 68.986ms
+scan cost: 10.911ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.179ms
+number of tuples: 31
+219-th query cost: 80ms.
+
+220-th query starting...
+filter cost: 38.228ms
+scan cost: 11.006ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.233ms
+number of tuples: 4
+220-th query cost: 49ms.
+
+221-th query starting...
+filter cost: 53.079ms
+scan cost: 0.408ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.029ms
+number of tuples: 2
+221-th query cost: 54ms.
+
+222-th query starting...
+filter cost: 48.211ms
+scan cost: 29.645ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.823ms
+number of tuples: 12
+222-th query cost: 79ms.
+
+223-th query starting...
+filter cost: 0.116ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+223-th query cost: 0ms.
+
+224-th query starting...
+interval set size is 0
+filter cost: 18.889ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+224-th query cost: 19ms.
+
+225-th query starting...
+filter cost: 40.455ms
+scan cost: 11.857ms
+bucket sizes: [ 1209 1181 1137 ]
+match cost: 0.255ms
+number of tuples: 0
+225-th query cost: 53ms.
+
+226-th query starting...
+interval set size is 0
+filter cost: 9.976ms
+scan cost: 0.002ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+226-th query cost: 10ms.
+
+227-th query starting...
+interval set size is 0
+filter cost: 2.279ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+227-th query cost: 2ms.
+
+228-th query starting...
+interval set size is 0
+filter cost: 10.184ms
+scan cost: 0.002ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.008ms
+number of tuples: 0
+228-th query cost: 11ms.
+
+229-th query starting...
+filter cost: 45.314ms
+scan cost: 17.759ms
+bucket sizes: [ 1799 1759 1640 ]
+match cost: 0.345ms
+number of tuples: 0
+229-th query cost: 63ms.
+
+230-th query starting...
+filter cost: 144.549ms
+scan cost: 51.824ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.560ms
+number of tuples: 100
+230-th query cost: 198ms.
+
+231-th query starting...
+filter cost: 45.242ms
+scan cost: 0.207ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.020ms
+number of tuples: 1
+231-th query cost: 46ms.
+
+232-th query starting...
+filter cost: 127.203ms
+scan cost: 2.533ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.077ms
+number of tuples: 14
+232-th query cost: 130ms.
+
+233-th query starting...
+filter cost: 52.128ms
+scan cost: 0.892ms
+bucket sizes: [ 75 65 66 ]
+match cost: 0.035ms
+number of tuples: 0
+233-th query cost: 53ms.
+
+234-th query starting...
+interval set size is 0
+filter cost: 3.076ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+234-th query cost: 3ms.
+
+235-th query starting...
+filter cost: 0.202ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+235-th query cost: 0ms.
+
+236-th query starting...
+filter cost: 36.904ms
+scan cost: 0.404ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.023ms
+number of tuples: 2
+236-th query cost: 38ms.
+
+237-th query starting...
+filter cost: 40.398ms
+scan cost: 16.446ms
+bucket sizes: [ 1799 1759 1640 ]
+match cost: 0.382ms
+number of tuples: 0
+237-th query cost: 57ms.
+
+238-th query starting...
+filter cost: 75.669ms
+scan cost: 2.519ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.080ms
+number of tuples: 14
+238-th query cost: 78ms.
+
+239-th query starting...
+filter cost: 46.243ms
+scan cost: 0.138ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.018ms
+number of tuples: 0
+239-th query cost: 47ms.
+
+240-th query starting...
+interval set size is 0
+filter cost: 2.197ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+240-th query cost: 2ms.
+
+241-th query starting...
+filter cost: 73.799ms
+scan cost: 60.323ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.850ms
+number of tuples: 30
+241-th query cost: 137ms.
+
+242-th query starting...
+filter cost: 25.257ms
+scan cost: 2.329ms
+bucket sizes: [ 226 213 200 ]
+match cost: 0.037ms
+number of tuples: 1
+242-th query cost: 28ms.
+
+243-th query starting...
+interval set size is 0
+filter cost: 12.414ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.006ms
+number of tuples: 0
+243-th query cost: 13ms.
+
+244-th query starting...
+filter cost: 50.461ms
+scan cost: 12.636ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.234ms
+number of tuples: 10
+244-th query cost: 63ms.
+
+245-th query starting...
+filter cost: 12.877ms
+scan cost: 0.073ms
+bucket sizes: [ 18 2 2 ]
+match cost: 0.012ms
+number of tuples: 0
+245-th query cost: 13ms.
+
+246-th query starting...
+filter cost: 12.918ms
+scan cost: 0.254ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.025ms
+number of tuples: 1
+246-th query cost: 13ms.
+
+247-th query starting...
+filter cost: 55.231ms
+scan cost: 0.170ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.014ms
+number of tuples: 0
+247-th query cost: 56ms.
+
+248-th query starting...
+interval set size is 0
+filter cost: 3.008ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+248-th query cost: 3ms.
+
+249-th query starting...
+interval set size is 0
+filter cost: 65.838ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.007ms
+number of tuples: 0
+249-th query cost: 66ms.
+
+250-th query starting...
+filter cost: 123.860ms
+scan cost: 75.883ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 6.739ms
+number of tuples: 304
+250-th query cost: 207ms.
+
+251-th query starting...
+filter cost: 37.468ms
+scan cost: 0.301ms
+bucket sizes: [ 23 20 20 ]
+match cost: 0.019ms
+number of tuples: 0
+251-th query cost: 37ms.
+
+252-th query starting...
+filter cost: 0.204ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+252-th query cost: 1ms.
+
+253-th query starting...
+filter cost: 11.552ms
+scan cost: 0.261ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.020ms
+number of tuples: 1
+253-th query cost: 12ms.
+
+254-th query starting...
+filter cost: 0.110ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+254-th query cost: 0ms.
+
+255-th query starting...
+filter cost: 34.875ms
+scan cost: 0.397ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.020ms
+number of tuples: 2
+255-th query cost: 35ms.
+
+256-th query starting...
+filter cost: 36.055ms
+scan cost: 0.402ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.019ms
+number of tuples: 2
+256-th query cost: 37ms.
+
+257-th query starting...
+interval set size is 0
+filter cost: 9.636ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.006ms
+number of tuples: 0
+257-th query cost: 10ms.
+
+258-th query starting...
+filter cost: 44.904ms
+scan cost: 12.868ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.242ms
+number of tuples: 10
+258-th query cost: 58ms.
+
+259-th query starting...
+interval set size is 0
+filter cost: 2.250ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+259-th query cost: 2ms.
+
+260-th query starting...
+filter cost: 0.100ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+260-th query cost: 0ms.
+
+261-th query starting...
+filter cost: 124.702ms
+scan cost: 0.142ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.015ms
+number of tuples: 0
+261-th query cost: 125ms.
+
+262-th query starting...
+filter cost: 0.214ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+262-th query cost: 0ms.
+
+263-th query starting...
+interval set size is 0
+filter cost: 9.691ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+263-th query cost: 10ms.
+
+264-th query starting...
+filter cost: 11.732ms
+scan cost: 0.259ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.024ms
+number of tuples: 1
+264-th query cost: 12ms.
+
+265-th query starting...
+filter cost: 38.162ms
+scan cost: 28.636ms
+bucket sizes: [ 4174 4585 3866 ]
+match cost: 0.851ms
+number of tuples: 0
+265-th query cost: 68ms.
+
+266-th query starting...
+filter cost: 50.061ms
+scan cost: 12.515ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.171ms
+number of tuples: 0
+266-th query cost: 63ms.
+
+267-th query starting...
+filter cost: 0.118ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+267-th query cost: 0ms.
+
+268-th query starting...
+filter cost: 11.825ms
+scan cost: 0.162ms
+bucket sizes: [ 11 11 11 ]
+match cost: 0.027ms
+number of tuples: 1
+268-th query cost: 12ms.
+
+269-th query starting...
+filter cost: 35.548ms
+scan cost: 15.343ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.319ms
+number of tuples: 5
+269-th query cost: 52ms.
+
+270-th query starting...
+interval set size is 0
+filter cost: 9.797ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+270-th query cost: 9ms.
+
+271-th query starting...
+interval set size is 0
+filter cost: 3.621ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+271-th query cost: 4ms.
+
+272-th query starting...
+filter cost: 73.063ms
+scan cost: 2.323ms
+bucket sizes: [ 226 213 200 ]
+match cost: 0.037ms
+number of tuples: 1
+272-th query cost: 76ms.
+
+273-th query starting...
+interval set size is 0
+filter cost: 3.674ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+273-th query cost: 4ms.
+
+274-th query starting...
+interval set size is 0
+filter cost: 5.761ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+274-th query cost: 5ms.
+
+275-th query starting...
+filter cost: 38.096ms
+scan cost: 15.144ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.323ms
+number of tuples: 5
+275-th query cost: 54ms.
+
+276-th query starting...
+filter cost: 118.400ms
+scan cost: 61.570ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.213ms
+number of tuples: 125
+276-th query cost: 182ms.
+
+277-th query starting...
+filter cost: 38.730ms
+scan cost: 16.257ms
+bucket sizes: [ 1799 1759 1640 ]
+match cost: 0.335ms
+number of tuples: 0
+277-th query cost: 56ms.
+
+278-th query starting...
+filter cost: 0.207ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+278-th query cost: 0ms.
+
+279-th query starting...
+filter cost: 39.211ms
+scan cost: 11.963ms
+bucket sizes: [ 1209 1181 1137 ]
+match cost: 0.240ms
+number of tuples: 0
+279-th query cost: 52ms.
+
+280-th query starting...
+filter cost: 99.808ms
+scan cost: 16.168ms
+bucket sizes: [ 1799 1759 1640 ]
+match cost: 0.343ms
+number of tuples: 0
+280-th query cost: 116ms.
+
+281-th query starting...
+interval set size is 0
+filter cost: 5.626ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+281-th query cost: 6ms.
+
+282-th query starting...
+filter cost: 11.284ms
+scan cost: 0.187ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.016ms
+number of tuples: 1
+282-th query cost: 11ms.
+
+283-th query starting...
+filter cost: 48.877ms
+scan cost: 12.778ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.144ms
+number of tuples: 0
+283-th query cost: 62ms.
+
+284-th query starting...
+interval set size is 0
+filter cost: 2.317ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+284-th query cost: 3ms.
+
+285-th query starting...
+filter cost: 49.168ms
+scan cost: 0.137ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.013ms
+number of tuples: 0
+285-th query cost: 49ms.
+
+286-th query starting...
+filter cost: 44.213ms
+scan cost: 12.584ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.246ms
+number of tuples: 10
+286-th query cost: 57ms.
+
+287-th query starting...
+filter cost: 170.268ms
+scan cost: 75.752ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 6.761ms
+number of tuples: 304
+287-th query cost: 253ms.
+
+288-th query starting...
+filter cost: 11.418ms
+scan cost: 0.110ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.013ms
+number of tuples: 1
+288-th query cost: 12ms.
+
+289-th query starting...
+filter cost: 69.616ms
+scan cost: 2.450ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.074ms
+number of tuples: 14
+289-th query cost: 72ms.
+
+290-th query starting...
+interval set size is 0
+filter cost: 5.566ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+290-th query cost: 6ms.
+
+291-th query starting...
+filter cost: 53.061ms
+scan cost: 38.150ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 1.718ms
+number of tuples: 1
+291-th query cost: 93ms.
+
+292-th query starting...
+filter cost: 131.192ms
+scan cost: 9.187ms
+bucket sizes: [ 941 864 845 ]
+match cost: 0.123ms
+number of tuples: 0
+292-th query cost: 140ms.
+
+293-th query starting...
+filter cost: 122.587ms
+scan cost: 76.259ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 6.837ms
+number of tuples: 304
+293-th query cost: 206ms.
+
+294-th query starting...
+filter cost: 11.421ms
+scan cost: 0.238ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.016ms
+number of tuples: 1
+294-th query cost: 12ms.
+
+295-th query starting...
+filter cost: 0.105ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+295-th query cost: 0ms.
+
+296-th query starting...
+filter cost: 0.175ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+296-th query cost: 0ms.
+
+297-th query starting...
+filter cost: 128.786ms
+scan cost: 1.012ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.041ms
+number of tuples: 9
+297-th query cost: 130ms.
+
+298-th query starting...
+filter cost: 60.628ms
+scan cost: 9.193ms
+bucket sizes: [ 941 864 845 ]
+match cost: 0.114ms
+number of tuples: 0
+298-th query cost: 70ms.
+
+299-th query starting...
+interval set size is 0
+filter cost: 11.085ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+299-th query cost: 11ms.
+
+300-th query starting...
+filter cost: 43.688ms
+scan cost: 8.239ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.162ms
+number of tuples: 9
+300-th query cost: 53ms.
+
+301-th query starting...
+filter cost: 25.978ms
+scan cost: 2.297ms
+bucket sizes: [ 226 213 200 ]
+match cost: 0.042ms
+number of tuples: 1
+301-th query cost: 28ms.
+
+302-th query starting...
+interval set size is 0
+filter cost: 3.698ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+302-th query cost: 4ms.
+
+303-th query starting...
+filter cost: 0.109ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+303-th query cost: 0ms.
+
+304-th query starting...
+filter cost: 45.856ms
+scan cost: 38.176ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.870ms
+number of tuples: 216
+304-th query cost: 85ms.
+
+305-th query starting...
+filter cost: 54.546ms
+scan cost: 11.711ms
+bucket sizes: [ 1209 1181 1137 ]
+match cost: 0.260ms
+number of tuples: 0
+305-th query cost: 67ms.
+
+306-th query starting...
+filter cost: 122.295ms
+scan cost: 62.681ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.455ms
+number of tuples: 125
+306-th query cost: 187ms.
+
+307-th query starting...
+filter cost: 51.197ms
+scan cost: 10.858ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.191ms
+number of tuples: 31
+307-th query cost: 62ms.
+
+308-th query starting...
+interval set size is 0
+filter cost: 13.568ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+308-th query cost: 14ms.
+
+309-th query starting...
+filter cost: 31.042ms
+scan cost: 0.105ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.016ms
+number of tuples: 0
+309-th query cost: 31ms.
+
+310-th query starting...
+filter cost: 14.146ms
+scan cost: 0.197ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.013ms
+number of tuples: 1
+310-th query cost: 15ms.
+
+311-th query starting...
+filter cost: 0.115ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+311-th query cost: 0ms.
+
+312-th query starting...
+filter cost: 13.820ms
+scan cost: 0.065ms
+bucket sizes: [ 18 2 2 ]
+match cost: 0.016ms
+number of tuples: 0
+312-th query cost: 14ms.
+
+313-th query starting...
+filter cost: 46.210ms
+scan cost: 28.889ms
+bucket sizes: [ 4174 4585 3866 ]
+match cost: 0.862ms
+number of tuples: 0
+313-th query cost: 76ms.
+
+314-th query starting...
+filter cost: 43.352ms
+scan cost: 15.260ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.322ms
+number of tuples: 5
+314-th query cost: 59ms.
+
+315-th query starting...
+filter cost: 118.796ms
+scan cost: 0.915ms
+bucket sizes: [ 75 65 66 ]
+match cost: 0.051ms
+number of tuples: 0
+315-th query cost: 120ms.
+
+316-th query starting...
+filter cost: 34.632ms
+scan cost: 0.416ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.028ms
+number of tuples: 2
+316-th query cost: 35ms.
+
+317-th query starting...
+filter cost: 25.176ms
+scan cost: 1.596ms
+bucket sizes: [ 134 129 125 ]
+match cost: 0.029ms
+number of tuples: 0
+317-th query cost: 27ms.
+
+318-th query starting...
+filter cost: 43.099ms
+scan cost: 16.605ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.252ms
+number of tuples: 47
+318-th query cost: 60ms.
+
+319-th query starting...
+filter cost: 34.844ms
+scan cost: 0.402ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.016ms
+number of tuples: 2
+319-th query cost: 35ms.
+
+320-th query starting...
+filter cost: 42.520ms
+scan cost: 0.973ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.038ms
+number of tuples: 9
+320-th query cost: 44ms.
+
+321-th query starting...
+filter cost: 94.530ms
+scan cost: 10.630ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.187ms
+number of tuples: 31
+321-th query cost: 106ms.
+
+322-th query starting...
+filter cost: 0.122ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+322-th query cost: 0ms.
+
+323-th query starting...
+filter cost: 41.803ms
+scan cost: 0.892ms
+bucket sizes: [ 75 65 66 ]
+match cost: 0.034ms
+number of tuples: 0
+323-th query cost: 43ms.
+
+324-th query starting...
+filter cost: 43.673ms
+scan cost: 37.913ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.851ms
+number of tuples: 216
+324-th query cost: 82ms.
+
+325-th query starting...
+filter cost: 0.222ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+325-th query cost: 0ms.
+
+326-th query starting...
+filter cost: 42.846ms
+scan cost: 16.685ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.258ms
+number of tuples: 47
+326-th query cost: 60ms.
+
+327-th query starting...
+filter cost: 120.151ms
+scan cost: 75.609ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 78.138ms
+number of tuples: 304
+327-th query cost: 274ms.
+
+328-th query starting...
+filter cost: 43.166ms
+scan cost: 12.724ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.270ms
+number of tuples: 10
+328-th query cost: 57ms.
+
+329-th query starting...
+filter cost: 11.018ms
+scan cost: 0.119ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.015ms
+number of tuples: 1
+329-th query cost: 11ms.
+
+330-th query starting...
+filter cost: 42.980ms
+scan cost: 10.881ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.187ms
+number of tuples: 31
+330-th query cost: 54ms.
+
+331-th query starting...
+filter cost: 165.615ms
+scan cost: 4.211ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.116ms
+number of tuples: 1
+331-th query cost: 170ms.
+
+332-th query starting...
+interval set size is 0
+filter cost: 5.660ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+332-th query cost: 6ms.
+
+333-th query starting...
+filter cost: 10.422ms
+scan cost: 0.165ms
+bucket sizes: [ 11 11 11 ]
+match cost: 0.016ms
+number of tuples: 1
+333-th query cost: 11ms.
+
+334-th query starting...
+filter cost: 9.954ms
+scan cost: 0.071ms
+bucket sizes: [ 18 2 2 ]
+match cost: 0.009ms
+number of tuples: 0
+334-th query cost: 10ms.
+
+335-th query starting...
+filter cost: 0.209ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+335-th query cost: 0ms.
+
+336-th query starting...
+filter cost: 0.158ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+336-th query cost: 0ms.
+
+337-th query starting...
+filter cost: 93.730ms
+scan cost: 0.139ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.011ms
+number of tuples: 0
+337-th query cost: 94ms.
+
+338-th query starting...
+interval set size is 0
+filter cost: 3.780ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+338-th query cost: 4ms.
+
+339-th query starting...
+filter cost: 10.787ms
+scan cost: 0.186ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.012ms
+number of tuples: 1
+339-th query cost: 11ms.
+
+340-th query starting...
+interval set size is 0
+filter cost: 2.244ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+340-th query cost: 2ms.
+
+341-th query starting...
+interval set size is 0
+filter cost: 9.671ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+341-th query cost: 10ms.
+
+342-th query starting...
+filter cost: 10.708ms
+scan cost: 0.181ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.012ms
+number of tuples: 1
+342-th query cost: 11ms.
+
+343-th query starting...
+filter cost: 9.680ms
+scan cost: 0.260ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.015ms
+number of tuples: 1
+343-th query cost: 10ms.
+
+344-th query starting...
+filter cost: 42.843ms
+scan cost: 29.979ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.793ms
+number of tuples: 12
+344-th query cost: 74ms.
+
+345-th query starting...
+filter cost: 44.775ms
+scan cost: 37.929ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.863ms
+number of tuples: 216
+345-th query cost: 84ms.
+
+346-th query starting...
+filter cost: 62.636ms
+scan cost: 10.644ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.171ms
+number of tuples: 31
+346-th query cost: 73ms.
+
+347-th query starting...
+filter cost: 38.030ms
+scan cost: 28.607ms
+bucket sizes: [ 4174 4585 3866 ]
+match cost: 0.837ms
+number of tuples: 0
+347-th query cost: 68ms.
+
+348-th query starting...
+filter cost: 41.823ms
+scan cost: 0.964ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.035ms
+number of tuples: 9
+348-th query cost: 43ms.
+
+349-th query starting...
+interval set size is 0
+filter cost: 2.181ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+349-th query cost: 2ms.
+
+350-th query starting...
+filter cost: 26.468ms
+scan cost: 2.374ms
+bucket sizes: [ 226 213 200 ]
+match cost: 0.038ms
+number of tuples: 1
+350-th query cost: 29ms.
+
+351-th query starting...
+filter cost: 38.711ms
+scan cost: 16.436ms
+bucket sizes: [ 1799 1759 1640 ]
+match cost: 0.351ms
+number of tuples: 0
+351-th query cost: 55ms.
+
+352-th query starting...
+interval set size is 0
+filter cost: 3.648ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+352-th query cost: 4ms.
+
+353-th query starting...
+filter cost: 76.621ms
+scan cost: 12.443ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.151ms
+number of tuples: 0
+353-th query cost: 90ms.
+
+354-th query starting...
+interval set size is 0
+filter cost: 2.242ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+354-th query cost: 2ms.
+
+355-th query starting...
+filter cost: 69.081ms
+scan cost: 28.865ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.633ms
+number of tuples: 16
+355-th query cost: 99ms.
+
+356-th query starting...
+interval set size is 0
+filter cost: 3.629ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+356-th query cost: 3ms.
+
+357-th query starting...
+filter cost: 111.915ms
+scan cost: 52.045ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.610ms
+number of tuples: 100
+357-th query cost: 166ms.
+
+358-th query starting...
+filter cost: 0.214ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+358-th query cost: 0ms.
+
+359-th query starting...
+interval set size is 0
+filter cost: 5.637ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+359-th query cost: 6ms.
+
+360-th query starting...
+interval set size is 0
+filter cost: 5.062ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+360-th query cost: 5ms.
+
+361-th query starting...
+interval set size is 0
+filter cost: 3.631ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+361-th query cost: 4ms.
+
+362-th query starting...
+filter cost: 202.573ms
+scan cost: 4.210ms
+bucket sizes: [ 413 364 396 ]
+match cost: 0.114ms
+number of tuples: 1
+362-th query cost: 207ms.
+
+363-th query starting...
+filter cost: 36.056ms
+scan cost: 0.392ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.019ms
+number of tuples: 2
+363-th query cost: 36ms.
+
+364-th query starting...
+filter cost: 48.587ms
+scan cost: 0.147ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.010ms
+number of tuples: 0
+364-th query cost: 49ms.
+
+365-th query starting...
+interval set size is 0
+filter cost: 2.231ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+365-th query cost: 2ms.
+
+366-th query starting...
+interval set size is 0
+filter cost: 58.188ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.005ms
+number of tuples: 0
+366-th query cost: 59ms.
+
+367-th query starting...
+filter cost: 58.326ms
+scan cost: 13.010ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.222ms
+number of tuples: 0
+367-th query cost: 71ms.
+
+368-th query starting...
+filter cost: 44.669ms
+scan cost: 38.603ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.884ms
+number of tuples: 216
+368-th query cost: 85ms.
+
+369-th query starting...
+filter cost: 63.903ms
+scan cost: 7.934ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.155ms
+number of tuples: 9
+369-th query cost: 72ms.
+
+370-th query starting...
+filter cost: 33.371ms
+scan cost: 0.393ms
+bucket sizes: [ 30 29 29 ]
+match cost: 0.018ms
+number of tuples: 2
+370-th query cost: 34ms.
+
+371-th query starting...
+filter cost: 10.726ms
+scan cost: 0.064ms
+bucket sizes: [ 18 2 2 ]
+match cost: 0.011ms
+number of tuples: 0
+371-th query cost: 10ms.
+
+372-th query starting...
+filter cost: 0.247ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+372-th query cost: 1ms.
+
+373-th query starting...
+filter cost: 131.471ms
+scan cost: 62.313ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.372ms
+number of tuples: 125
+373-th query cost: 196ms.
+
+374-th query starting...
+filter cost: 42.205ms
+scan cost: 11.280ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.229ms
+number of tuples: 4
+374-th query cost: 54ms.
+
+375-th query starting...
+interval set size is 0
+filter cost: 13.759ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+375-th query cost: 14ms.
+
+376-th query starting...
+filter cost: 0.239ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+376-th query cost: 0ms.
+
+377-th query starting...
+filter cost: 11.361ms
+scan cost: 0.085ms
+bucket sizes: [ 18 2 2 ]
+match cost: 0.008ms
+number of tuples: 0
+377-th query cost: 12ms.
+
+378-th query starting...
+filter cost: 30.121ms
+scan cost: 0.103ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.008ms
+number of tuples: 0
+378-th query cost: 30ms.
+
+379-th query starting...
+filter cost: 0.243ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+379-th query cost: 0ms.
+
+380-th query starting...
+interval set size is 0
+filter cost: 7.453ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+380-th query cost: 8ms.
+
+381-th query starting...
+interval set size is 0
+filter cost: 4.634ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+381-th query cost: 4ms.
+
+382-th query starting...
+filter cost: 0.098ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+382-th query cost: 1ms.
+
+383-th query starting...
+interval set size is 0
+filter cost: 3.178ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+383-th query cost: 3ms.
+
+384-th query starting...
+filter cost: 45.214ms
+scan cost: 27.183ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.832ms
+number of tuples: 8
+384-th query cost: 73ms.
+
+385-th query starting...
+filter cost: 118.097ms
+scan cost: 0.156ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.012ms
+number of tuples: 0
+385-th query cost: 119ms.
+
+386-th query starting...
+filter cost: 11.447ms
+scan cost: 0.166ms
+bucket sizes: [ 11 11 11 ]
+match cost: 0.012ms
+number of tuples: 1
+386-th query cost: 11ms.
+
+387-th query starting...
+filter cost: 70.937ms
+scan cost: 38.404ms
+bucket sizes: [ 6147 5464 5067 ]
+match cost: 0.955ms
+number of tuples: 20
+387-th query cost: 111ms.
+
+388-th query starting...
+filter cost: 0.217ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+388-th query cost: 0ms.
+
+389-th query starting...
+filter cost: 0.092ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+389-th query cost: 0ms.
+
+390-th query starting...
+interval set size is 0
+filter cost: 2.295ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+390-th query cost: 3ms.
+
+391-th query starting...
+interval set size is 0
+filter cost: 9.860ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+391-th query cost: 9ms.
+
+392-th query starting...
+filter cost: 37.866ms
+scan cost: 27.159ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.785ms
+number of tuples: 8
+392-th query cost: 66ms.
+
+393-th query starting...
+interval set size is 0
+filter cost: 3.757ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+393-th query cost: 4ms.
+
+394-th query starting...
+filter cost: 45.532ms
+scan cost: 8.186ms
+bucket sizes: [ 739 692 701 ]
+match cost: 0.147ms
+number of tuples: 9
+394-th query cost: 54ms.
+
+395-th query starting...
+interval set size is 0
+filter cost: 2.474ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+395-th query cost: 3ms.
+
+396-th query starting...
+filter cost: 40.649ms
+scan cost: 16.344ms
+bucket sizes: [ 1799 1759 1640 ]
+match cost: 0.355ms
+number of tuples: 0
+396-th query cost: 57ms.
+
+397-th query starting...
+filter cost: 132.675ms
+scan cost: 9.658ms
+bucket sizes: [ 941 864 845 ]
+match cost: 0.108ms
+number of tuples: 0
+397-th query cost: 143ms.
+
+398-th query starting...
+filter cost: 0.227ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.006ms
+number of tuples: 0
+398-th query cost: 0ms.
+
+399-th query starting...
+filter cost: 115.680ms
+scan cost: 61.970ms
+bucket sizes: [ 15589 13535 12552 ]
+match cost: 2.198ms
+number of tuples: 125
+399-th query cost: 180ms.
+
+400-th query starting...
+filter cost: 0.215ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+400-th query cost: 0ms.
+
+401-th query starting...
+interval set size is 0
+filter cost: 3.923ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+401-th query cost: 4ms.
+
+402-th query starting...
+interval set size is 0
+filter cost: 9.767ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+402-th query cost: 10ms.
+
+403-th query starting...
+filter cost: 69.803ms
+scan cost: 2.584ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.072ms
+number of tuples: 14
+403-th query cost: 73ms.
+
+404-th query starting...
+filter cost: 26.489ms
+scan cost: 5.678ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.100ms
+number of tuples: 3
+404-th query cost: 32ms.
+
+405-th query starting...
+interval set size is 0
+filter cost: 5.469ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+405-th query cost: 6ms.
+
+406-th query starting...
+interval set size is 0
+filter cost: 2.352ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+406-th query cost: 2ms.
+
+407-th query starting...
+filter cost: 10.004ms
+scan cost: 0.067ms
+bucket sizes: [ 18 2 2 ]
+match cost: 0.008ms
+number of tuples: 0
+407-th query cost: 10ms.
+
+408-th query starting...
+interval set size is 0
+filter cost: 2.175ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+408-th query cost: 2ms.
+
+409-th query starting...
+filter cost: 121.945ms
+scan cost: 0.116ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.009ms
+number of tuples: 0
+409-th query cost: 123ms.
+
+410-th query starting...
+filter cost: 114.866ms
+scan cost: 52.038ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.580ms
+number of tuples: 100
+410-th query cost: 168ms.
+
+411-th query starting...
+filter cost: 43.965ms
+scan cost: 16.749ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.241ms
+number of tuples: 47
+411-th query cost: 61ms.
+
+412-th query starting...
+filter cost: 50.144ms
+scan cost: 9.280ms
+bucket sizes: [ 941 864 845 ]
+match cost: 0.112ms
+number of tuples: 0
+412-th query cost: 60ms.
+
+413-th query starting...
+filter cost: 0.117ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+413-th query cost: 0ms.
+
+414-th query starting...
+interval set size is 0
+filter cost: 2.218ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+414-th query cost: 2ms.
+
+415-th query starting...
+filter cost: 135.670ms
+scan cost: 0.146ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.012ms
+number of tuples: 0
+415-th query cost: 136ms.
+
+416-th query starting...
+filter cost: 11.954ms
+scan cost: 0.126ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.014ms
+number of tuples: 1
+416-th query cost: 12ms.
+
+417-th query starting...
+filter cost: 58.959ms
+scan cost: 38.730ms
+bucket sizes: [ 11039 13768 5744 ]
+match cost: 1.660ms
+number of tuples: 1
+417-th query cost: 100ms.
+
+418-th query starting...
+filter cost: 57.195ms
+scan cost: 12.839ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.181ms
+number of tuples: 0
+418-th query cost: 70ms.
+
+419-th query starting...
+interval set size is 0
+filter cost: 4.891ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+419-th query cost: 5ms.
+
+420-th query starting...
+interval set size is 0
+filter cost: 3.377ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+420-th query cost: 4ms.
+
+421-th query starting...
+interval set size is 0
+filter cost: 3.050ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+421-th query cost: 3ms.
+
+422-th query starting...
+filter cost: 33.836ms
+scan cost: 1.615ms
+bucket sizes: [ 134 129 125 ]
+match cost: 0.027ms
+number of tuples: 0
+422-th query cost: 35ms.
+
+423-th query starting...
+filter cost: 0.118ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+423-th query cost: 1ms.
+
+424-th query starting...
+filter cost: 100.756ms
+scan cost: 37.975ms
+bucket sizes: [ 5237 5076 4588 ]
+match cost: 0.858ms
+number of tuples: 216
+424-th query cost: 139ms.
+
+425-th query starting...
+filter cost: 44.377ms
+scan cost: 12.851ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.229ms
+number of tuples: 10
+425-th query cost: 58ms.
+
+426-th query starting...
+interval set size is 0
+filter cost: 11.712ms
+scan cost: 0.001ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+426-th query cost: 12ms.
+
+427-th query starting...
+interval set size is 0
+filter cost: 2.730ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+427-th query cost: 2ms.
+
+428-th query starting...
+filter cost: 49.303ms
+scan cost: 0.136ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.011ms
+number of tuples: 0
+428-th query cost: 50ms.
+
+429-th query starting...
+filter cost: 45.813ms
+scan cost: 0.900ms
+bucket sizes: [ 75 65 66 ]
+match cost: 0.031ms
+number of tuples: 0
+429-th query cost: 47ms.
+
+430-th query starting...
+filter cost: 12.229ms
+scan cost: 0.272ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.016ms
+number of tuples: 1
+430-th query cost: 12ms.
+
+431-th query starting...
+filter cost: 62.431ms
+scan cost: 5.546ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.115ms
+number of tuples: 3
+431-th query cost: 69ms.
+
+432-th query starting...
+filter cost: 11.132ms
+scan cost: 0.246ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.015ms
+number of tuples: 1
+432-th query cost: 11ms.
+
+433-th query starting...
+interval set size is 0
+filter cost: 3.530ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+433-th query cost: 4ms.
+
+434-th query starting...
+filter cost: 25.121ms
+scan cost: 0.116ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.011ms
+number of tuples: 0
+434-th query cost: 25ms.
+
+435-th query starting...
+filter cost: 0.220ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+435-th query cost: 0ms.
+
+436-th query starting...
+filter cost: 38.455ms
+scan cost: 12.324ms
+bucket sizes: [ 1209 1181 1137 ]
+match cost: 0.246ms
+number of tuples: 0
+436-th query cost: 51ms.
+
+437-th query starting...
+filter cost: 74.746ms
+scan cost: 60.465ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.893ms
+number of tuples: 30
+437-th query cost: 139ms.
+
+438-th query starting...
+filter cost: 90.731ms
+scan cost: 10.914ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.165ms
+number of tuples: 31
+438-th query cost: 102ms.
+
+439-th query starting...
+filter cost: 50.388ms
+scan cost: 12.917ms
+bucket sizes: [ 1427 1289 1238 ]
+match cost: 0.152ms
+number of tuples: 0
+439-th query cost: 63ms.
+
+440-th query starting...
+filter cost: 26.207ms
+scan cost: 2.400ms
+bucket sizes: [ 226 213 200 ]
+match cost: 0.034ms
+number of tuples: 1
+440-th query cost: 29ms.
+
+441-th query starting...
+interval set size is 0
+filter cost: 10.007ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+441-th query cost: 10ms.
+
+442-th query starting...
+filter cost: 11.774ms
+scan cost: 0.169ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.013ms
+number of tuples: 1
+442-th query cost: 12ms.
+
+443-th query starting...
+filter cost: 44.060ms
+scan cost: 0.191ms
+bucket sizes: [ 12 12 12 ]
+match cost: 0.014ms
+number of tuples: 1
+443-th query cost: 44ms.
+
+444-th query starting...
+filter cost: 49.781ms
+scan cost: 0.924ms
+bucket sizes: [ 75 65 66 ]
+match cost: 0.032ms
+number of tuples: 0
+444-th query cost: 51ms.
+
+445-th query starting...
+filter cost: 37.470ms
+scan cost: 5.530ms
+bucket sizes: [ 733 630 779 ]
+match cost: 0.135ms
+number of tuples: 3
+445-th query cost: 43ms.
+
+446-th query starting...
+interval set size is 0
+filter cost: 3.112ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+446-th query cost: 4ms.
+
+447-th query starting...
+interval set size is 0
+filter cost: 2.296ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+447-th query cost: 2ms.
+
+448-th query starting...
+interval set size is 0
+filter cost: 2.187ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+448-th query cost: 2ms.
+
+449-th query starting...
+filter cost: 15.947ms
+scan cost: 0.150ms
+bucket sizes: [ 6 6 6 ]
+match cost: 0.009ms
+number of tuples: 1
+449-th query cost: 16ms.
+
+450-th query starting...
+filter cost: 124.092ms
+scan cost: 123.351ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.523ms
+number of tuples: 100
+450-th query cost: 249ms.
+
+451-th query starting...
+filter cost: 78.590ms
+scan cost: 2.568ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.073ms
+number of tuples: 14
+451-th query cost: 82ms.
+
+452-th query starting...
+filter cost: 144.048ms
+scan cost: 2.541ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.072ms
+number of tuples: 14
+452-th query cost: 147ms.
+
+453-th query starting...
+filter cost: 40.254ms
+scan cost: 28.894ms
+bucket sizes: [ 4174 4585 3866 ]
+match cost: 0.868ms
+number of tuples: 0
+453-th query cost: 70ms.
+
+454-th query starting...
+filter cost: 95.039ms
+scan cost: 2.599ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.068ms
+number of tuples: 14
+454-th query cost: 97ms.
+
+455-th query starting...
+filter cost: 168.824ms
+scan cost: 54.136ms
+bucket sizes: [ 9884 8775 8457 ]
+match cost: 1.785ms
+number of tuples: 100
+455-th query cost: 225ms.
+
+456-th query starting...
+filter cost: 117.924ms
+scan cost: 9.299ms
+bucket sizes: [ 941 864 845 ]
+match cost: 0.123ms
+number of tuples: 0
+456-th query cost: 128ms.
+
+457-th query starting...
+filter cost: 76.435ms
+scan cost: 16.677ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.253ms
+number of tuples: 47
+457-th query cost: 93ms.
+
+458-th query starting...
+filter cost: 0.210ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+458-th query cost: 1ms.
+
+459-th query starting...
+filter cost: 0.157ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.002ms
+number of tuples: 0
+459-th query cost: 0ms.
+
+460-th query starting...
+filter cost: 49.925ms
+scan cost: 15.219ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.307ms
+number of tuples: 5
+460-th query cost: 65ms.
+
+461-th query starting...
+filter cost: 0.116ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+461-th query cost: 0ms.
+
+462-th query starting...
+filter cost: 57.892ms
+scan cost: 10.938ms
+bucket sizes: [ 1091 971 964 ]
+match cost: 0.183ms
+number of tuples: 31
+462-th query cost: 70ms.
+
+463-th query starting...
+filter cost: 62.335ms
+scan cost: 27.345ms
+bucket sizes: [ 3831 4238 3574 ]
+match cost: 0.795ms
+number of tuples: 8
+463-th query cost: 90ms.
+
+464-th query starting...
+interval set size is 0
+filter cost: 9.410ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+464-th query cost: 10ms.
+
+465-th query starting...
+interval set size is 0
+filter cost: 6.885ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+465-th query cost: 7ms.
+
+466-th query starting...
+filter cost: 47.251ms
+scan cost: 0.325ms
+bucket sizes: [ 23 20 20 ]
+match cost: 0.014ms
+number of tuples: 0
+466-th query cost: 47ms.
+
+467-th query starting...
+filter cost: 191.359ms
+scan cost: 84.694ms
+bucket sizes: [ 44203 40112 36529 ]
+match cost: 6.837ms
+number of tuples: 304
+467-th query cost: 283ms.
+
+468-th query starting...
+filter cost: 105.559ms
+scan cost: 30.484ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.745ms
+number of tuples: 16
+468-th query cost: 137ms.
+
+469-th query starting...
+filter cost: 67.771ms
+scan cost: 2.641ms
+bucket sizes: [ 236 211 221 ]
+match cost: 0.069ms
+number of tuples: 14
+469-th query cost: 71ms.
+
+470-th query starting...
+filter cost: 89.986ms
+scan cost: 14.556ms
+bucket sizes: [ 1209 1181 1137 ]
+match cost: 0.267ms
+number of tuples: 0
+470-th query cost: 105ms.
+
+471-th query starting...
+filter cost: 10.464ms
+scan cost: 0.060ms
+bucket sizes: [ 18 2 2 ]
+match cost: 0.008ms
+number of tuples: 0
+471-th query cost: 10ms.
+
+472-th query starting...
+interval set size is 0
+filter cost: 6.379ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+472-th query cost: 7ms.
+
+473-th query starting...
+filter cost: 63.102ms
+scan cost: 0.951ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.034ms
+number of tuples: 9
+473-th query cost: 64ms.
+
+474-th query starting...
+interval set size is 0
+filter cost: 10.778ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+474-th query cost: 11ms.
+
+475-th query starting...
+filter cost: 56.331ms
+scan cost: 12.319ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.241ms
+number of tuples: 10
+475-th query cost: 69ms.
+
+476-th query starting...
+interval set size is 0
+filter cost: 10.227ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+476-th query cost: 10ms.
+
+477-th query starting...
+filter cost: 113.360ms
+scan cost: 60.454ms
+bucket sizes: [ 17460 16364 14488 ]
+match cost: 2.981ms
+number of tuples: 30
+477-th query cost: 177ms.
+
+478-th query starting...
+filter cost: 12.924ms
+scan cost: 0.252ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.016ms
+number of tuples: 1
+478-th query cost: 13ms.
+
+479-th query starting...
+interval set size is 0
+filter cost: 4.731ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+479-th query cost: 5ms.
+
+480-th query starting...
+filter cost: 53.528ms
+scan cost: 0.111ms
+bucket sizes: [ 4 4 4 ]
+match cost: 0.011ms
+number of tuples: 0
+480-th query cost: 54ms.
+
+481-th query starting...
+filter cost: 43.324ms
+scan cost: 0.953ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.035ms
+number of tuples: 9
+481-th query cost: 44ms.
+
+482-th query starting...
+interval set size is 0
+filter cost: 5.846ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+482-th query cost: 6ms.
+
+483-th query starting...
+filter cost: 143.123ms
+scan cost: 29.227ms
+bucket sizes: [ 3776 3439 3320 ]
+match cost: 0.751ms
+number of tuples: 16
+483-th query cost: 173ms.
+
+484-th query starting...
+filter cost: 0.128ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+484-th query cost: 1ms.
+
+485-th query starting...
+filter cost: 36.328ms
+scan cost: 1.601ms
+bucket sizes: [ 134 129 125 ]
+match cost: 0.032ms
+number of tuples: 0
+485-th query cost: 38ms.
+
+486-th query starting...
+filter cost: 61.679ms
+scan cost: 12.351ms
+bucket sizes: [ 1319 1218 1198 ]
+match cost: 0.231ms
+number of tuples: 10
+486-th query cost: 74ms.
+
+487-th query starting...
+filter cost: 0.114ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+487-th query cost: 0ms.
+
+488-th query starting...
+filter cost: 53.374ms
+scan cost: 28.305ms
+bucket sizes: [ 4174 4585 3866 ]
+match cost: 0.853ms
+number of tuples: 0
+488-th query cost: 83ms.
+
+489-th query starting...
+filter cost: 63.531ms
+scan cost: 29.754ms
+bucket sizes: [ 4058 4260 4049 ]
+match cost: 0.814ms
+number of tuples: 12
+489-th query cost: 94ms.
+
+490-th query starting...
+filter cost: 64.121ms
+scan cost: 0.874ms
+bucket sizes: [ 75 65 66 ]
+match cost: 0.031ms
+number of tuples: 0
+490-th query cost: 65ms.
+
+491-th query starting...
+filter cost: 42.956ms
+scan cost: 28.101ms
+bucket sizes: [ 4174 4585 3866 ]
+match cost: 0.835ms
+number of tuples: 0
+491-th query cost: 72ms.
+
+492-th query starting...
+interval set size is 0
+filter cost: 5.417ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+492-th query cost: 6ms.
+
+493-th query starting...
+interval set size is 0
+filter cost: 3.683ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.003ms
+number of tuples: 0
+493-th query cost: 3ms.
+
+494-th query starting...
+interval set size is 0
+filter cost: 6.658ms
+scan cost: 0.000ms
+bucket sizes: [ 0 0 0 ]
+match cost: 0.004ms
+number of tuples: 0
+494-th query cost: 6ms.
+
+495-th query starting...
+filter cost: 51.644ms
+scan cost: 16.392ms
+bucket sizes: [ 1825 1608 1558 ]
+match cost: 0.268ms
+number of tuples: 47
+495-th query cost: 69ms.
+
+496-th query starting...
+filter cost: 15.313ms
+scan cost: 0.274ms
+bucket sizes: [ 22 22 19 ]
+match cost: 0.017ms
+number of tuples: 1
+496-th query cost: 15ms.
+
+497-th query starting...
+filter cost: 47.759ms
+scan cost: 0.910ms
+bucket sizes: [ 75 74 77 ]
+match cost: 0.038ms
+number of tuples: 9
+497-th query cost: 55ms.
+
+498-th query starting...
+filter cost: 50.042ms
+scan cost: 10.950ms
+bucket sizes: [ 1108 1085 1049 ]
+match cost: 0.230ms
+number of tuples: 4
+498-th query cost: 61ms.
+
+499-th query starting...
+filter cost: 48.665ms
+scan cost: 15.261ms
+bucket sizes: [ 1652 1623 1514 ]
+match cost: 0.341ms
+number of tuples: 5
+499-th query cost: 65ms.
