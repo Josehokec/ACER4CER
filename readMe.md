@@ -464,3 +464,7 @@ For example, consider an event stream $E_2$: $\{e_1=(B,1), e_2=(A,1), e_3=(C,2),
 In the SQL standard, a wildcard character ($*$) is defined to support skipping unrelated events. Commercial databases utilize greedy matching for the wildcard character to search for matched tuples. Thus, the selection strategy in commercial databases does not adhere to the *skip-till-next-match* semantics, resulting in inconsistent evaluation results when compared to FlinkCEP. For example, given the event stream $E_2$ and query $Q_2$, the matched tuple in the commercial database is $(e_2,e_5)$, whereas the matching tuple in FlinkCEP is $(e_2,e_4)$.
 
 The selection strategy we have implemented fully aligns with the semantics of *skip-till-next-match* and *skip-till-any-match*. Thus, if there are no two events with identical timestamps, our query results can be consistent with the FlinkCEP query results.
+
+### Victors
+
+<a href="https://info.flagcounter.com/ACPD"><img src="https://s11.flagcounter.com/countxl/ACPD/bg_FFFFFF/txt_000000/border_CCCCCC/columns_5/maxflags_15/viewers_3/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
