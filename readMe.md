@@ -2,13 +2,13 @@
 
 ### Summary
 
-**ACER is a simple, but efficient method (the greatest truths is concise) that uses index structures to accelerate complex event recognition.**
+**ACER is a simple, but efficient method (the greatest truth is concise) that uses index structures to accelerate complex event recognition.**
 
 **ACER key ideas:**
 
 * Using range bitmap to index attribute value
-* Aggregating same type events as a cluster, building synopsis information for each cluster to skip unnecessary access
-* Developing two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
+* Aggregating the events with the same type as a cluster, building synopsis information for each cluster to skip unnecessary access
+* Proposing a two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
 
 **ACER characteristic：**
 
@@ -126,7 +126,7 @@ number of tuples: 268                     // number of matched tuples
 
 ## Section 4: Experimental Datasets
 
-Our paper used both synthetic and real datasets. We provided the download URLs for the real dataset. You can also choose to send emails to the author to inquire about the real datasets. We will be very happy to receive your emails and will respond promptly.
+Our paper used both synthetic and real datasets. We provided the download URLs for the real datasets.
 
 | Dataset   | Method       | Indexed columns                                             |
 | --------- |--------------| ----------------------------------------------------------- |
@@ -145,7 +145,7 @@ Our paper used both synthetic and real datasets. We provided the download URLs f
 
 ###  Section 4.1 Real-world datasets
 
-**Real-world dataset overview**
+**Real-world datasets overview**
 
 | Name                                                         | Columns                                                    | Event number | File size |
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------ | --------- |
@@ -161,7 +161,7 @@ For `NASDAQ` dataset, we only choose 15 famous stocks (*e,g,* MSFT, GOOG, AAPL, 
 
 ### Section 4.2  Synthetic dataset
 
-We have written a synthetic data generator to automatically generate synthetic data of a specified size. `Generator` folder has a `SyntheticQueryGenerator.java` file that can generate synthetic datasets.
+We have written a synthetic data generator to automatically generate synthetic data of a specified size. `generator` folder has a `SyntheticQueryGenerator.java` file that can generate synthetic datasets.
 
 **Schema: `(String type,int a1,int a2,float a3,float a4,long timestamp)`**
 
@@ -175,18 +175,18 @@ a3 ~ Uniform[0,1000]
 a4 ~ Uniform[0,1000]
 
 each variable has 1~3 independent constraints (selectivity range: 0.01~0.2)
-each query has 1~3 dependent constraints
-float-point value in a3 and a4 have up to two digits after the decimal point
+each query has 1~3 dependent constraint conditions
+float-point values in a3 and a4 have up to two digits after the decimal point
 ```
 
-Suppose the probability of occurrence of event types follows a `Zipf` distribution. The difference in timestamps for each adjacent record is 1. We generated 3 synthetic datasets, they contain 10_000_000 (10M), 100_000_000 (100M) and 1_000_000_000 (1G) events, respectively.
+Suppose the probability of occurrence of event types follows a `Zipf` distribution. The difference in timestamps for each adjacent record is 1. We generated 3 synthetic datasets, which contain 10_000_000 (10M), 100_000_000 (100M), and 1_000_000_000 (1G) events, respectively.
 
 
 ### Section 4: DBMS and Flink Experiments
 
 We used a leading commercial database (referred to as `DBMS` here due to copyright issues) and `Flink` to perform some queries on the Crimes dataset, and we found that the query results were different from `DBMS` and `Flink`. However, this does not mean that our code has a bug. The reasons for different query results are as follows:
 
-* In order to support `skip-till-next-match`, `DBMS` needs to use wildcards (e.g.`*`) for querying. When wildcard matches are used, extreme greedy strategies are used for matching, which is not equivalent to  `skip-till-next-match`. DBMS currently does not seem to support `skip-till-any-match` strategy.
+* In order to support `skip-till-next-match,` `DBMS` needs to use wildcards (e.g.,`*`) for querying. When wildcard matches are used, extreme greedy strategies are used for matching, which is not equivalent to  `skip-till-next-match`. DBMS currently does not seem to support `skip-till-any-match` strategy.
 * For  `skip-till-next-match` and `skip-till-any-match`, `Flink` first sorts events based on their timestamps. When two different events have the same timestamp, their sorting position may differ from the initial order, resulting in mismatched results. **If the timestamp of each event is different, then the answer queried by Flink must be the same as the answer queried by ACER.**
 
 ### Section 4.1 DBMS example for crimes dataset
