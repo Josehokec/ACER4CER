@@ -26,7 +26,7 @@
   title = {{ACER}: Accelerating Complex Event Recognition via Two-Phase Filtering under Range Bitmap-Based Indexes},
   year = {2024},
   booktitle = {Proceedings of ACM SIGKDD conference on Knowledge Discovery and Data Mining},
-  pages = {},
+  pages = {1933–1943},
   doi={https://doi.org/10.1145/3637528.3671814}
 }
 ```
