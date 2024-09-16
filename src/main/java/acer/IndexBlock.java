@@ -1,7 +1,7 @@
 package acer;
 
 import common.IndexValuePair;
-import condition.IndependentConstraintQuad;
+import condition.ICQueryQuad;
 import store.RID;
 import org.roaringbitmap.RangeBitmap;
 import org.roaringbitmap.RoaringBitmap;
@@ -14,21 +14,21 @@ import java.util.function.Consumer;
 
 
 /**
- * we have re-design IndexPartition class
- * fast index should store total byte size for an index partition
- * considering an index block store a large events, we have to compress
- * timestamp (8 bytes) and RID (8 bytes)
- * Suppose an index block has g events,
- * <Compress Algorithm>
- * Origin value list: timestamp_1, ..., timestamp_g
- * Compressed value list: startTimestamp, differValue_1, ..., differValue_g
- * timestamp_i (long) = startTimestamp (long) + differValue_i (int)
- * Origin RID list: rid_1 <page_1 (int), offset_1 (int)>, ..., rid_g <page_g (int), offset_g (int)>
- * Compressed RID list: startPage, <differPage_1 (short), offset_1 (short)>, ...
+ * Considering an index block store a large events,
+ * we have to compress timestamp (8 bytes) and RID (6 bytes).
+ * -
+ * Suppose an index block has g timestamps [t_1, ..., t_g]
+ * and g rids [(page_1, offset_1), ..., (page_g, offset_g)]
+ * let startTimestamp = min{t_1, ..., t_g}, startPage = min{page_1, ..., page_g}
+ * storage format:
+ * |roaring bitmap size|roaring bitmap|
+ * |indexNum (int)|rbSize_1|rangeBitmap_1|...|rbSize_h|rangeBitmap_h|
+ * |g (int)|startTimestamp (long)|t_1 - startTimestamp (int)|...|t_g - startTimestamp (int)|
+ * |startPage (int)|page_1 - startPage (short),offset_1 (short)|...|page_g - startPage (short),offset_g (short)|.
  */
 public record IndexBlock(RoaringBitmap deletionMark, RangeBitmap[] rangeBitmaps, int eventNum,
-                                   long startTimestamp, ByteBuffer timestampListBuff,
-                                   int startPage, ByteBuffer ridListBuff) {
+                         long startTimestamp, ByteBuffer timestampListBuff,
+                         int startPage, ByteBuffer ridListBuff) {
 
 
     public static ByteBuffer serialize(RoaringBitmap deletionMark, List<RangeBitmap.Appender> appenderList, List<Long> timestampList, List<RID> ridList) {
@@ -60,11 +60,11 @@ public record IndexBlock(RoaringBitmap deletionMark, RangeBitmap[] rangeBitmaps,
         int indexByteSize = 4 + 4 * indexNum + rangBitmapSumSize + 4 + deletionSize;
         int timeRidByteSize = 4 + 8 + 4 * g + 4 + 4 * g;
         int sumByteSize = indexByteSize + timeRidByteSize;
-        // 4kB page = 4096 bytes
+        // 4kB page = 4096 bytes, 1kB page = 1024 bytes
         int kBPageNum = (int) Math.ceil(sumByteSize / 1024.0);
-
         // add roaring bitmap
         ByteBuffer ans = ByteBuffer.allocate(kBPageNum * 1024);
+        // 这里是新加的，之后改成判断是不是需要删除
         ans.putInt(deletionSize);
         ByteBuffer deletionBuff = ByteBuffer.allocate(deletionSize);
         deletionMark.serialize(deletionBuff);
@@ -105,18 +105,19 @@ public record IndexBlock(RoaringBitmap deletionMark, RangeBitmap[] rangeBitmaps,
         for (RID rid : ridList) {
             int diffPage = rid.page() - startPage;
             int offset = rid.offset();
-            if(diffPage < Short.MIN_VALUE || diffPage > Short.MAX_VALUE || offset > Short.MAX_VALUE){
+            if(diffPage < Short.MIN_VALUE || diffPage > Short.MAX_VALUE){
                 System.out.println("Compress algorithm fail, differ page: " + diffPage + " offset: " + offset);
                 throw new RuntimeException("Compress algorithm fail.");
             }
             ans.putShort((short) diffPage);
-            ans.putShort((short) rid.offset());
+            ans.putShort(rid.offset());
         }
 
         ans.flip();
         return ans;
     }
 
+    //
     public static IndexBlock deserialize(MappedByteBuffer buff) {
         /*
         write an index block to byte buffer
@@ -141,7 +142,7 @@ public record IndexBlock(RoaringBitmap deletionMark, RangeBitmap[] rangeBitmaps,
         // step 1. read indexNum
         int indexNum = buff.getInt();
         // step 2. read range bitmaps
-        // debug
+        // testing
         // long time0 = System.nanoTime();
         RangeBitmap[] rbs = new RangeBitmap[indexNum];
         for (int i = 0; i < indexNum; ++i) {
@@ -198,17 +199,18 @@ public record IndexBlock(RoaringBitmap deletionMark, RangeBitmap[] rangeBitmaps,
     /**
      * find related event based on corresponding independent predicate constraints
      * before call this function, please check max/min values in SynopsisTable
-     * @param icQuads  independent predicate constraints
+     * @param quads  actual query range
      * @param startPos start storage position in this index position
      * @param offset   offset
      * @return <rid, timestamp> pair
      */
-    public List<IndexValuePair> query(List<IndependentConstraintQuad> icQuads, int startPos, int offset) {
+    public List<IndexValuePair> query(List<ICQueryQuad> quads, int startPos, int offset) {
         List<IndexValuePair> pairs;
         RoaringBitmap rb = new RoaringBitmap();
         rb.add(startPos, (long) (offset + startPos));
 
-        for (IndependentConstraintQuad quad : icQuads) {
+        for (ICQueryQuad quad : quads) {
+            // 这里要重写，因为存储的是delta值
             RoaringBitmap rangeQueryRB = queryRangeBitmapUsingIC(quad);
             if (rangeQueryRB == null || rangeQueryRB.getCardinality() == 0) {
                 rb = null;
@@ -223,14 +225,15 @@ public record IndexBlock(RoaringBitmap deletionMark, RangeBitmap[] rangeBitmaps,
     }
 
     // to support deletion operation, we have to return two List<IndexValuePair>
-    public List<List<IndexValuePair>> query4Deletion(List<IndependentConstraintQuad> icQuads, int startPos, int offset) {
-        List<IndexValuePair> pairsMore;
-        List<IndexValuePair> pairsDeletion;
+    // List<IndependentConstraint> icList vs. List<IndependentConstraintQuad> icQuads
+    public List<List<IndexValuePair>> query4Deletion(List<ICQueryQuad> quads, int startPos, int offset) {
+        List<IndexValuePair> satisfiedPairs;
+        List<IndexValuePair> deletedPairs;
 
         RoaringBitmap rb = new RoaringBitmap();
         rb.add(startPos, (long) (offset + startPos));
 
-        for (IndependentConstraintQuad quad : icQuads) {
+        for (ICQueryQuad quad : quads) {
             RoaringBitmap rangeQueryRB = queryRangeBitmapUsingIC(quad);
             if (rangeQueryRB == null || rangeQueryRB.getCardinality() == 0) {
                 rb = null;
@@ -242,20 +245,22 @@ public record IndexBlock(RoaringBitmap deletionMark, RangeBitmap[] rangeBitmaps,
 
         if (rb != null) {
             // do not contain deleted items
-            pairsMore = getIndexValuePairs(rb);
+            satisfiedPairs = getIndexValuePairs(rb);
             rb.and(deletionMark);
-            pairsDeletion = getIndexValuePairs(rb);
+            // satisfied query range & has been deleted
+            deletedPairs = getIndexValuePairs(rb);
         }else{
-            pairsMore = new ArrayList<>();
-            pairsDeletion = new ArrayList<>();
+            satisfiedPairs = new ArrayList<>(8);
+            deletedPairs = new ArrayList<>(8);
         }
         List<List<IndexValuePair>> ans = new ArrayList<>(2);
-        ans.add(pairsMore);
-        ans.add(pairsDeletion);
+        ans.add(satisfiedPairs);
+        ans.add(deletedPairs);
         return ans;
     }
 
-    private RoaringBitmap queryRangeBitmapUsingIC(IndependentConstraintQuad quad) {
+    // 加上最小值即可
+    private RoaringBitmap queryRangeBitmapUsingIC(ICQueryQuad quad) {
         int idx = quad.idx();
         int mark = quad.mark();
         long min = quad.min();

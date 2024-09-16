@@ -3,16 +3,25 @@ package automaton;
 import common.*;
 import condition.DependentConstraint;
 import condition.IndependentConstraint;
-import join.Tuple;
+import common.Tuple;
 import pattern.DecomposeUtils;
 import pattern.QueryPattern;
 
 import java.util.*;
 
+/**
+ * Some key claims:
+ * Currently, this automata does not support the kleene operator and negation operator.
+ * This is a simplified automata, thus it has a fast process speed.
+ * If you need to process more kleene operator and negation operator,
+ * please choose FlinkCEP or OpenCEP (https://github.com/ilya-kolchinsky/OpenCEP).
+ * ACER aims to provide filtered events to speedup complex event query,
+ * thus we do not care detailed automata
+ */
 public class NFA {
     private int stateNum;                           // number of states
     private HashMap<Integer, State> stateMap;       // all states
-    private long queryWindow;
+    private long queryWindow;                       // query window condition
     private  List<State> activeStates;              // active states
 
     public NFA(){
@@ -100,99 +109,6 @@ public class NFA {
                     System.out.println();
                 }
             }
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public void constructNFAExample(){
-        String queryStatement = """
-                PATTERN SEQ(B a, S b, B c)
-                FROM trade
-                USING SKIP_TILL_ANY_MATCH
-                WHERE 35 <= a.price <= 40 AND 110 <= b.price <= 113 AND c.price >= 100 AND c.volume <= 100
-                WITHIN 100 units
-                RETURN COUNT(*)""";
-        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-        this.queryWindow = pattern.getTau();
-
-        // create all state
-        createState("A", false, false);
-        createState("B", false, false);
-        createState("C", false, true);
-
-        // add all transaction
-
-        // start state -> state 'a'
-        List<State> stateA = getState("A");
-        State startState = stateMap.get(0);
-        for(State state : stateA){
-            addTransaction(startState, state, "B", pattern.getICListUsingVarName("A"), new ArrayList<>());
-        }
-
-        // state 'a' -> state 'b'
-        List<State> stateB = getState("B");
-        for(State state1 : stateA){
-            for(State state2 : stateB){
-                addTransaction(state1, state2, "S", pattern.getICListUsingVarName("B"), new ArrayList<>());
-            }
-        }
-
-        // state 'b' -> state 'c'
-        List<State> stateC = getState("C");
-        for(State state1 : stateB){
-            for(State state2 : stateC){
-                addTransaction(state1, state2, "B", pattern.getICListUsingVarName("C"), new ArrayList<>());
-            }
-        }
-    }
-
-    /**
-     * this function aims to constructing state machine automatically
-     * old event pattern
-     * @param queryStatement    entire query statement
-     */
-    @SuppressWarnings("unused")
-    public void generateNFAUsingQueryStatement(String queryStatement){
-        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-        this.queryWindow = pattern.getTau();
-        String[] varNames = pattern.getSeqVarNames();
-        String[] eventTypes = pattern.getSeqEventTypes();
-        int stateNum = varNames.length;
-
-        // create all states
-        for(int i = 0; i < stateNum - 1; ++i){
-            createState(varNames[i], false, false);
-        }
-        createState(varNames[stateNum - 1], false, true);
-
-        // add all transaction
-        for(int i = 0; i < stateNum; ++i){
-            List<IndependentConstraint> icList = pattern.getICListUsingVarName(varNames[i]);
-            List<DependentConstraint> dcList = pattern.getDC(varNames[i]);
-            System.out.println(varNames[i] + ": " + dcList.size());
-            addTransaction(stateMap.get(i), stateMap.get(i + 1), eventTypes[i], icList, dcList);
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public void generateNFAUsingEventPattern(EventPattern pattern){
-        this.queryWindow = pattern.getTau();
-        String[] varNames = pattern.getSeqVarNames();
-        String[] eventTypes = pattern.getSeqEventTypes();
-        int stateNum = varNames.length;
-
-        // create all states
-        for(int i = 0; i < stateNum - 1; ++i){
-            createState(varNames[i], false, false);
-        }
-        createState(varNames[stateNum - 1], false, true);
-
-        // add all transaction
-        for(int i = 0; i < stateNum; ++i){
-            List<IndependentConstraint> icList = pattern.getICListUsingVarName(varNames[i]);
-            List<DependentConstraint> dcList = pattern.getDC(varNames[i]);
-            System.out.println(varNames[i] + ": " + dcList.size());
-            addTransaction(stateMap.get(i), stateMap.get(i + 1), eventTypes[i], icList, dcList);
         }
     }
 

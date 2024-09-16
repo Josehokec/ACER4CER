@@ -3,12 +3,11 @@ package fullscan;
 import arrival.JsonMap;
 import automaton.NFA;
 import common.Converter;
-import common.EventPattern;
+
 import common.EventSchema;
 import common.MatchStrategy;
+import common.Tuple;
 import condition.IndependentConstraint;
-import join.AbstractJoinEngine;
-import join.Tuple;
 import pattern.QueryPattern;
 import store.EventStore;
 import store.RID;
@@ -17,10 +16,14 @@ import java.io.File;
 import java.util.*;
 
 /**
+ * We noticed a mistake in the experimental section of our paper:
+ *     the running result was for the FullScan method instead of FullScanPlus
+ * -------------------------------
  * fullscan-based method
  * vldb'23-high performance row pattern recognition using join
  * in our view, this algorithm is very similar to KDD'12
  * notice: each variable has many bucket, the bucketId = timestamp / queryWindow
+ * due to this method is fullscan-based methods, we use all variables to filter
  */
 public class FullScanPlus {
     private int eventIndices;
@@ -60,58 +63,6 @@ public class FullScanPlus {
         eventIndices++;
 
         return true;
-    }
-
-    public int processCountQueryUsingJoin(EventPattern pattern, AbstractJoinEngine join){
-        // first generate arrival rate json file
-        if(updateArrival){
-            updateArrivalJson();
-            updateArrival = false;
-        }
-        MatchStrategy strategy = pattern.getStrategy();
-        List<List<byte[]>> buckets = getEachVarEvents(pattern);
-
-        int ans;
-        long matchStartTime = System.nanoTime();
-        switch (strategy){
-            case SKIP_TILL_NEXT_MATCH -> ans = join.countTupleUsingFollowBy(pattern, buckets);
-            case SKIP_TILL_ANY_MATCH -> ans = join.countTupleUsingFollowByAny(pattern, buckets);
-            default -> {
-                System.out.println("do not support this strategy, default is SKIP_TILL_ANY_MATCH");
-                ans = join.countTupleUsingFollowBy(pattern, buckets);
-            }
-        }
-        long matchEndTime = System.nanoTime();
-        String matchOutput = String.format("%.3f", (matchEndTime - matchStartTime + 0.0) / 1_000_000);
-        System.out.println("match cost: " + matchOutput + "ms");
-
-        return ans;
-    }
-
-    public List<Tuple> processTupleQueryUsingJoin(EventPattern pattern, AbstractJoinEngine join){
-        // first generate arrival rate json file
-        if(updateArrival){
-            updateArrivalJson();
-            updateArrival = false;
-        }
-
-        MatchStrategy strategy = pattern.getStrategy();
-        List<List<byte[]>> buckets = getEachVarEvents(pattern);
-        List<Tuple> ans;
-        long matchStartTime = System.nanoTime();
-        switch (strategy){
-            case SKIP_TILL_NEXT_MATCH -> ans = join.getTupleUsingFollowBy(pattern, buckets);
-            case SKIP_TILL_ANY_MATCH -> ans = join.getTupleUsingFollowByAny(pattern, buckets);
-            default -> {
-                System.out.println("do not support this strategy, default is SKIP_TILL_ANY_MATCH");
-                ans = join.getTupleUsingFollowBy(pattern, buckets);
-            }
-        }
-        long matchEndTime = System.nanoTime();
-        String matchOutput = String.format("%.3f", (matchEndTime - matchStartTime + 0.0) / 1_000_000);
-        System.out.println("match cost: " + matchOutput + "ms");
-
-        return ans;
     }
 
     public int processCountQueryUsingNFA(QueryPattern pattern, NFA nfa){
@@ -162,147 +113,6 @@ public class FullScanPlus {
         return ans;
     }
 
-    /**
-     * bucketized pre-filtering
-     * @param pattern       pattern
-     * @return              filtered events
-     */
-    public List<List<byte[]>> getEachVarEvents(EventPattern pattern){
-        String[] seqEventTypes = pattern.getSeqEventTypes();
-        String[] seqVarNames = pattern.getSeqVarNames();
-        int patternLen = seqVarNames.length;
-
-        List<List<byte[]>> ans = new ArrayList<>(patternLen);
-        // map.key = ts / window
-        List<HashMap<Long, List<byte[]>>> buckets = new ArrayList<>(patternLen);
-        for(int i = 0; i < patternLen; ++i){
-            buckets.add(new HashMap<>());
-            ans.add(new ArrayList<>());
-        }
-
-        short eventSize = schema.getStoreRecordSize();
-        EventStore store = schema.getStore();
-        int typeIdx = schema.getTypeIdx();
-        int curPage = 0;
-        short curOffset = 0;
-        int pageSize = store.getPageSize();
-
-        int timeIdx = schema.getTimestampIdx();
-
-        // access all events
-        long scanCost = 0;
-        long scanFilterStartTime = System.nanoTime();
-        for(int i = 0; i < eventIndices; ++i){
-            if(curOffset + eventSize > pageSize){
-                curPage++;
-                curOffset = 0;
-            }
-            RID rid = new RID(curPage, curOffset);
-            curOffset += eventSize;
-            // read event from store
-            long scanStartTime = System.nanoTime();
-            byte[] event = store.readByteRecord(rid);
-            long scanEndTime = System.nanoTime();
-            scanCost += (scanEndTime - scanStartTime);
-
-            String curType = schema.getTypeFromBytesRecord(event, typeIdx);
-            for(int j = 0; j < patternLen; ++j) {
-                // Firstly, the event types must be equal.
-                // Once equal, check if the predicate satisfies the constraint conditions.
-                // If so, place it in the i-th bucket
-                if (curType.equals(seqEventTypes[j])) {
-                    // check independent constraints
-                    String varName = seqVarNames[j];
-                    List<IndependentConstraint> icList = pattern.getICListUsingVarName(varName);
-                    boolean satisfy = true;
-                    if(icList != null){
-                        for (IndependentConstraint ic : icList) {
-                            String name = ic.getAttrName();
-                            long min = ic.getMinValue();
-                            long max = ic.getMaxValue();
-                            // obtain the corresponding column for storage based on the attribute name
-                            int col = schema.getAttrNameIdx(name);
-                            long value = schema.getValueFromBytesRecord(event, col);
-                            if (value < min || value > max) {
-                                satisfy = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (satisfy) {
-                        // calculate the bucket id
-                        long timestamp = Converter.bytesToLong(schema.getIthAttrBytes(event, timeIdx));
-                        long bucketId = timestamp / pattern.getTau();
-                        if(buckets.get(j).get(bucketId) == null){
-                            List<byte[]> eventList = new ArrayList<>();
-                            eventList.add(event);
-                            buckets.get(j).put(bucketId, eventList);
-                        }
-                    }
-                }
-            }
-        }
-        // using hash join to filter, here we use all variables
-        int minPos = -1;
-        int minValue = Integer.MAX_VALUE;
-        for(int i = 0; i < patternLen; ++i){
-            int curValue = buckets.get(i).size();
-            if(curValue < minValue){
-                minPos = i;
-                minValue = curValue;
-            }
-        }
-        Set<Long> bucketIdSet = buckets.get(minPos).keySet();
-        HashSet<Long> matchedBucketIdSet = new HashSet<>(bucketIdSet.size() * 4);
-
-        for(long key : bucketIdSet){
-            if(minPos == 0){
-                matchedBucketIdSet.add(key);
-                matchedBucketIdSet.add(key + 1);
-            }else if(minPos == patternLen - 1){
-                matchedBucketIdSet.add(key - 1);
-                matchedBucketIdSet.add(key);
-            }else{
-                matchedBucketIdSet.add(key - 1);
-                matchedBucketIdSet.add(key);
-                matchedBucketIdSet.add(key + 1);
-            }
-        }
-
-        // delete the window that cannot contain matched tuples
-        for(int i = 0; i < patternLen; ++i){
-            if(i != minPos){
-                HashSet<Long> updatedBucketIdSet = new HashSet<>();
-                Set<Long> curBucketIdSet = buckets.get(i).keySet();
-                for(long bucketId : curBucketIdSet){
-                    if(matchedBucketIdSet.contains(bucketId)){
-                        updatedBucketIdSet.add(bucketId);
-                    }
-                }
-                // update the bucketId set
-                matchedBucketIdSet = updatedBucketIdSet;
-            }
-        }
-
-        // use matched window set to filter unrelated events
-        for(int i = 0; i < patternLen; ++i){
-            HashMap<Long, List<byte[]>> curBucket = buckets.get(i);
-            for(long key : curBucket.keySet()){
-                if(matchedBucketIdSet.contains(key)){
-                    ans.get(i).addAll(curBucket.get(key));
-                }
-            }
-        }
-
-        long scanFilterEndTime = System.nanoTime();
-        String scanOutput = String.format("%.3f", (scanCost + 0.0) / 1_000_000);
-        System.out.println("scan cost: " + scanOutput + "ms");
-        String filterOutput = String.format("%.3f", (scanFilterEndTime - scanFilterStartTime - scanCost + 0.0) / 1_000_000);
-        System.out.println("filter cost: " + filterOutput + "ms");
-
-        return ans;
-    }
-
     public List<byte[]> getAllFilteredEvents(QueryPattern pattern){
         List<byte[]> filteredEvents = new ArrayList<>();
 
@@ -318,7 +128,6 @@ public class FullScanPlus {
         long scanFilterStartTime = System.nanoTime();
         // variableName, eventType
         Map<String, String> varTypeMap = pattern.getVarTypeMap();
-
 
         // we know timestamp is ordered, then we can check timestamp
         // varName, windowSet

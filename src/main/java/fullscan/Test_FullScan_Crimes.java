@@ -2,9 +2,6 @@ package fullscan;
 
 import automaton.NFA;
 import common.*;
-import join.GreedyJoin;
-import join.OrderJoin;
-import join.Tuple;
 import pattern.QueryPattern;
 import net.sf.json.JSONArray;
 
@@ -14,25 +11,9 @@ import java.util.List;
 class Test_FullScan_Crimes {
 
     public static void createSchema(){
-        String[] initialStatements = {
-                "CREATE TABLE crimes (PrimaryType TYPE, ID INT,  Beat INT,  District INT, Latitude DOUBLE.9, Longitude DOUBLE.9, Date TIMESTAMP)",
-                "ALTER TABLE crimes ADD CONSTRAINT PrimaryType IN RANGE [0,50]",
-                "ALTER TABLE crimes ADD CONSTRAINT Beat IN RANGE [0,3000]",
-                "ALTER TABLE crimes ADD CONSTRAINT District IN RANGE [0,50]",
-                "ALTER TABLE crimes ADD CONSTRAINT Latitude IN RANGE [36.6,42.1]",
-                "ALTER TABLE crimes ADD CONSTRAINT Longitude IN RANGE [-91.7,-87.5]"
-        };
-
-        // create schema and define attribute range
-        for(String statement : initialStatements){
-            String str = StatementParser.convert(statement);
-            String[] words = str.split(" ");
-            if(words[0].equals("ALTER")){
-                StatementParser.setAttrValueRange(str);
-            } else if (words[0].equals("CREATE") && words[1].equals("TABLE")){
-                StatementParser.createTable(str);
-            }
-        }
+        String statement = "CREATE TABLE crimes (PrimaryType TYPE, ID INT,  Beat INT,  District INT, Latitude DOUBLE.9, Longitude DOUBLE.9, Date TIMESTAMP)";
+        String str = StatementParser.convert(statement);
+        StatementParser.createTable(str);
     }
 
     // different schema creates different object
@@ -66,54 +47,20 @@ class Test_FullScan_Crimes {
 
     public static void batchQuery(FullScan fullScan, JSONArray jsonArray, MatchEngine engine){
         int queryNum = jsonArray.size();
+        assert(engine.equals(MatchEngine.NFA));
         for(int i = 0; i < queryNum; ++i) {
             String queryStatement = jsonArray.getString(i);
+            QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
             // start query
             System.out.println("\n" + i + "-th query starting...");
             long startRunTs = System.currentTimeMillis();
             if(queryStatement.contains("COUNT")){
                 int cnt;
-                switch (engine) {
-                    case NFA -> {
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        cnt = fullScan.processCountQueryUsingNFA(pattern, new NFA());
-                    }
-                    case OrderJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        cnt = fullScan.processCountQueryUsingJoin(pattern, new OrderJoin());
-                    }
-                    case GreedyJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        cnt = fullScan.processCountQueryUsingJoin(pattern, new GreedyJoin());
-                    }
-                    default -> {
-                        System.out.println("we use nfa as default match engine");
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        cnt = fullScan.processCountQueryUsingNFA(pattern, new NFA());
-                    }
-                }
+                cnt = fullScan.processCountQueryUsingNFA(pattern, new NFA());
                 System.out.println("number of tuples: " + cnt);
             }else {
                 List<Tuple> tuples;
-                switch (engine) {
-                    case NFA -> {
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        tuples = fullScan.processTupleQueryUsingNFA(pattern, new NFA());
-                    }
-                    case OrderJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        tuples = fullScan.processTupleQueryUsingJoin(pattern, new OrderJoin());
-                    }
-                    case GreedyJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        tuples = fullScan.processTupleQueryUsingJoin(pattern, new GreedyJoin());
-                    }
-                    default -> {
-                        System.out.println("we use nfa as default match engine");
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        tuples = fullScan.processTupleQueryUsingNFA(pattern, new NFA());
-                    }
-                }
+                tuples = fullScan.processTupleQueryUsingNFA(pattern, new NFA());
                 for (Tuple t : tuples) {
                     System.out.println(t);
                 }
@@ -127,51 +74,17 @@ class Test_FullScan_Crimes {
     // this function only support a query
     @SuppressWarnings("unused")
     public static void singleQuery(FullScan fullScan, String queryStatement, MatchEngine engine){
+        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
         // start querying
         long startRunTs = System.currentTimeMillis();
         if(queryStatement.contains("COUNT")){
             int cnt;
-            switch (engine) {
-                case NFA -> {
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    cnt = fullScan.processCountQueryUsingNFA(pattern, new NFA());
-                }
-                case OrderJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    cnt = fullScan.processCountQueryUsingJoin(pattern, new OrderJoin());
-                }
-                case GreedyJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    cnt = fullScan.processCountQueryUsingJoin(pattern, new GreedyJoin());
-                }
-                default -> {
-                    System.out.println("we use nfa as default match engine");
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    cnt = fullScan.processCountQueryUsingNFA(pattern, new NFA());
-                }
-            }
+
+            cnt = fullScan.processCountQueryUsingNFA(pattern, new NFA());
             System.out.println("number of tuples: " + cnt);
         }else {
             List<Tuple> tuples;
-            switch (engine) {
-                case NFA -> {
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    tuples = fullScan.processTupleQueryUsingNFA(pattern, new NFA());
-                }
-                case OrderJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    tuples = fullScan.processTupleQueryUsingJoin(pattern, new OrderJoin());
-                }
-                case GreedyJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    tuples = fullScan.processTupleQueryUsingJoin(pattern, new GreedyJoin());
-                }
-                default -> {
-                    System.out.println("we use nfa as default match engine");
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    tuples = fullScan.processTupleQueryUsingNFA(pattern, new NFA());
-                }
-            }
+            tuples = fullScan.processTupleQueryUsingNFA(pattern, new NFA());
             for (Tuple t : tuples) {
                 System.out.println(t);
             }
@@ -181,6 +94,7 @@ class Test_FullScan_Crimes {
         System.out.println("query cost: " + (endRunTs - startRunTs) + "ms.");
     }
 
+    @SuppressWarnings("unused")
     public static void testExample(FullScan fullScan, MatchEngine engine){
         String query1 = """
                 PATTERN SEQ(ROBBERY v0, BATTERY v1, MOTOR_VEHICLE_THEFT v2)
@@ -211,7 +125,6 @@ class Test_FullScan_Crimes {
         singleQuery(fullScan, query3, engine);
     }
 
-
     public static void main(String[] args) throws FileNotFoundException {
         String sep = File.separator;
         String prefixPath = System.getProperty("user.dir") + sep + "src" + sep + "main" + sep;
@@ -231,8 +144,7 @@ class Test_FullScan_Crimes {
         // Test_FullScan_Crimes.testExample(fullScan, MatchEngine.NFA);
         // System.exit(0);
 
-        // 5.1 choose NFA engine to match
-        final PrintStream consoleOut = System.out;
+        // 5. choose NFA engine to match
         System.out.println("use NFA to match");
         MatchEngine engine1 = MatchEngine.NFA;
         PrintStream printStream1 = new PrintStream(prefixPath + "output" + sep + "fullscan_crimes_nfa.txt");
@@ -240,16 +152,5 @@ class Test_FullScan_Crimes {
         System.out.println("choose NFA engine to match");
         System.out.println("build cost: " + buildCost +"ms");
         Test_FullScan_Crimes.batchQuery(fullScan, jsonArray, engine1);
-
-        // 5.2 choose OrderJoin engine to match
-        System.setOut(consoleOut);
-        System.out.println("use OrderJoin to match");
-        MatchEngine engine2 = MatchEngine.OrderJoin;
-        PrintStream printStream2 = new PrintStream(prefixPath + "output" + sep + "fullscan_crimes_join.txt");
-        System.setOut(printStream2);
-        System.out.println("choose OrderJoin engine to match");
-        System.out.println("build cost: " + buildCost +"ms");
-        Test_FullScan_Crimes.batchQuery(fullScan, jsonArray, engine2);
     }
-
 }

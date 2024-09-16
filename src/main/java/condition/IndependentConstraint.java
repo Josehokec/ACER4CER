@@ -8,12 +8,12 @@ import common.EventSchema;
 /**
  * Independent predicate constraints
  * format: minValue <= value(attrName) <= maxValue
- * we can support formats have
- * 100 <= a.open <= 165
- * b.volume > 80
- * assuming all are stored using long types
+ * we can support expression formats have:
+ *   (1) 100 <= a.open <= 165
+ *   (2) b.volume > 80
+ * assuming all attributes are stored using long types
  * Note that since RangeBitmap does not support storage of floating-point types,
- * transformations need to be made here
+ * transformation operations need to be made here
  */
 public class IndependentConstraint extends Constraint{
     final String attrName;

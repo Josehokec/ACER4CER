@@ -1,1585 +1,1585 @@
 choose NFA engine to match
-build cost: 1715ms
+build cost: 1621ms
 
 0-th query starting...
-filter cost: 162.820ms
-scan cost: 8.748ms
-match cost: 2.871ms
+filter cost: 93.857ms
+scan cost: 2.010ms
+match cost: 2.244ms
 number of tuples: 9
-0-th query cost: 183ms.
+0-th query cost: 104ms.
 
 1-th query starting...
-filter cost: 90.260ms
-scan cost: 48.436ms
-match cost: 32.864ms
-number of tuples: 1
-1-th query cost: 173ms.
+filter cost: 72.456ms
+scan cost: 34.459ms
+match cost: 12.632ms
+number of tuples: 3
+1-th query cost: 120ms.
 
 2-th query starting...
-filter cost: 62.015ms
-scan cost: 9.469ms
-match cost: 2.390ms
+filter cost: 44.461ms
+scan cost: 10.634ms
+match cost: 2.047ms
 number of tuples: 9
-2-th query cost: 75ms.
+2-th query cost: 58ms.
 
 3-th query starting...
-filter cost: 40.626ms
-scan cost: 7.006ms
-match cost: 2.648ms
+filter cost: 32.410ms
+scan cost: 6.117ms
+match cost: 1.807ms
 number of tuples: 3
-3-th query cost: 51ms.
+3-th query cost: 41ms.
 
 4-th query starting...
-filter cost: 67.598ms
-scan cost: 19.670ms
-match cost: 4.524ms
-number of tuples: 27
-4-th query cost: 93ms.
+filter cost: 51.125ms
+scan cost: 19.423ms
+match cost: 5.403ms
+number of tuples: 77
+4-th query cost: 77ms.
 
 5-th query starting...
-filter cost: 24.239ms
-scan cost: 0.187ms
-match cost: 0.073ms
+filter cost: 15.687ms
+scan cost: 0.141ms
+match cost: 0.162ms
 number of tuples: 1
-5-th query cost: 25ms.
+5-th query cost: 16ms.
 
 6-th query starting...
-filter cost: 44.192ms
-scan cost: 16.127ms
-match cost: 4.181ms
-number of tuples: 5
-6-th query cost: 65ms.
+filter cost: 42.955ms
+scan cost: 18.012ms
+match cost: 4.980ms
+number of tuples: 6
+6-th query cost: 66ms.
 
 7-th query starting...
-filter cost: 171.936ms
-scan cost: 59.029ms
-match cost: 25.981ms
-number of tuples: 35
-7-th query cost: 258ms.
+filter cost: 105.848ms
+scan cost: 56.202ms
+match cost: 26.157ms
+number of tuples: 237
+7-th query cost: 189ms.
 
 8-th query starting...
-filter cost: 158.992ms
-scan cost: 55.456ms
-match cost: 22.586ms
-number of tuples: 35
-8-th query cost: 238ms.
+filter cost: 166.155ms
+scan cost: 55.903ms
+match cost: 17.861ms
+number of tuples: 237
+8-th query cost: 241ms.
 
 9-th query starting...
-filter cost: 15.520ms
-scan cost: 0.143ms
-match cost: 0.058ms
+filter cost: 17.342ms
+scan cost: 0.150ms
+match cost: 0.108ms
 number of tuples: 1
-9-th query cost: 16ms.
+9-th query cost: 18ms.
 
 10-th query starting...
-filter cost: 136.648ms
-scan cost: 79.086ms
-match cost: 172.881ms
-number of tuples: 210
-10-th query cost: 389ms.
+filter cost: 121.772ms
+scan cost: 93.495ms
+match cost: 131.263ms
+number of tuples: 983
+10-th query cost: 347ms.
 
 11-th query starting...
-filter cost: 68.659ms
-scan cost: 29.034ms
-match cost: 9.874ms
+filter cost: 53.288ms
+scan cost: 30.335ms
+match cost: 8.909ms
 number of tuples: 16
-11-th query cost: 108ms.
+11-th query cost: 93ms.
 
 12-th query starting...
-filter cost: 11.339ms
-scan cost: 0.182ms
-match cost: 0.068ms
+filter cost: 9.970ms
+scan cost: 0.173ms
+match cost: 0.061ms
 number of tuples: 1
-12-th query cost: 12ms.
+12-th query cost: 11ms.
 
 13-th query starting...
-filter cost: 89.345ms
-scan cost: 29.717ms
-match cost: 11.982ms
-number of tuples: 12
-13-th query cost: 132ms.
+filter cost: 79.036ms
+scan cost: 28.641ms
+match cost: 8.437ms
+number of tuples: 13
+13-th query cost: 116ms.
 
 14-th query starting...
-filter cost: 169.784ms
-scan cost: 52.643ms
-match cost: 22.477ms
-number of tuples: 35
-14-th query cost: 245ms.
+filter cost: 70.716ms
+scan cost: 51.239ms
+match cost: 16.036ms
+number of tuples: 237
+14-th query cost: 138ms.
 
 15-th query starting...
-filter cost: 49.218ms
-scan cost: 12.795ms
-match cost: 3.726ms
-number of tuples: 0
-15-th query cost: 67ms.
+filter cost: 100.868ms
+scan cost: 12.417ms
+match cost: 1.970ms
+number of tuples: 2
+15-th query cost: 116ms.
 
 16-th query starting...
-filter cost: 93.907ms
-scan cost: 7.918ms
-match cost: 1.914ms
+filter cost: 27.870ms
+scan cost: 7.916ms
+match cost: 1.375ms
 number of tuples: 9
-16-th query cost: 104ms.
+16-th query cost: 37ms.
 
 17-th query starting...
-filter cost: 119.621ms
-scan cost: 4.277ms
-match cost: 1.114ms
+filter cost: 124.303ms
+scan cost: 4.237ms
+match cost: 0.636ms
 number of tuples: 1
-17-th query cost: 125ms.
+17-th query cost: 130ms.
 
 18-th query starting...
-filter cost: 119.663ms
-scan cost: 4.519ms
-match cost: 1.155ms
+filter cost: 92.337ms
+scan cost: 4.215ms
+match cost: 0.626ms
 number of tuples: 1
-18-th query cost: 126ms.
+18-th query cost: 98ms.
 
 19-th query starting...
-filter cost: 43.000ms
-scan cost: 14.995ms
-match cost: 3.925ms
-number of tuples: 5
-19-th query cost: 62ms.
+filter cost: 42.540ms
+scan cost: 15.147ms
+match cost: 2.939ms
+number of tuples: 6
+19-th query cost: 61ms.
 
 20-th query starting...
-filter cost: 137.201ms
-scan cost: 16.694ms
-match cost: 4.784ms
-number of tuples: 27
-20-th query cost: 159ms.
+filter cost: 43.418ms
+scan cost: 16.569ms
+match cost: 2.815ms
+number of tuples: 77
+20-th query cost: 63ms.
 
 21-th query starting...
-filter cost: 42.249ms
-scan cost: 10.780ms
-match cost: 3.063ms
-number of tuples: 15
-21-th query cost: 57ms.
+filter cost: 46.746ms
+scan cost: 11.499ms
+match cost: 1.649ms
+number of tuples: 44
+21-th query cost: 60ms.
 
 22-th query starting...
-filter cost: 11.843ms
-scan cost: 0.181ms
-match cost: 0.094ms
+filter cost: 11.530ms
+scan cost: 0.161ms
+match cost: 0.064ms
 number of tuples: 1
-22-th query cost: 13ms.
+22-th query cost: 12ms.
 
 23-th query starting...
-filter cost: 104.140ms
-scan cost: 39.635ms
-match cost: 14.775ms
-number of tuples: 188
-23-th query cost: 159ms.
+filter cost: 129.183ms
+scan cost: 37.452ms
+match cost: 8.771ms
+number of tuples: 368
+23-th query cost: 176ms.
 
 24-th query starting...
-filter cost: 65.432ms
-scan cost: 2.674ms
-match cost: 0.740ms
+filter cost: 61.865ms
+scan cost: 2.456ms
+match cost: 0.441ms
 number of tuples: 14
-24-th query cost: 69ms.
+24-th query cost: 65ms.
 
 25-th query starting...
-filter cost: 108.280ms
-scan cost: 2.488ms
-match cost: 0.716ms
+filter cost: 83.117ms
+scan cost: 3.081ms
+match cost: 0.621ms
 number of tuples: 14
-25-th query cost: 112ms.
+25-th query cost: 87ms.
 
 26-th query starting...
-filter cost: 108.640ms
-scan cost: 50.761ms
-match cost: 25.074ms
-number of tuples: 35
-26-th query cost: 185ms.
+filter cost: 207.589ms
+scan cost: 56.814ms
+match cost: 20.611ms
+number of tuples: 237
+26-th query cost: 285ms.
 
 27-th query starting...
-filter cost: 11.316ms
-scan cost: 0.266ms
-match cost: 0.101ms
-number of tuples: 1
-27-th query cost: 12ms.
-
-28-th query starting...
-filter cost: 43.101ms
-scan cost: 29.783ms
-match cost: 12.181ms
-number of tuples: 12
-28-th query cost: 85ms.
-
-29-th query starting...
-filter cost: 217.070ms
-scan cost: 75.741ms
-match cost: 115.092ms
-number of tuples: 210
-29-th query cost: 409ms.
-
-30-th query starting...
-filter cost: 43.006ms
-scan cost: 12.364ms
-match cost: 3.656ms
-number of tuples: 10
-30-th query cost: 59ms.
-
-31-th query starting...
-filter cost: 101.117ms
-scan cost: 16.971ms
-match cost: 4.942ms
-number of tuples: 27
-31-th query cost: 124ms.
-
-32-th query starting...
-filter cost: 35.361ms
-scan cost: 11.217ms
-match cost: 3.120ms
-number of tuples: 4
-32-th query cost: 50ms.
-
-33-th query starting...
-filter cost: 44.889ms
-scan cost: 38.428ms
-match cost: 14.587ms
-number of tuples: 188
-33-th query cost: 98ms.
-
-34-th query starting...
-filter cost: 112.404ms
-scan cost: 64.713ms
-match cost: 46.046ms
-number of tuples: 30
-34-th query cost: 224ms.
-
-35-th query starting...
-filter cost: 37.806ms
-scan cost: 27.748ms
-match cost: 10.831ms
-number of tuples: 8
-35-th query cost: 77ms.
-
-36-th query starting...
-filter cost: 80.971ms
-scan cost: 28.976ms
-match cost: 10.941ms
-number of tuples: 12
-36-th query cost: 121ms.
-
-37-th query starting...
-filter cost: 86.845ms
-scan cost: 29.323ms
-match cost: 8.847ms
-number of tuples: 16
-37-th query cost: 125ms.
-
-38-th query starting...
-filter cost: 44.337ms
-scan cost: 28.130ms
-match cost: 9.808ms
-number of tuples: 8
-38-th query cost: 83ms.
-
-39-th query starting...
-filter cost: 15.324ms
-scan cost: 0.280ms
-match cost: 0.104ms
-number of tuples: 1
-39-th query cost: 16ms.
-
-40-th query starting...
-filter cost: 58.687ms
-scan cost: 12.553ms
-match cost: 3.690ms
-number of tuples: 0
-40-th query cost: 75ms.
-
-41-th query starting...
-filter cost: 54.597ms
-scan cost: 40.558ms
-match cost: 14.315ms
-number of tuples: 188
-41-th query cost: 110ms.
-
-42-th query starting...
-filter cost: 117.711ms
-scan cost: 2.602ms
-match cost: 0.685ms
-number of tuples: 14
-42-th query cost: 122ms.
-
-43-th query starting...
-filter cost: 124.743ms
-scan cost: 16.114ms
-match cost: 5.101ms
-number of tuples: 5
-43-th query cost: 146ms.
-
-44-th query starting...
-filter cost: 56.652ms
-scan cost: 13.451ms
-match cost: 3.754ms
-number of tuples: 0
-44-th query cost: 74ms.
-
-45-th query starting...
-filter cost: 48.480ms
-scan cost: 15.121ms
-match cost: 4.631ms
-number of tuples: 5
-45-th query cost: 68ms.
-
-46-th query starting...
-filter cost: 144.170ms
-scan cost: 78.115ms
-match cost: 115.260ms
-number of tuples: 210
-46-th query cost: 338ms.
-
-47-th query starting...
-filter cost: 171.636ms
-scan cost: 42.846ms
-match cost: 15.110ms
-number of tuples: 188
-47-th query cost: 230ms.
-
-48-th query starting...
-filter cost: 17.544ms
-scan cost: 0.310ms
-match cost: 0.097ms
-number of tuples: 1
-48-th query cost: 19ms.
-
-49-th query starting...
-filter cost: 127.602ms
-scan cost: 75.132ms
-match cost: 115.177ms
-number of tuples: 210
-49-th query cost: 318ms.
-
-50-th query starting...
-filter cost: 71.468ms
-scan cost: 38.954ms
-match cost: 134.731ms
-number of tuples: 20
-50-th query cost: 246ms.
-
-51-th query starting...
-filter cost: 47.678ms
-scan cost: 32.870ms
-match cost: 12.386ms
-number of tuples: 12
-51-th query cost: 93ms.
-
-52-th query starting...
-filter cost: 75.386ms
-scan cost: 28.991ms
-match cost: 10.031ms
-number of tuples: 16
-52-th query cost: 115ms.
-
-53-th query starting...
-filter cost: 45.563ms
-scan cost: 30.359ms
-match cost: 85.406ms
-number of tuples: 12
-53-th query cost: 162ms.
-
-54-th query starting...
-filter cost: 65.422ms
-scan cost: 8.598ms
-match cost: 2.056ms
-number of tuples: 9
-54-th query cost: 77ms.
-
-55-th query starting...
-filter cost: 68.300ms
-scan cost: 8.678ms
-match cost: 2.145ms
-number of tuples: 9
-55-th query cost: 79ms.
-
-56-th query starting...
-filter cost: 146.671ms
-scan cost: 4.162ms
-match cost: 1.159ms
-number of tuples: 1
-56-th query cost: 153ms.
-
-57-th query starting...
-filter cost: 59.513ms
-scan cost: 18.031ms
-match cost: 4.713ms
-number of tuples: 27
-57-th query cost: 82ms.
-
-58-th query starting...
-filter cost: 38.960ms
-scan cost: 12.826ms
-match cost: 3.770ms
-number of tuples: 4
-58-th query cost: 56ms.
-
-59-th query starting...
-filter cost: 130.529ms
-scan cost: 11.272ms
-match cost: 3.153ms
-number of tuples: 4
-59-th query cost: 146ms.
-
-60-th query starting...
-filter cost: 54.992ms
-scan cost: 39.333ms
-match cost: 14.982ms
-number of tuples: 188
-60-th query cost: 109ms.
-
-61-th query starting...
-filter cost: 81.643ms
-scan cost: 38.829ms
-match cost: 15.905ms
-number of tuples: 20
-61-th query cost: 137ms.
-
-62-th query starting...
-filter cost: 106.273ms
-scan cost: 27.448ms
-match cost: 11.443ms
-number of tuples: 8
-62-th query cost: 146ms.
-
-63-th query starting...
-filter cost: 52.352ms
-scan cost: 37.454ms
-match cost: 29.757ms
-number of tuples: 1
-63-th query cost: 120ms.
-
-64-th query starting...
-filter cost: 12.710ms
-scan cost: 0.257ms
-match cost: 0.093ms
-number of tuples: 1
-64-th query cost: 13ms.
-
-65-th query starting...
-filter cost: 11.683ms
-scan cost: 0.198ms
+filter cost: 10.701ms
+scan cost: 0.264ms
 match cost: 0.075ms
 number of tuples: 1
-65-th query cost: 12ms.
+27-th query cost: 11ms.
+
+28-th query starting...
+filter cost: 46.130ms
+scan cost: 29.611ms
+match cost: 10.541ms
+number of tuples: 13
+28-th query cost: 86ms.
+
+29-th query starting...
+filter cost: 130.414ms
+scan cost: 74.736ms
+match cost: 73.651ms
+number of tuples: 983
+29-th query cost: 280ms.
+
+30-th query starting...
+filter cost: 33.881ms
+scan cost: 12.523ms
+match cost: 2.451ms
+number of tuples: 11
+30-th query cost: 49ms.
+
+31-th query starting...
+filter cost: 33.632ms
+scan cost: 16.534ms
+match cost: 2.586ms
+number of tuples: 77
+31-th query cost: 53ms.
+
+32-th query starting...
+filter cost: 53.875ms
+scan cost: 11.578ms
+match cost: 1.791ms
+number of tuples: 4
+32-th query cost: 68ms.
+
+33-th query starting...
+filter cost: 28.681ms
+scan cost: 37.711ms
+match cost: 8.201ms
+number of tuples: 368
+33-th query cost: 75ms.
+
+34-th query starting...
+filter cost: 55.845ms
+scan cost: 59.140ms
+match cost: 40.171ms
+number of tuples: 39
+34-th query cost: 155ms.
+
+35-th query starting...
+filter cost: 25.745ms
+scan cost: 26.551ms
+match cost: 7.958ms
+number of tuples: 10
+35-th query cost: 61ms.
+
+36-th query starting...
+filter cost: 85.459ms
+scan cost: 29.971ms
+match cost: 7.967ms
+number of tuples: 13
+36-th query cost: 124ms.
+
+37-th query starting...
+filter cost: 53.549ms
+scan cost: 29.130ms
+match cost: 9.128ms
+number of tuples: 16
+37-th query cost: 92ms.
+
+38-th query starting...
+filter cost: 23.982ms
+scan cost: 26.746ms
+match cost: 7.362ms
+number of tuples: 10
+38-th query cost: 58ms.
+
+39-th query starting...
+filter cost: 10.562ms
+scan cost: 0.270ms
+match cost: 0.067ms
+number of tuples: 1
+39-th query cost: 11ms.
+
+40-th query starting...
+filter cost: 82.200ms
+scan cost: 12.806ms
+match cost: 2.126ms
+number of tuples: 2
+40-th query cost: 97ms.
+
+41-th query starting...
+filter cost: 30.617ms
+scan cost: 37.025ms
+match cost: 7.297ms
+number of tuples: 368
+41-th query cost: 76ms.
+
+42-th query starting...
+filter cost: 50.218ms
+scan cost: 2.482ms
+match cost: 0.427ms
+number of tuples: 14
+42-th query cost: 53ms.
+
+43-th query starting...
+filter cost: 23.136ms
+scan cost: 14.895ms
+match cost: 2.852ms
+number of tuples: 6
+43-th query cost: 41ms.
+
+44-th query starting...
+filter cost: 88.853ms
+scan cost: 12.675ms
+match cost: 2.164ms
+number of tuples: 2
+44-th query cost: 104ms.
+
+45-th query starting...
+filter cost: 37.210ms
+scan cost: 15.119ms
+match cost: 2.970ms
+number of tuples: 6
+45-th query cost: 55ms.
+
+46-th query starting...
+filter cost: 106.798ms
+scan cost: 77.347ms
+match cost: 95.284ms
+number of tuples: 983
+46-th query cost: 280ms.
+
+47-th query starting...
+filter cost: 50.917ms
+scan cost: 38.210ms
+match cost: 8.658ms
+number of tuples: 368
+47-th query cost: 98ms.
+
+48-th query starting...
+filter cost: 96.227ms
+scan cost: 0.302ms
+match cost: 0.086ms
+number of tuples: 1
+48-th query cost: 97ms.
+
+49-th query starting...
+filter cost: 97.206ms
+scan cost: 75.343ms
+match cost: 102.542ms
+number of tuples: 983
+49-th query cost: 276ms.
+
+50-th query starting...
+filter cost: 74.338ms
+scan cost: 37.910ms
+match cost: 15.451ms
+number of tuples: 23
+50-th query cost: 128ms.
+
+51-th query starting...
+filter cost: 167.961ms
+scan cost: 34.291ms
+match cost: 8.119ms
+number of tuples: 13
+51-th query cost: 211ms.
+
+52-th query starting...
+filter cost: 50.780ms
+scan cost: 29.622ms
+match cost: 10.157ms
+number of tuples: 16
+52-th query cost: 90ms.
+
+53-th query starting...
+filter cost: 31.276ms
+scan cost: 30.881ms
+match cost: 8.063ms
+number of tuples: 13
+53-th query cost: 70ms.
+
+54-th query starting...
+filter cost: 76.640ms
+scan cost: 7.685ms
+match cost: 1.271ms
+number of tuples: 9
+54-th query cost: 86ms.
+
+55-th query starting...
+filter cost: 25.966ms
+scan cost: 7.728ms
+match cost: 1.259ms
+number of tuples: 9
+55-th query cost: 35ms.
+
+56-th query starting...
+filter cost: 61.203ms
+scan cost: 4.186ms
+match cost: 0.472ms
+number of tuples: 1
+56-th query cost: 67ms.
+
+57-th query starting...
+filter cost: 28.662ms
+scan cost: 16.283ms
+match cost: 2.569ms
+number of tuples: 77
+57-th query cost: 47ms.
+
+58-th query starting...
+filter cost: 59.607ms
+scan cost: 11.529ms
+match cost: 1.882ms
+number of tuples: 4
+58-th query cost: 73ms.
+
+59-th query starting...
+filter cost: 21.893ms
+scan cost: 10.962ms
+match cost: 1.791ms
+number of tuples: 4
+59-th query cost: 35ms.
+
+60-th query starting...
+filter cost: 30.335ms
+scan cost: 37.090ms
+match cost: 8.083ms
+number of tuples: 368
+60-th query cost: 76ms.
+
+61-th query starting...
+filter cost: 85.861ms
+scan cost: 38.149ms
+match cost: 14.059ms
+number of tuples: 23
+61-th query cost: 138ms.
+
+62-th query starting...
+filter cost: 27.571ms
+scan cost: 27.369ms
+match cost: 7.420ms
+number of tuples: 10
+62-th query cost: 63ms.
+
+63-th query starting...
+filter cost: 30.770ms
+scan cost: 24.567ms
+match cost: 5.626ms
+number of tuples: 3
+63-th query cost: 61ms.
+
+64-th query starting...
+filter cost: 46.869ms
+scan cost: 0.252ms
+match cost: 0.068ms
+number of tuples: 1
+64-th query cost: 48ms.
+
+65-th query starting...
+filter cost: 7.871ms
+scan cost: 0.184ms
+match cost: 0.065ms
+number of tuples: 1
+65-th query cost: 8ms.
 
 66-th query starting...
-filter cost: 24.548ms
-scan cost: 5.600ms
-match cost: 2.076ms
+filter cost: 20.148ms
+scan cost: 5.508ms
+match cost: 1.272ms
 number of tuples: 3
-66-th query cost: 33ms.
+66-th query cost: 27ms.
 
 67-th query starting...
-filter cost: 76.222ms
-scan cost: 7.965ms
-match cost: 2.143ms
+filter cost: 28.468ms
+scan cost: 7.814ms
+match cost: 1.382ms
 number of tuples: 9
-67-th query cost: 86ms.
+67-th query cost: 38ms.
 
 68-th query starting...
-filter cost: 72.319ms
-scan cost: 37.700ms
-match cost: 15.340ms
-number of tuples: 20
-68-th query cost: 126ms.
+filter cost: 74.211ms
+scan cost: 38.178ms
+match cost: 13.769ms
+number of tuples: 23
+68-th query cost: 127ms.
 
 69-th query starting...
-filter cost: 183.872ms
-scan cost: 5.150ms
-match cost: 1.269ms
+filter cost: 75.155ms
+scan cost: 4.310ms
+match cost: 0.568ms
 number of tuples: 1
-69-th query cost: 191ms.
+69-th query cost: 80ms.
 
 70-th query starting...
-filter cost: 27.289ms
-scan cost: 0.318ms
-match cost: 0.130ms
+filter cost: 12.785ms
+scan cost: 0.253ms
+match cost: 0.068ms
 number of tuples: 1
-70-th query cost: 28ms.
+70-th query cost: 13ms.
 
 71-th query starting...
-filter cost: 79.386ms
-scan cost: 13.819ms
-match cost: 3.827ms
-number of tuples: 0
-71-th query cost: 97ms.
+filter cost: 37.808ms
+scan cost: 12.776ms
+match cost: 2.046ms
+number of tuples: 2
+71-th query cost: 53ms.
 
 72-th query starting...
-filter cost: 51.540ms
-scan cost: 8.647ms
-match cost: 2.468ms
+filter cost: 40.279ms
+scan cost: 7.838ms
+match cost: 1.319ms
 number of tuples: 9
-72-th query cost: 63ms.
+72-th query cost: 49ms.
 
 73-th query starting...
-filter cost: 166.531ms
-scan cost: 4.476ms
-match cost: 1.383ms
+filter cost: 77.379ms
+scan cost: 4.125ms
+match cost: 0.590ms
 number of tuples: 1
-73-th query cost: 173ms.
+73-th query cost: 83ms.
 
 74-th query starting...
-filter cost: 30.003ms
-scan cost: 5.662ms
-match cost: 2.102ms
+filter cost: 28.675ms
+scan cost: 5.646ms
+match cost: 1.211ms
 number of tuples: 3
-74-th query cost: 38ms.
+74-th query cost: 36ms.
 
 75-th query starting...
-filter cost: 120.546ms
-scan cost: 13.521ms
-match cost: 3.895ms
-number of tuples: 0
-75-th query cost: 138ms.
+filter cost: 149.756ms
+scan cost: 12.619ms
+match cost: 2.233ms
+number of tuples: 2
+75-th query cost: 164ms.
 
 76-th query starting...
-filter cost: 223.606ms
-scan cost: 3.389ms
-match cost: 0.774ms
+filter cost: 52.436ms
+scan cost: 2.528ms
+match cost: 0.431ms
 number of tuples: 14
-76-th query cost: 229ms.
+76-th query cost: 55ms.
 
 77-th query starting...
-filter cost: 178.117ms
-scan cost: 4.421ms
-match cost: 1.453ms
+filter cost: 62.890ms
+scan cost: 4.377ms
+match cost: 0.481ms
 number of tuples: 1
-77-th query cost: 184ms.
+77-th query cost: 68ms.
 
 78-th query starting...
-filter cost: 78.043ms
-scan cost: 41.749ms
-match cost: 15.852ms
-number of tuples: 20
-78-th query cost: 136ms.
+filter cost: 58.060ms
+scan cost: 38.195ms
+match cost: 135.949ms
+number of tuples: 23
+78-th query cost: 233ms.
 
 79-th query starting...
-filter cost: 36.372ms
-scan cost: 0.416ms
-match cost: 0.127ms
+filter cost: 26.943ms
+scan cost: 0.375ms
+match cost: 0.080ms
 number of tuples: 2
-79-th query cost: 38ms.
+79-th query cost: 27ms.
 
 80-th query starting...
-filter cost: 47.431ms
-scan cost: 39.189ms
-match cost: 15.318ms
-number of tuples: 188
-80-th query cost: 102ms.
+filter cost: 32.295ms
+scan cost: 39.268ms
+match cost: 8.074ms
+number of tuples: 368
+80-th query cost: 81ms.
 
 81-th query starting...
-filter cost: 45.413ms
-scan cost: 100.902ms
-match cost: 3.802ms
-number of tuples: 10
-81-th query cost: 151ms.
+filter cost: 34.872ms
+scan cost: 12.401ms
+match cost: 2.829ms
+number of tuples: 11
+81-th query cost: 51ms.
 
 82-th query starting...
-filter cost: 51.756ms
-scan cost: 39.109ms
-match cost: 31.449ms
-number of tuples: 1
-82-th query cost: 122ms.
+filter cost: 93.994ms
+scan cost: 29.939ms
+match cost: 7.456ms
+number of tuples: 3
+82-th query cost: 132ms.
 
 83-th query starting...
-filter cost: 37.234ms
-scan cost: 11.758ms
-match cost: 3.136ms
+filter cost: 23.468ms
+scan cost: 10.893ms
+match cost: 1.989ms
 number of tuples: 4
-83-th query cost: 53ms.
+83-th query cost: 36ms.
 
 84-th query starting...
-filter cost: 71.875ms
-scan cost: 2.695ms
-match cost: 0.706ms
+filter cost: 51.069ms
+scan cost: 2.426ms
+match cost: 0.327ms
 number of tuples: 14
-84-th query cost: 76ms.
+84-th query cost: 54ms.
 
 85-th query starting...
-filter cost: 37.520ms
-scan cost: 15.738ms
-match cost: 4.585ms
-number of tuples: 5
-85-th query cost: 58ms.
+filter cost: 63.247ms
+scan cost: 15.051ms
+match cost: 2.805ms
+number of tuples: 6
+85-th query cost: 81ms.
 
 86-th query starting...
-filter cost: 103.172ms
-scan cost: 12.848ms
-match cost: 3.650ms
-number of tuples: 10
-86-th query cost: 120ms.
+filter cost: 29.934ms
+scan cost: 12.345ms
+match cost: 2.885ms
+number of tuples: 11
+86-th query cost: 45ms.
 
 87-th query starting...
-filter cost: 72.929ms
-scan cost: 60.197ms
-match cost: 50.563ms
-number of tuples: 30
-87-th query cost: 184ms.
+filter cost: 66.958ms
+scan cost: 59.225ms
+match cost: 37.324ms
+number of tuples: 39
+87-th query cost: 163ms.
 
 88-th query starting...
-filter cost: 70.024ms
-scan cost: 2.472ms
-match cost: 0.705ms
+filter cost: 56.209ms
+scan cost: 2.508ms
+match cost: 0.469ms
 number of tuples: 14
-88-th query cost: 73ms.
+88-th query cost: 60ms.
 
 89-th query starting...
-filter cost: 12.301ms
-scan cost: 0.235ms
-match cost: 0.079ms
+filter cost: 8.924ms
+scan cost: 0.178ms
+match cost: 0.044ms
 number of tuples: 1
-89-th query cost: 13ms.
+89-th query cost: 9ms.
 
 90-th query starting...
-filter cost: 115.148ms
-scan cost: 1.024ms
-match cost: 0.273ms
+filter cost: 80.679ms
+scan cost: 0.883ms
+match cost: 0.151ms
 number of tuples: 9
-90-th query cost: 117ms.
+90-th query cost: 82ms.
 
 91-th query starting...
-filter cost: 43.418ms
-scan cost: 18.306ms
-match cost: 4.868ms
-number of tuples: 27
-91-th query cost: 67ms.
+filter cost: 29.775ms
+scan cost: 16.375ms
+match cost: 2.428ms
+number of tuples: 77
+91-th query cost: 49ms.
 
 92-th query starting...
-filter cost: 113.798ms
-scan cost: 4.304ms
-match cost: 1.241ms
+filter cost: 62.247ms
+scan cost: 4.175ms
+match cost: 0.550ms
 number of tuples: 1
-92-th query cost: 120ms.
+92-th query cost: 67ms.
 
 93-th query starting...
-filter cost: 249.999ms
-scan cost: 1.067ms
-match cost: 0.295ms
+filter cost: 30.495ms
+scan cost: 0.955ms
+match cost: 0.153ms
 number of tuples: 9
-93-th query cost: 251ms.
+93-th query cost: 32ms.
 
 94-th query starting...
-filter cost: 188.478ms
-scan cost: 105.548ms
-match cost: 164.146ms
-number of tuples: 210
-94-th query cost: 459ms.
+filter cost: 147.357ms
+scan cost: 74.635ms
+match cost: 82.982ms
+number of tuples: 983
+94-th query cost: 305ms.
 
 95-th query starting...
-filter cost: 54.798ms
-scan cost: 5.989ms
-match cost: 2.262ms
+filter cost: 51.649ms
+scan cost: 6.083ms
+match cost: 1.315ms
 number of tuples: 3
-95-th query cost: 63ms.
+95-th query cost: 59ms.
 
 96-th query starting...
-filter cost: 47.601ms
-scan cost: 34.979ms
-match cost: 13.686ms
-number of tuples: 12
-96-th query cost: 97ms.
+filter cost: 33.246ms
+scan cost: 29.526ms
+match cost: 7.971ms
+number of tuples: 13
+96-th query cost: 71ms.
 
 97-th query starting...
-filter cost: 166.980ms
-scan cost: 11.162ms
-match cost: 3.112ms
+filter cost: 25.702ms
+scan cost: 10.891ms
+match cost: 1.701ms
 number of tuples: 4
-97-th query cost: 182ms.
+97-th query cost: 38ms.
 
 98-th query starting...
-filter cost: 88.930ms
-scan cost: 31.579ms
-match cost: 11.401ms
+filter cost: 85.862ms
+scan cost: 27.921ms
+match cost: 8.040ms
 number of tuples: 16
-98-th query cost: 132ms.
+98-th query cost: 122ms.
 
 99-th query starting...
-filter cost: 77.031ms
-scan cost: 14.199ms
-match cost: 7.127ms
-number of tuples: 0
-99-th query cost: 99ms.
+filter cost: 32.515ms
+scan cost: 12.437ms
+match cost: 2.027ms
+number of tuples: 2
+99-th query cost: 47ms.
 
 100-th query starting...
-filter cost: 170.867ms
-scan cost: 19.353ms
-match cost: 9.764ms
-number of tuples: 0
-100-th query cost: 201ms.
+filter cost: 28.987ms
+scan cost: 12.312ms
+match cost: 1.649ms
+number of tuples: 2
+100-th query cost: 43ms.
 
 101-th query starting...
-filter cost: 111.675ms
-scan cost: 65.413ms
-match cost: 49.046ms
-number of tuples: 30
-101-th query cost: 226ms.
+filter cost: 66.720ms
+scan cost: 59.556ms
+match cost: 36.465ms
+number of tuples: 39
+101-th query cost: 162ms.
 
 102-th query starting...
-filter cost: 12.585ms
-scan cost: 0.330ms
-match cost: 0.103ms
+filter cost: 11.507ms
+scan cost: 0.254ms
+match cost: 0.052ms
 number of tuples: 1
-102-th query cost: 14ms.
+102-th query cost: 11ms.
 
 103-th query starting...
-filter cost: 112.149ms
-scan cost: 1.045ms
-match cost: 0.297ms
+filter cost: 33.703ms
+scan cost: 0.947ms
+match cost: 0.160ms
 number of tuples: 9
-103-th query cost: 113ms.
+103-th query cost: 34ms.
 
 104-th query starting...
-filter cost: 46.164ms
-scan cost: 8.123ms
-match cost: 2.278ms
+filter cost: 35.190ms
+scan cost: 7.854ms
+match cost: 1.271ms
 number of tuples: 9
-104-th query cost: 57ms.
+104-th query cost: 44ms.
 
 105-th query starting...
-filter cost: 180.983ms
-scan cost: 62.355ms
-match cost: 44.061ms
-number of tuples: 49
-105-th query cost: 288ms.
+filter cost: 155.948ms
+scan cost: 61.748ms
+match cost: 32.700ms
+number of tuples: 339
+105-th query cost: 251ms.
 
 106-th query starting...
-filter cost: 12.908ms
-scan cost: 0.155ms
-match cost: 0.047ms
+filter cost: 8.716ms
+scan cost: 0.118ms
+match cost: 0.033ms
 number of tuples: 1
-106-th query cost: 13ms.
+106-th query cost: 9ms.
 
 107-th query starting...
-filter cost: 25.596ms
-scan cost: 0.233ms
-match cost: 0.071ms
+filter cost: 7.058ms
+scan cost: 0.171ms
+match cost: 0.040ms
 number of tuples: 1
-107-th query cost: 27ms.
+107-th query cost: 7ms.
 
 108-th query starting...
-filter cost: 108.591ms
-scan cost: 61.392ms
-match cost: 95.160ms
-number of tuples: 30
-108-th query cost: 265ms.
+filter cost: 57.736ms
+scan cost: 58.503ms
+match cost: 39.459ms
+number of tuples: 39
+108-th query cost: 156ms.
 
 109-th query starting...
-filter cost: 50.063ms
-scan cost: 13.390ms
-match cost: 4.180ms
-number of tuples: 10
-109-th query cost: 68ms.
+filter cost: 34.720ms
+scan cost: 12.321ms
+match cost: 2.526ms
+number of tuples: 11
+109-th query cost: 50ms.
 
 110-th query starting...
-filter cost: 183.853ms
-scan cost: 76.170ms
-match cost: 117.031ms
-number of tuples: 210
-110-th query cost: 378ms.
+filter cost: 166.026ms
+scan cost: 74.040ms
+match cost: 77.287ms
+number of tuples: 983
+110-th query cost: 318ms.
 
 111-th query starting...
-filter cost: 55.867ms
-scan cost: 5.955ms
-match cost: 2.106ms
+filter cost: 20.979ms
+scan cost: 5.497ms
+match cost: 1.275ms
 number of tuples: 3
-111-th query cost: 64ms.
+111-th query cost: 28ms.
 
 112-th query starting...
-filter cost: 50.962ms
-scan cost: 11.197ms
-match cost: 4.712ms
+filter cost: 20.738ms
+scan cost: 11.060ms
+match cost: 1.781ms
 number of tuples: 4
-112-th query cost: 67ms.
+112-th query cost: 33ms.
 
 113-th query starting...
-filter cost: 71.247ms
-scan cost: 41.791ms
-match cost: 14.362ms
-number of tuples: 188
-113-th query cost: 128ms.
+filter cost: 29.136ms
+scan cost: 36.937ms
+match cost: 54.268ms
+number of tuples: 368
+113-th query cost: 121ms.
 
 114-th query starting...
-filter cost: 92.734ms
-scan cost: 28.867ms
-match cost: 10.126ms
+filter cost: 54.898ms
+scan cost: 28.277ms
+match cost: 8.355ms
 number of tuples: 16
-114-th query cost: 132ms.
+114-th query cost: 92ms.
 
 115-th query starting...
-filter cost: 164.867ms
-scan cost: 61.912ms
-match cost: 73.014ms
-number of tuples: 49
-115-th query cost: 301ms.
+filter cost: 68.486ms
+scan cost: 60.513ms
+match cost: 26.432ms
+number of tuples: 339
+115-th query cost: 156ms.
 
 116-th query starting...
-filter cost: 66.043ms
-scan cost: 0.430ms
-match cost: 0.125ms
+filter cost: 21.013ms
+scan cost: 0.377ms
+match cost: 0.064ms
 number of tuples: 2
-116-th query cost: 67ms.
+116-th query cost: 21ms.
 
 117-th query starting...
-filter cost: 11.572ms
-scan cost: 0.294ms
-match cost: 0.090ms
+filter cost: 95.885ms
+scan cost: 0.304ms
+match cost: 0.088ms
 number of tuples: 1
-117-th query cost: 12ms.
+117-th query cost: 97ms.
 
 118-th query starting...
-filter cost: 71.154ms
-scan cost: 2.552ms
-match cost: 0.832ms
+filter cost: 80.534ms
+scan cost: 2.548ms
+match cost: 0.388ms
 number of tuples: 14
-118-th query cost: 75ms.
+118-th query cost: 84ms.
 
 119-th query starting...
-filter cost: 96.211ms
-scan cost: 38.546ms
-match cost: 29.809ms
-number of tuples: 1
-119-th query cost: 164ms.
+filter cost: 42.520ms
+scan cost: 24.415ms
+match cost: 6.613ms
+number of tuples: 3
+119-th query cost: 73ms.
 
 120-th query starting...
-filter cost: 44.567ms
-scan cost: 12.504ms
-match cost: 3.684ms
-number of tuples: 10
-120-th query cost: 61ms.
+filter cost: 37.095ms
+scan cost: 12.339ms
+match cost: 2.443ms
+number of tuples: 11
+120-th query cost: 52ms.
 
 121-th query starting...
-filter cost: 46.290ms
-scan cost: 29.388ms
-match cost: 12.365ms
-number of tuples: 12
-121-th query cost: 89ms.
+filter cost: 44.617ms
+scan cost: 28.885ms
+match cost: 11.869ms
+number of tuples: 13
+121-th query cost: 87ms.
 
 122-th query starting...
-filter cost: 41.422ms
-scan cost: 0.427ms
-match cost: 0.130ms
+filter cost: 50.694ms
+scan cost: 0.374ms
+match cost: 0.071ms
 number of tuples: 2
-122-th query cost: 42ms.
+122-th query cost: 52ms.
 
 123-th query starting...
-filter cost: 17.388ms
-scan cost: 0.162ms
-match cost: 0.057ms
+filter cost: 8.427ms
+scan cost: 0.159ms
+match cost: 0.041ms
 number of tuples: 1
-123-th query cost: 18ms.
+123-th query cost: 8ms.
 
 124-th query starting...
-filter cost: 69.505ms
-scan cost: 26.522ms
-match cost: 11.184ms
-number of tuples: 8
-124-th query cost: 107ms.
+filter cost: 94.156ms
+scan cost: 27.820ms
+match cost: 8.042ms
+number of tuples: 10
+124-th query cost: 131ms.
 
 125-th query starting...
-filter cost: 72.448ms
-scan cost: 63.289ms
-match cost: 46.823ms
-number of tuples: 30
-125-th query cost: 183ms.
+filter cost: 63.154ms
+scan cost: 59.189ms
+match cost: 39.868ms
+number of tuples: 39
+125-th query cost: 162ms.
 
 126-th query starting...
-filter cost: 40.783ms
-scan cost: 1.029ms
-match cost: 0.262ms
+filter cost: 30.520ms
+scan cost: 0.909ms
+match cost: 0.177ms
 number of tuples: 9
-126-th query cost: 42ms.
+126-th query cost: 32ms.
 
 127-th query starting...
-filter cost: 41.897ms
-scan cost: 16.872ms
-match cost: 4.759ms
-number of tuples: 27
-127-th query cost: 64ms.
+filter cost: 31.498ms
+scan cost: 16.593ms
+match cost: 3.160ms
+number of tuples: 77
+127-th query cost: 51ms.
 
 128-th query starting...
-filter cost: 110.916ms
-scan cost: 59.446ms
-match cost: 45.127ms
-number of tuples: 30
-128-th query cost: 216ms.
+filter cost: 123.304ms
+scan cost: 58.415ms
+match cost: 36.613ms
+number of tuples: 39
+128-th query cost: 218ms.
 
 129-th query starting...
-filter cost: 71.459ms
-scan cost: 60.832ms
-match cost: 115.618ms
-number of tuples: 30
-129-th query cost: 248ms.
+filter cost: 61.470ms
+scan cost: 58.862ms
+match cost: 37.186ms
+number of tuples: 39
+129-th query cost: 158ms.
 
 130-th query starting...
-filter cost: 42.313ms
-scan cost: 10.793ms
-match cost: 2.941ms
-number of tuples: 15
-130-th query cost: 57ms.
+filter cost: 92.831ms
+scan cost: 10.371ms
+match cost: 1.420ms
+number of tuples: 44
+130-th query cost: 105ms.
 
 131-th query starting...
-filter cost: 108.367ms
-scan cost: 2.536ms
-match cost: 0.709ms
+filter cost: 56.622ms
+scan cost: 2.846ms
+match cost: 0.460ms
 number of tuples: 14
-131-th query cost: 111ms.
+131-th query cost: 60ms.
 
 132-th query starting...
-filter cost: 41.891ms
-scan cost: 7.948ms
-match cost: 2.139ms
+filter cost: 44.947ms
+scan cost: 9.430ms
+match cost: 1.870ms
 number of tuples: 9
-132-th query cost: 53ms.
+132-th query cost: 56ms.
 
 133-th query starting...
-filter cost: 11.267ms
-scan cost: 0.193ms
-match cost: 0.053ms
+filter cost: 13.464ms
+scan cost: 0.192ms
+match cost: 0.054ms
 number of tuples: 1
-133-th query cost: 11ms.
+133-th query cost: 13ms.
 
 134-th query starting...
-filter cost: 110.060ms
-scan cost: 4.311ms
-match cost: 1.213ms
+filter cost: 141.038ms
+scan cost: 4.380ms
+match cost: 0.647ms
 number of tuples: 1
-134-th query cost: 116ms.
+134-th query cost: 146ms.
 
 135-th query starting...
-filter cost: 43.648ms
-scan cost: 12.380ms
-match cost: 2.904ms
-number of tuples: 15
-135-th query cost: 59ms.
+filter cost: 47.210ms
+scan cost: 10.870ms
+match cost: 1.612ms
+number of tuples: 44
+135-th query cost: 60ms.
 
 136-th query starting...
-filter cost: 127.769ms
-scan cost: 18.236ms
-match cost: 4.801ms
-number of tuples: 27
-136-th query cost: 151ms.
+filter cost: 29.239ms
+scan cost: 16.203ms
+match cost: 2.433ms
+number of tuples: 77
+136-th query cost: 48ms.
 
 137-th query starting...
-filter cost: 42.610ms
-scan cost: 18.118ms
-match cost: 4.871ms
-number of tuples: 27
-137-th query cost: 66ms.
+filter cost: 69.097ms
+scan cost: 16.139ms
+match cost: 2.660ms
+number of tuples: 77
+137-th query cost: 88ms.
 
 138-th query starting...
-filter cost: 72.748ms
-scan cost: 0.330ms
-match cost: 0.080ms
+filter cost: 24.446ms
+scan cost: 0.308ms
+match cost: 0.053ms
 number of tuples: 0
-138-th query cost: 73ms.
+138-th query cost: 25ms.
 
 139-th query starting...
-filter cost: 37.257ms
-scan cost: 16.357ms
-match cost: 4.929ms
+filter cost: 26.502ms
+scan cost: 16.251ms
+match cost: 2.952ms
 number of tuples: 0
-139-th query cost: 59ms.
+139-th query cost: 46ms.
 
 140-th query starting...
 interval set size is 0
-filter cost: 2.447ms
-scan cost: 0.000ms
-match cost: 0.009ms
-number of tuples: 0
-140-th query cost: 3ms.
-
-141-th query starting...
-filter cost: 38.502ms
-scan cost: 0.341ms
-match cost: 0.079ms
-number of tuples: 0
-141-th query cost: 39ms.
-
-142-th query starting...
-filter cost: 53.825ms
-scan cost: 10.803ms
-match cost: 2.942ms
-number of tuples: 15
-142-th query cost: 67ms.
-
-143-th query starting...
-filter cost: 27.323ms
-scan cost: 2.162ms
-match cost: 0.362ms
-number of tuples: 0
-143-th query cost: 31ms.
-
-144-th query starting...
-filter cost: 29.215ms
-scan cost: 2.637ms
-match cost: 0.621ms
-number of tuples: 1
-144-th query cost: 32ms.
-
-145-th query starting...
-interval set size is 0
-filter cost: 10.300ms
-scan cost: 0.000ms
-match cost: 0.016ms
-number of tuples: 0
-145-th query cost: 11ms.
-
-146-th query starting...
-filter cost: 100.828ms
-scan cost: 60.657ms
-match cost: 41.483ms
-number of tuples: 30
-146-th query cost: 203ms.
-
-147-th query starting...
-interval set size is 0
-filter cost: 5.972ms
+filter cost: 2.175ms
 scan cost: 0.000ms
 match cost: 0.011ms
 number of tuples: 0
-147-th query cost: 6ms.
+140-th query cost: 2ms.
+
+141-th query starting...
+filter cost: 23.543ms
+scan cost: 0.296ms
+match cost: 0.054ms
+number of tuples: 0
+141-th query cost: 24ms.
+
+142-th query starting...
+filter cost: 46.441ms
+scan cost: 11.046ms
+match cost: 1.559ms
+number of tuples: 44
+142-th query cost: 60ms.
+
+143-th query starting...
+filter cost: 21.548ms
+scan cost: 1.512ms
+match cost: 0.228ms
+number of tuples: 0
+143-th query cost: 23ms.
+
+144-th query starting...
+filter cost: 20.339ms
+scan cost: 2.277ms
+match cost: 0.338ms
+number of tuples: 1
+144-th query cost: 23ms.
+
+145-th query starting...
+interval set size is 0
+filter cost: 6.458ms
+scan cost: 0.000ms
+match cost: 0.015ms
+number of tuples: 0
+145-th query cost: 7ms.
+
+146-th query starting...
+filter cost: 85.089ms
+scan cost: 59.092ms
+match cost: 36.656ms
+number of tuples: 39
+146-th query cost: 181ms.
+
+147-th query starting...
+interval set size is 0
+filter cost: 4.323ms
+scan cost: 0.000ms
+match cost: 0.012ms
+number of tuples: 0
+147-th query cost: 4ms.
 
 148-th query starting...
-filter cost: 0.254ms
+filter cost: 0.187ms
 scan cost: 0.000ms
-match cost: 0.025ms
+match cost: 0.005ms
 number of tuples: 0
 148-th query cost: 0ms.
 
 149-th query starting...
-filter cost: 0.173ms
+filter cost: 0.156ms
 scan cost: 0.000ms
-match cost: 0.008ms
+match cost: 0.007ms
 number of tuples: 0
-149-th query cost: 1ms.
+149-th query cost: 0ms.
 
 150-th query starting...
-filter cost: 27.274ms
-scan cost: 1.714ms
-match cost: 0.360ms
+filter cost: 57.548ms
+scan cost: 1.575ms
+match cost: 0.266ms
 number of tuples: 0
-150-th query cost: 29ms.
+150-th query cost: 59ms.
 
 151-th query starting...
 interval set size is 0
-filter cost: 3.861ms
+filter cost: 2.969ms
 scan cost: 0.000ms
 match cost: 0.011ms
 number of tuples: 0
-151-th query cost: 4ms.
+151-th query cost: 3ms.
 
 152-th query starting...
-filter cost: 195.581ms
-scan cost: 64.467ms
-match cost: 38.855ms
-number of tuples: 49
-152-th query cost: 299ms.
+filter cost: 82.584ms
+scan cost: 60.815ms
+match cost: 72.597ms
+number of tuples: 339
+152-th query cost: 217ms.
 
 153-th query starting...
-filter cost: 12.621ms
-scan cost: 0.196ms
-match cost: 0.038ms
+filter cost: 10.194ms
+scan cost: 0.141ms
+match cost: 0.035ms
 number of tuples: 1
-153-th query cost: 13ms.
+153-th query cost: 10ms.
 
 154-th query starting...
-filter cost: 41.504ms
-scan cost: 11.698ms
-match cost: 3.128ms
+filter cost: 24.421ms
+scan cost: 11.105ms
+match cost: 2.099ms
 number of tuples: 4
-154-th query cost: 57ms.
+154-th query cost: 38ms.
 
 155-th query starting...
-filter cost: 171.677ms
-scan cost: 62.245ms
-match cost: 39.039ms
-number of tuples: 49
-155-th query cost: 273ms.
+filter cost: 155.156ms
+scan cost: 64.144ms
+match cost: 69.766ms
+number of tuples: 339
+155-th query cost: 289ms.
 
 156-th query starting...
-filter cost: 0.227ms
+filter cost: 0.306ms
 scan cost: 0.000ms
-match cost: 0.007ms
+match cost: 0.008ms
 number of tuples: 0
 156-th query cost: 1ms.
 
 157-th query starting...
 interval set size is 0
-filter cost: 3.711ms
+filter cost: 2.359ms
 scan cost: 0.000ms
-match cost: 0.010ms
+match cost: 0.008ms
 number of tuples: 0
-157-th query cost: 3ms.
+157-th query cost: 2ms.
 
 158-th query starting...
-filter cost: 205.095ms
-scan cost: 57.696ms
-match cost: 25.048ms
-number of tuples: 35
-158-th query cost: 289ms.
+filter cost: 90.604ms
+scan cost: 50.281ms
+match cost: 16.153ms
+number of tuples: 237
+158-th query cost: 157ms.
 
 159-th query starting...
 interval set size is 0
-filter cost: 5.658ms
+filter cost: 4.202ms
 scan cost: 0.000ms
-match cost: 0.012ms
+match cost: 0.013ms
 number of tuples: 0
-159-th query cost: 5ms.
+159-th query cost: 4ms.
 
 160-th query starting...
-filter cost: 47.765ms
-scan cost: 30.827ms
-match cost: 12.239ms
+filter cost: 23.796ms
+scan cost: 28.300ms
+match cost: 8.347ms
 number of tuples: 0
-160-th query cost: 91ms.
+160-th query cost: 60ms.
 
 161-th query starting...
-filter cost: 43.379ms
-scan cost: 39.808ms
-match cost: 15.796ms
-number of tuples: 188
-161-th query cost: 100ms.
+filter cost: 29.963ms
+scan cost: 37.064ms
+match cost: 7.518ms
+number of tuples: 368
+161-th query cost: 74ms.
 
 162-th query starting...
-filter cost: 46.123ms
-scan cost: 0.412ms
-match cost: 0.128ms
+filter cost: 21.082ms
+scan cost: 0.392ms
+match cost: 0.066ms
 number of tuples: 2
-162-th query cost: 47ms.
+162-th query cost: 22ms.
 
 163-th query starting...
 interval set size is 0
-filter cost: 10.913ms
+filter cost: 5.857ms
 scan cost: 0.000ms
-match cost: 0.017ms
+match cost: 0.011ms
 number of tuples: 0
-163-th query cost: 11ms.
+163-th query cost: 6ms.
 
 164-th query starting...
 interval set size is 0
-filter cost: 6.267ms
-scan cost: 0.001ms
-match cost: 0.032ms
+filter cost: 3.888ms
+scan cost: 0.000ms
+match cost: 0.010ms
 number of tuples: 0
-164-th query cost: 6ms.
+164-th query cost: 4ms.
 
 165-th query starting...
-filter cost: 51.704ms
-scan cost: 12.568ms
-match cost: 3.728ms
-number of tuples: 10
-165-th query cost: 69ms.
+filter cost: 29.490ms
+scan cost: 12.295ms
+match cost: 2.518ms
+number of tuples: 11
+165-th query cost: 44ms.
 
 166-th query starting...
-filter cost: 149.289ms
-scan cost: 51.718ms
-match cost: 24.336ms
-number of tuples: 35
-166-th query cost: 225ms.
+filter cost: 70.604ms
+scan cost: 102.399ms
+match cost: 17.795ms
+number of tuples: 237
+166-th query cost: 191ms.
 
 167-th query starting...
-filter cost: 59.836ms
-scan cost: 0.189ms
-match cost: 0.042ms
+filter cost: 28.356ms
+scan cost: 0.132ms
+match cost: 0.036ms
 number of tuples: 0
-167-th query cost: 60ms.
+167-th query cost: 28ms.
 
 168-th query starting...
-filter cost: 79.135ms
-scan cost: 16.556ms
-match cost: 4.835ms
-number of tuples: 27
-168-th query cost: 101ms.
+filter cost: 27.383ms
+scan cost: 16.466ms
+match cost: 2.428ms
+number of tuples: 77
+168-th query cost: 47ms.
 
 169-th query starting...
-filter cost: 0.151ms
+filter cost: 0.214ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
 169-th query cost: 0ms.
 
 170-th query starting...
-filter cost: 40.535ms
-scan cost: 0.899ms
-match cost: 0.247ms
+filter cost: 27.735ms
+scan cost: 0.883ms
+match cost: 0.132ms
 number of tuples: 0
-170-th query cost: 42ms.
+170-th query cost: 29ms.
 
 171-th query starting...
-filter cost: 60.026ms
-scan cost: 16.873ms
-match cost: 4.747ms
-number of tuples: 27
-171-th query cost: 82ms.
+filter cost: 28.646ms
+scan cost: 16.262ms
+match cost: 2.353ms
+number of tuples: 77
+171-th query cost: 48ms.
 
 172-th query starting...
 interval set size is 0
-filter cost: 5.662ms
+filter cost: 4.066ms
 scan cost: 0.000ms
-match cost: 0.013ms
+match cost: 0.011ms
 number of tuples: 0
-172-th query cost: 6ms.
+172-th query cost: 4ms.
 
 173-th query starting...
-filter cost: 47.855ms
-scan cost: 37.899ms
-match cost: 29.774ms
-number of tuples: 1
-173-th query cost: 116ms.
+filter cost: 31.410ms
+scan cost: 25.303ms
+match cost: 6.198ms
+number of tuples: 3
+173-th query cost: 63ms.
 
 174-th query starting...
-filter cost: 54.124ms
-scan cost: 38.138ms
-match cost: 14.509ms
-number of tuples: 188
-174-th query cost: 107ms.
+filter cost: 78.707ms
+scan cost: 37.720ms
+match cost: 8.309ms
+number of tuples: 368
+174-th query cost: 125ms.
 
 175-th query starting...
-filter cost: 0.224ms
+filter cost: 0.301ms
 scan cost: 0.000ms
-match cost: 0.009ms
+match cost: 0.007ms
 number of tuples: 0
 175-th query cost: 0ms.
 
 176-th query starting...
 filter cost: 0.101ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.005ms
 number of tuples: 0
 176-th query cost: 0ms.
 
 177-th query starting...
 interval set size is 0
-filter cost: 2.175ms
+filter cost: 1.715ms
 scan cost: 0.000ms
-match cost: 0.008ms
+match cost: 0.005ms
 number of tuples: 0
-177-th query cost: 3ms.
+177-th query cost: 2ms.
 
 178-th query starting...
-filter cost: 63.542ms
-scan cost: 38.777ms
-match cost: 26.771ms
-number of tuples: 1
-178-th query cost: 129ms.
+filter cost: 29.906ms
+scan cost: 24.564ms
+match cost: 5.697ms
+number of tuples: 3
+178-th query cost: 61ms.
 
 179-th query starting...
-filter cost: 0.291ms
+filter cost: 0.320ms
 scan cost: 0.000ms
-match cost: 0.007ms
+match cost: 0.009ms
 number of tuples: 0
 179-th query cost: 0ms.
 
 180-th query starting...
-filter cost: 124.099ms
-scan cost: 4.251ms
-match cost: 1.128ms
+filter cost: 61.933ms
+scan cost: 4.156ms
+match cost: 0.551ms
 number of tuples: 1
-180-th query cost: 130ms.
+180-th query cost: 67ms.
 
 181-th query starting...
-filter cost: 156.420ms
-scan cost: 38.050ms
-match cost: 15.530ms
-number of tuples: 20
-181-th query cost: 210ms.
+filter cost: 56.760ms
+scan cost: 37.141ms
+match cost: 76.039ms
+number of tuples: 23
+181-th query cost: 170ms.
 
 182-th query starting...
-filter cost: 34.475ms
-scan cost: 11.325ms
-match cost: 3.095ms
+filter cost: 22.709ms
+scan cost: 10.949ms
+match cost: 1.701ms
 number of tuples: 4
-182-th query cost: 49ms.
+182-th query cost: 36ms.
 
 183-th query starting...
-filter cost: 73.804ms
-scan cost: 12.592ms
-match cost: 3.724ms
-number of tuples: 0
-183-th query cost: 90ms.
+filter cost: 29.684ms
+scan cost: 12.322ms
+match cost: 1.646ms
+number of tuples: 2
+183-th query cost: 43ms.
 
 184-th query starting...
-filter cost: 34.357ms
-scan cost: 15.118ms
-match cost: 4.475ms
-number of tuples: 5
-184-th query cost: 55ms.
+filter cost: 22.250ms
+scan cost: 14.913ms
+match cost: 2.770ms
+number of tuples: 6
+184-th query cost: 41ms.
 
 185-th query starting...
-filter cost: 58.240ms
-scan cost: 0.155ms
-match cost: 0.037ms
+filter cost: 60.612ms
+scan cost: 0.164ms
+match cost: 0.042ms
 number of tuples: 0
-185-th query cost: 58ms.
+185-th query cost: 61ms.
 
 186-th query starting...
-filter cost: 23.655ms
-scan cost: 0.110ms
-match cost: 0.028ms
+filter cost: 26.206ms
+scan cost: 0.119ms
+match cost: 0.042ms
 number of tuples: 0
-186-th query cost: 24ms.
+186-th query cost: 26ms.
 
 187-th query starting...
-filter cost: 98.360ms
-scan cost: 59.497ms
-match cost: 39.914ms
-number of tuples: 30
-187-th query cost: 198ms.
+filter cost: 60.973ms
+scan cost: 59.114ms
+match cost: 90.862ms
+number of tuples: 39
+187-th query cost: 211ms.
 
 188-th query starting...
-filter cost: 30.681ms
-scan cost: 0.106ms
+filter cost: 21.555ms
+scan cost: 0.129ms
 match cost: 0.032ms
 number of tuples: 0
-188-th query cost: 31ms.
+188-th query cost: 22ms.
 
 189-th query starting...
-filter cost: 186.623ms
-scan cost: 75.962ms
-match cost: 114.484ms
-number of tuples: 210
-189-th query cost: 377ms.
+filter cost: 109.869ms
+scan cost: 74.351ms
+match cost: 96.563ms
+number of tuples: 983
+189-th query cost: 281ms.
 
 190-th query starting...
-filter cost: 71.119ms
-scan cost: 0.997ms
-match cost: 0.264ms
+filter cost: 32.674ms
+scan cost: 0.930ms
+match cost: 0.131ms
 number of tuples: 9
-190-th query cost: 73ms.
+190-th query cost: 34ms.
 
 191-th query starting...
-filter cost: 41.943ms
-scan cost: 12.603ms
-match cost: 3.649ms
-number of tuples: 10
-191-th query cost: 58ms.
+filter cost: 34.465ms
+scan cost: 12.529ms
+match cost: 2.340ms
+number of tuples: 11
+191-th query cost: 50ms.
 
 192-th query starting...
-filter cost: 49.677ms
-scan cost: 26.782ms
-match cost: 11.339ms
-number of tuples: 8
-192-th query cost: 88ms.
+filter cost: 29.075ms
+scan cost: 26.313ms
+match cost: 6.918ms
+number of tuples: 10
+192-th query cost: 62ms.
 
 193-th query starting...
-filter cost: 10.685ms
-scan cost: 0.175ms
-match cost: 0.054ms
+filter cost: 10.342ms
+scan cost: 0.167ms
+match cost: 0.042ms
 number of tuples: 1
 193-th query cost: 11ms.
 
 194-th query starting...
 interval set size is 0
-filter cost: 2.238ms
+filter cost: 1.997ms
 scan cost: 0.000ms
 match cost: 0.008ms
 number of tuples: 0
-194-th query cost: 3ms.
+194-th query cost: 2ms.
 
 195-th query starting...
-filter cost: 48.562ms
-scan cost: 27.274ms
-match cost: 10.127ms
-number of tuples: 8
-195-th query cost: 86ms.
+filter cost: 28.502ms
+scan cost: 26.371ms
+match cost: 6.981ms
+number of tuples: 10
+195-th query cost: 62ms.
 
 196-th query starting...
-filter cost: 0.145ms
+filter cost: 0.225ms
 scan cost: 0.000ms
 match cost: 0.008ms
 number of tuples: 0
 196-th query cost: 0ms.
 
 197-th query starting...
-filter cost: 51.776ms
-scan cost: 29.967ms
-match cost: 10.854ms
-number of tuples: 12
-197-th query cost: 93ms.
+filter cost: 51.021ms
+scan cost: 28.552ms
+match cost: 7.646ms
+number of tuples: 13
+197-th query cost: 88ms.
 
 198-th query starting...
 interval set size is 0
-filter cost: 4.832ms
+filter cost: 2.362ms
 scan cost: 0.000ms
 match cost: 0.011ms
 number of tuples: 0
-198-th query cost: 5ms.
+198-th query cost: 2ms.
 
 199-th query starting...
-filter cost: 0.218ms
+filter cost: 0.205ms
 scan cost: 0.000ms
-match cost: 0.007ms
+match cost: 0.005ms
 number of tuples: 0
-199-th query cost: 0ms.
+199-th query cost: 1ms.
 
 200-th query starting...
-filter cost: 31.008ms
-scan cost: 0.142ms
-match cost: 0.036ms
+filter cost: 19.285ms
+scan cost: 0.109ms
+match cost: 0.026ms
 number of tuples: 0
-200-th query cost: 31ms.
+200-th query cost: 19ms.
 
 201-th query starting...
-filter cost: 58.860ms
-scan cost: 38.097ms
-match cost: 14.712ms
-number of tuples: 188
-201-th query cost: 112ms.
+filter cost: 29.171ms
+scan cost: 36.877ms
+match cost: 8.031ms
+number of tuples: 368
+201-th query cost: 74ms.
 
 202-th query starting...
-filter cost: 38.029ms
-scan cost: 12.295ms
-match cost: 3.400ms
+filter cost: 21.794ms
+scan cost: 11.680ms
+match cost: 1.946ms
 number of tuples: 0
-202-th query cost: 54ms.
+202-th query cost: 36ms.
 
 203-th query starting...
-filter cost: 11.566ms
-scan cost: 0.260ms
-match cost: 0.085ms
+filter cost: 7.956ms
+scan cost: 0.246ms
+match cost: 0.047ms
 number of tuples: 1
-203-th query cost: 12ms.
+203-th query cost: 8ms.
 
 204-th query starting...
-filter cost: 68.800ms
-scan cost: 9.130ms
-match cost: 2.496ms
-number of tuples: 0
-204-th query cost: 81ms.
+filter cost: 28.159ms
+scan cost: 9.044ms
+match cost: 1.273ms
+number of tuples: 2
+204-th query cost: 39ms.
 
 205-th query starting...
-filter cost: 71.992ms
-scan cost: 60.294ms
-match cost: 45.349ms
-number of tuples: 30
-205-th query cost: 178ms.
+filter cost: 58.324ms
+scan cost: 59.313ms
+match cost: 80.554ms
+number of tuples: 39
+205-th query cost: 198ms.
 
 206-th query starting...
 interval set size is 0
-filter cost: 4.102ms
+filter cost: 2.465ms
 scan cost: 0.000ms
 match cost: 0.010ms
 number of tuples: 0
-206-th query cost: 4ms.
+206-th query cost: 3ms.
 
 207-th query starting...
-filter cost: 67.313ms
-scan cost: 11.972ms
-match cost: 3.419ms
+filter cost: 21.578ms
+scan cost: 11.771ms
+match cost: 2.157ms
 number of tuples: 0
-207-th query cost: 83ms.
+207-th query cost: 36ms.
 
 208-th query starting...
-filter cost: 0.219ms
+filter cost: 0.280ms
 scan cost: 0.000ms
-match cost: 0.005ms
+match cost: 0.007ms
 number of tuples: 0
 208-th query cost: 0ms.
 
 209-th query starting...
-filter cost: 10.575ms
-scan cost: 0.188ms
-match cost: 0.054ms
+filter cost: 7.502ms
+scan cost: 0.163ms
+match cost: 0.038ms
 number of tuples: 1
-209-th query cost: 11ms.
+209-th query cost: 8ms.
 
 210-th query starting...
 interval set size is 0
-filter cost: 3.556ms
+filter cost: 2.116ms
 scan cost: 0.000ms
-match cost: 0.009ms
+match cost: 0.008ms
 number of tuples: 0
-210-th query cost: 4ms.
+210-th query cost: 2ms.
 
 211-th query starting...
-filter cost: 99.660ms
-scan cost: 2.479ms
-match cost: 0.706ms
+filter cost: 51.408ms
+scan cost: 2.498ms
+match cost: 0.335ms
 number of tuples: 14
-211-th query cost: 103ms.
+211-th query cost: 54ms.
 
 212-th query starting...
 interval set size is 0
-filter cost: 3.757ms
+filter cost: 2.269ms
 scan cost: 0.000ms
-match cost: 0.010ms
+match cost: 0.009ms
 number of tuples: 0
-212-th query cost: 4ms.
+212-th query cost: 2ms.
 
 213-th query starting...
 interval set size is 0
-filter cost: 3.445ms
+filter cost: 2.149ms
 scan cost: 0.000ms
-match cost: 0.011ms
+match cost: 0.009ms
 number of tuples: 0
-213-th query cost: 3ms.
+213-th query cost: 2ms.
 
 214-th query starting...
-filter cost: 35.171ms
-scan cost: 0.417ms
-match cost: 0.101ms
+filter cost: 21.334ms
+scan cost: 0.384ms
+match cost: 0.065ms
 number of tuples: 2
-214-th query cost: 36ms.
+214-th query cost: 22ms.
 
 215-th query starting...
-filter cost: 33.043ms
-scan cost: 0.149ms
-match cost: 0.044ms
+filter cost: 7.290ms
+scan cost: 0.128ms
+match cost: 0.029ms
 number of tuples: 1
-215-th query cost: 33ms.
+215-th query cost: 8ms.
 
 216-th query starting...
-filter cost: 57.150ms
-scan cost: 12.638ms
-match cost: 3.404ms
-number of tuples: 0
-216-th query cost: 74ms.
+filter cost: 73.900ms
+scan cost: 12.315ms
+match cost: 1.687ms
+number of tuples: 2
+216-th query cost: 88ms.
 
 217-th query starting...
-filter cost: 67.968ms
-scan cost: 30.043ms
-match cost: 12.699ms
-number of tuples: 12
-217-th query cost: 111ms.
+filter cost: 29.025ms
+scan cost: 30.675ms
+match cost: 8.270ms
+number of tuples: 13
+217-th query cost: 68ms.
 
 218-th query starting...
-filter cost: 72.821ms
-scan cost: 17.494ms
-match cost: 4.922ms
-number of tuples: 27
-218-th query cost: 95ms.
+filter cost: 28.383ms
+scan cost: 17.422ms
+match cost: 2.531ms
+number of tuples: 77
+218-th query cost: 48ms.
 
 219-th query starting...
-filter cost: 53.972ms
-scan cost: 11.697ms
-match cost: 3.311ms
-number of tuples: 15
-219-th query cost: 70ms.
+filter cost: 29.379ms
+scan cost: 10.409ms
+match cost: 1.362ms
+number of tuples: 44
+219-th query cost: 42ms.
 
 220-th query starting...
-filter cost: 60.849ms
-scan cost: 11.089ms
-match cost: 3.084ms
+filter cost: 22.075ms
+scan cost: 10.849ms
+match cost: 1.720ms
 number of tuples: 4
-220-th query cost: 75ms.
+220-th query cost: 34ms.
 
 221-th query starting...
-filter cost: 41.118ms
-scan cost: 0.404ms
-match cost: 0.104ms
+filter cost: 54.970ms
+scan cost: 0.564ms
+match cost: 0.083ms
 number of tuples: 2
-221-th query cost: 42ms.
+221-th query cost: 55ms.
 
 222-th query starting...
-filter cost: 55.661ms
-scan cost: 29.533ms
-match cost: 12.141ms
-number of tuples: 12
-222-th query cost: 97ms.
+filter cost: 29.487ms
+scan cost: 28.507ms
+match cost: 7.262ms
+number of tuples: 13
+222-th query cost: 66ms.
 
 223-th query starting...
-filter cost: 0.133ms
+filter cost: 0.219ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
@@ -1587,573 +1587,573 @@ number of tuples: 0
 
 224-th query starting...
 interval set size is 0
-filter cost: 9.604ms
-scan cost: 0.000ms
-match cost: 0.011ms
-number of tuples: 0
-224-th query cost: 10ms.
-
-225-th query starting...
-filter cost: 37.259ms
-scan cost: 12.179ms
-match cost: 3.325ms
-number of tuples: 0
-225-th query cost: 53ms.
-
-226-th query starting...
-interval set size is 0
-filter cost: 28.422ms
+filter cost: 6.373ms
 scan cost: 0.000ms
 match cost: 0.013ms
 number of tuples: 0
-226-th query cost: 28ms.
+224-th query cost: 7ms.
+
+225-th query starting...
+filter cost: 21.925ms
+scan cost: 11.721ms
+match cost: 1.956ms
+number of tuples: 0
+225-th query cost: 35ms.
+
+226-th query starting...
+interval set size is 0
+filter cost: 7.137ms
+scan cost: 0.000ms
+match cost: 0.011ms
+number of tuples: 0
+226-th query cost: 8ms.
 
 227-th query starting...
 interval set size is 0
-filter cost: 3.598ms
+filter cost: 1.520ms
 scan cost: 0.000ms
-match cost: 0.010ms
+match cost: 0.007ms
 number of tuples: 0
-227-th query cost: 4ms.
+227-th query cost: 1ms.
 
 228-th query starting...
 interval set size is 0
-filter cost: 12.169ms
+filter cost: 2.049ms
 scan cost: 0.000ms
-match cost: 0.010ms
+match cost: 0.007ms
 number of tuples: 0
-228-th query cost: 12ms.
+228-th query cost: 2ms.
 
 229-th query starting...
-filter cost: 55.968ms
-scan cost: 16.509ms
-match cost: 4.781ms
+filter cost: 21.910ms
+scan cost: 16.249ms
+match cost: 3.106ms
 number of tuples: 0
-229-th query cost: 78ms.
+229-th query cost: 42ms.
 
 230-th query starting...
-filter cost: 152.990ms
-scan cost: 51.690ms
-match cost: 25.726ms
-number of tuples: 35
-230-th query cost: 230ms.
+filter cost: 100.512ms
+scan cost: 50.997ms
+match cost: 17.112ms
+number of tuples: 237
+230-th query cost: 168ms.
 
 231-th query starting...
-filter cost: 12.788ms
-scan cost: 0.206ms
-match cost: 0.056ms
+filter cost: 10.173ms
+scan cost: 0.183ms
+match cost: 0.035ms
 number of tuples: 1
-231-th query cost: 14ms.
+231-th query cost: 10ms.
 
 232-th query starting...
-filter cost: 122.094ms
-scan cost: 2.698ms
-match cost: 0.703ms
+filter cost: 58.819ms
+scan cost: 2.513ms
+match cost: 0.371ms
 number of tuples: 14
-232-th query cost: 125ms.
+232-th query cost: 62ms.
 
 233-th query starting...
-filter cost: 68.649ms
-scan cost: 0.938ms
-match cost: 0.245ms
+filter cost: 33.154ms
+scan cost: 0.856ms
+match cost: 0.114ms
 number of tuples: 0
-233-th query cost: 70ms.
+233-th query cost: 34ms.
 
 234-th query starting...
 interval set size is 0
-filter cost: 2.290ms
+filter cost: 1.739ms
 scan cost: 0.000ms
-match cost: 0.008ms
+match cost: 0.009ms
 number of tuples: 0
-234-th query cost: 3ms.
+234-th query cost: 2ms.
 
 235-th query starting...
-filter cost: 0.203ms
+filter cost: 0.199ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.005ms
 number of tuples: 0
 235-th query cost: 0ms.
 
 236-th query starting...
-filter cost: 51.791ms
-scan cost: 0.377ms
-match cost: 0.101ms
+filter cost: 27.020ms
+scan cost: 0.381ms
+match cost: 0.063ms
 number of tuples: 2
-236-th query cost: 52ms.
+236-th query cost: 28ms.
 
 237-th query starting...
-filter cost: 48.803ms
-scan cost: 16.406ms
-match cost: 6.813ms
+filter cost: 23.359ms
+scan cost: 15.975ms
+match cost: 2.813ms
 number of tuples: 0
-237-th query cost: 73ms.
+237-th query cost: 42ms.
 
 238-th query starting...
-filter cost: 133.577ms
-scan cost: 2.466ms
-match cost: 0.710ms
+filter cost: 114.853ms
+scan cost: 2.427ms
+match cost: 0.347ms
 number of tuples: 14
-238-th query cost: 136ms.
+238-th query cost: 118ms.
 
 239-th query starting...
-filter cost: 73.486ms
-scan cost: 0.141ms
-match cost: 0.037ms
+filter cost: 27.231ms
+scan cost: 0.135ms
+match cost: 0.034ms
 number of tuples: 0
-239-th query cost: 74ms.
+239-th query cost: 27ms.
 
 240-th query starting...
 interval set size is 0
-filter cost: 2.283ms
+filter cost: 1.707ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
-240-th query cost: 3ms.
+240-th query cost: 2ms.
 
 241-th query starting...
-filter cost: 94.106ms
-scan cost: 60.068ms
-match cost: 62.922ms
-number of tuples: 30
-241-th query cost: 217ms.
+filter cost: 57.357ms
+scan cost: 59.273ms
+match cost: 39.232ms
+number of tuples: 39
+241-th query cost: 156ms.
 
 242-th query starting...
-filter cost: 43.044ms
-scan cost: 2.403ms
-match cost: 0.598ms
+filter cost: 22.354ms
+scan cost: 2.399ms
+match cost: 0.378ms
 number of tuples: 1
-242-th query cost: 46ms.
+242-th query cost: 25ms.
 
 243-th query starting...
 interval set size is 0
-filter cost: 27.053ms
+filter cost: 6.965ms
 scan cost: 0.000ms
-match cost: 0.014ms
+match cost: 0.027ms
 number of tuples: 0
-243-th query cost: 27ms.
+243-th query cost: 8ms.
 
 244-th query starting...
-filter cost: 48.748ms
-scan cost: 12.653ms
-match cost: 3.854ms
-number of tuples: 10
-244-th query cost: 66ms.
+filter cost: 83.950ms
+scan cost: 12.295ms
+match cost: 2.295ms
+number of tuples: 11
+244-th query cost: 98ms.
 
 245-th query starting...
-filter cost: 20.055ms
-scan cost: 0.078ms
-match cost: 0.034ms
+filter cost: 6.373ms
+scan cost: 0.057ms
+match cost: 0.024ms
 number of tuples: 0
-245-th query cost: 20ms.
+245-th query cost: 7ms.
 
 246-th query starting...
-filter cost: 11.693ms
-scan cost: 0.287ms
-match cost: 0.083ms
+filter cost: 7.799ms
+scan cost: 0.254ms
+match cost: 0.057ms
 number of tuples: 1
-246-th query cost: 12ms.
+246-th query cost: 8ms.
 
 247-th query starting...
-filter cost: 57.533ms
-scan cost: 0.147ms
-match cost: 0.038ms
+filter cost: 26.417ms
+scan cost: 0.133ms
+match cost: 0.031ms
 number of tuples: 0
-247-th query cost: 58ms.
+247-th query cost: 27ms.
 
 248-th query starting...
 interval set size is 0
-filter cost: 2.348ms
+filter cost: 1.833ms
 scan cost: 0.000ms
-match cost: 0.007ms
+match cost: 0.008ms
 number of tuples: 0
-248-th query cost: 3ms.
+248-th query cost: 2ms.
 
 249-th query starting...
 interval set size is 0
-filter cost: 5.832ms
+filter cost: 3.848ms
 scan cost: 0.000ms
-match cost: 0.012ms
+match cost: 0.009ms
 number of tuples: 0
-249-th query cost: 6ms.
+249-th query cost: 4ms.
 
 250-th query starting...
-filter cost: 211.397ms
-scan cost: 86.732ms
-match cost: 122.271ms
-number of tuples: 210
-250-th query cost: 420ms.
+filter cost: 78.582ms
+scan cost: 130.237ms
+match cost: 79.409ms
+number of tuples: 983
+250-th query cost: 288ms.
 
 251-th query starting...
-filter cost: 43.971ms
-scan cost: 0.333ms
-match cost: 0.088ms
+filter cost: 23.937ms
+scan cost: 0.276ms
+match cost: 0.054ms
 number of tuples: 0
-251-th query cost: 45ms.
+251-th query cost: 24ms.
 
 252-th query starting...
-filter cost: 0.273ms
+filter cost: 0.268ms
 scan cost: 0.000ms
 match cost: 0.006ms
 number of tuples: 0
 252-th query cost: 0ms.
 
 253-th query starting...
-filter cost: 13.194ms
-scan cost: 0.272ms
-match cost: 0.085ms
+filter cost: 12.579ms
+scan cost: 0.501ms
+match cost: 0.069ms
 number of tuples: 1
-253-th query cost: 14ms.
+253-th query cost: 13ms.
 
 254-th query starting...
-filter cost: 0.122ms
+filter cost: 0.194ms
 scan cost: 0.000ms
 match cost: 0.005ms
 number of tuples: 0
 254-th query cost: 0ms.
 
 255-th query starting...
-filter cost: 35.658ms
-scan cost: 0.410ms
-match cost: 0.103ms
+filter cost: 22.114ms
+scan cost: 0.393ms
+match cost: 0.065ms
 number of tuples: 2
-255-th query cost: 36ms.
+255-th query cost: 23ms.
 
 256-th query starting...
-filter cost: 43.808ms
-scan cost: 0.407ms
-match cost: 0.102ms
+filter cost: 23.026ms
+scan cost: 0.375ms
+match cost: 0.056ms
 number of tuples: 2
-256-th query cost: 45ms.
+256-th query cost: 24ms.
 
 257-th query starting...
 interval set size is 0
-filter cost: 11.635ms
+filter cost: 6.978ms
 scan cost: 0.000ms
-match cost: 0.015ms
+match cost: 0.020ms
 number of tuples: 0
-257-th query cost: 12ms.
+257-th query cost: 7ms.
 
 258-th query starting...
-filter cost: 42.591ms
-scan cost: 12.636ms
-match cost: 3.645ms
-number of tuples: 10
-258-th query cost: 59ms.
+filter cost: 29.574ms
+scan cost: 12.490ms
+match cost: 2.348ms
+number of tuples: 11
+258-th query cost: 44ms.
 
 259-th query starting...
 interval set size is 0
-filter cost: 2.261ms
+filter cost: 1.542ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
 259-th query cost: 2ms.
 
 260-th query starting...
-filter cost: 0.111ms
+filter cost: 0.124ms
 scan cost: 0.000ms
 match cost: 0.004ms
 number of tuples: 0
 260-th query cost: 0ms.
 
 261-th query starting...
-filter cost: 46.498ms
-scan cost: 0.140ms
-match cost: 0.038ms
+filter cost: 28.924ms
+scan cost: 0.128ms
+match cost: 0.032ms
 number of tuples: 0
-261-th query cost: 47ms.
+261-th query cost: 29ms.
 
 262-th query starting...
-filter cost: 0.213ms
+filter cost: 0.265ms
 scan cost: 0.000ms
 match cost: 0.014ms
 number of tuples: 0
-262-th query cost: 0ms.
+262-th query cost: 1ms.
 
 263-th query starting...
 interval set size is 0
-filter cost: 9.789ms
+filter cost: 5.380ms
 scan cost: 0.000ms
-match cost: 0.025ms
+match cost: 0.021ms
 number of tuples: 0
-263-th query cost: 10ms.
+263-th query cost: 5ms.
 
 264-th query starting...
-filter cost: 10.748ms
-scan cost: 0.257ms
-match cost: 0.110ms
+filter cost: 19.093ms
+scan cost: 0.256ms
+match cost: 0.076ms
 number of tuples: 1
-264-th query cost: 11ms.
+264-th query cost: 20ms.
 
 265-th query starting...
-filter cost: 36.824ms
-scan cost: 29.582ms
-match cost: 12.256ms
+filter cost: 26.759ms
+scan cost: 28.137ms
+match cost: 7.379ms
 number of tuples: 0
-265-th query cost: 79ms.
+265-th query cost: 62ms.
 
 266-th query starting...
-filter cost: 71.424ms
-scan cost: 12.734ms
-match cost: 3.689ms
-number of tuples: 0
-266-th query cost: 88ms.
+filter cost: 34.842ms
+scan cost: 12.339ms
+match cost: 2.023ms
+number of tuples: 2
+266-th query cost: 50ms.
 
 267-th query starting...
-filter cost: 0.133ms
+filter cost: 0.206ms
 scan cost: 0.000ms
 match cost: 0.004ms
 number of tuples: 0
 267-th query cost: 0ms.
 
 268-th query starting...
-filter cost: 9.817ms
-scan cost: 0.174ms
-match cost: 0.047ms
+filter cost: 10.469ms
+scan cost: 0.157ms
+match cost: 0.029ms
 number of tuples: 1
 268-th query cost: 11ms.
 
 269-th query starting...
-filter cost: 33.561ms
-scan cost: 15.293ms
-match cost: 4.445ms
-number of tuples: 5
-269-th query cost: 53ms.
+filter cost: 27.847ms
+scan cost: 14.867ms
+match cost: 2.809ms
+number of tuples: 6
+269-th query cost: 45ms.
 
 270-th query starting...
 interval set size is 0
-filter cost: 9.492ms
+filter cost: 8.140ms
 scan cost: 0.000ms
 match cost: 0.008ms
 number of tuples: 0
-270-th query cost: 10ms.
+270-th query cost: 9ms.
 
 271-th query starting...
 interval set size is 0
-filter cost: 3.661ms
+filter cost: 2.911ms
 scan cost: 0.000ms
 match cost: 0.006ms
 number of tuples: 0
 271-th query cost: 3ms.
 
 272-th query starting...
-filter cost: 24.137ms
-scan cost: 2.382ms
-match cost: 0.614ms
+filter cost: 26.620ms
+scan cost: 2.270ms
+match cost: 0.415ms
 number of tuples: 1
-272-th query cost: 28ms.
+272-th query cost: 29ms.
 
 273-th query starting...
 interval set size is 0
-filter cost: 3.312ms
+filter cost: 2.992ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.007ms
 number of tuples: 0
 273-th query cost: 3ms.
 
 274-th query starting...
 interval set size is 0
-filter cost: 5.311ms
+filter cost: 5.422ms
 scan cost: 0.000ms
-match cost: 0.007ms
+match cost: 0.009ms
 number of tuples: 0
-274-th query cost: 5ms.
+274-th query cost: 6ms.
 
 275-th query starting...
-filter cost: 34.378ms
-scan cost: 15.328ms
-match cost: 4.489ms
-number of tuples: 5
-275-th query cost: 55ms.
+filter cost: 28.452ms
+scan cost: 14.979ms
+match cost: 2.740ms
+number of tuples: 6
+275-th query cost: 46ms.
 
 276-th query starting...
-filter cost: 169.028ms
-scan cost: 61.347ms
-match cost: 38.598ms
-number of tuples: 49
-276-th query cost: 269ms.
+filter cost: 100.178ms
+scan cost: 61.672ms
+match cost: 28.366ms
+number of tuples: 339
+276-th query cost: 190ms.
 
 277-th query starting...
-filter cost: 35.618ms
-scan cost: 16.314ms
-match cost: 4.914ms
+filter cost: 23.085ms
+scan cost: 16.305ms
+match cost: 3.275ms
 number of tuples: 0
-277-th query cost: 57ms.
+277-th query cost: 43ms.
 
 278-th query starting...
-filter cost: 0.210ms
+filter cost: 0.273ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.005ms
 number of tuples: 0
 278-th query cost: 0ms.
 
 279-th query starting...
-filter cost: 35.922ms
-scan cost: 12.093ms
-match cost: 3.364ms
+filter cost: 22.573ms
+scan cost: 11.794ms
+match cost: 1.871ms
 number of tuples: 0
-279-th query cost: 52ms.
+279-th query cost: 36ms.
 
 280-th query starting...
-filter cost: 36.698ms
-scan cost: 16.283ms
-match cost: 4.910ms
+filter cost: 23.074ms
+scan cost: 16.081ms
+match cost: 2.912ms
 number of tuples: 0
-280-th query cost: 58ms.
+280-th query cost: 42ms.
 
 281-th query starting...
 interval set size is 0
-filter cost: 5.506ms
+filter cost: 3.930ms
 scan cost: 0.000ms
 match cost: 0.008ms
 number of tuples: 0
-281-th query cost: 5ms.
+281-th query cost: 4ms.
 
 282-th query starting...
-filter cost: 10.186ms
-scan cost: 0.188ms
-match cost: 0.051ms
+filter cost: 8.076ms
+scan cost: 0.180ms
+match cost: 0.037ms
 number of tuples: 1
-282-th query cost: 11ms.
+282-th query cost: 8ms.
 
 283-th query starting...
-filter cost: 88.618ms
-scan cost: 12.492ms
-match cost: 3.739ms
-number of tuples: 0
-283-th query cost: 105ms.
+filter cost: 29.930ms
+scan cost: 12.452ms
+match cost: 2.387ms
+number of tuples: 2
+283-th query cost: 44ms.
 
 284-th query starting...
 interval set size is 0
-filter cost: 2.334ms
+filter cost: 2.126ms
 scan cost: 0.000ms
-match cost: 0.007ms
+match cost: 0.006ms
 number of tuples: 0
-284-th query cost: 2ms.
+284-th query cost: 3ms.
 
 285-th query starting...
-filter cost: 45.657ms
-scan cost: 0.136ms
-match cost: 0.032ms
+filter cost: 65.958ms
+scan cost: 0.145ms
+match cost: 0.026ms
 number of tuples: 0
-285-th query cost: 46ms.
+285-th query cost: 66ms.
 
 286-th query starting...
-filter cost: 41.704ms
-scan cost: 12.474ms
-match cost: 3.695ms
-number of tuples: 10
-286-th query cost: 58ms.
+filter cost: 27.837ms
+scan cost: 12.237ms
+match cost: 2.284ms
+number of tuples: 11
+286-th query cost: 42ms.
 
 287-th query starting...
-filter cost: 118.131ms
-scan cost: 74.145ms
-match cost: 167.391ms
-number of tuples: 210
-287-th query cost: 360ms.
+filter cost: 81.614ms
+scan cost: 74.281ms
+match cost: 76.897ms
+number of tuples: 983
+287-th query cost: 233ms.
 
 288-th query starting...
-filter cost: 10.773ms
-scan cost: 0.138ms
-match cost: 0.033ms
+filter cost: 8.566ms
+scan cost: 0.134ms
+match cost: 0.024ms
 number of tuples: 1
-288-th query cost: 11ms.
+288-th query cost: 9ms.
 
 289-th query starting...
-filter cost: 65.793ms
-scan cost: 2.573ms
-match cost: 0.696ms
+filter cost: 93.163ms
+scan cost: 2.499ms
+match cost: 0.395ms
 number of tuples: 14
-289-th query cost: 69ms.
+289-th query cost: 96ms.
 
 290-th query starting...
 interval set size is 0
-filter cost: 5.539ms
+filter cost: 3.978ms
 scan cost: 0.000ms
-match cost: 0.009ms
+match cost: 0.007ms
 number of tuples: 0
-290-th query cost: 6ms.
+290-th query cost: 4ms.
 
 291-th query starting...
-filter cost: 109.852ms
-scan cost: 38.380ms
-match cost: 29.748ms
-number of tuples: 1
-291-th query cost: 178ms.
+filter cost: 30.969ms
+scan cost: 25.496ms
+match cost: 6.083ms
+number of tuples: 3
+291-th query cost: 63ms.
 
 292-th query starting...
-filter cost: 49.158ms
-scan cost: 9.453ms
-match cost: 2.529ms
-number of tuples: 0
-292-th query cost: 61ms.
+filter cost: 31.350ms
+scan cost: 9.032ms
+match cost: 1.142ms
+number of tuples: 2
+292-th query cost: 42ms.
 
 293-th query starting...
-filter cost: 159.053ms
-scan cost: 76.434ms
-match cost: 98.561ms
-number of tuples: 210
-293-th query cost: 335ms.
+filter cost: 147.864ms
+scan cost: 80.559ms
+match cost: 74.785ms
+number of tuples: 983
+293-th query cost: 303ms.
 
 294-th query starting...
-filter cost: 14.776ms
-scan cost: 0.272ms
-match cost: 0.084ms
+filter cost: 8.077ms
+scan cost: 0.260ms
+match cost: 0.053ms
 number of tuples: 1
-294-th query cost: 15ms.
+294-th query cost: 9ms.
 
 295-th query starting...
-filter cost: 0.122ms
+filter cost: 0.240ms
 scan cost: 0.000ms
-match cost: 0.003ms
+match cost: 0.004ms
 number of tuples: 0
 295-th query cost: 0ms.
 
 296-th query starting...
-filter cost: 0.205ms
+filter cost: 0.183ms
 scan cost: 0.000ms
-match cost: 0.002ms
+match cost: 0.003ms
 number of tuples: 0
 296-th query cost: 0ms.
 
 297-th query starting...
-filter cost: 49.155ms
-scan cost: 0.984ms
-match cost: 0.239ms
+filter cost: 49.469ms
+scan cost: 0.890ms
+match cost: 0.133ms
 number of tuples: 9
 297-th query cost: 51ms.
 
 298-th query starting...
-filter cost: 57.842ms
-scan cost: 9.426ms
-match cost: 2.246ms
-number of tuples: 0
-298-th query cost: 70ms.
+filter cost: 33.649ms
+scan cost: 9.024ms
+match cost: 1.355ms
+number of tuples: 2
+298-th query cost: 44ms.
 
 299-th query starting...
 interval set size is 0
-filter cost: 4.722ms
-scan cost: 0.002ms
-match cost: 0.006ms
+filter cost: 2.912ms
+scan cost: 0.000ms
+match cost: 0.010ms
 number of tuples: 0
-299-th query cost: 4ms.
+299-th query cost: 3ms.
 
 300-th query starting...
-filter cost: 76.974ms
-scan cost: 7.912ms
-match cost: 2.111ms
+filter cost: 32.940ms
+scan cost: 7.832ms
+match cost: 1.218ms
 number of tuples: 9
-300-th query cost: 88ms.
+300-th query cost: 42ms.
 
 301-th query starting...
-filter cost: 24.866ms
-scan cost: 2.367ms
-match cost: 0.619ms
+filter cost: 24.336ms
+scan cost: 2.263ms
+match cost: 0.364ms
 number of tuples: 1
-301-th query cost: 28ms.
+301-th query cost: 27ms.
 
 302-th query starting...
 interval set size is 0
-filter cost: 3.504ms
+filter cost: 2.427ms
 scan cost: 0.000ms
 match cost: 0.008ms
 number of tuples: 0
@@ -2162,575 +2162,575 @@ number of tuples: 0
 303-th query starting...
 filter cost: 0.121ms
 scan cost: 0.000ms
-match cost: 0.002ms
+match cost: 0.003ms
 number of tuples: 0
 303-th query cost: 0ms.
 
 304-th query starting...
-filter cost: 43.829ms
-scan cost: 38.070ms
-match cost: 14.362ms
-number of tuples: 188
-304-th query cost: 97ms.
+filter cost: 30.592ms
+scan cost: 37.450ms
+match cost: 8.373ms
+number of tuples: 368
+304-th query cost: 77ms.
 
 305-th query starting...
-filter cost: 37.644ms
-scan cost: 12.015ms
-match cost: 3.347ms
+filter cost: 22.793ms
+scan cost: 11.726ms
+match cost: 2.100ms
 number of tuples: 0
-305-th query cost: 53ms.
+305-th query cost: 36ms.
 
 306-th query starting...
-filter cost: 205.442ms
-scan cost: 65.009ms
-match cost: 38.933ms
-number of tuples: 49
-306-th query cost: 309ms.
+filter cost: 92.365ms
+scan cost: 60.824ms
+match cost: 28.614ms
+number of tuples: 339
+306-th query cost: 182ms.
 
 307-th query starting...
-filter cost: 40.811ms
-scan cost: 10.853ms
-match cost: 2.874ms
-number of tuples: 15
-307-th query cost: 55ms.
+filter cost: 30.374ms
+scan cost: 10.562ms
+match cost: 1.556ms
+number of tuples: 44
+307-th query cost: 43ms.
 
 308-th query starting...
 interval set size is 0
-filter cost: 9.486ms
+filter cost: 5.739ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
-308-th query cost: 10ms.
+308-th query cost: 6ms.
 
 309-th query starting...
-filter cost: 49.568ms
-scan cost: 0.111ms
-match cost: 0.023ms
+filter cost: 22.230ms
+scan cost: 0.112ms
+match cost: 0.026ms
 number of tuples: 0
-309-th query cost: 49ms.
+309-th query cost: 22ms.
 
 310-th query starting...
-filter cost: 13.213ms
-scan cost: 0.186ms
-match cost: 0.051ms
+filter cost: 7.892ms
+scan cost: 0.213ms
+match cost: 0.063ms
 number of tuples: 1
-310-th query cost: 14ms.
+310-th query cost: 9ms.
 
 311-th query starting...
-filter cost: 0.112ms
+filter cost: 0.161ms
 scan cost: 0.000ms
-match cost: 0.002ms
+match cost: 0.003ms
 number of tuples: 0
 311-th query cost: 0ms.
 
 312-th query starting...
-filter cost: 13.367ms
-scan cost: 0.072ms
-match cost: 0.025ms
+filter cost: 7.347ms
+scan cost: 0.058ms
+match cost: 0.018ms
 number of tuples: 0
-312-th query cost: 14ms.
+312-th query cost: 7ms.
 
 313-th query starting...
-filter cost: 44.156ms
-scan cost: 28.761ms
-match cost: 10.571ms
+filter cost: 71.238ms
+scan cost: 27.896ms
+match cost: 7.845ms
 number of tuples: 0
-313-th query cost: 83ms.
+313-th query cost: 108ms.
 
 314-th query starting...
-filter cost: 41.705ms
-scan cost: 15.608ms
-match cost: 4.060ms
-number of tuples: 5
-314-th query cost: 62ms.
+filter cost: 22.410ms
+scan cost: 14.992ms
+match cost: 2.810ms
+number of tuples: 6
+314-th query cost: 40ms.
 
 315-th query starting...
-filter cost: 49.928ms
-scan cost: 0.895ms
-match cost: 0.220ms
+filter cost: 29.108ms
+scan cost: 0.832ms
+match cost: 0.092ms
 number of tuples: 0
-315-th query cost: 51ms.
+315-th query cost: 30ms.
 
 316-th query starting...
-filter cost: 41.819ms
-scan cost: 0.399ms
-match cost: 0.090ms
+filter cost: 22.297ms
+scan cost: 0.364ms
+match cost: 0.058ms
 number of tuples: 2
-316-th query cost: 42ms.
+316-th query cost: 23ms.
 
 317-th query starting...
-filter cost: 27.693ms
-scan cost: 1.668ms
-match cost: 0.328ms
+filter cost: 21.064ms
+scan cost: 1.557ms
+match cost: 0.230ms
 number of tuples: 0
-317-th query cost: 30ms.
+317-th query cost: 23ms.
 
 318-th query starting...
-filter cost: 50.270ms
-scan cost: 16.672ms
-match cost: 4.338ms
-number of tuples: 27
-318-th query cost: 72ms.
+filter cost: 61.868ms
+scan cost: 16.377ms
+match cost: 2.431ms
+number of tuples: 77
+318-th query cost: 81ms.
 
 319-th query starting...
-filter cost: 60.378ms
-scan cost: 0.394ms
-match cost: 0.098ms
+filter cost: 22.022ms
+scan cost: 0.390ms
+match cost: 0.053ms
 number of tuples: 2
-319-th query cost: 61ms.
+319-th query cost: 22ms.
 
 320-th query starting...
-filter cost: 40.360ms
-scan cost: 0.971ms
-match cost: 0.264ms
+filter cost: 28.813ms
+scan cost: 0.916ms
+match cost: 0.131ms
 number of tuples: 9
-320-th query cost: 41ms.
+320-th query cost: 30ms.
 
 321-th query starting...
-filter cost: 40.874ms
-scan cost: 10.708ms
-match cost: 2.917ms
-number of tuples: 15
-321-th query cost: 55ms.
+filter cost: 29.642ms
+scan cost: 10.580ms
+match cost: 1.382ms
+number of tuples: 44
+321-th query cost: 42ms.
 
 322-th query starting...
-filter cost: 0.119ms
+filter cost: 0.196ms
 scan cost: 0.000ms
-match cost: 0.003ms
+match cost: 0.006ms
 number of tuples: 0
 322-th query cost: 0ms.
 
 323-th query starting...
-filter cost: 40.633ms
-scan cost: 0.945ms
-match cost: 0.230ms
+filter cost: 51.663ms
+scan cost: 0.854ms
+match cost: 0.119ms
 number of tuples: 0
-323-th query cost: 42ms.
+323-th query cost: 53ms.
 
 324-th query starting...
-filter cost: 42.464ms
-scan cost: 37.944ms
-match cost: 14.398ms
-number of tuples: 188
-324-th query cost: 95ms.
+filter cost: 38.324ms
+scan cost: 37.559ms
+match cost: 7.761ms
+number of tuples: 368
+324-th query cost: 84ms.
 
 325-th query starting...
-filter cost: 0.223ms
+filter cost: 0.301ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.008ms
 number of tuples: 0
 325-th query cost: 0ms.
 
 326-th query starting...
-filter cost: 41.526ms
-scan cost: 17.075ms
-match cost: 4.764ms
-number of tuples: 27
-326-th query cost: 64ms.
+filter cost: 37.067ms
+scan cost: 16.612ms
+match cost: 2.544ms
+number of tuples: 77
+326-th query cost: 57ms.
 
 327-th query starting...
-filter cost: 193.943ms
-scan cost: 75.306ms
-match cost: 115.728ms
-number of tuples: 210
-327-th query cost: 385ms.
+filter cost: 93.010ms
+scan cost: 74.918ms
+match cost: 78.137ms
+number of tuples: 983
+327-th query cost: 246ms.
 
 328-th query starting...
-filter cost: 40.897ms
-scan cost: 12.699ms
-match cost: 3.658ms
-number of tuples: 10
-328-th query cost: 57ms.
+filter cost: 77.924ms
+scan cost: 12.465ms
+match cost: 2.333ms
+number of tuples: 11
+328-th query cost: 93ms.
 
 329-th query starting...
-filter cost: 9.989ms
-scan cost: 0.121ms
-match cost: 0.029ms
+filter cost: 9.373ms
+scan cost: 0.117ms
+match cost: 0.022ms
 number of tuples: 1
-329-th query cost: 11ms.
+329-th query cost: 9ms.
 
 330-th query starting...
-filter cost: 40.341ms
-scan cost: 10.832ms
-match cost: 2.919ms
-number of tuples: 15
-330-th query cost: 54ms.
+filter cost: 30.790ms
+scan cost: 10.558ms
+match cost: 1.444ms
+number of tuples: 44
+330-th query cost: 43ms.
 
 331-th query starting...
-filter cost: 104.727ms
-scan cost: 4.396ms
-match cost: 1.234ms
+filter cost: 65.998ms
+scan cost: 4.095ms
+match cost: 0.512ms
 number of tuples: 1
-331-th query cost: 110ms.
+331-th query cost: 71ms.
 
 332-th query starting...
 interval set size is 0
-filter cost: 98.185ms
+filter cost: 4.232ms
 scan cost: 0.000ms
-match cost: 0.011ms
+match cost: 0.007ms
 number of tuples: 0
-332-th query cost: 99ms.
+332-th query cost: 4ms.
 
 333-th query starting...
-filter cost: 11.251ms
-scan cost: 0.172ms
-match cost: 0.046ms
+filter cost: 9.686ms
+scan cost: 0.161ms
+match cost: 0.032ms
 number of tuples: 1
-333-th query cost: 11ms.
+333-th query cost: 10ms.
 
 334-th query starting...
-filter cost: 9.799ms
-scan cost: 0.060ms
-match cost: 0.028ms
+filter cost: 6.746ms
+scan cost: 0.054ms
+match cost: 0.018ms
 number of tuples: 0
-334-th query cost: 10ms.
+334-th query cost: 7ms.
 
 335-th query starting...
-filter cost: 0.221ms
+filter cost: 0.230ms
 scan cost: 0.000ms
-match cost: 0.002ms
+match cost: 0.003ms
 number of tuples: 0
 335-th query cost: 0ms.
 
 336-th query starting...
-filter cost: 0.164ms
+filter cost: 0.156ms
 scan cost: 0.000ms
-match cost: 0.002ms
+match cost: 0.003ms
 number of tuples: 0
 336-th query cost: 1ms.
 
 337-th query starting...
-filter cost: 46.523ms
-scan cost: 0.128ms
+filter cost: 90.665ms
+scan cost: 0.170ms
 match cost: 0.028ms
 number of tuples: 0
-337-th query cost: 46ms.
+337-th query cost: 91ms.
 
 338-th query starting...
 interval set size is 0
-filter cost: 3.648ms
+filter cost: 2.386ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.005ms
 number of tuples: 0
-338-th query cost: 4ms.
+338-th query cost: 2ms.
 
 339-th query starting...
-filter cost: 10.712ms
-scan cost: 0.188ms
-match cost: 0.046ms
+filter cost: 9.071ms
+scan cost: 0.176ms
+match cost: 0.031ms
 number of tuples: 1
-339-th query cost: 11ms.
+339-th query cost: 9ms.
 
 340-th query starting...
 interval set size is 0
-filter cost: 2.184ms
+filter cost: 1.688ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.005ms
 number of tuples: 0
-340-th query cost: 2ms.
+340-th query cost: 1ms.
 
 341-th query starting...
 interval set size is 0
-filter cost: 9.500ms
+filter cost: 6.583ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.007ms
 number of tuples: 0
-341-th query cost: 10ms.
+341-th query cost: 7ms.
 
 342-th query starting...
-filter cost: 10.677ms
-scan cost: 0.184ms
-match cost: 0.049ms
+filter cost: 9.409ms
+scan cost: 0.194ms
+match cost: 0.036ms
 number of tuples: 1
-342-th query cost: 11ms.
+342-th query cost: 10ms.
 
 343-th query starting...
-filter cost: 9.714ms
-scan cost: 0.253ms
-match cost: 0.076ms
+filter cost: 8.363ms
+scan cost: 0.280ms
+match cost: 0.051ms
 number of tuples: 1
-343-th query cost: 10ms.
+343-th query cost: 9ms.
 
 344-th query starting...
-filter cost: 86.412ms
-scan cost: 30.126ms
-match cost: 12.111ms
-number of tuples: 12
-344-th query cost: 129ms.
+filter cost: 31.250ms
+scan cost: 28.946ms
+match cost: 7.283ms
+number of tuples: 13
+344-th query cost: 67ms.
 
 345-th query starting...
-filter cost: 42.137ms
-scan cost: 38.871ms
-match cost: 14.447ms
-number of tuples: 188
-345-th query cost: 96ms.
+filter cost: 32.602ms
+scan cost: 37.138ms
+match cost: 7.225ms
+number of tuples: 368
+345-th query cost: 77ms.
 
 346-th query starting...
-filter cost: 40.872ms
-scan cost: 11.270ms
-match cost: 2.906ms
-number of tuples: 15
-346-th query cost: 55ms.
+filter cost: 62.376ms
+scan cost: 10.489ms
+match cost: 1.358ms
+number of tuples: 44
+346-th query cost: 75ms.
 
 347-th query starting...
-filter cost: 64.297ms
-scan cost: 29.187ms
-match cost: 10.804ms
+filter cost: 25.665ms
+scan cost: 28.287ms
+match cost: 8.106ms
 number of tuples: 0
-347-th query cost: 104ms.
+347-th query cost: 62ms.
 
 348-th query starting...
-filter cost: 49.460ms
-scan cost: 0.963ms
-match cost: 0.236ms
+filter cost: 30.832ms
+scan cost: 0.917ms
+match cost: 0.117ms
 number of tuples: 9
-348-th query cost: 51ms.
+348-th query cost: 32ms.
 
 349-th query starting...
 interval set size is 0
-filter cost: 3.047ms
+filter cost: 2.000ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.006ms
 number of tuples: 0
-349-th query cost: 3ms.
+349-th query cost: 2ms.
 
 350-th query starting...
-filter cost: 31.716ms
-scan cost: 2.399ms
-match cost: 0.561ms
+filter cost: 43.926ms
+scan cost: 2.625ms
+match cost: 0.389ms
 number of tuples: 1
-350-th query cost: 35ms.
+350-th query cost: 47ms.
 
 351-th query starting...
-filter cost: 44.564ms
-scan cost: 16.412ms
-match cost: 4.392ms
+filter cost: 33.533ms
+scan cost: 16.117ms
+match cost: 3.334ms
 number of tuples: 0
-351-th query cost: 65ms.
+351-th query cost: 53ms.
 
 352-th query starting...
 interval set size is 0
-filter cost: 4.758ms
-scan cost: 0.000ms
-match cost: 0.006ms
-number of tuples: 0
-352-th query cost: 5ms.
-
-353-th query starting...
-filter cost: 54.237ms
-scan cost: 12.758ms
-match cost: 3.310ms
-number of tuples: 0
-353-th query cost: 71ms.
-
-354-th query starting...
-interval set size is 0
-filter cost: 3.011ms
-scan cost: 0.000ms
-match cost: 0.005ms
-number of tuples: 0
-354-th query cost: 3ms.
-
-355-th query starting...
-filter cost: 85.850ms
-scan cost: 29.184ms
-match cost: 8.717ms
-number of tuples: 16
-355-th query cost: 124ms.
-
-356-th query starting...
-interval set size is 0
-filter cost: 4.739ms
+filter cost: 3.076ms
 scan cost: 0.000ms
 match cost: 0.008ms
 number of tuples: 0
-356-th query cost: 5ms.
+352-th query cost: 4ms.
+
+353-th query starting...
+filter cost: 39.299ms
+scan cost: 12.659ms
+match cost: 2.069ms
+number of tuples: 2
+353-th query cost: 54ms.
+
+354-th query starting...
+interval set size is 0
+filter cost: 1.945ms
+scan cost: 0.000ms
+match cost: 0.007ms
+number of tuples: 0
+354-th query cost: 2ms.
+
+355-th query starting...
+filter cost: 65.574ms
+scan cost: 28.969ms
+match cost: 9.090ms
+number of tuples: 16
+355-th query cost: 104ms.
+
+356-th query starting...
+interval set size is 0
+filter cost: 2.286ms
+scan cost: 0.000ms
+match cost: 0.014ms
+number of tuples: 0
+356-th query cost: 2ms.
 
 357-th query starting...
-filter cost: 186.476ms
-scan cost: 51.487ms
-match cost: 25.021ms
-number of tuples: 35
-357-th query cost: 263ms.
+filter cost: 122.221ms
+scan cost: 52.696ms
+match cost: 23.927ms
+number of tuples: 237
+357-th query cost: 199ms.
 
 358-th query starting...
-filter cost: 0.239ms
+filter cost: 0.346ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.006ms
 number of tuples: 0
-358-th query cost: 0ms.
+358-th query cost: 1ms.
 
 359-th query starting...
 interval set size is 0
-filter cost: 5.479ms
-scan cost: 0.001ms
-match cost: 0.005ms
+filter cost: 6.681ms
+scan cost: 0.000ms
+match cost: 0.012ms
 number of tuples: 0
-359-th query cost: 6ms.
+359-th query cost: 7ms.
 
 360-th query starting...
 interval set size is 0
-filter cost: 5.094ms
+filter cost: 5.312ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.015ms
 number of tuples: 0
 360-th query cost: 5ms.
 
 361-th query starting...
 interval set size is 0
-filter cost: 3.383ms
+filter cost: 3.273ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.006ms
 number of tuples: 0
-361-th query cost: 3ms.
+361-th query cost: 4ms.
 
 362-th query starting...
-filter cost: 104.239ms
-scan cost: 4.272ms
-match cost: 1.238ms
+filter cost: 155.170ms
+scan cost: 4.181ms
+match cost: 0.484ms
 number of tuples: 1
-362-th query cost: 110ms.
+362-th query cost: 160ms.
 
 363-th query starting...
-filter cost: 34.398ms
-scan cost: 0.393ms
-match cost: 0.109ms
+filter cost: 24.091ms
+scan cost: 0.422ms
+match cost: 0.051ms
 number of tuples: 2
-363-th query cost: 35ms.
+363-th query cost: 24ms.
 
 364-th query starting...
-filter cost: 46.574ms
-scan cost: 0.146ms
-match cost: 0.031ms
+filter cost: 30.295ms
+scan cost: 0.123ms
+match cost: 0.023ms
 number of tuples: 0
-364-th query cost: 47ms.
+364-th query cost: 30ms.
 
 365-th query starting...
 interval set size is 0
-filter cost: 2.301ms
+filter cost: 1.734ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.005ms
 number of tuples: 0
 365-th query cost: 2ms.
 
 366-th query starting...
 interval set size is 0
-filter cost: 5.546ms
+filter cost: 3.979ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
-366-th query cost: 6ms.
+366-th query cost: 4ms.
 
 367-th query starting...
-filter cost: 47.415ms
-scan cost: 12.797ms
-match cost: 3.747ms
-number of tuples: 0
-367-th query cost: 64ms.
+filter cost: 65.117ms
+scan cost: 15.462ms
+match cost: 3.320ms
+number of tuples: 2
+367-th query cost: 84ms.
 
 368-th query starting...
-filter cost: 142.331ms
-scan cost: 37.946ms
-match cost: 14.376ms
-number of tuples: 188
-368-th query cost: 195ms.
+filter cost: 77.436ms
+scan cost: 67.743ms
+match cost: 9.006ms
+number of tuples: 368
+368-th query cost: 154ms.
 
 369-th query starting...
-filter cost: 41.337ms
-scan cost: 7.844ms
-match cost: 2.101ms
+filter cost: 62.010ms
+scan cost: 7.797ms
+match cost: 1.394ms
 number of tuples: 9
-369-th query cost: 51ms.
+369-th query cost: 71ms.
 
 370-th query starting...
-filter cost: 33.995ms
-scan cost: 0.401ms
-match cost: 0.098ms
+filter cost: 21.753ms
+scan cost: 0.396ms
+match cost: 0.062ms
 number of tuples: 2
-370-th query cost: 35ms.
+370-th query cost: 22ms.
 
 371-th query starting...
-filter cost: 9.782ms
-scan cost: 0.076ms
-match cost: 0.025ms
+filter cost: 7.320ms
+scan cost: 0.060ms
+match cost: 0.018ms
 number of tuples: 0
-371-th query cost: 10ms.
+371-th query cost: 8ms.
 
 372-th query starting...
-filter cost: 0.215ms
+filter cost: 0.233ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
 372-th query cost: 0ms.
 
 373-th query starting...
-filter cost: 192.019ms
-scan cost: 64.905ms
-match cost: 39.387ms
-number of tuples: 49
-373-th query cost: 297ms.
+filter cost: 77.284ms
+scan cost: 60.448ms
+match cost: 31.410ms
+number of tuples: 339
+373-th query cost: 169ms.
 
 374-th query starting...
-filter cost: 34.455ms
-scan cost: 11.301ms
-match cost: 3.077ms
+filter cost: 25.898ms
+scan cost: 10.884ms
+match cost: 1.744ms
 number of tuples: 4
-374-th query cost: 49ms.
+374-th query cost: 39ms.
 
 375-th query starting...
 interval set size is 0
-filter cost: 9.614ms
+filter cost: 6.381ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
-375-th query cost: 9ms.
+375-th query cost: 7ms.
 
 376-th query starting...
-filter cost: 0.212ms
+filter cost: 0.217ms
 scan cost: 0.000ms
 match cost: 0.002ms
 number of tuples: 0
-376-th query cost: 1ms.
+376-th query cost: 0ms.
 
 377-th query starting...
-filter cost: 10.038ms
-scan cost: 0.077ms
-match cost: 0.029ms
-number of tuples: 0
-377-th query cost: 10ms.
-
-378-th query starting...
-filter cost: 24.694ms
-scan cost: 0.104ms
+filter cost: 42.674ms
+scan cost: 0.091ms
 match cost: 0.023ms
 number of tuples: 0
-378-th query cost: 25ms.
+377-th query cost: 43ms.
+
+378-th query starting...
+filter cost: 20.209ms
+scan cost: 0.109ms
+match cost: 0.020ms
+number of tuples: 0
+378-th query cost: 20ms.
 
 379-th query starting...
-filter cost: 0.241ms
+filter cost: 0.263ms
 scan cost: 0.000ms
-match cost: 0.003ms
+match cost: 0.002ms
 number of tuples: 0
-379-th query cost: 0ms.
+379-th query cost: 1ms.
 
 380-th query starting...
 interval set size is 0
-filter cost: 5.908ms
+filter cost: 3.786ms
 scan cost: 0.000ms
-match cost: 0.010ms
+match cost: 0.007ms
 number of tuples: 0
-380-th query cost: 6ms.
+380-th query cost: 3ms.
 
 381-th query starting...
 interval set size is 0
-filter cost: 4.418ms
+filter cost: 2.233ms
 scan cost: 0.000ms
-match cost: 0.005ms
+match cost: 0.004ms
 number of tuples: 0
-381-th query cost: 5ms.
+381-th query cost: 3ms.
 
 382-th query starting...
-filter cost: 0.100ms
+filter cost: 0.094ms
 scan cost: 0.000ms
 match cost: 0.002ms
 number of tuples: 0
@@ -2738,226 +2738,226 @@ number of tuples: 0
 
 383-th query starting...
 interval set size is 0
-filter cost: 27.240ms
+filter cost: 1.859ms
 scan cost: 0.000ms
-match cost: 0.008ms
+match cost: 0.005ms
 number of tuples: 0
-383-th query cost: 27ms.
+383-th query cost: 2ms.
 
 384-th query starting...
-filter cost: 52.130ms
-scan cost: 27.099ms
-match cost: 9.839ms
-number of tuples: 8
-384-th query cost: 89ms.
+filter cost: 22.802ms
+scan cost: 26.291ms
+match cost: 7.548ms
+number of tuples: 10
+384-th query cost: 57ms.
 
 385-th query starting...
-filter cost: 55.145ms
-scan cost: 0.145ms
-match cost: 0.032ms
+filter cost: 28.402ms
+scan cost: 0.125ms
+match cost: 0.022ms
 number of tuples: 0
-385-th query cost: 56ms.
+385-th query cost: 28ms.
 
 386-th query starting...
-filter cost: 13.799ms
-scan cost: 0.168ms
-match cost: 0.052ms
+filter cost: 7.767ms
+scan cost: 0.161ms
+match cost: 0.029ms
 number of tuples: 1
-386-th query cost: 14ms.
+386-th query cost: 8ms.
 
 387-th query starting...
-filter cost: 80.458ms
-scan cost: 38.501ms
-match cost: 13.859ms
-number of tuples: 20
-387-th query cost: 133ms.
+filter cost: 97.009ms
+scan cost: 37.214ms
+match cost: 13.783ms
+number of tuples: 23
+387-th query cost: 148ms.
 
 388-th query starting...
-filter cost: 0.258ms
+filter cost: 0.309ms
 scan cost: 0.000ms
 match cost: 0.004ms
 number of tuples: 0
-388-th query cost: 0ms.
+388-th query cost: 1ms.
 
 389-th query starting...
-filter cost: 0.101ms
+filter cost: 0.095ms
 scan cost: 0.000ms
-match cost: 0.002ms
+match cost: 0.003ms
 number of tuples: 0
 389-th query cost: 0ms.
 
 390-th query starting...
 interval set size is 0
-filter cost: 3.032ms
+filter cost: 1.539ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
-390-th query cost: 4ms.
+390-th query cost: 2ms.
 
 391-th query starting...
 interval set size is 0
-filter cost: 13.166ms
+filter cost: 6.904ms
 scan cost: 0.000ms
 match cost: 0.005ms
 number of tuples: 0
-391-th query cost: 13ms.
+391-th query cost: 7ms.
 
 392-th query starting...
-filter cost: 43.607ms
-scan cost: 27.230ms
-match cost: 10.250ms
-number of tuples: 8
-392-th query cost: 81ms.
+filter cost: 21.851ms
+scan cost: 26.261ms
+match cost: 7.075ms
+number of tuples: 10
+392-th query cost: 55ms.
 
 393-th query starting...
 interval set size is 0
-filter cost: 5.048ms
+filter cost: 2.130ms
 scan cost: 0.000ms
 match cost: 0.005ms
 number of tuples: 0
-393-th query cost: 5ms.
+393-th query cost: 2ms.
 
 394-th query starting...
-filter cost: 52.848ms
-scan cost: 8.083ms
-match cost: 1.906ms
+filter cost: 28.481ms
+scan cost: 7.833ms
+match cost: 1.194ms
 number of tuples: 9
-394-th query cost: 63ms.
+394-th query cost: 38ms.
 
 395-th query starting...
 interval set size is 0
-filter cost: 3.065ms
+filter cost: 1.514ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.004ms
 number of tuples: 0
-395-th query cost: 3ms.
+395-th query cost: 1ms.
 
 396-th query starting...
-filter cost: 46.759ms
-scan cost: 16.485ms
-match cost: 4.912ms
+filter cost: 22.445ms
+scan cost: 15.962ms
+match cost: 2.901ms
 number of tuples: 0
-396-th query cost: 69ms.
+396-th query cost: 42ms.
 
 397-th query starting...
-filter cost: 81.584ms
-scan cost: 9.100ms
-match cost: 2.516ms
-number of tuples: 0
-397-th query cost: 93ms.
+filter cost: 53.350ms
+scan cost: 8.982ms
+match cost: 1.219ms
+number of tuples: 2
+397-th query cost: 63ms.
 
 398-th query starting...
-filter cost: 0.217ms
+filter cost: 0.266ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
-398-th query cost: 0ms.
+398-th query cost: 1ms.
 
 399-th query starting...
-filter cost: 111.488ms
-scan cost: 61.449ms
-match cost: 38.629ms
-number of tuples: 49
-399-th query cost: 212ms.
+filter cost: 69.501ms
+scan cost: 60.556ms
+match cost: 28.397ms
+number of tuples: 339
+399-th query cost: 158ms.
 
 400-th query starting...
-filter cost: 0.227ms
+filter cost: 0.300ms
 scan cost: 0.000ms
-match cost: 0.005ms
+match cost: 0.004ms
 number of tuples: 0
-400-th query cost: 0ms.
+400-th query cost: 1ms.
 
 401-th query starting...
 interval set size is 0
-filter cost: 3.679ms
+filter cost: 2.411ms
 scan cost: 0.000ms
-match cost: 0.005ms
+match cost: 0.004ms
 number of tuples: 0
-401-th query cost: 4ms.
+401-th query cost: 2ms.
 
 402-th query starting...
 interval set size is 0
-filter cost: 9.604ms
+filter cost: 5.621ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.004ms
 number of tuples: 0
-402-th query cost: 10ms.
+402-th query cost: 6ms.
 
 403-th query starting...
-filter cost: 65.807ms
-scan cost: 2.560ms
-match cost: 0.698ms
+filter cost: 99.278ms
+scan cost: 2.502ms
+match cost: 0.394ms
 number of tuples: 14
-403-th query cost: 69ms.
+403-th query cost: 102ms.
 
 404-th query starting...
-filter cost: 23.902ms
-scan cost: 5.471ms
-match cost: 2.032ms
+filter cost: 23.781ms
+scan cost: 5.449ms
+match cost: 1.113ms
 number of tuples: 3
 404-th query cost: 31ms.
 
 405-th query starting...
 interval set size is 0
-filter cost: 5.589ms
+filter cost: 3.869ms
 scan cost: 0.000ms
 match cost: 0.007ms
 number of tuples: 0
-405-th query cost: 6ms.
+405-th query cost: 4ms.
 
 406-th query starting...
 interval set size is 0
-filter cost: 2.392ms
+filter cost: 1.565ms
 scan cost: 0.000ms
-match cost: 0.004ms
+match cost: 0.005ms
 number of tuples: 0
-406-th query cost: 2ms.
+406-th query cost: 1ms.
 
 407-th query starting...
-filter cost: 10.324ms
-scan cost: 0.074ms
-match cost: 0.027ms
+filter cost: 6.868ms
+scan cost: 0.063ms
+match cost: 0.017ms
 number of tuples: 0
-407-th query cost: 11ms.
+407-th query cost: 7ms.
 
 408-th query starting...
 interval set size is 0
-filter cost: 2.399ms
+filter cost: 1.509ms
 scan cost: 0.000ms
-match cost: 0.003ms
+match cost: 0.004ms
 number of tuples: 0
 408-th query cost: 2ms.
 
 409-th query starting...
-filter cost: 25.263ms
-scan cost: 0.103ms
-match cost: 0.022ms
+filter cost: 20.827ms
+scan cost: 0.107ms
+match cost: 0.019ms
 number of tuples: 0
-409-th query cost: 26ms.
+409-th query cost: 21ms.
 
 410-th query starting...
-filter cost: 228.393ms
-scan cost: 51.590ms
-match cost: 25.009ms
-number of tuples: 35
-410-th query cost: 305ms.
+filter cost: 66.162ms
+scan cost: 50.758ms
+match cost: 16.767ms
+number of tuples: 237
+410-th query cost: 134ms.
 
 411-th query starting...
-filter cost: 42.605ms
-scan cost: 17.022ms
-match cost: 4.810ms
-number of tuples: 27
-411-th query cost: 65ms.
+filter cost: 29.546ms
+scan cost: 16.226ms
+match cost: 2.412ms
+number of tuples: 77
+411-th query cost: 48ms.
 
 412-th query starting...
-filter cost: 48.694ms
-scan cost: 9.347ms
-match cost: 2.845ms
-number of tuples: 0
-412-th query cost: 60ms.
+filter cost: 35.842ms
+scan cost: 9.336ms
+match cost: 1.469ms
+number of tuples: 2
+412-th query cost: 47ms.
 
 413-th query starting...
-filter cost: 0.153ms
+filter cost: 0.227ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
@@ -2965,239 +2965,239 @@ number of tuples: 0
 
 414-th query starting...
 interval set size is 0
-filter cost: 2.212ms
+filter cost: 2.065ms
 scan cost: 0.000ms
-match cost: 0.005ms
+match cost: 0.004ms
 number of tuples: 0
 414-th query cost: 2ms.
 
 415-th query starting...
-filter cost: 47.678ms
-scan cost: 0.137ms
-match cost: 0.029ms
+filter cost: 144.994ms
+scan cost: 0.133ms
+match cost: 0.022ms
 number of tuples: 0
-415-th query cost: 48ms.
+415-th query cost: 145ms.
 
 416-th query starting...
-filter cost: 11.638ms
-scan cost: 0.122ms
-match cost: 0.031ms
+filter cost: 8.122ms
+scan cost: 0.111ms
+match cost: 0.023ms
 number of tuples: 1
-416-th query cost: 12ms.
+416-th query cost: 9ms.
 
 417-th query starting...
-filter cost: 118.867ms
-scan cost: 37.719ms
-match cost: 29.619ms
-number of tuples: 1
-417-th query cost: 186ms.
+filter cost: 31.375ms
+scan cost: 24.432ms
+match cost: 5.878ms
+number of tuples: 3
+417-th query cost: 61ms.
 
 418-th query starting...
-filter cost: 48.229ms
-scan cost: 12.836ms
-match cost: 3.709ms
-number of tuples: 0
-418-th query cost: 65ms.
+filter cost: 29.530ms
+scan cost: 12.564ms
+match cost: 1.890ms
+number of tuples: 2
+418-th query cost: 44ms.
 
 419-th query starting...
 interval set size is 0
-filter cost: 3.555ms
+filter cost: 2.364ms
 scan cost: 0.000ms
 match cost: 0.006ms
 number of tuples: 0
-419-th query cost: 4ms.
+419-th query cost: 2ms.
 
 420-th query starting...
 interval set size is 0
-filter cost: 3.366ms
+filter cost: 2.132ms
 scan cost: 0.000ms
 match cost: 0.005ms
 number of tuples: 0
-420-th query cost: 3ms.
+420-th query cost: 2ms.
 
 421-th query starting...
 interval set size is 0
-filter cost: 2.201ms
+filter cost: 1.434ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
 421-th query cost: 2ms.
 
 422-th query starting...
-filter cost: 25.391ms
-scan cost: 1.660ms
-match cost: 0.338ms
+filter cost: 21.238ms
+scan cost: 1.528ms
+match cost: 0.237ms
 number of tuples: 0
-422-th query cost: 28ms.
+422-th query cost: 23ms.
 
 423-th query starting...
-filter cost: 0.119ms
+filter cost: 0.245ms
 scan cost: 0.000ms
 match cost: 0.002ms
 number of tuples: 0
 423-th query cost: 0ms.
 
 424-th query starting...
-filter cost: 43.821ms
-scan cost: 38.732ms
-match cost: 14.337ms
-number of tuples: 188
-424-th query cost: 97ms.
+filter cost: 30.291ms
+scan cost: 37.327ms
+match cost: 8.456ms
+number of tuples: 368
+424-th query cost: 76ms.
 
 425-th query starting...
-filter cost: 79.852ms
-scan cost: 12.578ms
-match cost: 3.626ms
-number of tuples: 10
-425-th query cost: 96ms.
+filter cost: 99.553ms
+scan cost: 12.608ms
+match cost: 2.452ms
+number of tuples: 11
+425-th query cost: 115ms.
 
 426-th query starting...
 interval set size is 0
-filter cost: 9.649ms
+filter cost: 6.595ms
 scan cost: 0.000ms
-match cost: 0.028ms
+match cost: 0.007ms
 number of tuples: 0
-426-th query cost: 10ms.
+426-th query cost: 7ms.
 
 427-th query starting...
 interval set size is 0
-filter cost: 2.363ms
+filter cost: 1.808ms
 scan cost: 0.000ms
 match cost: 0.005ms
 number of tuples: 0
 427-th query cost: 2ms.
 
 428-th query starting...
-filter cost: 47.357ms
-scan cost: 0.147ms
-match cost: 0.032ms
+filter cost: 27.992ms
+scan cost: 0.137ms
+match cost: 0.025ms
 number of tuples: 0
-428-th query cost: 48ms.
+428-th query cost: 28ms.
 
 429-th query starting...
-filter cost: 42.350ms
-scan cost: 0.914ms
-match cost: 0.227ms
+filter cost: 28.168ms
+scan cost: 0.862ms
+match cost: 0.114ms
 number of tuples: 0
-429-th query cost: 44ms.
+429-th query cost: 29ms.
 
 430-th query starting...
-filter cost: 11.579ms
-scan cost: 0.263ms
-match cost: 0.078ms
+filter cost: 8.078ms
+scan cost: 0.254ms
+match cost: 0.046ms
 number of tuples: 1
-430-th query cost: 12ms.
+430-th query cost: 9ms.
 
 431-th query starting...
-filter cost: 24.576ms
-scan cost: 5.891ms
-match cost: 2.095ms
+filter cost: 20.478ms
+scan cost: 5.430ms
+match cost: 1.231ms
 number of tuples: 3
-431-th query cost: 32ms.
+431-th query cost: 27ms.
 
 432-th query starting...
-filter cost: 38.170ms
-scan cost: 0.259ms
-match cost: 0.079ms
+filter cost: 7.987ms
+scan cost: 0.246ms
+match cost: 0.048ms
 number of tuples: 1
-432-th query cost: 39ms.
+432-th query cost: 8ms.
 
 433-th query starting...
 interval set size is 0
-filter cost: 4.735ms
+filter cost: 2.160ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.005ms
 number of tuples: 0
-433-th query cost: 5ms.
+433-th query cost: 3ms.
 
 434-th query starting...
-filter cost: 31.306ms
+filter cost: 20.056ms
 scan cost: 0.107ms
-match cost: 0.023ms
+match cost: 0.019ms
 number of tuples: 0
-434-th query cost: 31ms.
+434-th query cost: 20ms.
 
 435-th query starting...
-filter cost: 0.243ms
+filter cost: 0.281ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
-435-th query cost: 1ms.
+435-th query cost: 0ms.
 
 436-th query starting...
-filter cost: 46.067ms
-scan cost: 12.092ms
-match cost: 2.938ms
+filter cost: 63.568ms
+scan cost: 11.967ms
+match cost: 1.913ms
 number of tuples: 0
-436-th query cost: 61ms.
+436-th query cost: 78ms.
 
 437-th query starting...
-filter cost: 91.619ms
-scan cost: 61.007ms
-match cost: 50.783ms
-number of tuples: 30
-437-th query cost: 204ms.
+filter cost: 60.528ms
+scan cost: 58.676ms
+match cost: 39.545ms
+number of tuples: 39
+437-th query cost: 159ms.
 
 438-th query starting...
-filter cost: 42.793ms
-scan cost: 11.164ms
-match cost: 2.890ms
-number of tuples: 15
-438-th query cost: 57ms.
+filter cost: 30.966ms
+scan cost: 10.725ms
+match cost: 1.415ms
+number of tuples: 44
+438-th query cost: 43ms.
 
 439-th query starting...
-filter cost: 100.697ms
-scan cost: 12.508ms
-match cost: 3.727ms
-number of tuples: 0
-439-th query cost: 117ms.
+filter cost: 88.505ms
+scan cost: 12.547ms
+match cost: 3.297ms
+number of tuples: 2
+439-th query cost: 104ms.
 
 440-th query starting...
-filter cost: 26.403ms
-scan cost: 2.317ms
-match cost: 0.613ms
+filter cost: 39.221ms
+scan cost: 2.300ms
+match cost: 0.388ms
 number of tuples: 1
-440-th query cost: 29ms.
+440-th query cost: 41ms.
 
 441-th query starting...
 interval set size is 0
-filter cost: 12.122ms
+filter cost: 8.724ms
 scan cost: 0.000ms
-match cost: 0.008ms
+match cost: 0.006ms
 number of tuples: 0
-441-th query cost: 12ms.
+441-th query cost: 8ms.
 
 442-th query starting...
-filter cost: 13.308ms
-scan cost: 0.179ms
-match cost: 0.051ms
+filter cost: 16.053ms
+scan cost: 0.174ms
+match cost: 0.039ms
 number of tuples: 1
-442-th query cost: 14ms.
+442-th query cost: 17ms.
 
 443-th query starting...
-filter cost: 11.541ms
-scan cost: 0.175ms
-match cost: 0.053ms
+filter cost: 8.703ms
+scan cost: 0.171ms
+match cost: 0.030ms
 number of tuples: 1
-443-th query cost: 12ms.
+443-th query cost: 9ms.
 
 444-th query starting...
-filter cost: 44.791ms
-scan cost: 0.935ms
-match cost: 0.239ms
+filter cost: 41.059ms
+scan cost: 0.856ms
+match cost: 0.096ms
 number of tuples: 0
-444-th query cost: 46ms.
+444-th query cost: 42ms.
 
 445-th query starting...
-filter cost: 28.982ms
-scan cost: 5.584ms
-match cost: 2.084ms
+filter cost: 21.334ms
+scan cost: 5.514ms
+match cost: 1.093ms
 number of tuples: 3
-445-th query cost: 37ms.
+445-th query cost: 28ms.
 
 446-th query starting...
 interval set size is 0
-filter cost: 2.257ms
+filter cost: 1.662ms
 scan cost: 0.000ms
 match cost: 0.005ms
 number of tuples: 0
@@ -3205,383 +3205,383 @@ number of tuples: 0
 
 447-th query starting...
 interval set size is 0
-filter cost: 2.104ms
+filter cost: 1.447ms
 scan cost: 0.000ms
 match cost: 0.004ms
 number of tuples: 0
-447-th query cost: 2ms.
+447-th query cost: 1ms.
 
 448-th query starting...
 interval set size is 0
-filter cost: 2.124ms
+filter cost: 1.671ms
 scan cost: 0.000ms
-match cost: 0.003ms
+match cost: 0.004ms
 number of tuples: 0
 448-th query cost: 2ms.
 
 449-th query starting...
-filter cost: 11.933ms
-scan cost: 0.131ms
-match cost: 0.029ms
+filter cost: 8.647ms
+scan cost: 0.121ms
+match cost: 0.022ms
 number of tuples: 1
-449-th query cost: 13ms.
+449-th query cost: 9ms.
 
 450-th query starting...
-filter cost: 149.103ms
-scan cost: 51.655ms
-match cost: 25.273ms
-number of tuples: 35
-450-th query cost: 226ms.
+filter cost: 122.136ms
+scan cost: 50.864ms
+match cost: 19.614ms
+number of tuples: 237
+450-th query cost: 192ms.
 
 451-th query starting...
-filter cost: 67.444ms
-scan cost: 2.636ms
-match cost: 0.683ms
+filter cost: 61.486ms
+scan cost: 2.476ms
+match cost: 0.401ms
 number of tuples: 14
-451-th query cost: 71ms.
+451-th query cost: 64ms.
 
 452-th query starting...
-filter cost: 154.319ms
-scan cost: 2.479ms
-match cost: 0.693ms
+filter cost: 53.836ms
+scan cost: 2.525ms
+match cost: 0.388ms
 number of tuples: 14
-452-th query cost: 157ms.
+452-th query cost: 57ms.
 
 453-th query starting...
-filter cost: 39.047ms
-scan cost: 28.745ms
-match cost: 12.207ms
+filter cost: 88.305ms
+scan cost: 28.201ms
+match cost: 6.958ms
 number of tuples: 0
-453-th query cost: 80ms.
+453-th query cost: 123ms.
 
 454-th query starting...
-filter cost: 122.511ms
-scan cost: 2.946ms
-match cost: 0.785ms
+filter cost: 51.922ms
+scan cost: 2.459ms
+match cost: 0.457ms
 number of tuples: 14
-454-th query cost: 127ms.
+454-th query cost: 54ms.
 
 455-th query starting...
-filter cost: 118.880ms
-scan cost: 53.357ms
-match cost: 25.433ms
-number of tuples: 35
-455-th query cost: 197ms.
+filter cost: 138.030ms
+scan cost: 54.977ms
+match cost: 22.203ms
+number of tuples: 237
+455-th query cost: 216ms.
 
 456-th query starting...
-filter cost: 121.895ms
-scan cost: 9.280ms
-match cost: 2.499ms
-number of tuples: 0
-456-th query cost: 134ms.
+filter cost: 70.264ms
+scan cost: 9.237ms
+match cost: 1.442ms
+number of tuples: 2
+456-th query cost: 81ms.
 
 457-th query starting...
-filter cost: 42.588ms
-scan cost: 16.609ms
-match cost: 4.803ms
-number of tuples: 27
-457-th query cost: 64ms.
+filter cost: 27.733ms
+scan cost: 16.636ms
+match cost: 2.403ms
+number of tuples: 77
+457-th query cost: 47ms.
 
 458-th query starting...
-filter cost: 0.219ms
+filter cost: 0.270ms
 scan cost: 0.000ms
 match cost: 0.004ms
 number of tuples: 0
-458-th query cost: 1ms.
+458-th query cost: 0ms.
 
 459-th query starting...
-filter cost: 0.163ms
+filter cost: 0.167ms
 scan cost: 0.000ms
 match cost: 0.002ms
 number of tuples: 0
 459-th query cost: 0ms.
 
 460-th query starting...
-filter cost: 44.204ms
-scan cost: 14.789ms
-match cost: 4.452ms
-number of tuples: 5
-460-th query cost: 63ms.
+filter cost: 21.320ms
+scan cost: 15.069ms
+match cost: 2.633ms
+number of tuples: 6
+460-th query cost: 39ms.
 
 461-th query starting...
-filter cost: 0.122ms
+filter cost: 0.200ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
-461-th query cost: 1ms.
+461-th query cost: 0ms.
 
 462-th query starting...
-filter cost: 54.415ms
-scan cost: 10.616ms
-match cost: 2.903ms
-number of tuples: 15
-462-th query cost: 68ms.
+filter cost: 28.451ms
+scan cost: 10.719ms
+match cost: 1.339ms
+number of tuples: 44
+462-th query cost: 40ms.
 
 463-th query starting...
-filter cost: 34.440ms
-scan cost: 26.668ms
-match cost: 11.268ms
-number of tuples: 8
-463-th query cost: 72ms.
+filter cost: 22.826ms
+scan cost: 26.268ms
+match cost: 7.396ms
+number of tuples: 10
+463-th query cost: 57ms.
 
 464-th query starting...
 interval set size is 0
-filter cost: 3.855ms
+filter cost: 3.219ms
 scan cost: 0.000ms
 match cost: 0.006ms
 number of tuples: 0
-464-th query cost: 4ms.
+464-th query cost: 3ms.
 
 465-th query starting...
 interval set size is 0
-filter cost: 14.897ms
+filter cost: 6.045ms
 scan cost: 0.000ms
-match cost: 0.008ms
+match cost: 0.006ms
 number of tuples: 0
-465-th query cost: 15ms.
+465-th query cost: 6ms.
 
 466-th query starting...
-filter cost: 34.883ms
-scan cost: 0.302ms
-match cost: 0.070ms
+filter cost: 22.923ms
+scan cost: 0.273ms
+match cost: 0.048ms
 number of tuples: 0
-466-th query cost: 35ms.
+466-th query cost: 24ms.
 
 467-th query starting...
-filter cost: 123.345ms
-scan cost: 75.996ms
-match cost: 99.560ms
-number of tuples: 210
-467-th query cost: 299ms.
+filter cost: 96.723ms
+scan cost: 74.237ms
+match cost: 77.076ms
+number of tuples: 983
+467-th query cost: 248ms.
 
 468-th query starting...
-filter cost: 130.162ms
-scan cost: 29.783ms
-match cost: 9.836ms
+filter cost: 51.628ms
+scan cost: 28.627ms
+match cost: 8.280ms
 number of tuples: 16
-468-th query cost: 170ms.
+468-th query cost: 89ms.
 
 469-th query starting...
-filter cost: 66.220ms
-scan cost: 2.578ms
-match cost: 0.667ms
+filter cost: 108.017ms
+scan cost: 2.489ms
+match cost: 0.386ms
 number of tuples: 14
-469-th query cost: 70ms.
+469-th query cost: 111ms.
 
 470-th query starting...
-filter cost: 37.122ms
-scan cost: 11.987ms
-match cost: 3.333ms
+filter cost: 22.930ms
+scan cost: 11.803ms
+match cost: 1.928ms
 number of tuples: 0
-470-th query cost: 52ms.
+470-th query cost: 36ms.
 
 471-th query starting...
-filter cost: 9.960ms
-scan cost: 0.064ms
-match cost: 0.026ms
+filter cost: 6.577ms
+scan cost: 0.053ms
+match cost: 0.017ms
 number of tuples: 0
-471-th query cost: 10ms.
+471-th query cost: 7ms.
 
 472-th query starting...
 interval set size is 0
-filter cost: 61.746ms
+filter cost: 3.808ms
 scan cost: 0.000ms
-match cost: 0.009ms
+match cost: 0.005ms
 number of tuples: 0
-472-th query cost: 62ms.
+472-th query cost: 4ms.
 
 473-th query starting...
-filter cost: 41.156ms
-scan cost: 0.981ms
-match cost: 0.260ms
+filter cost: 28.211ms
+scan cost: 0.938ms
+match cost: 0.114ms
 number of tuples: 9
-473-th query cost: 42ms.
+473-th query cost: 29ms.
 
 474-th query starting...
 interval set size is 0
-filter cost: 9.545ms
+filter cost: 6.521ms
 scan cost: 0.000ms
-match cost: 0.007ms
+match cost: 0.006ms
 number of tuples: 0
-474-th query cost: 10ms.
+474-th query cost: 7ms.
 
 475-th query starting...
-filter cost: 42.521ms
-scan cost: 12.656ms
-match cost: 3.673ms
-number of tuples: 10
-475-th query cost: 59ms.
+filter cost: 30.253ms
+scan cost: 12.225ms
+match cost: 2.431ms
+number of tuples: 11
+475-th query cost: 45ms.
 
 476-th query starting...
 interval set size is 0
-filter cost: 9.404ms
+filter cost: 51.490ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.007ms
 number of tuples: 0
-476-th query cost: 9ms.
+476-th query cost: 51ms.
 
 477-th query starting...
-filter cost: 100.899ms
-scan cost: 59.604ms
-match cost: 45.170ms
-number of tuples: 30
-477-th query cost: 206ms.
+filter cost: 57.373ms
+scan cost: 61.072ms
+match cost: 37.686ms
+number of tuples: 39
+477-th query cost: 156ms.
 
 478-th query starting...
-filter cost: 10.645ms
-scan cost: 0.256ms
-match cost: 0.079ms
+filter cost: 8.572ms
+scan cost: 0.264ms
+match cost: 0.052ms
 number of tuples: 1
-478-th query cost: 11ms.
+478-th query cost: 9ms.
 
 479-th query starting...
 interval set size is 0
-filter cost: 3.437ms
+filter cost: 2.083ms
 scan cost: 0.000ms
-match cost: 0.006ms
+match cost: 0.005ms
 number of tuples: 0
-479-th query cost: 4ms.
+479-th query cost: 2ms.
 
 480-th query starting...
-filter cost: 56.159ms
-scan cost: 0.108ms
-match cost: 0.022ms
+filter cost: 20.277ms
+scan cost: 0.109ms
+match cost: 0.020ms
 number of tuples: 0
-480-th query cost: 56ms.
+480-th query cost: 20ms.
 
 481-th query starting...
-filter cost: 47.298ms
-scan cost: 0.993ms
-match cost: 0.242ms
+filter cost: 74.009ms
+scan cost: 0.927ms
+match cost: 0.130ms
 number of tuples: 9
-481-th query cost: 49ms.
+481-th query cost: 76ms.
 
 482-th query starting...
 interval set size is 0
-filter cost: 7.609ms
+filter cost: 3.728ms
+scan cost: 0.000ms
+match cost: 0.007ms
+number of tuples: 0
+482-th query cost: 3ms.
+
+483-th query starting...
+filter cost: 54.572ms
+scan cost: 29.164ms
+match cost: 8.521ms
+number of tuples: 16
+483-th query cost: 93ms.
+
+484-th query starting...
+filter cost: 0.232ms
 scan cost: 0.000ms
 match cost: 0.006ms
 number of tuples: 0
-482-th query cost: 7ms.
-
-483-th query starting...
-filter cost: 75.155ms
-scan cost: 29.251ms
-match cost: 8.725ms
-number of tuples: 16
-483-th query cost: 113ms.
-
-484-th query starting...
-filter cost: 0.132ms
-scan cost: 0.000ms
-match cost: 0.005ms
-number of tuples: 0
-484-th query cost: 1ms.
+484-th query cost: 0ms.
 
 485-th query starting...
-filter cost: 31.884ms
-scan cost: 1.622ms
-match cost: 0.341ms
+filter cost: 22.598ms
+scan cost: 1.806ms
+match cost: 0.267ms
 number of tuples: 0
-485-th query cost: 34ms.
+485-th query cost: 25ms.
 
 486-th query starting...
-filter cost: 52.963ms
-scan cost: 13.062ms
-match cost: 3.258ms
-number of tuples: 10
-486-th query cost: 69ms.
+filter cost: 73.566ms
+scan cost: 12.413ms
+match cost: 2.297ms
+number of tuples: 11
+486-th query cost: 88ms.
 
 487-th query starting...
-filter cost: 0.127ms
+filter cost: 0.212ms
 scan cost: 0.000ms
 match cost: 0.003ms
 number of tuples: 0
-487-th query cost: 0ms.
+487-th query cost: 1ms.
 
 488-th query starting...
-filter cost: 47.775ms
-scan cost: 30.088ms
-match cost: 11.202ms
+filter cost: 26.975ms
+scan cost: 28.149ms
+match cost: 7.555ms
 number of tuples: 0
-488-th query cost: 89ms.
+488-th query cost: 63ms.
 
 489-th query starting...
-filter cost: 110.841ms
-scan cost: 29.554ms
-match cost: 12.077ms
-number of tuples: 12
-489-th query cost: 153ms.
+filter cost: 32.506ms
+scan cost: 29.748ms
+match cost: 7.528ms
+number of tuples: 13
+489-th query cost: 69ms.
 
 490-th query starting...
-filter cost: 43.077ms
-scan cost: 0.886ms
-match cost: 0.234ms
+filter cost: 28.607ms
+scan cost: 0.852ms
+match cost: 0.096ms
 number of tuples: 0
-490-th query cost: 44ms.
+490-th query cost: 30ms.
 
 491-th query starting...
-filter cost: 38.420ms
-scan cost: 28.634ms
-match cost: 12.063ms
+filter cost: 24.575ms
+scan cost: 27.964ms
+match cost: 7.136ms
 number of tuples: 0
-491-th query cost: 80ms.
+491-th query cost: 60ms.
 
 492-th query starting...
 interval set size is 0
-filter cost: 3.673ms
-scan cost: 0.000ms
-match cost: 0.005ms
-number of tuples: 0
-492-th query cost: 3ms.
-
-493-th query starting...
-interval set size is 0
-filter cost: 3.318ms
-scan cost: 0.000ms
-match cost: 0.004ms
-number of tuples: 0
-493-th query cost: 4ms.
-
-494-th query starting...
-interval set size is 0
-filter cost: 5.516ms
+filter cost: 2.224ms
 scan cost: 0.000ms
 match cost: 0.006ms
 number of tuples: 0
-494-th query cost: 5ms.
+492-th query cost: 2ms.
+
+493-th query starting...
+interval set size is 0
+filter cost: 2.034ms
+scan cost: 0.000ms
+match cost: 0.004ms
+number of tuples: 0
+493-th query cost: 2ms.
+
+494-th query starting...
+interval set size is 0
+filter cost: 3.889ms
+scan cost: 0.000ms
+match cost: 0.005ms
+number of tuples: 0
+494-th query cost: 4ms.
 
 495-th query starting...
-filter cost: 43.782ms
-scan cost: 16.725ms
-match cost: 4.798ms
-number of tuples: 27
-495-th query cost: 66ms.
+filter cost: 60.095ms
+scan cost: 16.324ms
+match cost: 2.543ms
+number of tuples: 77
+495-th query cost: 79ms.
 
 496-th query starting...
-filter cost: 11.690ms
-scan cost: 0.251ms
-match cost: 0.076ms
+filter cost: 8.466ms
+scan cost: 0.249ms
+match cost: 0.041ms
 number of tuples: 1
-496-th query cost: 12ms.
+496-th query cost: 9ms.
 
 497-th query starting...
-filter cost: 42.875ms
-scan cost: 0.979ms
-match cost: 0.249ms
+filter cost: 28.650ms
+scan cost: 0.905ms
+match cost: 0.116ms
 number of tuples: 9
-497-th query cost: 44ms.
+497-th query cost: 30ms.
 
 498-th query starting...
-filter cost: 87.335ms
-scan cost: 11.159ms
-match cost: 3.104ms
+filter cost: 23.254ms
+scan cost: 10.902ms
+match cost: 1.948ms
 number of tuples: 4
-498-th query cost: 102ms.
+498-th query cost: 36ms.
 
 499-th query starting...
-filter cost: 35.328ms
-scan cost: 15.295ms
-match cost: 4.563ms
-number of tuples: 5
-499-th query cost: 55ms.
+filter cost: 21.993ms
+scan cost: 14.963ms
+match cost: 2.950ms
+number of tuples: 6
+499-th query cost: 40ms.

@@ -34,25 +34,7 @@ class Test_NFA_Crimes {
     }
 
     public static void initial(){
-        String[] initialStatements = {
-                "CREATE TABLE crimes (PrimaryType TYPE, ID INT,  Beat INT,  District INT, Latitude DOUBLE.9, Longitude DOUBLE.9, Date TIMESTAMP)",
-                "ALTER TABLE crimes ADD CONSTRAINT PrimaryType IN RANGE [0,50]",
-                "ALTER TABLE crimes ADD CONSTRAINT Beat IN RANGE [0,3000]",
-                "ALTER TABLE crimes ADD CONSTRAINT District IN RANGE [0,50]",
-                "ALTER TABLE crimes ADD CONSTRAINT Latitude IN RANGE [36.6,42.1]",
-                "ALTER TABLE crimes ADD CONSTRAINT Longitude IN RANGE [-91.7,-87.5]"
-        };
-
-        // create schema and define attribute range
-        for(String statement : initialStatements){
-            String str = StatementParser.convert(statement);
-            String[] words = str.split(" ");
-            if(words[0].equals("ALTER")){
-                StatementParser.setAttrValueRange(str);
-            } else if (words[0].equals("CREATE") && words[1].equals("TABLE")){
-                StatementParser.createTable(str);
-            }
-        }
+        StatementParser.createTable("CREATE TABLE crimes (PrimaryType TYPE, ID INT,  Beat INT,  District INT, Latitude DOUBLE.9, Longitude DOUBLE.9, Date TIMESTAMP)");
     }
 
     public static void cepNFATest(){
@@ -111,8 +93,8 @@ class Test_NFA_Crimes {
                 RETURN tuples""";
 
         NFA testNFA = new NFA();
-        // testNFA.constructNFA();
-        testNFA.generateNFAUsingQueryStatement(queryStatement);
+        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
+        testNFA.generateNFAUsingQueryPattern(pattern);
 
         testNFA.displayNFA();
 

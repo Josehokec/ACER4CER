@@ -1,4 +1,4 @@
-package join;
+package common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,13 @@ public class Tuple {
     }
 
     public String projectionExclude(int pos){
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         for(int i = 0; i < fullMatch.size(); ++i){
             if(i != pos){
-                ans += fullMatch.get(i);
+                ans.append(fullMatch.get(i));
             }
         }
-        return ans;
+        return ans.toString();
     }
 
     public String getKey(){

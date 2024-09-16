@@ -1,14 +1,15 @@
+
 # ACER: Accelerating Complex Event Recognition via Two-Phase Filtering under Range Bitmap-Based Indexes
 
 ### Summary
 
-**ACER is a simple, but efficient method (the greatest truth is concise) that uses index structures to accelerate complex event recognition.**
+**ACER is a simple, but efficient method (the greatest truths is concise) that uses index structures to accelerate complex event recognition.**
 
 **ACER key ideas:**
 
 * Using range bitmap to index attribute value
-* Aggregating the events with the same type as a cluster, building synopsis information for each cluster to skip unnecessary access
-* Proposing a two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
+* Aggregating same type events as a cluster, building synopsis information for each cluster to skip unnecessary access
+* Developing two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
 
 **ACER characteristic：**
 
@@ -18,22 +19,27 @@
 * Low query latency
 * Low storage overhead
 
-**.bib**
-
+**Cite this paper**
 ```tex
 @inproceedings{Liu2024,
   author = {Shizhe Liu and Haipeng Dai and Shaoxu Song and Meng Li and Jingsong Dai and Rong Gu and Guihai Chen},
   title = {{ACER}: Accelerating Complex Event Recognition via Two-Phase Filtering under Range Bitmap-Based Indexes},
   year = {2024},
   booktitle = {Proceedings of ACM SIGKDD conference on Knowledge Discovery and Data Mining},
-  pages = {1933–1943},
+  pages = {1933--1943},
   doi={https://doi.org/10.1145/3637528.3671814}
 }
 ```
 
+**News**
+* [2024-8-25] The original version of the code was partially completed by undergraduate students and has poor readability.
+  In order to make the code logic clearer, the authors refactored key code and function segments.
+* [2024-9-11] Support out-of-order insertion and deletion operations
+
+
 ## Section 1 Running
 
-Firstly, create `store` folder. Secondly, uncompress data. Thirdly, open `ACER4CER` folder with IDEA and run the target java file.
+Open ```ACER4CER``` folder with IDEA, then you can run the target java file (please decompress dataset files and create `store` folder).
 
 **Example**. Suppose you want to run ```Test_ACER_Nasdaq.java```,then you will see the code in the main function.
 
@@ -56,17 +62,14 @@ public class Test_ACER_Nasdaq {
         String jsonFileContent = JsonReader.getJson(queryFilePath);
         JSONArray jsonArray = JSONArray.fromObject(jsonFileContent);
 
-        // 5.1 choose NFA engine to match
-        final PrintStream consoleOut = System.out;
+        // 5. choose NFA engine to match
         System.out.println("use NFA to match");
-        MatchEngine engine1 = MatchEngine.NFA;
+        MatchEngine engine = MatchEngine.NFA;
         PrintStream printStream1 = new PrintStream(prefixPath + "output" + sep + "acer_nasdaq_nfa.txt");
         System.setOut(printStream1);
         System.out.println("choose NFA engine to match");
-        System.out.println("build cost: " + buildCost +"ms");
-        Test_ACER_Nasdaq.indexBatchQuery(index, jsonArray, engine1);
-
-        // ...
+        System.out.println("build cost: " + buildCost + "ms");
+        Test_ACER_Nasdaq.indexBatchQuery(index, jsonArray, engine);
     }
 }
 ```
@@ -77,7 +80,7 @@ public class Test_ACER_Nasdaq {
 * Then it loads the query statement `.json` file.
 * Finally, it executes a specific method for querying.
 
-**Result Explanations**
+**Result Explanations (see `output` folder)**
 ```
 122-th query starting...                  // 122-th query pattern
 filter cost: 4.077ms                      // cost of pre-filtering out unrelated events
@@ -100,21 +103,20 @@ number of tuples: 268                     // number of matched tuples
 | condition | Predicate constraints                                                      |
 | fullscan  | Full scan method                                                           |
 | generator | It can automatically generate synthetic data or queries                    |
-| join      | Match engine (also termed as evaluation engine) using join                 |
-| method    | offer a base class for index                                               |
+| method    | provide a base class for index                                             |
 | pattern   | complex event query pattern                                                |
 | query     | Query statement, all queryies stored in json file                          |
 | store     | Store event into a file                                                    |
-| Output    | Result file                                                                |
+| output    | Result file                                                                |
 
 ### Section 2.2: Key class for running
 
-| Dataset                   | java class                                                |
-| ------------------------- |-----------------------------------------------------------|
-| Cluster (also called job) | Test_ACER_Cluster.java<br>Test_FullScan_Cluster.java      |
-| Crimes                    | Test_ACER_Crimes.java<br/>Test_FullScan_Crimes.java       |
-| NASDAQ                    | Test_ACER_Nasdaq.java<br/>Test_FullScan_Nasdaq.java       |
-| Synthetic                 | Test_ACER_Synthetic.java<br/>Test_FullScan_Synthetic.java |
+| Dataset            | java class                                                |
+|--------------------|-----------------------------------------------------------|
+| Cluster (aka. job) | Test_ACER_Cluster.java<br>Test_FullScan_Cluster.java      |
+| Crimes             | Test_ACER_Crimes.java<br/>Test_FullScan_Crimes.java       |
+| NASDAQ             | Test_ACER_Nasdaq.java<br/>Test_FullScan_Nasdaq.java       |
+| Synthetic          | Test_ACER_Synthetic.java<br/>Test_FullScan_Synthetic.java |
 
 ## Section 3 Base-2 Bit Sliced Range Encoded Bitmap (Range Bitmap)
 
@@ -126,7 +128,7 @@ number of tuples: 268                     // number of matched tuples
 
 ## Section 4: Experimental Datasets
 
-Our paper used both synthetic and real datasets. We provided the download URLs for the real datasets.
+Our paper used both synthetic and real datasets. We provided the download URLs for the real dataset.
 
 | Dataset   | Method       | Indexed columns                                             |
 | --------- |--------------| ----------------------------------------------------------- |
@@ -145,13 +147,14 @@ Our paper used both synthetic and real datasets. We provided the download URLs f
 
 ###  Section 4.1 Real-world datasets
 
-**Real-world datasets overview**
+**Real-world dataset overview**
 
-| Name                                                         | Columns                                                    | Event number | File size |
-| ------------------------------------------------------------ | ---------------------------------------------------------- | ------------ | --------- |
-| [Google cluster](https://github.com/google/cluster-data)     | type,jobID, schedulingClass, timestamp                     | 2.0M         | 57.4MB    |
-| [Crimes](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present-Dashboard/5cd6-ry5g) | ticker,open, high, low, close, vol, date                   | 7.6M         | 493.5MB   |
-| [NASDAQ](https://www.eoddata.com)                            | primaryType, ID, beat, district, latitude, longitude, date | 8.7M         | 418MB     |
+| Name                                                                                              | Columns                                                    | Event number | File size |
+|---------------------------------------------------------------------------------------------------|------------------------------------------------------------|--------------|----------|
+| [Google cluster](https://github.com/google/cluster-data)                                          | type,jobID, schedulingClass, timestamp                     | 2.0M         | 57.4MB   |
+| [NASDAQ](https://www.eoddata.com)                                                                 | ticker,open, high, low, close, vol, date                   | 8.7M         | 418MB    |
+| [Crimes](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present-Dashboard/5cd6-ry5g) | primaryType, ID, beat, district, latitude, longitude, date | 7.6M         | 493.5MB  | 
+
 
 For `Google cluster` dataset, we choose four attributes from the job table: `event type, job ID, scheduling class,  time`. Then we choose one attribute to index: `scheduling class` (when using tree index, we need to index type).
 
@@ -161,7 +164,7 @@ For `NASDAQ` dataset, we only choose 15 famous stocks (*e,g,* MSFT, GOOG, AAPL, 
 
 ### Section 4.2  Synthetic dataset
 
-We have written a synthetic data generator to automatically generate synthetic data of a specified size. `generator` folder has a `SyntheticQueryGenerator.java` file that can generate synthetic datasets.
+We have written a synthetic data generator to automatically generate synthetic data of a specified size. `Generator` folder has a `SyntheticQueryGenerator.java` file that can generate synthetic datasets.
 
 **Schema: `(String type,int a1,int a2,float a3,float a4,long timestamp)`**
 
@@ -175,18 +178,20 @@ a3 ~ Uniform[0,1000]
 a4 ~ Uniform[0,1000]
 
 each variable has 1~3 independent constraints (selectivity range: 0.01~0.2)
-each query has 1~3 dependent constraint conditions
-float-point values in a3 and a4 have up to two digits after the decimal point
+each query has 1~3 dependent constraints
+float-point value in a3 and a4 have up to two digits after the decimal point
 ```
 
-Suppose the probability of occurrence of event types follows a `Zipf` distribution. The difference in timestamps for each adjacent record is 1. We generated 3 synthetic datasets, which contain 10_000_000 (10M), 100_000_000 (100M), and 1_000_000_000 (1G) events, respectively.
+Suppose the probability of occurrence of event types follows a `Zipf` distribution. The difference in timestamps for each adjacent record is 1. We generated 3 synthetic datasets, they contain 10_000_000 (10M), 100_000_000 (100M) and 1_000_000_000 (1G) events, respectively.
 
 
 ### Section 4: DBMS and Flink Experiments
 
+**Unless otherwise stated, events are timestamp-ordered.**
+
 We used a leading commercial database (referred to as `DBMS` here due to copyright issues) and `Flink` to perform some queries on the Crimes dataset, and we found that the query results were different from `DBMS` and `Flink`. However, this does not mean that our code has a bug. The reasons for different query results are as follows:
 
-* In order to support `skip-till-next-match,` `DBMS` needs to use wildcards (e.g.,`*`) for querying. When wildcard matches are used, extreme greedy strategies are used for matching, which is not equivalent to  `skip-till-next-match`. DBMS currently does not seem to support `skip-till-any-match` strategy.
+* In order to support skip irrelevant events between two variables, `DBMS` needs to use wildcards (e.g.`*`) for querying. When wildcard matches are used, extreme greedy strategies are used for matching, which is not equivalent to  `skip-till-next-match`. DBMS currently does not seem to support `skip-till-any-match` strategy.
 * For  `skip-till-next-match` and `skip-till-any-match`, `Flink` first sorts events based on their timestamps. When two different events have the same timestamp, their sorting position may differ from the initial order, resulting in mismatched results. **If the timestamp of each event is different, then the answer queried by Flink must be the same as the answer queried by ACER.**
 
 ### Section 4.1 DBMS example for crimes dataset
@@ -310,8 +315,7 @@ Pattern<CrimesEvent, ?> pattern = Pattern.<CrimesEvent>begin("v0").where(
         new SimpleCondition<CrimesEvent>() {
             @Override
             public boolean filter(CrimesEvent event){
-                boolean independent  = event.getPrimaryType().equals("ROBBERY");
-                return independent;
+                return event.getPrimaryType().equals("ROBBERY");
             }
         }
 ).followedByAny("v1").where(
@@ -464,7 +468,3 @@ For example, consider an event stream $E_2$: $\{e_1=(B,1), e_2=(A,1), e_3=(C,2),
 In the SQL standard, a wildcard character ($*$) is defined to support skipping unrelated events. Commercial databases utilize greedy matching for the wildcard character to search for matched tuples. Thus, the selection strategy in commercial databases does not adhere to the *skip-till-next-match* semantics, resulting in inconsistent evaluation results when compared to FlinkCEP. For example, given the event stream $E_2$ and query $Q_2$, the matched tuple in the commercial database is $(e_2,e_5)$, whereas the matching tuple in FlinkCEP is $(e_2,e_4)$.
 
 The selection strategy we have implemented fully aligns with the semantics of *skip-till-next-match* and *skip-till-any-match*. Thus, if there are no two events with identical timestamps, our query results can be consistent with the FlinkCEP query results.
-
-### Victors
-
-<a href="https://info.flagcounter.com/ACPD"><img src="https://s11.flagcounter.com/countxl/ACPD/bg_FFFFFF/txt_000000/border_CCCCCC/columns_5/maxflags_15/viewers_3/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>

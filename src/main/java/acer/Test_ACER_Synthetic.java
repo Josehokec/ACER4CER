@@ -2,8 +2,6 @@ package acer;
 
 import automaton.NFA;
 import common.*;
-
-import join.*;
 import method.Index;
 import pattern.QueryPattern;
 import net.sf.json.JSONArray;
@@ -17,25 +15,9 @@ import java.util.List;
 class Test_ACER_Synthetic {
 
     public static void createSchema(){
-        String[] initialStatements = {
-                "CREATE TABLE synthetic (type TYPE, a1 INT, a2 INT, a3 DOUBLE.2, a4 DOUBLE.2, time TIMESTAMP)",
-                "ALTER TABLE synthetic ADD CONSTRAINT type IN RANGE [0,100]",
-                "ALTER TABLE synthetic ADD CONSTRAINT a1 IN RANGE [0,1012]",
-                "ALTER TABLE synthetic ADD CONSTRAINT a2 IN RANGE [0,1012]",
-                "ALTER TABLE synthetic ADD CONSTRAINT a3 IN RANGE [0,1012]",
-                "ALTER TABLE synthetic ADD CONSTRAINT a4 IN RANGE [0,1012]"
-        };
-
-        // create schema and define attribute range
-        for(String statement : initialStatements){
-            String str = StatementParser.convert(statement);
-            String[] words = str.split(" ");
-            if(words[0].equals("ALTER")){
-                StatementParser.setAttrValueRange(str);
-            } else if (words[0].equals("CREATE") && words[1].equals("TABLE")){
-                StatementParser.createTable(str);
-            }
-        }
+        String statement = "CREATE TABLE synthetic (type TYPE, a1 INT, a2 INT, a3 DOUBLE.2, a4 DOUBLE.2, time TIMESTAMP)";
+        String str = StatementParser.convert(statement);
+        StatementParser.createTable(str);
     }
 
     // different methods using different create index statement
@@ -57,7 +39,7 @@ class Test_ACER_Synthetic {
             String line;
             b.readLine();
             while ((line = b.readLine()) != null) {
-                index.insertRecord(line);
+                index.insertOrDeleteRecord(line, false);
             }
             b.close();
             f.close();
@@ -70,53 +52,18 @@ class Test_ACER_Synthetic {
 
     // this function only support a query
     @SuppressWarnings("unused")
-    public static void indexQuery(Index index, String queryStatement, MatchEngine engine){
+    public static void indexQuery(Index index, String queryStatement){
         System.out.println(queryStatement);
+        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
         // start query
         long startRunTs = System.currentTimeMillis();
         if(queryStatement.contains("COUNT")){
             int cnt;
-            switch (engine) {
-                case NFA -> {
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    cnt = index.processCountQueryUsingNFA(pattern, new NFA());
-                }
-                case OrderJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    cnt = index.processCountQueryUsingJoin(pattern, new OrderJoin());
-                }
-                case GreedyJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    cnt = index.processCountQueryUsingJoin(pattern, new GreedyJoin());
-                }
-                default -> {
-                    System.out.println("we use nfa as default match engine");
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    cnt = index.processCountQueryUsingNFA(pattern, new NFA());
-                }
-            }
+            cnt = index.processCountQueryUsingNFA(pattern, new NFA());
             System.out.println("number of tuples: " + cnt);
         }else {
             List<Tuple> tuples;
-            switch (engine) {
-                case NFA -> {
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    tuples = index.processTupleQueryUsingNFA(pattern, new NFA());
-                }
-                case OrderJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    tuples = index.processTupleQueryUsingJoin(pattern, new OrderJoin());
-                }
-                case GreedyJoin -> {
-                    EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                    tuples = index.processTupleQueryUsingJoin(pattern, new GreedyJoin());
-                }
-                default -> {
-                    System.out.println("we use nfa as default match engine");
-                    QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                    tuples = index.processTupleQueryUsingNFA(pattern, new NFA());
-                }
-            }
+            tuples = index.processTupleQueryUsingNFA(pattern, new NFA());
             for (Tuple t : tuples) {
                 System.out.println(t);
             }
@@ -129,54 +76,20 @@ class Test_ACER_Synthetic {
     // this function support multiple query
     public static void indexBatchQuery(Index index, JSONArray jsonArray, MatchEngine engine){
         int queryNum = jsonArray.size();
-        for(int i = 0; i < 100; ++i) {
+        assert(engine.equals(MatchEngine.NFA));
+        for(int i = 0; i < queryNum; ++i) {
             String queryStatement = jsonArray.getString(i);
+            QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
             // start query
             System.out.println("\n" + i + "-th query starting...");
             long startRunTs = System.currentTimeMillis();
             if(queryStatement.contains("COUNT")){
                 int cnt;
-                switch (engine) {
-                    case NFA -> {
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        cnt = index.processCountQueryUsingNFA(pattern, new NFA());
-                    }
-                    case OrderJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        cnt = index.processCountQueryUsingJoin(pattern, new OrderJoin());
-                    }
-                    case GreedyJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        cnt = index.processCountQueryUsingJoin(pattern, new GreedyJoin());
-                    }
-                    default -> {
-                        System.out.println("we use nfa as default match engine");
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        cnt = index.processCountQueryUsingNFA(pattern, new NFA());
-                    }
-                }
+                cnt = index.processCountQueryUsingNFA(pattern, new NFA());
                 System.out.println("number of tuples: " + cnt);
             }else {
                 List<Tuple> tuples;
-                switch (engine) {
-                    case NFA -> {
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        tuples = index.processTupleQueryUsingNFA(pattern, new NFA());
-                    }
-                    case OrderJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        tuples = index.processTupleQueryUsingJoin(pattern, new OrderJoin());
-                    }
-                    case GreedyJoin -> {
-                        EventPattern pattern = StatementParser.getEventPattern(queryStatement);
-                        tuples = index.processTupleQueryUsingJoin(pattern, new GreedyJoin());
-                    }
-                    default -> {
-                        System.out.println("we use nfa as default match engine");
-                        QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
-                        tuples = index.processTupleQueryUsingNFA(pattern, new NFA());
-                    }
-                }
+                tuples = index.processTupleQueryUsingNFA(pattern, new NFA());
                 for (Tuple t : tuples) {
                     System.out.println(t);
                 }

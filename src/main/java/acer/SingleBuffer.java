@@ -3,82 +3,76 @@ package acer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * a single buffer binds an event type
+ */
 public class SingleBuffer {
     private int indexAttrNum;                       // number of index attributes
-    private final int partitionRecordNum;           // optimal record number store in a partition
     private List<Long> minValues;                   // Attribute synopsis -> minimum values
     private List<Long> maxValues;                   // Attribute synopsis -> maximum values
-    private final List<ACERTemporaryTriple> triples;  // Temporary Triple
+    private List<ACERTemporaryQuad> quads;          // all quads have same type
 
-    public SingleBuffer(int indexAttrNum, int partitionRecordNum){
+    public SingleBuffer(int indexAttrNum) {
         this.indexAttrNum = indexAttrNum;
-        this.partitionRecordNum = partitionRecordNum;
         minValues = new ArrayList<>(indexAttrNum);
         maxValues = new ArrayList<>(indexAttrNum);
-        triples = new ArrayList<>(partitionRecordNum);
 
-        for(int i = 0; i < indexAttrNum; ++i){
+        for(int i = 0; i < indexAttrNum; i++) {
             minValues.add(Long.MAX_VALUE);
             maxValues.add(Long.MIN_VALUE);
         }
+
+        quads = new ArrayList<>(512);
     }
 
     public List<Long> getMinValues() {
-        List<Long> ans = new ArrayList<>(indexAttrNum);
-        ans.addAll(minValues);
-        return ans;
+        return minValues;
     }
 
     public List<Long> getMaxValues() {
-        List<Long> ans = new ArrayList<>(indexAttrNum);
-        ans.addAll(maxValues);
-        return ans;
+        return maxValues;
     }
 
-    public List<ACERTemporaryTriple> getTriples() {
-        return triples;
+    public List<Long> getRanges() {
+        List<Long> ranges = new ArrayList<>(indexAttrNum);
+        for(int i = 0; i < indexAttrNum; i++) {
+            ranges.add(maxValues.get(i) - minValues.get(i));
+        }
+        return ranges;
     }
 
-    /**
-     * if buffer full, then return true
-     * else return false;
-     * @param triple      quad
-     * @return          full -> true, otherwise -> false
-     */
-    public boolean append(ACERTemporaryTriple triple){
-        triples.add(triple);
-        final long[] attrValues = triple.attrValues();
-        final int indexAttrNum = attrValues.length;
-
-        // update minimum and maximum values
-        for(int i = 0; i < indexAttrNum; ++i){
-            long v = attrValues[i];
-            if(minValues.get(i) > v){
-                minValues.set(i, v);
+    public void append(ACERTemporaryQuad quad) {
+        // update min/max values
+        long[] values = quad.attrValues();
+        for(int i = 0; i < indexAttrNum; i++) {
+            if(values[i] < minValues.get(i)) {
+                minValues.set(i, values[i]);
             }
-            if(maxValues.get(i) < v){
-                maxValues.set(i, v);
+            if(values[i] > maxValues.get(i)) {
+                maxValues.set(i, values[i]);
             }
         }
-
-        return triples.size() == partitionRecordNum;
+        quads.add(quad);
     }
 
-    /**
-     * clear buffer
-     * set min values and maxValues, clear the list
-     * @return true
-     */
-    public boolean clearBuffer(){
-        final int indexAttrNum = minValues.size();
-        triples.clear();
-        minValues.clear();
-        maxValues.clear();
+    public List<ACERTemporaryQuad> getAllQuads(){
+        return quads;
+    }
 
-        for(int i = 0; i < indexAttrNum; ++i){
+    public int getSize(){
+        return quads.size();
+    }
+
+    public void clear(){
+        quads.clear();
+        minValues = new ArrayList<>(indexAttrNum);
+        maxValues = new ArrayList<>(indexAttrNum);
+
+        for(int i = 0; i < indexAttrNum; i++) {
             minValues.add(Long.MAX_VALUE);
             maxValues.add(Long.MIN_VALUE);
         }
-        return true;
     }
 }
+
+

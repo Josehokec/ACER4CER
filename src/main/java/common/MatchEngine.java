@@ -5,5 +5,6 @@ package common;
  * currently OrderJoin and GreedyJoin can not process complex event pattern
  */
 public enum MatchEngine {
-    OrderJoin, GreedyJoin, NFA
+    NFA
 }
+// remove OrderJoin, GreedyJoin
