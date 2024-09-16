@@ -1,7 +1,7 @@
 package acer;
 
 import common.IndexValuePair;
-import condition.IndependentConstraintQuad;
+import condition.ICQueryQuad;
 import org.roaringbitmap.RangeBitmap;
 import org.roaringbitmap.RoaringBitmap;
 import store.RID;
@@ -11,309 +11,189 @@ import java.util.*;
 
 public class BufferPool {
     public static int capability = 42 * 1024;                   // buffer pool capability 42 * 1024;
+    //public static int capability = 20;                        // it is used for debugging
     private int recordNum;                                      // number of stored event
     private final int indexNum;                                 // number of indexed attribute
-    private List<Long> attrMaxRange;                            // record attrMaxRange, aims to create range bitmap
-    private HashMap<String, List<ACERTemporaryTriple>> buffers; // buffer event
-    // new version: support out-of-order insertion
-    private HashMap<String, Boolean> orderMarkMap;              // mark each buffer whether sorted
-    // new version: support out-of-order insertion
-    private HashMap<String, Long> previousTimestampMap;         // mark each buffer previous timestamp
-
-    public final int getRecordNum(){
-        return recordNum;
-    }
+    private final HashMap<String, SingleBuffer> buffers;        // buffer events, key is event type, value is a single buffer
 
     /**
      * Construct function
-     * @param indexNum      number of index attribute
-     * @param attrMaxRange  maximum value for each index attribute
+     * @param indexNum      number of indexed attributes
      */
-    public BufferPool(int indexNum, List<Long> attrMaxRange){
+    public BufferPool(int indexNum){
         this.recordNum = 0;
         this.indexNum = indexNum;
-        this.attrMaxRange = attrMaxRange;
         this.buffers = new HashMap<>();
-        // new version: support out-of-order insertion
-        this.orderMarkMap = new HashMap<>();
-        this.previousTimestampMap = new HashMap<>();
     }
 
-    // new version: deletion operation
-    public final ByteBuffer deleteRecord(String eventType, int blockId, ACERTemporaryTriple triple, SynopsisTable synopsisTable){
-        // Add to the partitionTable based on the event type of the data partition
-        if(buffers.containsKey(eventType)){
-            // directly insert this triple
-            List<ACERTemporaryTriple> triples = buffers.get(eventType);
-            triples.add(triple);
+    // unify deletion and insertion operations
+    public final ByteBuffer insertOrDeleteRecord(boolean orderedFlag, String eventType, int blockId, ACERTemporaryQuad quad, SynopsisTable synopsisTable){
+        long[] attrValues = quad.attrValues();
+        // here we need to know the max/min value for each index block
+        assert(attrValues.length == indexNum);
 
-            // new version: support out-of-order insertion
-            // if this buffer is timestamp-ordered, then we should update previous timestamp
-            if(orderMarkMap.get(eventType)){
-                long previousTs = previousTimestampMap.get(eventType);
-                long currentTs = triple.timestamp();
-                // if insert is out-of-order, then we need to update orderMarkMap
-                if(currentTs < previousTs){
-                    orderMarkMap.put(eventType, false);
-                }else{
-                    previousTimestampMap.put(eventType, currentTs);
-                }
-            }
+        // if a given buffer exists
+        if(buffers.containsKey(eventType)) {
+            // List<ACERTemporaryQuad> quads = buffers.get(eventType); quads.add(quad);
+            buffers.get(eventType).append(quad);
         }else{
-            // create a new buffer
-            List<ACERTemporaryTriple> triples = new ArrayList<>(1024);
-            triples.add(triple);
-            buffers.put(eventType, triples);
-            // new version: support out-of-order insertion
-            orderMarkMap.put(eventType, true);
-            previousTimestampMap.put(eventType, triple.timestamp());
+            // else we need to create a new buffer
+            SingleBuffer buffer = new SingleBuffer(indexNum);
+            buffer.append(quad);
+            buffers.put(eventType, buffer);
         }
         recordNum++;
 
-        // need to perform flush operation
+        // when buffer pool reaches its capacity, we need to perform flush operation
         if(recordNum >= capability){
-            // if reach the capability, then we generate custer information and update synopsis
-            // create an index partition (contains bitmaps, timestamps, rids)
-            HashMap<String, ClusterInfo> indexPartitionClusterInfo = new HashMap<>();
-
-            List<RangeBitmap.Appender> appenderList = new ArrayList<>(indexNum);
-
-            if(attrMaxRange != null){
-                for(int i = 0; i < indexNum; ++i){
-                    RangeBitmap.Appender curAppender = RangeBitmap.appender(attrMaxRange.get(i));
-                    appenderList.add(curAppender);
-                }
-            }else{
-                for(int i = 0; i < indexNum; ++i){
-                    RangeBitmap.Appender curAppender = RangeBitmap.appender(Long.MAX_VALUE >> 1);
-                    appenderList.add(curAppender);
-                }
-            }
-            List<Long> timestampList = new ArrayList<>(capability);
-            List<RID>  ridList = new ArrayList<>(capability);
-            RoaringBitmap deletionMark = new RoaringBitmap();
-
-            int startPos = 0;
-
-            for(Map.Entry<String, List<ACERTemporaryTriple>> entry : buffers.entrySet()){
-                String key = entry.getKey();
-                List<ACERTemporaryTriple> value = entry.getValue();
-                // if out-of-order
-                if(!orderMarkMap.get(key)){
-                    value.sort(Comparator.comparingLong(ACERTemporaryTriple::timestamp));
-                }
-
-                int size = value.size();
-                long startTime = value.get(0).timestamp();
-                long endTime = value.get(size - 1).timestamp();
-
-                // initial
-                List<Long> buffMinValues = new ArrayList<>(indexNum);
-                List<Long> buffMaxValues = new ArrayList<>(indexNum);
-                for(int i = 0 ; i < indexNum; ++i){
-                    buffMinValues.add(Long.MAX_VALUE);
-                    buffMaxValues.add(Long.MIN_VALUE);
-                }
-
-                for(int i = 0; i < size; ++i){
-                    ACERTemporaryTriple curTriple = value.get(i);
-                    long[] attrValues = curTriple.attrValues();
-
-                    for(int k = 0; k < indexNum; ++k){
-                        long attrValue = attrValues[k];
-                        appenderList.get(k).add(attrValue);
-                        // check max/min values
-                        if(!curTriple.flag()){
-                            if(attrValue > buffMaxValues.get(k)){
-                                buffMaxValues.set(k, attrValue);
-                            }
-                            if(attrValue < buffMinValues.get(k)){
-                                buffMinValues.set(k, attrValue);
-                            }
-                        }
-                    }
-                    timestampList.add(curTriple.timestamp());
-                    ridList.add(curTriple.rid());
-                    // if deletion
-                    if(curTriple.flag()){
-                        deletionMark.add(startPos + i);
-                    }
-                }
-                ClusterInfo info = new ClusterInfo(blockId, startPos, size, startTime, endTime, buffMinValues, buffMaxValues);
-                indexPartitionClusterInfo.put(key, info);
-                startPos += size;
-            }
-
-            // clear the buffer pool
-            buffers = new HashMap<>();
-            // update synopsisTable
-            synopsisTable.updateSynopsisTable(indexPartitionClusterInfo);
-            // update event number
-            recordNum = 0;
-            return IndexBlock.serialize(deletionMark, appenderList, timestampList, ridList);
+            return generateIndexBlock(orderedFlag, blockId, synopsisTable);
         }else{
             // if BufferPool does not flush, then return null
             return null;
         }
     }
 
-    public final ByteBuffer insertRecord(String eventType, int blockId, ACERTemporaryTriple triple, SynopsisTable synopsisTable){
-        // Add to the partitionTable based on the event type of the data partition
-        if(buffers.containsKey(eventType)){
-            // directly insert this triple
-            List<ACERTemporaryTriple> triples = buffers.get(eventType);
-            triples.add(triple);
+    /**
+     * generate an index block, here we use delta compression to compress attribute values
+     * @param orderedFlag   in-order or out-of-order insertion
+     * @param blockId       block id
+     * @param synopsisTable synopsis table
+     * @return              byte buffer
+     */
+    public ByteBuffer generateIndexBlock(boolean orderedFlag, int blockId, SynopsisTable synopsisTable){
+        // new version: support deletion operation
+        RoaringBitmap deletionMark = new RoaringBitmap();
 
-            // new version: support out-of-order insertion
-            // if this buffer is timestamp-ordered, then we should update previous timestamp
-            if(orderMarkMap.get(eventType)){
-                long previousTs = previousTimestampMap.get(eventType);
-                long currentTs = triple.timestamp();
-                // if insert is out-of-order, then we need to update orderMarkMap
-                if(currentTs < previousTs){
-                    orderMarkMap.put(eventType, false);
-                }else{
-                    previousTimestampMap.put(eventType, currentTs);
-                }
-            }
-        }else{
-            // create a new buffer
-            List<ACERTemporaryTriple> triples = new ArrayList<>(1024);
-            triples.add(triple);
-            buffers.put(eventType, triples);
-            // new version: support out-of-order insertion
-            orderMarkMap.put(eventType, true);
-            previousTimestampMap.put(eventType, triple.timestamp());
+        // we need to know that max ranges for each attribute so that we can create range bitmaps
+        List<Long> maxRanges = new ArrayList<>(indexNum);
+        for(int i = 0; i< indexNum; i++){
+            maxRanges.add(Long.MIN_VALUE);
         }
-        recordNum++;
-
-        // need to perform flush operation
-        if(recordNum >= capability){
-            // if reach the capability, then we generate custer information and update synopsis
-            // create an index partition (contains bitmaps, timestamps, rids)
-            HashMap<String, ClusterInfo> indexPartitionClusterInfo = new HashMap<>();
-            List<RangeBitmap.Appender> appenderList = new ArrayList<>(indexNum);
-
-            if(attrMaxRange != null){
-                for(int i = 0; i < indexNum; ++i){
-                    RangeBitmap.Appender curAppender = RangeBitmap.appender(attrMaxRange.get(i));
-                    appenderList.add(curAppender);
-                }
-            }else{
-                for(int i = 0; i < indexNum; ++i){
-                    RangeBitmap.Appender curAppender = RangeBitmap.appender(Long.MAX_VALUE >> 1);
-                    appenderList.add(curAppender);
+        for(Map.Entry<String, SingleBuffer> entry : buffers.entrySet()) {
+            //System.out.println("type: " + entry.getKey());
+            SingleBuffer curBuffer = entry.getValue();
+            List<Long> curRanges = curBuffer.getRanges();
+            for(int i = 0; i< indexNum; i++){
+                long range = curRanges.get(i);
+                if(range > maxRanges.get(i)){
+                    maxRanges.set(i, range);
                 }
             }
-            List<Long> timestampList = new ArrayList<>(capability);
-            List<RID>  ridList = new ArrayList<>(capability);
-            RoaringBitmap deletionMark = new RoaringBitmap();
-
-            int startPos = 0;
-
-            for(Map.Entry<String, List<ACERTemporaryTriple>> entry : buffers.entrySet()){
-                String key = entry.getKey();
-                List<ACERTemporaryTriple> value = entry.getValue();
-                // if out-of-order we need to sort
-                if(!orderMarkMap.get(key)){
-                    value.sort(Comparator.comparingLong(ACERTemporaryTriple::timestamp));
-                }
-
-                int size = value.size();
-                long startTime = value.get(0).timestamp();
-                long endTime = value.get(size - 1).timestamp();
-
-                // initial
-                List<Long> buffMinValues = new ArrayList<>(indexNum);
-                List<Long> buffMaxValues = new ArrayList<>(indexNum);
-                for(int i = 0 ; i < indexNum; ++i){
-                    buffMinValues.add(Long.MAX_VALUE);
-                    buffMaxValues.add(Long.MIN_VALUE);
-                }
-
-                for(int i = 0; i < size; ++i){
-                    ACERTemporaryTriple curTriple = value.get(i);
-                    long[] attrValues = curTriple.attrValues();
-
-                    for(int k = 0; k < indexNum; ++k){
-                        long attrValue = attrValues[k];
-                        appenderList.get(k).add(attrValue);
-                        // check max/min values
-                        if(!curTriple.flag()){
-                            if(attrValue > buffMaxValues.get(k)){
-                                buffMaxValues.set(k, attrValue);
-                            }
-                            if(attrValue < buffMinValues.get(k)){
-                                buffMinValues.set(k, attrValue);
-                            }
-                        }
-                    }
-                    timestampList.add(curTriple.timestamp());
-                    ridList.add(curTriple.rid());
-                    // if deletion
-                    if(curTriple.flag()){
-                        deletionMark.add(startPos + i);
-                    }
-                }
-                ClusterInfo info = new ClusterInfo(blockId, startPos, size, startTime, endTime, buffMinValues, buffMaxValues);
-                indexPartitionClusterInfo.put(key, info);
-                startPos += size;
-            }
-
-            // clear the buffer pool
-            buffers = new HashMap<>();
-            // update synopsisTable
-            synopsisTable.updateSynopsisTable(indexPartitionClusterInfo);
-            // update event number
-            recordNum = 0;
-            return IndexBlock.serialize(deletionMark, appenderList, timestampList, ridList);
-        }else{
-            // if BufferPool does not flush, then return null
-            return null;
         }
+
+        // an index block contains: some range bitmaps + timestampList + ridList
+        // create range bitmaps' appender
+        List<RangeBitmap.Appender> appenderList = new ArrayList<>(indexNum);
+        for(int i = 0; i < indexNum; ++i){
+            // do we need to add one?
+            RangeBitmap.Appender curAppender = RangeBitmap.appender(maxRanges.get(i));
+            appenderList.add(curAppender);
+        }
+        List<Long> timestampList = new ArrayList<>(capability);
+        List<RID>  ridList = new ArrayList<>(capability);
+
+        // generate custer information and update synopsis
+        int startPos = 0;
+        for(Map.Entry<String, SingleBuffer> entry : buffers.entrySet()) {
+            String curEventType = entry.getKey();
+            SingleBuffer curBuffer = entry.getValue();
+            List<ACERTemporaryQuad> curQuads = curBuffer.getAllQuads();
+            if(!orderedFlag){
+                curQuads.sort(Comparator.comparingLong(ACERTemporaryQuad::timestamp));
+            }
+            int size = curQuads.size();
+            long startTime = curQuads.get(0).timestamp();
+            long endTime = curQuads.get(size - 1).timestamp();
+
+            List<Long> minValues = curBuffer.getMinValues();
+            // insert appends, timestampList, and ridList
+            for(int i = 0; i < size; ++i){
+                ACERTemporaryQuad curQuad = curQuads.get(i);
+                long[] curAttrValues = curQuad.attrValues();
+                for(int k = 0; k < indexNum; ++k){
+                    // 中文注释：注意到我们存储的value是减掉了每个集群的最小值
+                    appenderList.get(k).add(curAttrValues[k] - minValues.get(k));
+                }
+                timestampList.add(curQuad.timestamp());
+                ridList.add(curQuad.rid());
+                // new version: support deletion operation
+                if(curQuad.flag()){
+                    deletionMark.add(startPos + i);
+                }
+            }
+
+            // generate synopsis information and update it to synopsis table
+            ClusterInfo info = new ClusterInfo(blockId, startPos, size, startTime, endTime, curBuffer.getMinValues(), curBuffer.getMaxValues());
+            synopsisTable.updateSynopsisTable(curEventType, info);
+            startPos += size;
+            curBuffer.clear();
+        }
+
+        // clear the buffer pool, buffers = new HashMap<>();
+        buffers.clear();
+        // reset record/event number
+        recordNum = 0;
+        return IndexBlock.serialize(deletionMark, appenderList, timestampList, ridList);
     }
 
     /**
      * filter out relevant records that meet the conditions in the buffer
+     * new version: support out-of-order insertion & deletion operation
+     * 中文注释：这里的icQuads不能转换查询范围！！！
      * @param eventType     event type
-     * @param icQuads       independent predicate constraints
+     * @param icQuads       converted independent predicate constraints
      * @return              <rid, timestamp> pair
      */
-    public final List<IndexValuePair> query(String eventType, List<IndependentConstraintQuad> icQuads){
-        List<IndexValuePair> ans = new ArrayList<>();
-        List<ACERTemporaryTriple> triples = buffers.get(eventType);
+    public final List<List<IndexValuePair>> query(boolean orderedFlag, String eventType, List<ICQueryQuad> icQuads){
+        SingleBuffer buffer = buffers.get(eventType);
 
-        if(triples == null){
-            triples = new ArrayList<>();
+        List<List<IndexValuePair>> finalAns = new ArrayList<>(2);
+        if(buffer == null || buffer.getSize() == 0){
+            finalAns.add(new ArrayList<>(8));
+            finalAns.add(new ArrayList<>(8));
+            return finalAns;
         }
 
-        for(ACERTemporaryTriple triple : triples){
+        List<IndexValuePair> satisfiedPairs = new ArrayList<>(512);
+        List<IndexValuePair> deletedPairs = new ArrayList<>(64);
+
+        for(ACERTemporaryQuad acerQuad : buffer.getAllQuads()) {
             boolean satisfy = true;
-            long[] attrValues = triple.attrValues();
-            for(IndependentConstraintQuad quad : icQuads){
+            long[] attrValues = acerQuad.attrValues();
+            for (ICQueryQuad quad : icQuads) {
                 int idx = quad.idx();
                 long min = quad.min();
                 long max = quad.max();
-                if(attrValues[idx] < min || attrValues[idx] > max){
+                if (attrValues[idx] < min || attrValues[idx] > max) {
                     satisfy = false;
                     break;
                 }
             }
-            // add no deletion
-            if(satisfy && !triple.flag()){
-                ans.add(new IndexValuePair(triple.timestamp(), triple.rid()));
+
+            if (satisfy) {
+                if (acerQuad.flag()) {
+                    deletedPairs.add(new IndexValuePair(acerQuad.timestamp(), acerQuad.rid()));
+                } else {
+                    satisfiedPairs.add(new IndexValuePair(acerQuad.timestamp(), acerQuad.rid()));
+                }
             }
         }
-        // new version: support out-of-order insertion
         // when we find it is out-of-order, we need to call sort
-        if(!orderMarkMap.get(eventType)){
-            ans.sort(Comparator.comparingLong(IndexValuePair::timestamp));
+        if(!orderedFlag){
+            satisfiedPairs.sort(Comparator.comparingLong(IndexValuePair::timestamp));
         }
-        return ans;
+        finalAns.add(satisfiedPairs);
+        finalAns.add(deletedPairs);
+        return finalAns;
     }
 
     public void print(){
         System.out.println("record number: " + recordNum);
     }
+
+//    public void debug(){
+//        System.out.println("BABA");
+//        System.out.println("buffer ts:" + buffers.get("BABA").getAllQuads().get(0).timestamp());
+//    }
 }
 

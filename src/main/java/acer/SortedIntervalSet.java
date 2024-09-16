@@ -3,10 +3,8 @@ package acer;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import common.IndexValuePair;
-import store.RidVarNamePair;
 
 /**
  * SortedIntervalSet stores time interval
@@ -34,8 +32,7 @@ public class SortedIntervalSet{
     }
 
     /**
-     * insert a new interval
-     * we will merge time interval
+     * insert a new interval, note that we will merge time interval
      */
     public final boolean insert(long s, long e){
         if(e < s){
@@ -82,14 +79,21 @@ public class SortedIntervalSet{
         return false;
     }
 
-    public final void including(List<IndexValuePair> pairs, List<IndexValuePair> ans){
-        if(intervalNum == 0) { return; }
-        if(ans == null){ ans = new ArrayList<>();}
+    /**
+     * this function will update (remove) these intervals that cannot generate any matched results,
+     * and filtering these events whose timestamps do not within time intervals
+     * @param pairs - pairs
+     * @return filtered pairs
+     */
+    public final List<IndexValuePair> updateAndFilter(List<IndexValuePair> pairs){
+        if(intervalNum == 0) {
+            return new ArrayList<>(8);
+        }
         int len = pairs.size();
-
+        List<IndexValuePair> filteredPairs = new ArrayList<>((int) (len * 0.65));
         // initial hit array
         List<Boolean> hit = new ArrayList<>(Collections.nCopies(intervalNum, false));
-        
+
         // filtering algorithm
         int cursor = 0;
         for(int checkIdx = 0; checkIdx < len; ){
@@ -106,7 +110,7 @@ public class SortedIntervalSet{
             if(t >= startList.get(cursor)){
                 if(t <= endList.get(cursor)){
                     hit.set(cursor, true);
-                    ans.add(pairs.get(checkIdx));
+                    filteredPairs.add(pairs.get(checkIdx));
                     checkIdx++;
                 }else{
                     cursor++;
@@ -122,160 +126,15 @@ public class SortedIntervalSet{
         hitMarkers = hit;
         // reconstruction
         reconstruction();
-    }
-
-    /**
-     * this function is similar 'checkOverlap' function
-     * @param pairs             <rid, timestamp> pair
-     * @param varId             variable id
-     * @return                  include this interval set <rid, varId> pairs
-     */
-    public final List<RidVarIdPair> including(List<IndexValuePair> pairs, int varId){
-        List<RidVarIdPair> ans = new ArrayList<>();
-        if(intervalNum == 0){ return ans; }
-
-        int len = pairs.size();
-        // initial hit array
-        List<Boolean> hit = new ArrayList<>(Collections.nCopies(intervalNum, false));
-
-        // filtering algorithm
-        int cursor = 0;
-        for(int checkIdx = 0; checkIdx < len; ){
-            long t = pairs.get(checkIdx).timestamp();
-
-            while(t < startList.get(cursor)){
-                ++checkIdx;
-                if(checkIdx >= len){
-                    break;
-                }
-                t = pairs.get(checkIdx).timestamp();
-            }
-
-            if(t >= startList.get(cursor)){
-                if(t <= endList.get(cursor)){
-                    hit.set(cursor, true);
-                    IndexValuePair curPair = pairs.get(checkIdx);
-                    ans.add(new RidVarIdPair(curPair.rid(), varId));
-                    ++checkIdx;
-                }else{
-                    cursor++;
-                }
-            }
-
-            if(cursor >= intervalNum){
-                break;
-            }
-        }
-
-        // update hitMarkers
-        hitMarkers = hit;
-        // reconstruction
-        reconstruction();
-
-        return ans;
-    }
-
-    /**
-     * this function is similar 'checkOverlap' function
-     * @param pairs             <rid, timestamp> pair
-     * @param varName            variable name
-     * @return                  include this interval set <rid, varId> pairs
-     */
-    public final List<RidVarNamePair> including(List<IndexValuePair> pairs, String varName){
-        List<RidVarNamePair> ans = new ArrayList<>();
-        if(intervalNum == 0){ return ans; }
-
-        int len = pairs.size();
-        // initial hit array
-        List<Boolean> hit = new ArrayList<>(Collections.nCopies(intervalNum, false));
-
-        // filtering algorithm
-        int cursor = 0;
-        for(int checkIdx = 0; checkIdx < len; ){
-            long t = pairs.get(checkIdx).timestamp();
-
-            while(t < startList.get(cursor)){
-                ++checkIdx;
-                if(checkIdx >= len){
-                    break;
-                }
-                t = pairs.get(checkIdx).timestamp();
-            }
-
-            if(t >= startList.get(cursor)){
-                if(t <= endList.get(cursor)){
-                    hit.set(cursor, true);
-                    IndexValuePair curPair = pairs.get(checkIdx);
-                    ans.add(new RidVarNamePair(curPair.rid(), varName));
-                    ++checkIdx;
-                }else{
-                    cursor++;
-                }
-            }
-
-            if(cursor >= intervalNum){
-                break;
-            }
-        }
-
-        // update hitMarkers
-        hitMarkers = hit;
-        // reconstruction
-        reconstruction();
-
-        return ans;
-    }
-
-
-    /**
-     * according to hit marker, update interval set
-     * @param pairs         pairs should be sorted
-     */
-    public final void including(List<IndexValuePair> pairs){
-        if(intervalNum == 0){ return ; }
-        int len = pairs.size();
-        // initial hit array
-        List<Boolean> hit = new ArrayList<>(Collections.nCopies(intervalNum, false));
-
-        // filtering algorithm
-        int cursor = 0;
-        for(int checkIdx = 0; checkIdx < len; ){
-            long t = pairs.get(checkIdx).timestamp();
-
-            while(t < startList.get(cursor)){
-                ++checkIdx;
-                if(checkIdx >= len){
-                    break;
-                }
-                t = pairs.get(checkIdx).timestamp();
-            }
-
-            if(t >= startList.get(cursor)){
-                if(t <= endList.get(cursor)){
-                    hit.set(cursor, true);
-                    ++checkIdx;
-                }else{
-                    cursor++;
-                }
-            }
-
-            if(cursor >= intervalNum){
-                break;
-            }
-        }
-
-        // update hitMarkers
-        hitMarkers = hit;
-        // reconstruction
-        reconstruction();
+        return filteredPairs;
     }
 
     /**
      * Check which timestamp are included in SortedIntervalSet.
+     * here timestamps are sorted
      * this function may change the interval set
      * If timestamp[i] is included in SortedIntervalSet,
      * then set containList[i] = true.
-     * timestamps are sorted
      */
     public final List<Boolean> checkOverlap(List<Long> timestamps){
         int len = timestamps.size();
@@ -324,22 +183,23 @@ public class SortedIntervalSet{
     }
 
     /**
-     * input an interval list, check which elements can intersect with this sortedIntervalSet
+     * new version: we only require starts[i] <= ends[i], allow out-of-order
+     * please note that intervals always keep ordered
+     * this function cannot update/change interval set
      * -----------------------------------------------------
-     * for example:
-     * SortedIntervalSet: [5,8] [10,15] [23,30]
-     * -----------------------------------------------------
-     * input (should be sorted):
+     * input an interval list, check which elements can intersect with this sortedIntervalSet.
+     * For example:
+     * SortedIntervalSet: [5,8] [10,15] [23,30], our input is:
      * starts: [6, 17, 29, 40]
      * ends:   [9, 20, 35, 45]
-     * => input interval [6, 9] [17, 20] [29, 35] [40, 45]
+     * which means => input interval [6, 9] [17, 20] [29, 35] [40, 45]
      * -----------------------------------------------------
      * [6, 9], [29, 35] can intersect with this SortedIntervalSet
      * [17, 20], [40, 45] cannot intersect with this SortedIntervalSet
      * then this function output is [true, false, true, false]
-     * @param starts        minimum start timestamp
-     * @param ends          maximum end timestamp
-     * @return              this position overlap?
+     * @param starts        start timestamp list
+     * @param ends          end timestamp list
+     * @return              position x in list can overlap sorted intervals?
      */
     public final List<Boolean> checkOverlap(List<Long> starts, List<Long> ends){
         int len = starts.size();
@@ -348,63 +208,68 @@ public class SortedIntervalSet{
         if(intervalNum == 0) {return containList; }
 
         // initial hit array
-        List<Boolean> hit = new ArrayList<>(Collections.nCopies(intervalNum, false));
+        // List<Boolean> hit = new ArrayList<>(Collections.nCopies(intervalNum, false));
 
         int cursor = 0;
 
-        for(int checkIdx = 0; checkIdx < len; ++checkIdx){
-            long s = starts.get(checkIdx);
-            long e = ends.get(checkIdx);
+        // to support out-of-order insertion, we need previous start and end timestamp
+        long previousStart = -2;
+        long previousEnd = -1;
+        int previousCursor = 0;
 
+        for(int checkIdx = 0; checkIdx < len; ++checkIdx){
+            long start = starts.get(checkIdx);
+            long end = ends.get(checkIdx);
+
+            // to support out-of-order insertion, we need previous start and end timestamp
+            if(start < previousEnd && start >= previousStart){
+                //System.out.println("cursor reset previous one.");
+                cursor = previousCursor;
+            }else if(start < previousStart){
+                //System.out.println("cursor reset 0.");
+                cursor = 0;
+            }
+
+            // old version: its complexity is $O(n^2)$
+//            for(int checkIdx = 0; checkIdx < len; ++checkIdx){
+//                long s = starts.get(checkIdx);
+//                long e = ends.get(checkIdx);
+//                    for(int pos = cursor; pos < intervalNum; ++pos){
+//                        if(overlap(s, e, startList.get(pos), endList.get(pos))){
+//                            hit.set(pos, true);
+//                            containList.set(checkIdx, true);
+//                        }
+//                    }
+//            }
+
+            // new version: more fast, because its complexity is $O(n)$
+            // reason (see an example)
+            // input:    [2,      10]          [16,20]
+            // intervals [2.3] [4,8]   [13,15]     [19,23]   [28,30]
             boolean earlyStop = false;
+
             for(int pos = cursor; pos < intervalNum; ++pos){
-                if(overlap(s, e, startList.get(pos), endList.get(pos))){
-                    hit.set(pos, true);
+                if(overlap(start, end, startList.get(pos), endList.get(pos))){
+                    //hit.set(pos, true);
                     containList.set(checkIdx, true);
                     earlyStop = true;
                 }else if(earlyStop){
+                    // to support out-of-order insertion, we need previous cursor
+                    previousCursor = cursor;
                     // if start not overlap, early stop and update cursor
                     cursor = Math.max(0, pos - 1);
                     break;
                 }
             }
 
+            // support out-of-order insertion
+            previousStart = start;
+            previousEnd = end;
         }
         // update hitMarkers
-        hitMarkers = hit;
+        // hitMarkers = hit;
         // reconstruction
-        reconstruction();
-        return containList;
-    }
-
-    /**
-     * this function is 'checkOverlap' old version
-     */
-    public final List<Boolean> check(List<Long> starts, List<Long> ends){
-        int len = starts.size();
-        // initial containList
-        List<Boolean> containList = new ArrayList<>(Collections.nCopies(len, false));
-        if(intervalNum == 0) {return containList; }
-
-        // initial hit array
-        List<Boolean> hit = new ArrayList<>(Collections.nCopies(intervalNum, false));
-
-        int cursor = 0;
-        for(int checkIdx = 0; checkIdx < len; ++checkIdx){
-            long s = starts.get(checkIdx);
-            long e = ends.get(checkIdx);
-            for(int pos = cursor; pos < intervalNum; ++pos){
-                if(overlap(s, e, startList.get(pos), endList.get(pos))){
-                    hit.set(pos, true);
-                    containList.set(checkIdx, true);
-                }
-            }
-
-        }
-        // update hitMarkers
-        hitMarkers = hit;
-        // reconstruction
-        reconstruction();
+        // reconstruction();
         return containList;
     }
 
@@ -414,6 +279,15 @@ public class SortedIntervalSet{
                     " two intervals is : [" + s1 + ", " + e1 + "] and [" + s2 + ", " + e2 + "]");
         }
         return e1 >= s2 && e2 >= s1;
+    }
+
+    public final boolean overlap(long start, long end){
+        for(int i = 0; i < intervalNum; ++i){
+            if(overlap(start, end, startList.get(i), endList.get(i))){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -451,12 +325,13 @@ public class SortedIntervalSet{
         return intervalNum;
     }
 
+    @SuppressWarnings("unused")
     public final List<Long> getStartList() { return startList; }
 
+    @SuppressWarnings("unused")
     public final List<Long> getEndList() { return endList;}
 
     public void print(){
-        // reconstruction();
         System.out.println("Number of Intervals: " + intervalNum);
         System.out.print("Intervals:");
         for(int i = 0; i < intervalNum; ++i){
@@ -465,10 +340,7 @@ public class SortedIntervalSet{
         System.out.println(".");
     }
 
-    /**
-     * Return all replay intervals
-     * @return  intervals list (start, end)
-     */
+    @SuppressWarnings("unused")
     public final List<long[]> getAllReplayIntervals(){
         List<long[]> ans = new ArrayList<>(intervalNum);
         for(int i = 0; i < intervalNum; ++i){
@@ -478,159 +350,18 @@ public class SortedIntervalSet{
         return ans;
     }
 
-    public static void main(String[] args){
-        System.out.println("test...");
-        // SortedIntervalSet.testTimestampList();
-        SortedIntervalSet.testInterval1();
-        SortedIntervalSet.testInterval2();
+    public void clear(){
+        startList = new ArrayList<>(16);
+        endList = new ArrayList<>(16);
+        hitMarkers = new ArrayList<>(16);
+        intervalNum = 0;
     }
 
-    public static void testTimestampList(){
-        SortedIntervalSet intervals = new SortedIntervalSet();
-
-        int w = 3;
-        List<Long> timePoints = new ArrayList<>(Arrays.asList(4L, 7L, 15L, 30L, 35L));
-        // start:
-        // [1, 7]
-        //   [4, 10]
-        //           [12,  18]
-        //                         [27, 33]
-        //                              [32, 38]
-        // merge:
-        // [1, 10]   [12,18]       [27,38]
-        for (long t : timePoints) {
-            intervals.insert(t - w, t + w);
+    public SortedIntervalSet copy(){
+        SortedIntervalSet clone = new SortedIntervalSet(intervalNum);
+        for(int i = 0; i < intervalNum; ++i){
+            clone.insert(startList.get(i), endList.get(i));
         }
-
-        intervals.print();
-
-        List<Long> checkTimestamps = new ArrayList<>(Arrays.asList(0L, 1L, 8L, 10L, 11L, 12L, 15L, 18L, 25L, 27L, 30L, 38L, 40L));
-        List<Boolean> exists = intervals.checkOverlap(checkTimestamps);
-
-        // test include function
-        for (Boolean exist : exists) {
-            if (exist) {
-                System.out.println("timestamp: "  + " true.");
-            } else {
-                System.out.println("timestamp: "  + " false.");
-            }
-        }
-    }
-
-    public static void testInterval0(){
-        SortedIntervalSet intervals = new SortedIntervalSet();
-
-        int w = 3;
-        List<Long> timePoints = new ArrayList<>(Arrays.asList(4L, 7L, 15L, 30L, 35L));
-        // start:
-        // [1, 7]
-        //   [4, 10]
-        //           [12,  18]
-        //                         [27, 33]
-        //                              [32, 38]
-        // merge:
-        // [1, 10]   [12,18]       [27,38]
-        for (long t : timePoints) {
-            intervals.insert(t - w, t + w);
-        }
-
-        intervals.print();
-
-        List<Long> starts = new ArrayList<>(Arrays.asList(10L, 22L, 37L));
-        List<Long> ends = new ArrayList<>(Arrays.asList(14L, 25L, 40L));
-
-        List<Boolean> exists = intervals.checkOverlap(starts, ends);
-        for(int i = 0; i < exists.size(); ++i){
-            if(exists.get(i)){
-                System.out.println("intervals: [" + starts.get(i) + ", " + ends.get(i) + "] overlap.");
-            }else{
-                System.out.println("intervals: [" + starts.get(i) + ", " + ends.get(i) +  "] does not overlap.");
-            }
-        }
-
-        intervals.print();
-    }
-
-    public static void testInterval1(){
-        List<Long> starts1 = new ArrayList<>(Arrays.asList(1L, 4L, 7L, 13L, 17L, 19L, 34L));
-        List<Long> ends1 = new ArrayList<>(Arrays.asList(2L, 6L, 11L, 15L, 18L, 28L, 38L));
-
-        List<Long> starts2 = new ArrayList<>(Arrays.asList(3L, 12L, 20L, 32L));
-        List<Long> ends2 = new ArrayList<>(Arrays.asList(7L, 16L, 25L, 35L));
-
-        {
-            SortedIntervalSet intervalSet1 = new SortedIntervalSet();
-            for(int i = 0; i < starts1.size(); ++i){
-                intervalSet1.insert(starts1.get(i), ends1.get(i));
-            }
-
-            List<Boolean> overlapMark2 = intervalSet1.checkOverlap(starts2, ends2);
-            List<Boolean> ans2 = new ArrayList<>(Arrays.asList(true, true, true, true));
-
-            for(int i = 0; i< ans2.size(); ++i){
-                if(ans2.get(i) != overlapMark2.get(i)){
-                    System.out.println("bug position: " + i + " interval: [" + starts2.get(i) + ", " + ends2.get(i) + "].");
-                }
-            }
-        }
-
-        {
-            SortedIntervalSet intervalSet2 = new SortedIntervalSet();
-            for(int i = 0; i < starts2.size(); ++i){
-                intervalSet2.insert(starts2.get(i), ends2.get(i));
-            }
-
-            List<Boolean> overlapMark1 = intervalSet2.checkOverlap(starts1, ends1);
-            List<Boolean> ans1 = new ArrayList<>(Arrays.asList(false, true, true, true, false, true, true));
-
-            for(int i = 0; i< ans1.size(); ++i){
-                if(ans1.get(i) != overlapMark1.get(i)){
-                    System.out.println("bug position: " + i + " interval: [" + starts1.get(i) + ", " + ends1.get(i) + "].");
-                }
-            }
-        }
-    }
-
-    /**
-     * this test aims to report bug
-     */
-    public static void testInterval2(){
-        List<Long> starts1 = new ArrayList<>(Arrays.asList(1L, 3L, 6L, 10L, 13L, 17L, 27L, 31L));
-        List<Long> ends1 = new ArrayList<>(Arrays.asList(2L, 4L, 9L, 11L, 15L, 26L, 29L, 37L));
-
-        List<Long> starts2 = new ArrayList<>(Arrays.asList(5L, 9L, 18L, 22L, 25L, 32L, 36L, 39L));
-        List<Long> ends2 = new ArrayList<>(Arrays.asList(8L, 15L, 20L, 24L, 26L, 34L, 38L, 40L));
-
-        {
-            SortedIntervalSet intervalSet1 = new SortedIntervalSet();
-            for(int i = 0; i < starts1.size(); ++i){
-                intervalSet1.insert(starts1.get(i), ends1.get(i));
-            }
-
-            List<Boolean> overlapMark2 = intervalSet1.checkOverlap(starts2, ends2);
-            List<Boolean> ans2 = new ArrayList<>(Arrays.asList(true, true, true, true, true, true, true, false));
-
-            for(int i = 0; i< ans2.size(); ++i){
-                if(ans2.get(i) != overlapMark2.get(i)){
-                    System.out.println("bug position: " + i + " interval: [" + starts2.get(i) + ", " + ends2.get(i) + "].");
-                }
-            }
-        }
-
-        {
-            SortedIntervalSet intervalSet2 = new SortedIntervalSet();
-            for(int i = 0; i < starts2.size(); ++i){
-                intervalSet2.insert(starts2.get(i), ends2.get(i));
-            }
-
-            List<Boolean> overlapMark1 = intervalSet2.checkOverlap(starts1, ends1);
-            List<Boolean> ans1 = new ArrayList<>(Arrays.asList(false, false, true, true, true, true, false, true));
-
-            for(int i = 0; i< ans1.size(); ++i){
-                if(ans1.get(i) != overlapMark1.get(i)){
-                    System.out.println("bug position: " + i + " interval: [" + starts1.get(i) + ", " + ends1.get(i) + "].");
-                }
-            }
-        }
+        return clone;
     }
 }

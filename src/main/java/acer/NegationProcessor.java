@@ -1,6 +1,6 @@
 package acer;
 
-import join.Tuple;
+import common.Tuple;
 
 import java.util.ArrayList;
 import java.util.HashSet;

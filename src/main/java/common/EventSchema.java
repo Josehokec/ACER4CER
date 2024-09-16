@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * 这个类很重要，所以才加上中文解释
  * The attNameMap is used to find where the attribute name exists
  * For example: ticker TYPE, open FLOAT. 2, volume INT, time TIMESTAMP
  * AttNameMap. get (ticker)=0; AttNameMap. get (volume)=2; AttNameMap.get (time)=3;
@@ -14,17 +15,19 @@ import java.util.List;
  * Note that the maximum and minimum values are converted
  */
 public class EventSchema {
+    // 已经分配的类型id
     private int hasAssignedId;                          // event type is String, so we assign an integer id to an event type
-    private int maxEventTypeBitLen;                     // number of bits required for event types
     private short storeRecordSize;                      // number of bytes required to store a record
     private String schemaName;                          // schema name
     private String[] attrNames;                         // attribute name
+    // 中文注释：支持CHAR.x 也就是说最多有多少个单词
     private String[] attrTypes;                         // attribute type, like INT, DOUBLE, LONG, TIMESTAMP
+    // 中文注释：如果是char类型的，则表示其字符个数
     private int[] decimalLens;                          // decimal lengths
+    // 把字节解析成int, long, char用
     private StorePos[] positions;                       // type store position
-    private long[] attrMinValues;                       // minimum value for each attribute
-    private long[] attrMaxValues;                       // maximum value for each attribute
     private final List<String> allEventTypes;           // typeId corresponding to an event type
+    // 中文注释：每个table对应的一个store（文件）
     private EventStore store;                           // stored file
     private final HashMap<String, Integer> attrNameMap; // attNameMap is used to find where the attribute name exists
     private final HashMap<String, Integer> typeMap;     //event type map
@@ -33,7 +36,6 @@ public class EventSchema {
         attrNameMap = new HashMap<>();
         typeMap = new HashMap<>();
         hasAssignedId = 0;
-        maxEventTypeBitLen = -1;
         storeRecordSize = -1;
         allEventTypes = new ArrayList<>();
         // Because we assign IDs starting from 1, we add null
@@ -47,6 +49,7 @@ public class EventSchema {
     public void setSchemaName(String schemaName) {
         this.schemaName = schemaName;
     }
+
     public short getStoreRecordSize() {
         return storeRecordSize;
     }
@@ -71,6 +74,7 @@ public class EventSchema {
         return attrTypes;
     }
 
+    // after creating table, call this function, and calculate the record size
     public void setAttrTypes(String[] attrTypes) {
         this.attrTypes = attrTypes;
         positions = new StorePos[attrTypes.length];
@@ -95,13 +99,13 @@ public class EventSchema {
         this.decimalLens = decimalLens;
     }
 
-    public void setAttrMinValues(long[] attrMinValues) {
-        this.attrMinValues = attrMinValues;
-    }
+//    public void setAttrMinValues(long[] attrMinValues) {
+//        this.attrMinValues = attrMinValues;
+//    }
 
-    public void setAttrMaxValues(long[] attrMaxValues) {
-        this.attrMaxValues = attrMaxValues;
-    }
+//    public void setAttrMaxValues(long[] attrMaxValues) {
+//        this.attrMaxValues = attrMaxValues;
+//    }
 
     public void insertAttrName(String attrName, int idx){
         attrNameMap.put(attrName, idx);
@@ -115,21 +119,21 @@ public class EventSchema {
         return attrTypes[idx];
     }
 
-    public long getIthAttrMinValue(int idx){
-        return attrMinValues[idx];
-    }
-
-    public void setIthAttrMinValue(int idx, long minValue){
-        attrMinValues[idx] = minValue;
-    }
-
-    public long getIthAttrMaxValue(int idx){
-        return attrMaxValues[idx];
-    }
-
-    public void setIthAttrMaxValue(int idx, long minValue){
-        attrMaxValues[idx] = minValue;
-    }
+//    public long getIthAttrMinValue(int idx){
+//        return attrMinValues[idx];
+//    }
+//
+//    public void setIthAttrMinValue(int idx, long minValue){
+//        attrMinValues[idx] = minValue;
+//    }
+//
+//    public long getIthAttrMaxValue(int idx){
+//        return attrMaxValues[idx];
+//    }
+//
+//    public void setIthAttrMaxValue(int idx, long minValue){
+//        attrMaxValues[idx] = minValue;
+//    }
 
     public int  getIthDecimalLens(int idx) {
         return decimalLens[idx];
@@ -151,41 +155,11 @@ public class EventSchema {
         }
     }
 
-    public int getTypeIdLen(){
-        return maxEventTypeBitLen == -1 ? calTypeIdBitLen() : maxEventTypeBitLen;
-    }
-
     public int getPageStoreRecordNum(){
         int pageSize = store.getPageSize();
         return pageSize / storeRecordSize;
     }
 
-    public int getMaxEventTypeNum(){
-        for(int i = 0; i< attrTypes.length; ++i){
-            if(attrTypes[i].equals("TYPE")){
-                return (int) attrMaxValues[i];
-            }
-        }
-        return -1;
-    }
-
-    public int calTypeIdBitLen(){
-        int ans = 0;
-        long maxEventTypeNum = Integer.MAX_VALUE;
-        for(int i = 0; i< attrTypes.length; ++i){
-            if(attrTypes[i].equals("TYPE")){
-                maxEventTypeNum = attrMaxValues[i];
-                break;
-            }
-        }
-
-        while(maxEventTypeNum != 0){
-            maxEventTypeNum >>= 1;
-            ans++;
-        }
-        maxEventTypeBitLen = ans;
-        return ans;
-    }
 
     public int getTimestampIdx(){
         for(int i = 0; i < attrTypes.length; ++i){
@@ -286,8 +260,8 @@ public class EventSchema {
 
     /**
      * convert byte arrays into string records
-     * @param record byte array record
-     * @return record string
+     * @param record - byte array record
+     * @return record - string
      */
     public String byteEventToString(byte[] record){
         String ans = "";
@@ -341,9 +315,9 @@ public class EventSchema {
     /**
      * obtain the byte array corresponding to the i-th attribute,
      * and then convert it to the corresponding variable based on the type
-     * @param record byte array record
-     * @param i      query i-th attribute
-     * @return       i-th attribute byte array
+     * @param record - byte array record
+     * @param i      - query i-th attribute
+     * @return       - i-th attribute byte array
      */
     public byte[] getIthAttrBytes(byte[] record, int i){
         int start = positions[i].startPos();
@@ -365,8 +339,8 @@ public class EventSchema {
         for(int i = 0; i < attrNames.length; i++){
             System.out.printf("|%-12s|", attrNames[i]);
             System.out.printf("%-12s|", attrTypes[i]);
-            System.out.printf("%-16s|", attrMinValues[i]);
-            System.out.printf("%-16s|%n", attrMaxValues[i]);
+//            System.out.printf("%-16s|", attrMinValues[i]);
+//            System.out.printf("%-16s|%n", attrMaxValues[i]);
         }
         System.out.println("-------------------------------------------------------------");
 

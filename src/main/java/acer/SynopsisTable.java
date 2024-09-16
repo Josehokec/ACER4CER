@@ -1,9 +1,11 @@
 package acer;
 
+import condition.ICQueryQuad;
+
 import java.util.*;
 
 /**
- * SynopsisTable storage format
+ * SynopsisTable storage format:
  * | event type | cluster information list |
  */
 public class SynopsisTable {
@@ -13,8 +15,8 @@ public class SynopsisTable {
         synopsisTable = new HashMap<>(128);
     }
 
-    public final void updateSynopsisTable(HashMap<String, ClusterInfo> indexPartitionClusterInfo){
-        for (Map.Entry<String, ClusterInfo> entry : indexPartitionClusterInfo.entrySet()) {
+    public final void updateSynopsisTable(HashMap<String, ClusterInfo> clusterSynopsisTable){
+        for (Map.Entry<String, ClusterInfo> entry : clusterSynopsisTable.entrySet()) {
             String eventType = entry.getKey();
             ClusterInfo clusterInfo = entry.getValue();
 
@@ -29,6 +31,17 @@ public class SynopsisTable {
         }
     }
 
+    public final void updateSynopsisTable(String eventType, ClusterInfo clusterInfo){
+        if(synopsisTable.containsKey(eventType)){
+            // insert clusterInfo
+            synopsisTable.get(eventType).add(clusterInfo);
+        }else{
+            List<ClusterInfo> clusterInfoList = new ArrayList<>(1024);
+            clusterInfoList.add(clusterInfo);
+            synopsisTable.put(eventType, clusterInfoList);
+        }
+    }
+
     public final List<ClusterInfo> getClusterInfo(String eventType){
         if(synopsisTable.containsKey(eventType)){
             return synopsisTable.get(eventType);
@@ -38,16 +51,24 @@ public class SynopsisTable {
         }
     }
 
-    public final Map<Integer, int[]> getRelatedBlocks(String eventType){
+    // note that quads are original query values
+    public final Map<Integer, int[]> getRelatedBlocks(String eventType, List<ICQueryQuad> icQuads){
         Map<Integer, int[]> ans = new HashMap<>(1024);
         if(synopsisTable.containsKey(eventType)){
             List<ClusterInfo> clusterInfoList =  synopsisTable.get(eventType);
-
+            // filter based on max/min values
             for(ClusterInfo clusterInfo : clusterInfoList){
-                int[] positionRegion = new int[2];
-                positionRegion[0] = clusterInfo.startPos();
-                positionRegion[1] = clusterInfo.offset();
-                ans.put(clusterInfo.indexBlockId(), positionRegion);
+                List<Long> maxValues = clusterInfo.maxValues();
+                List<Long> minValues = clusterInfo.minValues();
+                for(ICQueryQuad quad : icQuads){
+                    int idx = quad.idx();
+                    if(maxValues.get(idx) >= quad.min() && minValues.get(idx) <= quad.max()){
+                        int[] positionRegion = new int[2];
+                        positionRegion[0] = clusterInfo.startPos();
+                        positionRegion[1] = clusterInfo.offset();
+                        ans.put(clusterInfo.indexBlockId(), positionRegion);
+                    }
+                }
             }
         }
         return ans;

@@ -11,8 +11,8 @@ import java.util.Iterator;
 public class JsonMap {
 
     /**
-     * 把map存储为json文件
-     * @param map 要被存储的map
+     * map structure -> json file
+     * @param map    map structure
      */
     public static void arrivalMapToJson(HashMap<String, Double> map, String filePath){
         File file = new File(filePath);

@@ -1,28 +1,18 @@
 package method;
 
 import automaton.NFA;
-import common.EventPattern;
 import common.EventSchema;
 import common.ReservoirSampling;
-import join.AbstractJoinEngine;
-import join.Tuple;
+import common.Tuple;
 import pattern.QueryPattern;
 
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * indexNUm         -> number of index
- * indexName        -> name of index
- * schema           -> table schema
- * reservoir        -> sampling
- * indexAttrNameMap -> attribute storage map
- *
- */
 public abstract class Index {
     public int indexAttrNum;
     public int autoIndices;                             // number of events
-    private String indexName;                           // name of index
+    private final String indexName;                     // name of index
     public EventSchema schema;                          // table schema
     public HashMap<String, Double> arrivals;            // event type arrival
     public ReservoirSampling reservoir;                 // attribute sampling
@@ -66,15 +56,10 @@ public abstract class Index {
     }
 
     public abstract void initial();
-    public abstract boolean insertRecord(String record);
+
+    public abstract boolean insertOrDeleteRecord(String record, boolean deleteFlag);
 
     public abstract boolean insertBatchRecord(String[] record);
-
-    // this function only used for sequential pattern
-    public abstract int processCountQueryUsingJoin(EventPattern pattern, AbstractJoinEngine join);
-
-    // this function only used for sequential pattern
-    public abstract List<Tuple> processTupleQueryUsingJoin(EventPattern pattern, AbstractJoinEngine join);
 
     public abstract int processCountQueryUsingNFA(QueryPattern pattern, NFA nfa);
 
@@ -82,12 +67,4 @@ public abstract class Index {
 
     public abstract void print();
 
-    // new version: support deletion
-
-    /**
-     * we require the record really exists
-     * otherwise, it will have a serious bug!!
-     * @param record - record
-     */
-    public abstract void delete(String record);
 }

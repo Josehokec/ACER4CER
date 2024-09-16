@@ -2,12 +2,10 @@ package fullscan;
 
 import arrival.JsonMap;
 import automaton.NFA;
-import common.EventPattern;
 import common.EventSchema;
 import common.MatchStrategy;
+import common.Tuple;
 import condition.IndependentConstraint;
-import join.AbstractJoinEngine;
-import join.Tuple;
 import pattern.QueryPattern;
 import store.EventStore;
 import store.RID;
@@ -19,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *  We noticed a mistake in the experimental section of our paper:
+ *      the running result was for the FullScan method instead of FullScanPlus
  * reading records from the byte file is faster than reading data from strings file.
  * Step 1: read file from string file
  * Step 2: then we store the record into binary file
@@ -66,33 +66,6 @@ public class FullScan {
 
     public int getRecordIndices(){
         return eventIndices;
-    }
-
-    public int processCountQueryUsingJoin(EventPattern pattern, AbstractJoinEngine join){
-        // first generate arrival rate json file
-        if(updateArrival){
-            updateArrivalJson();
-            updateArrival = false;
-        }
-
-        MatchStrategy strategy = pattern.getStrategy();
-        List<List<byte[]>> buckets = getRecordUsingIC(pattern);
-
-        int ans;
-        long matchStartTime = System.nanoTime();
-        switch (strategy){
-            case SKIP_TILL_NEXT_MATCH -> ans = join.countTupleUsingFollowBy(pattern, buckets);
-            case SKIP_TILL_ANY_MATCH -> ans = join.countTupleUsingFollowByAny(pattern, buckets);
-            default -> {
-                System.out.println("do not support this strategy, default is SKIP_TILL_ANY_MATCH");
-                ans = join.countTupleUsingFollowBy(pattern, buckets);
-            }
-        }
-        long matchEndTime = System.nanoTime();
-        String matchOutput = String.format("%.3f", (matchEndTime - matchStartTime + 0.0) / 1_000_000);
-        System.out.println("match cost: " + matchOutput + "ms");
-
-        return ans;
     }
 
     public int processCountQueryUsingNFA(QueryPattern pattern, NFA nfa){
@@ -178,32 +151,6 @@ public class FullScan {
             nfa.consume(schema, event, strategy);
         }
         int ans = nfa.countTuple();
-        long matchEndTime = System.nanoTime();
-        String matchOutput = String.format("%.3f", (matchEndTime - matchStartTime + 0.0) / 1_000_000);
-        System.out.println("match cost: " + matchOutput + "ms");
-
-        return ans;
-    }
-
-    public List<Tuple> processTupleQueryUsingJoin(EventPattern pattern, AbstractJoinEngine join){
-        // first generate arrival rate json file
-        if(updateArrival){
-            updateArrivalJson();
-            updateArrival = false;
-        }
-
-        MatchStrategy strategy = pattern.getStrategy();
-        List<List<byte[]>> buckets = getRecordUsingIC(pattern);
-        List<Tuple> ans;
-        long matchStartTime = System.nanoTime();
-        switch (strategy){
-            case SKIP_TILL_NEXT_MATCH -> ans = join.getTupleUsingFollowBy(pattern, buckets);
-            case SKIP_TILL_ANY_MATCH -> ans = join.getTupleUsingFollowByAny(pattern, buckets);
-            default -> {
-                System.out.println("do not support this strategy, default is SKIP_TILL_ANY_MATCH");
-                ans = join.getTupleUsingFollowBy(pattern, buckets);
-            }
-        }
         long matchEndTime = System.nanoTime();
         String matchOutput = String.format("%.3f", (matchEndTime - matchStartTime + 0.0) / 1_000_000);
         System.out.println("match cost: " + matchOutput + "ms");
@@ -299,79 +246,6 @@ public class FullScan {
         System.out.println("match cost: " + matchOutput + "ms");
 
         return ans;
-    }
-
-    public List<List<byte[]>> getRecordUsingIC(EventPattern pattern){
-        String[] seqEventTypes = pattern.getSeqEventTypes();
-        String[] seqVarNames = pattern.getSeqVarNames();
-        int patternLen = seqVarNames.length;
-
-        List<List<byte[]>> buckets = new ArrayList<>();
-        for(int i = 0; i < patternLen; ++i){
-            buckets.add(new ArrayList<>());
-        }
-
-        short eventSize = schema.getStoreRecordSize();
-        EventStore store = schema.getStore();
-        int typeIdx = schema.getTypeIdx();
-        int curPage = 0;
-        short curOffset = 0;
-        int pageSize = store.getPageSize();
-
-        // access all events
-        long scanCost = 0;
-        long scanFilterStartTime = System.nanoTime();
-        for(int i = 0; i < eventIndices; ++i){
-            if(curOffset + eventSize > pageSize){
-                curPage++;
-                curOffset = 0;
-            }
-            RID rid = new RID(curPage, curOffset);
-            curOffset += eventSize;
-            // read event from store
-            long scanStartTime = System.nanoTime();
-            byte[] event = store.readByteRecord(rid);
-            long scanEndTime = System.nanoTime();
-            scanCost += (scanEndTime - scanStartTime);
-
-            String curType = schema.getTypeFromBytesRecord(event, typeIdx);
-            for(int j = 0; j < patternLen; ++j) {
-                // Firstly, the event types must be equal.
-                // Once equal, check if the predicate satisfies the constraint conditions.
-                // If so, place it in the i-th bucket
-                if (curType.equals(seqEventTypes[j])) {
-                    // check independent constraints
-                    String varName = seqVarNames[j];
-                    List<IndependentConstraint> icList = pattern.getICListUsingVarName(varName);
-                    boolean satisfy = true;
-                    if(icList != null){
-                        for (IndependentConstraint ic : icList) {
-                            String name = ic.getAttrName();
-                            long min = ic.getMinValue();
-                            long max = ic.getMaxValue();
-                            // obtain the corresponding column for storage based on the attribute name
-                            int col = schema.getAttrNameIdx(name);
-                            long value = schema.getValueFromBytesRecord(event, col);
-                            if (value < min || value > max) {
-                                satisfy = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (satisfy) {
-                        buckets.get(j).add(event);
-                    }
-                }
-            }
-
-        }
-        long scanFilterEndTime = System.nanoTime();
-        String scanOutput = String.format("%.3f", (scanCost + 0.0) / 1_000_000);
-        System.out.println("scan cost: " + scanOutput + "ms");
-        String filterOutput = String.format("%.3f", (scanFilterEndTime - scanFilterStartTime - scanCost + 0.0) / 1_000_000);
-        System.out.println("filter cost: " + filterOutput + "ms");
-
-        return buckets;
     }
 
     public void updateArrivalJson(){

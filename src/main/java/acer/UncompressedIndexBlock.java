@@ -1,6 +1,6 @@
-package FastInDisk;
+package acer;
 
-import condition.IndependentConstraintQuad;
+import condition.ICQueryQuad;
 
 import store.RID;
 import org.roaringbitmap.RangeBitmap;
@@ -14,16 +14,15 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * index should store total byte size for an index partition
- * timestamp -> long (8 bytes)
- * RID -> int + short (12 bytes)
- * storage format:
+ * index should store total byte size for an index block
+ * timestamp -> long (8 bytes), RID -> int (4 bytes) + short (2 bytes)
+ * then index block's storage format:
  * |indexNum (int)|rbSize_1|rangeBitmap_1|...|rbSize_h|rangeBitmap_h|
- * |g (int)|timestamp_1 (long)|...|timestamp_g (long)|
- * |RID_1 (long)|...|RID_g (long)|
+ * |g (int)|timestamp_1 (long)|...|timestamp_g (long)|RID_1 (long)|...|RID_g (long)|
  */
-public record OldIndexBlock(RangeBitmap[] rangeBitmaps, int eventNum,
-                            ByteBuffer timestampListBuff, ByteBuffer ridListBuff) {
+@SuppressWarnings("unused")
+public record UncompressedIndexBlock(RangeBitmap[] rangeBitmaps, int eventNum,
+                                     ByteBuffer timestampListBuff, ByteBuffer ridListBuff) {
 
     /**
      * before call this function, we need to get totalByteSize
@@ -35,15 +34,6 @@ public record OldIndexBlock(RangeBitmap[] rangeBitmaps, int eventNum,
      * @return serialization byte buffer
      */
     public static ByteBuffer serialize(List<RangeBitmap.Appender> appenderList, List<Long> timestampList, List<RID> ridList) {
-        /*
-        write an index block to byte buffer
-        suppose: h = indexNum - 1, g = N_f - 1
-        then an index partition storage format as follows:
-        |indexNum (int)|rbSize_1|rangeBitmap_1|...|rbSize_h|rangeBitmap_h|
-        |g (int)|timestamp_1 (long)|...|timestamp_g (long)|
-        |RID_1 (long)|...|RID_g (long)|
-        */
-
         // step 1. calculate an index block size, and check
         int indexNum = appenderList.size();
         int[] sizes = new int[indexNum];
@@ -85,28 +75,18 @@ public record OldIndexBlock(RangeBitmap[] rangeBitmaps, int eventNum,
 
         // step 4. write RID list
         for (RID rid : ridList) {
-            int offset = rid.offset();
-            if(offset > Short.MAX_VALUE){
-                System.out.println("offset greater than Short.MAX_VALUE, offset: " + offset);
-                throw new RuntimeException("Compress algorithm fail.");
-            }
             ans.putInt(rid.page());
-            ans.putShort((short) rid.offset());
+            ans.putShort(rid.offset());
         }
 
         ans.flip();
         return ans;
     }
 
-    public static OldIndexBlock deserialize(MappedByteBuffer buff) {
-        /*
-        write an index block to byte buffer
-        suppose: h = indexNum - 1, g = N_f - 1
-        then an index partition storage format as follows:
-        |indexNum (int)|rbSize_1|rangeBitmap_1|...|rbSize_h|rangeBitmap_h|
-        |g (int)|timestamp_1 (long)|...|timestamp_g (long)|
-        |RID_1 (long)|...|RID_g (long)|
-        */
+    public static UncompressedIndexBlock deserialize(MappedByteBuffer buff) {
+        // storage format:
+        // |indexNum (int)|rbSize_1|rangeBitmap_1|...|rbSize_h|rangeBitmap_h|
+        // |g (int)|timestamp_1 (long)|...|timestamp_g (long)|RID_1 (long)|...|RID_g (long)|
 
         // step 1. read indexNum
         int indexNum = buff.getInt();
@@ -133,7 +113,7 @@ public record OldIndexBlock(RangeBitmap[] rangeBitmaps, int eventNum,
         buff.get(ridListByteArray);
         ByteBuffer ridListBuff = ByteBuffer.wrap(ridListByteArray);
 
-        return new OldIndexBlock(rbs, g, timestampListBuff, ridListBuff);
+        return new UncompressedIndexBlock(rbs, g, timestampListBuff, ridListBuff);
     }
 
     public List<IndexValuePair> getIndexValuePairs(RoaringBitmap rb) {
@@ -158,14 +138,14 @@ public record OldIndexBlock(RangeBitmap[] rangeBitmaps, int eventNum,
      * @param offset   offset
      * @return <rid, timestamp> pair
      */
-    public List<IndexValuePair> query(List<IndependentConstraintQuad> icQuads, int startPos, int offset) {
+    public List<IndexValuePair> query(List<ICQueryQuad> icQuads, int startPos, int offset) {
         List<IndexValuePair> pairs;
 
         // determine query range in the index  partition
         RoaringBitmap rb = new RoaringBitmap();
         rb.add(startPos, (long) (offset + startPos));
 
-        for (IndependentConstraintQuad quad : icQuads) {
+        for (ICQueryQuad quad : icQuads) {
             RoaringBitmap rangeQueryRB = queryRangeBitmapUsingIC(quad);
             if (rangeQueryRB == null || rangeQueryRB.getCardinality() == 0) {
                 rb = null;
@@ -185,7 +165,7 @@ public record OldIndexBlock(RangeBitmap[] rangeBitmaps, int eventNum,
         return pairs;
     }
 
-    private RoaringBitmap queryRangeBitmapUsingIC(IndependentConstraintQuad quad) {
+    private RoaringBitmap queryRangeBitmapUsingIC(ICQueryQuad quad) {
         int idx = quad.idx();
         int mark = quad.mark();
         long min = quad.min();
