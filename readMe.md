@@ -1,3 +1,4 @@
+
 # ACER: Accelerating Complex Event Recognition via Two-Phase Filtering under Range Bitmap-Based Indexes
 
 ### Summary
