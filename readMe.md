@@ -7,9 +7,13 @@
 
 **ACER key ideas:**
 
-* Using range bitmap to index attribute value
+* Using range bitmap (more details can see [Range bitmap blog](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index)) to index attribute value
 * Aggregating same type events as a cluster, building synopsis information for each cluster to skip unnecessary access
 * Developing two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
+
+Note that the great performance of ACER lies in the efficient range query performance provided by Range bitmap. 
+
+In addition, due to the space limitations of the paper, our paper is no detailed introduction to Range Bitmap. The author [Richard Startin](https://github.com/richardstartin) of Range Bimtap also pointed out that there are some errors in the detailed description of Range Bitmap in our paper. Thus, to avoid misleading readers, a link to [Range Bitmap blog](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index) is attached here. Thank you very much for his insightful advice.
 
 **ACER characteristic：**
 
@@ -119,15 +123,9 @@ number of tuples: 268                     // number of matched tuples
 | NASDAQ             | Test_ACER_Nasdaq.java<br/>Test_FullScan_Nasdaq.java       |
 | Synthetic          | Test_ACER_Synthetic.java<br/>Test_FullScan_Synthetic.java |
 
-## Section 3 Base-2 Bit Sliced Range Encoded Bitmap (Range Bitmap)
 
-[Range bitmap blog url](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index)
 
-**Range bitmap paper:**
-
-[1] Chee Yong Chan, Yannis E. Ioannidis. Bitmap Index Design and Evaluation. SIGMOD. 1998, p355-366.
-
-## Section 4: Experimental Datasets
+## Section 3: Experimental Datasets
 
 Our paper used both synthetic and real datasets.
 We provided the download URLs for the real dataset.
@@ -148,7 +146,7 @@ We provided the download URLs for the real dataset.
 |           | IntervalScan | a1, a2, a3, type, timestamp                                 |
 |           | NaiveIndex   | a1, a2, a3, type                                            |
 
-###  Section 4.1 Real-world datasets
+###  Section 3.1 Real-world datasets
 
 **Real-world dataset overview**
 
@@ -164,7 +162,7 @@ For `Crime` dataset, we choose 7 columns ```Primary Type (String), ID (int), Bea
 
 For `NASDAQ` dataset, we only choose 15 famous stocks (*e,g,* MSFT, GOOG, AAPL, TSLA, *et.al.*) rather than all stocks. The dataset records each stock price change per minute in trade time.
 
-### Section 4.2  Synthetic dataset
+### Section 3.2  Synthetic dataset
 
 We have written a synthetic data generator to automatically generate synthetic data of a specified size. `Generator` folder has a `SyntheticQueryGenerator.java` file that can generate synthetic datasets.
 
