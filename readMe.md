@@ -13,7 +13,7 @@
 
 Note that the great performance of ACER lies in the efficient range query performance provided by Range bitmap. 
 
-In addition, due to the space limitations of the paper, our paper is no detailed introduction to Range Bitmap. The author [Richard Startin](https://github.com/richardstartin) of Range Bimtap also pointed out that there are some errors in the detailed description of Range Bitmap in our paper. Thus, to avoid misleading readers, a link to [Range Bitmap blog](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index) is attached here. Thank you very much for his insightful advice.
+In addition, due to the space limitations of the paper, our paper is no detailed introduction to Range Bitmap. The author [Richard Startin](https://github.com/richardstartin) of Range Bimtap also pointed out that there are some errors in the detailed description of Range Bitmap in our paper. Thus, to avoid misleading readers, a link to [Range Bitmap blog](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index) is attached here. Thanks for his insightful advice.
 
 **ACER characteristic：**
 
