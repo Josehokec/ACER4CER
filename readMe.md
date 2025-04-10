@@ -7,9 +7,9 @@
 
 **ACER key ideas:**
 
-* Using range bitmap (more details can see [Range bitmap blog](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index)) to index attribute value
+* Using range bitmap to index attribute value
 * Aggregating same type events as a cluster, building synopsis information for each cluster to skip unnecessary access
-* Developing two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
+* Developing a two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
 
 Note that the great performance of ACER lies in the efficient range query performance provided by Range bitmap. 
 
