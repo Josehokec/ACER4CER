@@ -10,10 +10,6 @@ import java.util.Iterator;
 
 public class JsonMap {
 
-    /**
-     * map structure -> json file
-     * @param map    map structure
-     */
     public static void arrivalMapToJson(HashMap<String, Double> map, String filePath){
         File file = new File(filePath);
         if(file.exists()){

@@ -1,2 +1,0 @@
-["PATTERN SEQ(AMZN v0, BABA v1, AMZN v2, BABA v3)\nFROM nasdaq\nUSING SKIP_TILL_NEXT_MATCH\nWHERE 122 <= v0.open <= 132 AND 82 <= v1.open <= 92 AND v2.open >= v0.open * 0.01 AND v3.open <= v1.open * 0.99\nWITHIN 900 units\nRETURN tuples"
-]

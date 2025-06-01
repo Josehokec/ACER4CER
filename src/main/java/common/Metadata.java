@@ -1,6 +1,6 @@
 package common;
 
-import method.Index;
+import baselines.Index;
 
 import java.util.HashMap;
 import java.util.Map;

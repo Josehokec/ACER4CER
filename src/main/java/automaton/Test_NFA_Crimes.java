@@ -1,10 +1,9 @@
 package automaton;
 
 import common.EventSchema;
-import common.MatchStrategy;
 import common.Metadata;
 import common.StatementParser;
-import fullscan.FullScan;
+import baselines.FullScan;
 import pattern.QueryPattern;
 import store.EventStore;
 import store.RID;
@@ -73,7 +72,7 @@ class Test_NFA_Crimes {
         pattern.print();
         NFA testNFA = new NFA();
         testNFA.generateNFAUsingQueryPattern(pattern);
-        testNFA.displayNFA();
+        testNFA.display();
     }
 
     public static void test2(){
@@ -96,7 +95,7 @@ class Test_NFA_Crimes {
         QueryPattern pattern = StatementParser.getQueryPattern(queryStatement);
         testNFA.generateNFAUsingQueryPattern(pattern);
 
-        testNFA.displayNFA();
+        testNFA.display();
 
         String schemaName = "CRIMES";
         Metadata metadata = Metadata.getInstance();
@@ -108,7 +107,7 @@ class Test_NFA_Crimes {
 
         long startRunTs = System.currentTimeMillis();
         // query
-        int recordSize = schema.getStoreRecordSize();
+        int recordSize = schema.getFixedRecordSize();
         EventStore store = schema.getStore();
 
         int curPage = 0;

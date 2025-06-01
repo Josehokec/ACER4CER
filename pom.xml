@@ -9,11 +9,18 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <!-->load RoaringBitmap library<-->
+        <!--this is open source disk b plus tree,
+        its url: https://github.com/davidmoten/bplustree
+        alternative: https://github.com/andylamp/BPlusTree-->
+        <dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>bplustree</artifactId>
+            <version>0.1.4</version>
+        </dependency>
         <dependency>
             <groupId>org.roaringbitmap</groupId>
             <artifactId>RoaringBitmap</artifactId>
-            <version>0.9.39</version>
+            <version>1.2.1</version>
         </dependency>
         <!-->load JSON library, need to add jdk15<-->
         <dependency>
@@ -22,12 +29,12 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
-        <!-- commons-io
+        <!-- commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

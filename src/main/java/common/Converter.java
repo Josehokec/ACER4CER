@@ -81,14 +81,14 @@ public class Converter {
     }
 
     /**
-    public static void main(String[] args){
-        //11000011010011011111001000000011101010000
-        long x = 1677652658000L;
-        byte[] tsRight = longToByteArray(x, 24);
-        long t = byteArrayToLong(tsRight);
-        System.out.println("t: " + t);
+     public static void main(String[] args){
+     //11000011010011011111001000000011101010000
+     long x = 1677652658000L;
+     byte[] tsRight = longToByteArray(x, 24);
+     long t = byteArrayToLong(tsRight);
+     System.out.println("t: " + t);
 
-    }
+     }
      **/
 
     public static byte[] longToBytes(long x) {

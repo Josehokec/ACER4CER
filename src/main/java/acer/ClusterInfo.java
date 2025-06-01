@@ -1,24 +1,21 @@
 package acer;
 
-import java.util.List;
-
-public record ClusterInfo(int indexBlockId,
-                          int startPos, int offset,
+// fine-granularity filtering and read content from disk
+public record ClusterInfo(int indexBlockId, int clusterId,
+                          int startPos, int offset,                 // bitmap position range
                           long startTime, long endTime,
-                          List<Long> minValues,
-                          List<Long> maxValues) {
+                          long[] minValues, long[] maxValues) {
     @Override
-    public String toString(){
-        StringBuffer str = new StringBuffer(256);
-        str.append("|blockId: ").append(indexBlockId);
-        str.append("|storageRange: [").append(startPos);
-        str.append(",").append(startPos + offset).append("]");
-        str.append("|timeRange: [").append(startTime);
-        str.append(",").append(endTime).append("]");
+    public String toString() {
+        StringBuilder str = new StringBuilder(160);
+        str.append("|indexBlockId: ").append(indexBlockId);
+        str.append("|clusterId: ").append(clusterId);
+        str.append("|storageRange: [").append(startPos).append(",").append(startPos + offset).append("]");
+        str.append("|timeRange: [").append(startTime).append(",").append(endTime).append("]");
 
-        for(int i = 0; i < minValues.size(); ++i){
-            str.append("|attr").append(i + 1).append(" range: [").append(minValues.get(i));
-            str.append(",").append(maxValues.get(i)).append("]");
+        for(int i = 0; i < minValues.length; i++){
+            str.append("|attr").append(i + 1).append(" range: [").append(minValues[i]);
+            str.append(",").append(maxValues[i]).append("]");
         }
         str.append("|");
 

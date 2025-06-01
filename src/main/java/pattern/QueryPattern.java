@@ -1,6 +1,6 @@
 package pattern;
 
-import common.MatchStrategy;
+import automaton.MatchStrategy;
 import condition.DependentConstraint;
 import condition.IndependentConstraint;
 
@@ -81,11 +81,7 @@ public abstract class QueryPattern {
     public void setReturnStr(String returnStr){ this.returnStr = returnStr; }
 
     public List<IndependentConstraint> getICListUsingVarName(String varName){
-        if(icMap.containsKey(varName)){
-            return icMap.get(varName);
-        }else{
-            return new ArrayList<>();
-        }
+        return icMap.getOrDefault(varName, new ArrayList<>());
     }
 
     public List<DependentConstraint> getDcList() { return dcList; }

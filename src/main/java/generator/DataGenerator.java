@@ -1,40 +1,116 @@
 package generator;
 
+import arrival.JsonMap;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.SyncFailedException;
-import java.util.Random;
+import java.util.*;
 
 /**
  * int -> Uniform, int -> uniform, double -> uniform, double -> uniform
  */
 public class DataGenerator {
     private final String[] attrDataTypes;
-    private final int eventTypeNum;
+    private final int eventTypeNum = 20;
     private final Random random;
+    private long startTs = 1747405414L;
 
-    public DataGenerator(String[] attrDataTypes, int eventTypeNum) {
+    private double[] probability = zipfProbability(1.2);
+    // Cumulative Distribution Function
+    private double[] cdf = new double[eventTypeNum];
+
+    public DataGenerator(String[] attrDataTypes) {
         this.attrDataTypes = attrDataTypes;
-        this.eventTypeNum = eventTypeNum;
-        random = new Random();
-    }
+        random = new Random(11);
 
-    public void generateDataset(String filePath, int recordNum){
-        long startTime = System.currentTimeMillis();
-        double[] probability = zipfProbability(1.3);
-        // Cumulative Distribution Function
-        double[] cdf = new double[eventTypeNum];
         cdf[eventTypeNum - 1] = 1;
         cdf[0] = probability[0];
-
-        int[] cnt = new int[50];
-
         for(int i = 1; i < eventTypeNum - 1; ++i){
             cdf[i] = cdf[i - 1] + probability[i];
             // System.out.println("cdf[" + i + "]: " + cdf[i]);
         }
 
+        // write arrival
+        HashMap<String, Double> arrivals = new HashMap<>(eventTypeNum * 2);
+
+        for (int i = 0; i < eventTypeNum; i++) {
+            String type = "TYPE_" + i;
+            arrivals.put(type, probability[i]);
+        }
+
+        String dir = System.getProperty("user.dir");
+        String jsonFilePath = dir + File.separator + "src" + File.separator + "main" + File.separator + "java"
+                + File.separator + "arrival" + File.separator + "SYNTHETIC_arrivals.json";
+        JsonMap.arrivalMapToJson(arrivals, jsonFilePath);
+    }
+
+    // batch size ==> 512
+    public List<String[]> generateDataInBatch(int batchSize, boolean inOrder){
+        List<String[]> data = new ArrayList<>(batchSize);
+        for(int i = 0; i < batchSize; i++){
+            String[] record = new String[attrDataTypes.length + 2];
+            double pro = random.nextDouble();
+
+            // here can use binary search to optimize
+            int left = 0;
+            int right = eventTypeNum - 1;
+            int mid = (left + right) >> 1;
+            while(left <= right){
+                if(pro <= cdf[mid]){
+                    if(mid == 0 || pro > cdf[mid - 1]){
+                        break;
+                    }else{
+                        right = mid - 1;
+                        mid = (left + right) >> 1;
+                    }
+                }else{
+                    if(mid == eventTypeNum - 1){
+                        break;
+                    }else{
+                        left = mid + 1;
+                        mid = (left + right) >> 1;
+                    }
+                }
+            }
+
+            String type = "TYPE_" + mid;
+            int a1 = random.nextInt(1, 1001);
+            int a2 = random.nextInt(1, 1001);
+            // double a3 = random.nextDouble(0, 10000);
+            double a3 = random.nextGaussian(5000, 1000);
+            if(a3 < 0){
+                a3 = 0;
+            }else if(a3 > 10000){
+                a3 = 10000;
+            }
+            double a4 = random.nextGaussian(5000, 1000);
+            if(a4 < 0){
+                a4 = 0;
+            }else if(a4 > 10000){
+                a4 = 10000;
+            }
+            long ts = startTs++;
+
+            record[0] = type;
+            record[1] = String.valueOf(a1);
+            record[2] = String.valueOf(a2);
+            record[3] = String.format("%.1f", a3);
+            record[4] = String.format("%.1f", a4);
+            record[5] = String.valueOf(ts);
+            data.add(record);
+        }
+
+        if(!inOrder){
+            Collections.shuffle(data, random);
+        }
+
+        return data;
+    }
+
+    public void generateDataset(String filePath, int recordNum){
+        long startTime = System.currentTimeMillis();
         int minVal = 0;
         int maxVal = 1000;
 
@@ -48,9 +124,7 @@ public class DataGenerator {
             for(int i = 0; i < recordNum; ++i){
                 StringBuilder record = new StringBuilder(256);
 
-                boolean noAppendType = true;
                 double pro = random.nextDouble();
-
                 // here can use binary search to optimize
                 int left = 0;
                 int right = eventTypeNum - 1;
@@ -73,7 +147,7 @@ public class DataGenerator {
                     }
                 }
                 int typeId = mid;
-                cnt[mid]++;
+
                 // System.out.println("pro: " + pro + " type_id: " + typeId);
                 record.append("TYPE_").append(typeId).append(",");
 
@@ -103,11 +177,6 @@ public class DataGenerator {
                     System.out.println("write " + display + "%...");
                 }
             }
-
-            for(int i = 0; i < 50; ++i){
-                System.out.println("cnt[" + i + "]: " + cnt[i]);
-            }
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -131,18 +200,18 @@ public class DataGenerator {
             sumPro += pro;
         }
 
-        System.out.println("zipf skew: " + alpha);
-        System.out.print("zipf probability:\n[");
-        for(int i = 0; i < eventTypeNum - 1; ++i){
-            String value = String.format("%.4f", ans[i]);
-            System.out.print(value + ",");
-            if(i % 10 == 9){
-                System.out.println();
-            }
-        }
-        String value = String.format("%.4f", ans[eventTypeNum - 1]);
-        System.out.println(value + "]");
-        System.out.println("zipf sum probability: " + sumPro);
+//        System.out.println("zipf skew: " + alpha);
+//        System.out.print("zipf probability:\n[");
+//        for(int i = 0; i < eventTypeNum - 1; ++i){
+//            String value = String.format("%.4f", ans[i]);
+//            System.out.print(value + ",");
+//            if(i % 10 == 9){
+//                System.out.println();
+//            }
+//        }
+//        String value = String.format("%.4f", ans[eventTypeNum - 1]);
+//        System.out.println(value + "]");
+//        System.out.println("zipf sum probability: " + sumPro);
 
         return ans;
     }
@@ -180,17 +249,31 @@ public class DataGenerator {
 
     public static void main(String[] args){
         String[] attrDataTypes = {"INT_UNIFORM", "INT_UNIFORM", "DOUBLE_UNIFORM", "DOUBLE_UNIFORM"};
-        int eventTypeNum = 50;
 
-        String dir = System.getProperty("user.dir");
-        String filePath = dir + File.separator + "src" + File.separator + "main" +
-                File.separator + "dataset" + File.separator + "synthetic_1G.csv";
 
-        DataGenerator generator = new DataGenerator(attrDataTypes, eventTypeNum);
-        long startTime = System.currentTimeMillis();
-        generator.generateDataset(filePath, 1_000_000_000);
-        long endTime = System.currentTimeMillis();
-        System.out.println("cost " + (endTime - startTime) / 60000 + "min");
+        //String dir = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main";
+        //String filePath = dir + File.separator + "dataset" + File.separator + "synthetic_100.csv";
+
+        DataGenerator generator = new DataGenerator(attrDataTypes);
+        //long startTime = System.currentTimeMillis();
+        //generator.generateDataset(filePath, 100);
+        List<String[]> records = generator.generateDataInBatch(8, false);
+        for(String[] record : records){
+            System.out.println("record: " + Arrays.toString(record));
+        }
+        //long endTime = System.currentTimeMillis();
+        //System.out.println("cost " + (endTime - startTime) / 60000 + "min");
+        //long startTime = System.currentTimeMillis();
+        //generator.generateDataset(filePath, 100);
+
+        System.out.println("-------test-------");
+
+        DataGenerator generator2 = new DataGenerator(attrDataTypes);
+
+        List<String[]> records2 = generator2.generateDataInBatch(8, false);
+        for(String[] record : records2){
+            System.out.println("record: " + Arrays.toString(record));
+        }
     }
 }
 

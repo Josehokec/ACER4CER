@@ -142,13 +142,13 @@ public class IndependentConstraint extends Constraint{
     public void print() {
         int val = hasMinMaxValue();
         if(val == 0){
-            System.out.println("attrName: '" + attrName + "' do not have value range constraint.");
+            System.out.print("attrName: '" + attrName + "' do not have value range constraint; ");
         }else if(val == 1){
-            System.out.println("attrName: '" + attrName + "' value range is: [" + minValue+ ",INF).");
+            System.out.print("attrName: '" + attrName + "' value range is: [" + minValue+ ",INF); ");
         }else if(val == 2){
-            System.out.println("attrName: '" + attrName + "' value range is: (INF, " + maxValue + "].");
+            System.out.print("attrName: '" + attrName + "' value range is: (INF, " + maxValue + "]; ");
         }else{
-            System.out.println("attrName: '" + attrName + "' value range is: [" + minValue + "," + maxValue + "].");
+            System.out.print("attrName: '" + attrName + "' value range is: [" + minValue + "," + maxValue + "]; ");
         }
     }
 

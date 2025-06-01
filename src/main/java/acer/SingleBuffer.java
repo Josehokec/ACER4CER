@@ -4,75 +4,84 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * [updated] here we support deletion operation and out-of-order insertion
  * a single buffer binds an event type
  */
 public class SingleBuffer {
-    private int indexAttrNum;                       // number of index attributes
-    private List<Long> minValues;                   // Attribute synopsis -> minimum values
-    private List<Long> maxValues;                   // Attribute synopsis -> maximum values
-    private List<ACERTemporaryQuad> quads;          // all quads have same type
+    private boolean hasUpdateMinMax = false;            // update flag
+    private final long[] minValues;                     // attribute synopsis -> minimum values
+    private final long[] maxValues;                     // attribute synopsis -> maximum values
+    private final List<TemporaryTriple> triples;    // all quads have same type
 
-    public SingleBuffer(int indexAttrNum) {
-        this.indexAttrNum = indexAttrNum;
-        minValues = new ArrayList<>(indexAttrNum);
-        maxValues = new ArrayList<>(indexAttrNum);
-
-        for(int i = 0; i < indexAttrNum; i++) {
-            minValues.add(Long.MAX_VALUE);
-            maxValues.add(Long.MIN_VALUE);
-        }
-
-        quads = new ArrayList<>(512);
+    public SingleBuffer(int indexAttrNum){
+        minValues = new long[indexAttrNum];
+        maxValues = new long[indexAttrNum];
+        triples = new ArrayList<>(512);
     }
 
-    public List<Long> getMinValues() {
+    public void append(TemporaryTriple triple){
+        triples.add(triple);
+    }
+
+    public void setMinMaxValues(){
+        int indexAttrNum = minValues.length;
+        // initialization
+        for(int i = 0; i < indexAttrNum; i++){
+            minValues[i] = Long.MAX_VALUE;
+            maxValues[i] = Long.MIN_VALUE;
+        }
+
+        for(TemporaryTriple quad : triples){
+            long[] attrValues = quad.attrValues();
+            for(int i = 0; i < indexAttrNum; i++){
+                long attrValue = attrValues[i];
+                if(attrValue < minValues[i]){
+                    minValues[i] = attrValue;
+                }
+                if(attrValue > maxValues[i]){
+                    maxValues[i] = attrValue;
+                }
+            }
+        }
+        hasUpdateMinMax = true;
+    }
+
+    public long[] getMinValues(){
+        if(!hasUpdateMinMax){
+            setMinMaxValues();
+        }
         return minValues;
     }
 
-    public List<Long> getMaxValues() {
+    public long[] getMaxValues(){
+        if(!hasUpdateMinMax){
+            setMinMaxValues();
+        }
         return maxValues;
     }
 
-    public List<Long> getRanges() {
-        List<Long> ranges = new ArrayList<>(indexAttrNum);
-        for(int i = 0; i < indexAttrNum; i++) {
-            ranges.add(maxValues.get(i) - minValues.get(i));
+    public long[] getRanges(){
+        if(!hasUpdateMinMax){
+            setMinMaxValues();
+        }
+        int indexAttrNum = minValues.length;
+        long[] ranges = new long[indexAttrNum];
+        for(int i = 0; i < indexAttrNum; i++){
+            ranges[i] = maxValues[i] - minValues[i];
         }
         return ranges;
     }
 
-    public void append(ACERTemporaryQuad quad) {
-        // update min/max values
-        long[] values = quad.attrValues();
-        for(int i = 0; i < indexAttrNum; i++) {
-            if(values[i] < minValues.get(i)) {
-                minValues.set(i, values[i]);
-            }
-            if(values[i] > maxValues.get(i)) {
-                maxValues.set(i, values[i]);
-            }
-        }
-        quads.add(quad);
-    }
-
-    public List<ACERTemporaryQuad> getAllQuads(){
-        return quads;
+    public List<TemporaryTriple> getAllTriples(){
+        return triples;
     }
 
     public int getSize(){
-        return quads.size();
+        return triples.size();
     }
 
     public void clear(){
-        quads.clear();
-        minValues = new ArrayList<>(indexAttrNum);
-        maxValues = new ArrayList<>(indexAttrNum);
-
-        for(int i = 0; i < indexAttrNum; i++) {
-            minValues.add(Long.MAX_VALUE);
-            maxValues.add(Long.MIN_VALUE);
-        }
+        hasUpdateMinMax = false;
+        triples.clear();
     }
 }
-
-

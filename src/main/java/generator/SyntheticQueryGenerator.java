@@ -8,500 +8,233 @@ import java.util.*;
 
 /**
  * here we test complex event pattern in synthetic dataset
- * for a random query, it maybe generates a large result
- * so we run experiment delete these queries
- * | `SEQ(A a, B b, C c)`               |
- * | `SEQ(A a, B b, C c, D d, E e)`     |
- * | `SEQ(A a, AND(B b, C c), D d)`     |
- * | `AND(SEQ(A a, B b), SEQ(C c, D d)` |
- * | `SEQ(AND(A a, B b),AND(C c, D d))` |
+ * | P1 | `SEQ(A a, B b, C c)`               |
+ * | P2 | `SEQ(A a, B b, C c, D d, E e)`     |
+ * | P3 | `SEQ(A a, AND(B b, C c), D d)`     |
+ * | P4 | `AND(SEQ(A a, B b), SEQ(C c, D d))` |
+ * | P5 | `SEQ(AND(A a, B b),AND(C c, D d))` |
  */
 public class SyntheticQueryGenerator {
-    private final int eventTypeNum;
-    private final Random random;
-    public SyntheticQueryGenerator(int eventTypeNum) {
-        this.eventTypeNum = eventTypeNum;
-        random = new Random();
+    private final int eventTypeNum = 20;
+    private final Random random = new Random(11);
+    public SyntheticQueryGenerator() {}
+
+    public String[] selectNItems(int n){
+        String[] selectedStrings = new String[n];
+        HashSet<Integer> selectIds = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            int randomIndex;
+            do {
+                randomIndex = random.nextInt(eventTypeNum);
+            } while (selectIds.contains(randomIndex));
+            selectedStrings[i] = "TYPE_" + randomIndex;
+            selectIds.add(randomIndex);
+        }
+        return selectedStrings;
     }
 
-    public double[] zipfProbability(double alpha){
-        double[] ans = new double[eventTypeNum];
-        double C = 0;
-        for(int i = 1; i <= eventTypeNum; ++i){
-            C += Math.pow((1.0 / i), alpha);
-        }
-
-        for(int i = 1; i <= eventTypeNum; ++i){
-            double pro = 1.0 / (Math.pow(i, alpha) * C);
-            ans[i - 1] = pro;
-        }
-
-        return ans;
-    }
-
-    // binary search
-    public int getTypeId(double pro, double[] cdf) {
-        int left = 0;
-        int right = eventTypeNum - 1;
-        int mid = (left + right) >> 1;
-        while (left <= right) {
-            if (pro <= cdf[mid]) {
-                if (mid == 0 || pro > cdf[mid - 1]) {
-                    break;
-                } else {
-                    right = mid - 1;
-                    mid = (left + right) >> 1;
-                }
-            } else {
-                if (mid == eventTypeNum - 1) {
-                    break;
-                } else {
-                    left = mid + 1;
-                    mid = (left + right) >> 1;
-                }
-            }
-        }
-        return mid;
-    }
-
-    // get variable event type
-    public String[] getVarType(int varNum){
-        double[] probability = zipfProbability(1.3);
-        // cdf: Cumulative Distribution Function
-        double[] cdf = new double[eventTypeNum];
-        cdf[eventTypeNum - 1] = 1;
-        cdf[0] = probability[0];
-        for(int i = 1; i < eventTypeNum - 1; ++i){
-            cdf[i] = cdf[i - 1] + probability[i];
-        }
-
-        Set<Integer> typeIdSet = new HashSet<>();
-
-        String[] ans = new String[varNum];
-        for(int i = 0; i < varNum; ++i){
-            double pro = random.nextDouble();
-            int typeId = getTypeId(pro, cdf);
-            // debug
-            // System.out.println("pro: " + pro + " typeId: " + typeId);
-
-            if(typeIdSet.contains(typeId) && typeId < eventTypeNum / 5){
-                typeId += eventTypeNum / 5;
-            }
-            typeIdSet.add(typeId);
-            ans[i] = "TYPE_" + typeId;
-        }
-
-        return ans;
-    }
-
-    // PATTERN SEQ(A a, B b, C c)
-    public void generateComplexEventPattern1(String filePath, int queryNUm){
-        List<String> queries = new ArrayList<>(queryNUm);
+    //       selId -> 1,   2,   3,   4,   5
+    // selectivity -> 5%, 10%, 15%, 20%, 25%
+    public String getQueryRearPart(boolean enableNextMatch, int varNum, int selId){
         long window = 1000;
+        StringBuilder queryRearPart = new StringBuilder(512);
+        // second line
+        queryRearPart.append("FROM synthetic\n");
 
-        String[] varNames = {"v0", "v1", "v2"};
-        int len = varNames.length;
-
-        for(int i = 0; i < queryNUm; ++i){
-            String[] eventTypes = getVarType(len);
-            // first line
-            // SEQ(A a, B b, C c)
-            StringBuffer query = new StringBuffer(512);
-            query.append("PATTERN SEQ(").append(eventTypes[0]).append(" v0");
-            query.append(", ").append(eventTypes[1]).append(" v1");
-            query.append(", ").append(eventTypes[2]).append(" v2").append(")\n");
-            // second line
-            query.append("FROM synthetic\n");
-
+        if(enableNextMatch){
             int flag = random.nextInt(0, 2);
             if(flag == 1){
-                query.append("USING SKIP_TILL_ANY_MATCH\n");
+                queryRearPart.append("USING SKIP_TILL_ANY_MATCH\n");
             }else{
-                query.append("USING SKIP_TILL_NEXT_MATCH\n");
+                queryRearPart.append("USING SKIP_TILL_NEXT_MATCH\n");
             }
-
-            // three variables
-            query.append("WHERE ");
-            // first we add ic list, selectivity 0.01~0.2
-            for(int varId = 0; varId < 3; ++ varId){
-                int icNum = random.nextInt(1, 4);
-                int range = random.nextInt(10, 201);
-
-                for(int j = 0; j < icNum; ++j){
-                    int min = random.nextInt(0, 800);
-                    int max = min + range;
-                    query.append(min).append(" <= v");
-                    query.append(varId).append(".a").append(j + 1);
-                    query.append(" <= ").append(max).append(" AND ");
-                }
-            }
-
-            // then we add dc list (randomly choose 1 ~ 3 DC)
-
-            int dcNum = random.nextInt(1, 3);
-            for(int j = 0; j < dcNum; ++j){
-                int var1 = random.nextInt(len);
-                int var2 = random.nextInt(len);
-                if(var2 == var1){
-                    var2 = (var2 + 1) % len;
-                }
-                int attrId = random.nextInt(1, 5);
-                query.append(varNames[var1]).append(".a").append(attrId).append(" <= ").append(varNames[var2]).append(".a").append(attrId);
-                if(j != dcNum - 1){
-                    query.append(" AND ");
-                }else{
-                    query.append("\n");
-                }
-            }
-
-            query.append("WITHIN ").append(window).append(" units\n");
-            query.append("RETURN COUNT(*)");
-            // debug
-            // System.out.println("query:\n" + query);
-            queries.add(query.toString());
+        }
+        else{
+            queryRearPart.append("USING SKIP_TILL_ANY_MATCH\n");
         }
 
-        JSONArray jsonArray = JSONArray.fromObject(queries);
-        // JSONObject jsonArray = JSONObject.fromObject(queries);
-        FileWriter fileWriter;
-        try{
-            fileWriter = new FileWriter(filePath);
-            fileWriter.write(jsonArray.toString());
-            fileWriter.close();
-        }catch (Exception e){
-            e.printStackTrace();
+        // three variables
+        queryRearPart.append("WHERE ");
+
+        int maxA1OrA2;
+        double maxA3OrA4;
+        switch (selId){
+            case 1 -> {
+                maxA1OrA2 = 51;
+                maxA3OrA4 = 3355.2;
+            }
+            case 2 -> {
+                maxA1OrA2 = 101;
+                maxA3OrA4 = 3718.5;
+            }
+            case 3 -> {
+                maxA1OrA2 = 151;
+                maxA3OrA4 = 3963.6;
+            }
+            case 4 -> {
+                maxA1OrA2 = 201;
+                maxA3OrA4 = 4158.4;
+            }
+            case 5 -> {
+                maxA1OrA2 = 251;
+                maxA3OrA4 = 4325.5;
+            }
+            default -> throw new RuntimeException("we cannot support this selId: " + selId);
         }
+
+        // selectivity-> 5%, 10%, 15%, 20%, 25%
+        // a1, a2 ~ U[1, 1000] ->
+        // 51, 101, 151, 201, 251
+        // 3355.15, 3718.45, 3963.57, 4158.38, 4325.51
+        for(int i = 0; i < varNum; i++){
+            int attrId1 = random.nextInt(1, 5);
+            int attrId2;
+            do{
+                attrId2 = random.nextInt(1, 5);
+            }while (attrId2 == attrId1);
+
+            queryRearPart.append(0).append(" <= v").append(i).append(".a").append(attrId1).append(" <= ");
+            if(attrId1 == 1 || attrId1 == 2){
+                queryRearPart.append(maxA1OrA2).append(" AND ");
+            }else{
+                queryRearPart.append(maxA3OrA4).append(" AND ");
+            }
+
+            queryRearPart.append(0).append(" <= v").append(i).append(".a").append(attrId2).append(" <= ");
+            if(attrId2 == 1 || attrId2 == 2){
+                queryRearPart.append(maxA1OrA2).append(" AND ");
+            }else{
+                queryRearPart.append(maxA3OrA4).append(" AND ");
+            }
+        }
+
+        // then we add dc list (randomly choose 1 ~ 3 DC)
+        int dcNum = random.nextInt(1, 3);
+        for(int j = 0; j < dcNum; ++j){
+            int var1 = random.nextInt(varNum);
+            int var2 = random.nextInt(varNum);
+            if(var2 == var1){
+                var2 = (var2 + 1) % varNum;
+            }
+            int attrId = random.nextInt(1, 5);
+            queryRearPart.append("v").append(var1).append(".a").append(attrId).append(" <= ").append("v").append(var2).append(".a").append(attrId);
+            if(j != dcNum - 1){
+                queryRearPart.append(" AND ");
+            }else{
+                queryRearPart.append("\n");
+            }
+        }
+
+        queryRearPart.append("WITHIN ").append(window).append(" units\n");
+        queryRearPart.append("RETURN COUNT(*)");
+
+        return queryRearPart.toString();
     }
 
-    // PATTERN SEQ(A a, B b, C c, D d, E e)
-    public void generateComplexEventPattern2(String filePath, int queryNUm){
-        List<String> queries = new ArrayList<>(queryNUm);
-        long window = 1000;
+    public List<String> generateQueries(){
+        List<String> queries = new ArrayList<>(500);
+        int number = 100;
+        int selId = 5;
 
-        String[] varNames = {"v0", "v1", "v2", "v3", "v4"};
-        int len = varNames.length;
-        for(int i = 0; i < queryNUm; ++i){
-            String[] eventTypes = getVarType(len);
-            // first line
-            // SEQ(A a, B b, C c, D d, E e)
-            StringBuffer query = new StringBuffer(512);
-            query.append("PATTERN SEQ(").append(eventTypes[0]).append(" v0");
-            query.append(", ").append(eventTypes[1]).append(" v1");
-            query.append(", ").append(eventTypes[2]).append(" v2");
-            query.append(", ").append(eventTypes[3]).append(" v3");
-            query.append(", ").append(eventTypes[4]).append(" v4").append(")\n");
-            // second line
-            query.append("FROM synthetic\n");
-
-            int flag = random.nextInt(0, 2);
-            if(flag == 1){
-                query.append("USING SKIP_TILL_ANY_MATCH\n");
-            }else{
-                query.append("USING SKIP_TILL_NEXT_MATCH\n");
-            }
-
-            // three variables
-            query.append("WHERE ");
-            // first we add ic list
-            for(int varId = 0; varId < len; ++ varId){
-                int icNum = random.nextInt(1, 4);
-                int range = random.nextInt(10, 201);
-
-                for(int j = 0; j < icNum; ++j){
-                    int min = random.nextInt(0, 800);
-                    int max = min + range;
-                    query.append(min).append(" <= v");
-                    query.append(varId).append(".a").append(j + 1);
-                    query.append(" <= ").append(max).append(" AND ");
+        for(int patternId = 1; patternId <= 5; patternId++){
+            switch (patternId){
+                case 1 -> {
+                    // SEQ(A a, B b, C c)
+                    for(int i = 0; i < number; i++){
+                        String[] eventTypes = selectNItems(3);
+                        String buffer = "PATTERN SEQ("
+                                + eventTypes[0] + " v0, "
+                                + eventTypes[1] + " v1, "
+                                + eventTypes[2] + " v2" + ")\n";
+                        String rearPart = getQueryRearPart(false, 3, selId);
+                        String query = buffer + rearPart;
+                        queries.add(query);
+                        System.out.println("--> query: \n" + query);
+                    }
                 }
-            }
-
-            // then we add dc list (randomly choose 1 ~ 3 DC)
-            int dcNum = random.nextInt(1, 3);
-            for(int j = 0; j < dcNum; ++j){
-                int var1 = random.nextInt(len);
-                int var2 = random.nextInt(len);
-                if(var2 == var1){
-                    var2 = (var2 + 1) % len;
+                case 2 -> {
+                    // SEQ(A a, B b, C c, D d, E e)
+                    for(int i = 0; i < number; i++){
+                        String[] eventTypes = selectNItems(5);
+                        String buffer = "PATTERN SEQ("
+                                + eventTypes[0] + " v0, "
+                                + eventTypes[1] + " v1, "
+                                + eventTypes[2] + " v2, "
+                                + eventTypes[3] + " v3, "
+                                + eventTypes[4] + " v4" +")\n";
+                        String rearPart = getQueryRearPart(false, 5, selId);
+                        String query = buffer + rearPart;
+                        queries.add(query);
+                        System.out.println("--> query: \n" + query);
+                    }
                 }
-                int attrId = random.nextInt(1, 5);
-                query.append(varNames[var1]).append(".a").append(attrId).append(" <= ").append(varNames[var2]).append(".a").append(attrId);
-                if(j != dcNum - 1){
-                    query.append(" AND ");
-                }else{
-                    query.append("\n");
+                case 3 -> {
+                    // SEQ(A a, AND(B b, C c), D d)) ==> SEQ(SEQ(A a, AND(B b, C c)), D d)
+                    for(int i = 0; i < number; i++){
+                        String[] eventTypes = selectNItems(4);
+                        String buffer = "PATTERN SEQ(SEQ("
+                                + eventTypes[0] + " v0, AND("
+                                + eventTypes[1] + " v1, "
+                                + eventTypes[2] + " v2)), "
+                                + eventTypes[3] + " v3" +")\n";
+                        String rearPart = getQueryRearPart(false, 4, selId);
+                        String query = buffer + rearPart;
+                        queries.add(query);
+                        System.out.println("--> query: \n" + query);
+                    }
                 }
+                case 4 -> {
+                    // AND(SEQ(A a, B b), SEQ(C c, D d))
+                    for(int i = 0; i < number; i++){
+                        String[] eventTypes = selectNItems(4);
+                        String buffer = "PATTERN AND(SEQ("
+                                + eventTypes[0] + " v0, "
+                                + eventTypes[1] + " v1), SEQ("
+                                + eventTypes[2] + " v2, "
+                                + eventTypes[3] + " v3)" +")\n";
+                        String rearPart = getQueryRearPart(false, 4, selId);
+                        String query = buffer + rearPart;
+                        queries.add(query);
+                        System.out.println("--> query: \n" + query);
+                    }
+                }
+                case 5 -> {
+                    // SEQ(AND(A a, B b),AND(C c, D d))
+                    for(int i = 0; i < number; i++){
+                        String[] eventTypes = selectNItems(4);
+                        String buffer = "PATTERN SEQ(AND("
+                                + eventTypes[0] + " v0, "
+                                + eventTypes[1] + " v1), AND("
+                                + eventTypes[2] + " v2, "
+                                + eventTypes[3] + " v3)" +")\n";
+                        String rearPart = getQueryRearPart(false, 4, selId);
+                        String query = buffer + rearPart;
+                        queries.add(query);
+                        System.out.println("--> query: \n" + query);
+                    }
+                }
+                default -> throw new RuntimeException("exceeds 5");
             }
-
-            query.append("WITHIN ").append(window).append(" units\n");
-            query.append("RETURN COUNT(*)");
-
-            // debug
-            // System.out.println("query:\n" + query);
-            queries.add(query.toString());
         }
 
-        JSONArray jsonArray = JSONArray.fromObject(queries);
-        // JSONObject jsonArray = JSONObject.fromObject(queries);
-        FileWriter fileWriter;
-        try{
-            fileWriter = new FileWriter(filePath);
-            fileWriter.write(jsonArray.toString());
-            fileWriter.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    // SEQ(A a, AND(B b, C c), D d)
-    public void generateComplexEventPattern3(String filePath, int queryNUm){
-        List<String> queries = new ArrayList<>(queryNUm);
-        long window = 1000;
-
-        String[] varNames = {"v0", "v1", "v2", "v3"};
-        int len = varNames.length;
-        for(int i = 0; i < queryNUm; ++i){
-            String[] eventTypes = getVarType(len);
-            // first line, we only support binary construct complex pattern
-            // SEQ(SEQ(A a, AND(B b, C c)), D d)
-            StringBuffer query = new StringBuffer(512);
-            query.append("PATTERN SEQ(SEQ(").append(eventTypes[0]).append(" v0");
-            query.append(", AND(").append(eventTypes[1]).append(" v1");
-            query.append(", ").append(eventTypes[2]).append(" v2");
-            query.append(")), ").append(eventTypes[3]).append(" v3").append(")\n");
-
-            // second line
-            query.append("FROM synthetic\n");
-
-            int flag = random.nextInt(0, 2);
-            if(flag == 1){
-                query.append("USING SKIP_TILL_ANY_MATCH\n");
-            }else{
-                query.append("USING SKIP_TILL_NEXT_MATCH\n");
-            }
-
-            // three variables
-            query.append("WHERE ");
-            // first we add ic list
-            for(int varId = 0; varId < len; ++ varId){
-                int icNum = random.nextInt(1, 4);
-                int range = random.nextInt(10, 201);
-
-                for(int j = 0; j < icNum; ++j){
-                    int min = random.nextInt(0, 800);
-                    int max = min + range;
-                    query.append(min).append(" <= v");
-                    query.append(varId).append(".a").append(j + 1);
-                    query.append(" <= ").append(max).append(" AND ");
-                }
-            }
-
-            // then we add dc list (randomly choose 1 ~ 3 DC)
-            int dcNum = random.nextInt(1, 3);
-            for(int j = 0; j < dcNum; ++j){
-                int var1 = random.nextInt(len);
-                int var2 = random.nextInt(len);
-                if(var2 == var1){
-                    var2 = (var2 + 1) % len;
-                }
-                int attrId = random.nextInt(1, 5);
-                query.append(varNames[var1]).append(".a").append(attrId).append(" <= ").append(varNames[var2]).append(".a").append(attrId);
-                if(j != dcNum - 1){
-                    query.append(" AND ");
-                }else{
-                    query.append("\n");
-                }
-            }
-
-            query.append("WITHIN ").append(window).append(" units\n");
-            query.append("RETURN COUNT(*)");
-            System.out.println("query:\n" + query);
-            queries.add(query.toString());
-        }
-
-        JSONArray jsonArray = JSONArray.fromObject(queries);
-        // JSONObject jsonArray = JSONObject.fromObject(queries);
-        FileWriter fileWriter;
-        try{
-            fileWriter = new FileWriter(filePath);
-            fileWriter.write(jsonArray.toString());
-            fileWriter.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    // AND(SEQ(A a, B b), SEQ(C c, D d))
-    public void generateComplexEventPattern4(String filePath, int queryNUm){
-        List<String> queries = new ArrayList<>(queryNUm);
-        long window = 1000;
-
-        String[] varNames = {"v0", "v1", "v2", "v3"};
-        int len = varNames.length;
-        for(int i = 0; i < queryNUm; ++i){
-            String[] eventTypes = getVarType(len);
-            // first line
-            // AND(SEQ(A a, B b), SEQ(C c, D d))
-            StringBuffer query = new StringBuffer(512);
-            query.append("PATTERN AND(SEQ(").append(eventTypes[0]).append(" v0");
-            query.append(", ").append(eventTypes[1]).append(" v1");
-            query.append("), SEQ(").append(eventTypes[2]).append(" v2");
-            query.append(", ").append(eventTypes[3]).append(" v3").append("))\n");
-            // second line
-            query.append("FROM synthetic\n");
-
-            int flag = random.nextInt(0, 2);
-            if(flag == 1){
-                query.append("USING SKIP_TILL_ANY_MATCH\n");
-            }else{
-                query.append("USING SKIP_TILL_NEXT_MATCH\n");
-            }
-
-            // three variables
-            query.append("WHERE ");
-            // first we add ic list
-            for(int varId = 0; varId < len; ++ varId){
-                // icNum: 1 or 2 or 3
-                int icNum = random.nextInt(1, 4);
-                // selectivity: 0.01 ~ 0.2
-                int range = random.nextInt(10, 201);
-
-                for(int j = 0; j < icNum; ++j){
-                    int min = random.nextInt(0, 800);
-                    int max = min + range;
-                    query.append(min).append(" <= v");
-                    query.append(varId).append(".a").append(j + 1);
-                    query.append(" <= ").append(max).append(" AND ");
-                }
-            }
-
-            // then we add dc list (randomly choose 1 ~ 3 DC)
-            int dcNum = random.nextInt(1, 3);
-            for(int j = 0; j < dcNum; ++j){
-                int var1 = random.nextInt(len);
-                int var2 = random.nextInt(len);
-                if(var2 == var1){
-                    var2 = (var2 + 1) % len;
-                }
-                int attrId = random.nextInt(1, 5);
-                query.append(varNames[var1]).append(".a").append(attrId).append(" <= ").append(varNames[var2]).append(".a").append(attrId);
-                if(j != dcNum - 1){
-                    query.append(" AND ");
-                }else{
-                    query.append("\n");
-                }
-            }
-
-            query.append("WITHIN ").append(window).append(" units\n");
-            query.append("RETURN COUNT(*)");
-            // debug
-            // System.out.println("query:\n" + query);
-            queries.add(query.toString());
-        }
-
-        JSONArray jsonArray = JSONArray.fromObject(queries);
-        // JSONObject jsonArray = JSONObject.fromObject(queries);
-        FileWriter fileWriter;
-        try{
-            fileWriter = new FileWriter(filePath);
-            fileWriter.write(jsonArray.toString());
-            fileWriter.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    // SEQ(AND(A a, B b),AND(C c, D d))
-    public void generateComplexEventPattern5(String filePath, int queryNUm){
-        List<String> queries = new ArrayList<>(queryNUm);
-        long window = 1000;
-
-        String[] varNames = {"v0", "v1", "v2", "v3"};
-        int len = varNames.length;
-        for(int i = 0; i < queryNUm; ++i){
-            String[] eventTypes = getVarType(len);
-            // first line
-            // AND(SEQ(A a, B b), SEQ(C c, D d))
-            StringBuffer query = new StringBuffer(512);
-            query.append("PATTERN SEQ(AND(").append(eventTypes[0]).append(" v0");
-            query.append(", ").append(eventTypes[1]).append(" v1");
-            query.append("), AND(").append(eventTypes[2]).append(" v2");
-            query.append(" , ").append(eventTypes[3]).append(" v3").append("))\n");
-            // second line
-            query.append("FROM synthetic\n");
-
-            int flag = random.nextInt(0, 2);
-            if(flag == 1){
-                query.append("USING SKIP_TILL_ANY_MATCH\n");
-            }else{
-                query.append("USING SKIP_TILL_NEXT_MATCH\n");
-            }
-
-            // three variables
-            query.append("WHERE ");
-            // first we add ic list
-            for(int varId = 0; varId < len; ++ varId){
-                int icNum = random.nextInt(1, 4);
-                int range = random.nextInt(10, 201);
-
-                for(int j = 0; j < icNum; ++j){
-                    int min = random.nextInt(0, 800);
-                    int max = min + range;
-                    query.append(min).append(" <= v");
-                    query.append(varId).append(".a").append(j + 1);
-                    query.append(" <= ").append(max).append(" AND ");
-                }
-            }
-
-            // then we add dc list (randomly choose 1 ~ 3 DC)
-            int dcNum = random.nextInt(1, 3);
-            for(int j = 0; j < dcNum; ++j){
-                int var1 = random.nextInt(len);
-                int var2 = random.nextInt(len);
-                if(var2 == var1){
-                    var2 = (var2 + 1) % len;
-                }
-                int attrId = random.nextInt(1, 5);
-                query.append(varNames[var1]).append(".a").append(attrId).append(" <= ").append(varNames[var2]).append(".a").append(attrId);
-                if(j != dcNum - 1){
-                    query.append(" AND ");
-                }else{
-                    query.append("\n");
-                }
-            }
-
-            query.append("WITHIN ").append(window).append(" units\n");
-            query.append("RETURN COUNT(*)");
-            // debug
-            // System.out.println("query:\n" + query);
-            queries.add(query.toString());
-        }
-
-        JSONArray jsonArray = JSONArray.fromObject(queries);
-        // JSONObject jsonArray = JSONObject.fromObject(queries);
-        FileWriter fileWriter;
-        try{
-            fileWriter = new FileWriter(filePath);
-            fileWriter.write(jsonArray.toString());
-            fileWriter.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        return queries;
     }
 
     public static void main(String[] args){
-        SyntheticQueryGenerator qg = new SyntheticQueryGenerator(50);
-        // random generate 10000 queries
+        String sep = File.separator;
+        SyntheticQueryGenerator qg = new SyntheticQueryGenerator();
+        String filePath = System.getProperty("user.dir") + sep + "src" + sep + "main" +
+                sep + "java" + sep + "query" + sep + "synthetic_query_sel25.json";
 
-        String dir = System.getProperty("user.dir");
-        String prefix = dir + File.separator + "src" + File.separator + "main" +
-                File.separator + "java" + File.separator + "Query" + File.separator + "temp_synthetic_query_pattern";
-
-        // qg.generateComplexEventPattern5(null, 5);
-        // qg.generateComplexEventPattern1(prefix + "1.json", 1000);
-        // qg.generateComplexEventPattern2(prefix + "2.json", 1000);
-        // qg.generateComplexEventPattern3(prefix + "3.json", 1500);
-        // qg.generateComplexEventPattern4(prefix + "4.json", 1500);
-        qg.generateComplexEventPattern5(prefix + "5.json", 1800);
+        List<String> queries = qg.generateQueries();
+        JSONArray jsonArray = JSONArray.fromObject(queries);
+        FileWriter fileWriter;
+        try{
+            fileWriter = new FileWriter(filePath);
+            fileWriter.write(jsonArray.toString());
+            fileWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

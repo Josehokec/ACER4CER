@@ -1,13 +1,16 @@
 package common;
 
+import acer.ACER;
 import condition.DependentConstraint;
 import condition.IndependentConstraint;
-import acer.ACER;
+
+import baselines.IntervalScan;
+import baselines.NaiveIndex;
 import store.EventStore;
 import pattern.ComplexPattern;
 import pattern.QueryPattern;
 import pattern.SequentialPattern;
-import method.Index;
+import baselines.Index;
 
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class StatementParser {
 
     /**
      * create a schema and a store
-     * CREATE TABLE stock (ticker TYPE, open FLOAT.2, volume INT, time TIMESTAMP)
+     * CREATE TABLE stock (ticker TYPE, open FLOAT.2, vol INT, time TIMESTAMP)
      * Currently, only float, int, and double type data is supported
      * When the types are float and double, it is necessary to specify the number of decimal places to be retained
      * @param statement create table statement
@@ -50,19 +53,19 @@ public class StatementParser {
         schema.setSchemaName(schemaName);
 
         // attributes: ['ticker TYPE', ' open FLOAT.2', ' volume INT', ' time TIMESTAMP']
-        String[] attributes = parts[1].split(",");
+        String[] attr_type = parts[1].split(",");
 
-        String[] attrNames = new String[attributes.length];
-        String[] attrTypes = new String[attributes.length];
-        int[] decimalLens = new int[attributes.length];
+        String[] attrNames = new String[attr_type.length];
+        String[] attrTypes = new String[attr_type.length];
+        int[] decimalLens = new int[attr_type.length];
 
         // Note that RangeBitmap currently only supports inserting integers greater than or equal to 0
         // Before creating an index, a value range must be specified
         // Index can only be created on INT, FLOAT, and DOUBLE
         //String[] supportValueType = {"TYPE", "INT", "FLOAT", "DOUBLE", "TIMESTAMP"};
 
-        for(int i = 0; i < attributes.length; ++i){
-            String[] splits = attributes[i].trim().split(" ");
+        for(int i = 0; i < attr_type.length; ++i){
+            String[] splits = attr_type[i].trim().split(" ");
             attrNames[i] = splits[0].trim();
             attrTypes[i] = splits[1].trim();
 
@@ -74,26 +77,30 @@ public class StatementParser {
                     }
                 }
                 decimalLens[i] = Integer.parseInt(attrTypes[i].substring(dotPos + 1));
+            }else if(attrTypes[i].contains("CHAR")){
+                // e.g., (INFO CHAR[16])
+                decimalLens[i] = Integer.parseInt(attrTypes[i].substring(5, attrTypes[i].length() - 1));
+                attrTypes[i] = "VARCHAR";
             }else{
                 boolean flag = attrTypes[i].equals("TYPE") ||  attrTypes[i].equals("INT") || attrTypes[i].equals("TIMESTAMP");
                 assert flag : "Class StatementParser - Do not support '" + attrTypes[i] + "' value type";
             }
-
             schema.insertAttrName(attrNames[i], i);
         }
 
         schema.setAttrNames(attrNames);
+        schema.setDecimalLens(decimalLens);
         // Calculate the recordSize here
         schema.setAttrTypes(attrTypes);
-        schema.setDecimalLens(decimalLens);
 
-        int recordSize = schema.getStoreRecordSize();
+        int recordSize = schema.getFixedRecordSize();
         EventStore store = new EventStore(schemaName, recordSize);
         schema.setStore(store);
 
         Metadata metadata = Metadata.getInstance();
         if(metadata.storeSchema(schema)){
             System.out.println("Create schema successfully.");
+            schema.print();
         }else{
             System.out.println("Create schema fail, this schema name '"
                     + schema.getSchemaName() + "' has existing.");
@@ -118,12 +125,11 @@ public class StatementParser {
         Index index;
         switch (indexType) {
             case "ACER" -> index = new ACER(indexName);
-            default -> {
-                System.out.println("Can not support " + indexType + " index.");
-                index = new ACER(indexName);
-            }
+            // [updated]
+            case "NAIVE_INDEX" -> index = new NaiveIndex(indexName);
+            case "INTERVAL_SCAN" -> index = new IntervalScan(indexName);
+            default -> throw new IllegalArgumentException("Index type '" + indexType + "' is not supported.");
         }
-
 
         for(String name : indexAttrNames){
             index.addIndexAttrNameMap(name.trim());
@@ -173,7 +179,7 @@ public class StatementParser {
 
         if(cnt < 1){
             throw new RuntimeException("Illegal pattern");
-        }else if(cnt == 1){
+        }else if(cnt == 1 && firstLine.contains("SEQ")){
             pattern = new SequentialPattern(firstLine);
         }else{
             pattern = new ComplexPattern(firstLine);
@@ -235,7 +241,6 @@ public class StatementParser {
             }
         }
     }
-
 
     private static void parseIC1(QueryPattern pattern, String curPredicate, EventSchema schema){
         int aoPos1 = -1;

@@ -192,7 +192,7 @@ public class SyntheticQueryOnLength {
 
             // without dependent constraints
             query.append("\n");
-            
+
             query.append("WITHIN ").append(window).append(" units\n");
             query.append("RETURN COUNT(*)");
             // debug

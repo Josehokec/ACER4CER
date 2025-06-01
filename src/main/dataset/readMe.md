@@ -1,13 +1,15 @@
-# before running, please create `store` folder
+# Datasets
 
-### Cluster (*aka.* job) dataset
+Git limits the size of uploaded files, so we split the two datasets.
+```shell
+./file_split.sh nasdaq.csv 2
+./file_split.sh crimes.csv 2
+```
 
-Please see `job.csv.zip`.
 
-### NASDAQ and Crimes datasets
-
-Since the size of a single file uploaded by git cannot exceed 100M, we divided NASDAQ and Crimes datasets into multiple small files for uploading. When running the code, please decompress and merge these small files.
-
-### Synthetic datasets
-
-Please run `DataGenerator.java` to generate synthetic datasets.
+**Run the following script to restore the original dataset file:**
+```shell
+./file_recovery.sh nasdaq
+./file_recovery.sh crimes
+gunzip job.csv.zip
+```

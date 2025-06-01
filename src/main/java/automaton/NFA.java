@@ -3,15 +3,15 @@ package automaton;
 import common.*;
 import condition.DependentConstraint;
 import condition.IndependentConstraint;
-import common.Tuple;
 import pattern.DecomposeUtils;
 import pattern.QueryPattern;
 
 import java.util.*;
 
 /**
- * Some key claims:
- * Currently, this automata does not support the kleene operator and negation operator.
+ * [updated] ultra efficient NFA to extract matches
+ * this engine is build on [SASE] (https://github.com/haopeng/sase)
+ * Notably, our automata does not support the kleene operator and negation operator.
  * This is a simplified automata, thus it has a fast process speed.
  * If you need to process more kleene operator and negation operator,
  * please choose FlinkCEP or OpenCEP (https://github.com/ilya-kolchinsky/OpenCEP).
@@ -21,14 +21,16 @@ import java.util.*;
 public class NFA {
     private int stateNum;                           // number of states
     private HashMap<Integer, State> stateMap;       // all states
-    private long queryWindow;                       // query window condition
-    private  List<State> activeStates;              // active states
+    private long window;                            // query window condition
+    private  Set<State> activeStates;               // active states
+    private final EventCache eventCache;            // event cache
 
     public NFA(){
         stateNum = 0;
         stateMap = new HashMap<>();
-        activeStates = new ArrayList<>();
-        queryWindow = Long.MAX_VALUE;
+        activeStates = new HashSet<>();
+        eventCache = new EventCache();
+        window = Long.MAX_VALUE;
         State startState = createState("start", true, false);
         activeStates.add(startState);
     }
@@ -93,27 +95,26 @@ public class NFA {
     }
 
     public void printMatch(EventSchema schema){
-        System.out.println("Match results:");
         List<State> finalStates = getFinalStates();
+
+        int count = 0;
+        System.out.println("$--------------- Matched results ---------------$");
         for(State state : finalStates){
             //System.out.println(state);
-            PartialMatchBuffer buffer = state.getBuffer();
-            if(buffer != null){
-                int len = buffer.getLength();
-                for(PartialMatch match : buffer.getPartialMatches()){
-                    for(int i = 0; i < len; ++i){
-                        byte[] eventRecord = match.matchList().get(i);
-                        String event = schema.byteEventToString(eventRecord);
-                        System.out.print(event + " ");
-                    }
-                    System.out.println();
+            PartialMatchList partialMatchList = state.getPartialMatchList();
+            if(partialMatchList != null){
+                List<PartialMatch> fullMatches = partialMatchList.getPartialMatchList();
+                for(PartialMatch fullMatch : fullMatches){
+                    count++;
+                    System.out.println(fullMatch.getSingleMatchedResult(eventCache, schema));
                 }
             }
         }
+        System.out.println("result size: " + count);
     }
 
     public void generateNFAUsingQueryPattern(QueryPattern pattern){
-        this.queryWindow = pattern.getTau();
+        this.window = pattern.getTau();
 
         if(pattern.onlyContainSEQ){
             // e.g., PATTERN SEQ(IBM a, Oracle b, IBM c, Oracle d)
@@ -143,7 +144,7 @@ public class NFA {
                 String curVarName = varNames[i];
                 List<IndependentConstraint> icList = pattern.getICListUsingVarName(curVarName);
                 List<DependentConstraint> dcList = pattern.getDC(preVarName, curVarName);
-                addTransaction(stateMap.get(i), stateMap.get(i + 1), eventTypes[i], icList, dcList);
+                addTransition(stateMap.get(i), stateMap.get(i + 1), eventTypes[i], icList, dcList);
                 preVarName.add(curVarName);
             }
         }else{
@@ -190,25 +191,24 @@ public class NFA {
                     List<IndependentConstraint> icList = pattern.getICListUsingVarName(curVarName);
                     List<DependentConstraint> dcList = pattern.getDC(preVarName, curVarName);
                     State curState = createStates.get(i);
-                    addTransaction(preState, curState, eventTypes[i], icList, dcList);
+                    addTransition(preState, curState, eventTypes[i], icList, dcList);
                     preState = curState;
                     preVarName.add(curVarName);
                 }
             }
         }
-
-
     }
 
-    public void addTransaction(State curState, State nextState, String nextEventType,
-                               List<IndependentConstraint> icList, List<DependentConstraint> dcList){
-        Transaction transaction = new Transaction(nextEventType, icList, dcList, nextState);
-        curState.bindTransaction(transaction);
+    public void addTransition(State curState, State nextState, String nextEventType,
+                              List<IndependentConstraint> icList, List<DependentConstraint> dcList){
+        // append
+        Transition transition = new Transition(nextEventType, icList, dcList, nextState);
+        curState.bindTransaction(transition);
     }
 
     /**
      * NFA consume an event
-     * for each active state, judge whether it can transact next state
+     * for each active state, judge whether it can transfer next state
      * @param schema        event schema
      * @param eventRecord   event
      * @param matchStrategy skip-till-any-match or skip-till-next-match
@@ -216,23 +216,33 @@ public class NFA {
     public void consume(EventSchema schema, byte[] eventRecord, MatchStrategy matchStrategy){
         // to speedup match, we use time window to delete can not match tuples
         Set<State> allNextStates = new HashSet<>();
+        boolean hasInserted = false;
+        int curCount = eventCache.getCount();
         for(State state : activeStates){
-            // final state cannot transact
             if(!state.getIsFinal()){
                 // using match strategy
-                List<State> nextStates = state.transact(schema, eventRecord, queryWindow, matchStrategy);
+                Set<State> nextStates = state.transfer(eventCache, eventRecord, window, matchStrategy, schema, hasInserted);
                 allNextStates.addAll(nextStates);
+                if(eventCache.getCount() != curCount){
+                    hasInserted = true;
+                }
             }
         }
+        // add start state, maybe has performance bottle
+        activeStates.addAll(allNextStates);
+    }
 
-        // add start state
-        State startState = stateMap.get(0);
-        allNextStates.add(startState);
-
-        // update active state
-        activeStates = new ArrayList<>(allNextStates);
-        // debug
-        // printActiveStates();
+    // this function is used to debug
+    public void printMatchIds(){
+        List<State> finalStates = getFinalStates();
+        for(State state : finalStates){
+            PartialMatchList partialMatchList = state.getPartialMatchList();
+            List<PartialMatch> matches = partialMatchList.getPartialMatchList();
+            System.out.println("stateName: " + state.getStateName() + " stateId: " + state.getStateId() + " size: " + matches.size());
+            for(PartialMatch match : matches){
+                System.out.println("match: " + match);
+            }
+        }
     }
 
     /**
@@ -242,39 +252,36 @@ public class NFA {
      */
     public List<Tuple> getTuple(EventSchema schema){
         List<Tuple> ans = new ArrayList<>();
-        // find results from final states
         for(State state : stateMap.values()){
             if(state.getIsFinal()){
-                PartialMatchBuffer buff = state.getBuffer();
-                if(buff != null){
-                    List<PartialMatch> fullMatches = buff.getPartialMatches();
-                    if(!fullMatches.isEmpty()){
-                        int size = fullMatches.get(0).matchList().size();
-                        for(PartialMatch fullMatch : fullMatches){
-                            Tuple t = new Tuple(size);
-                            for(byte[] record : fullMatch.matchList()){
-                                String event = schema.byteEventToString(record);
-                                t.addEvent(event);
-                            }
-                            ans.add(t);
+                PartialMatchList partialMatchList = state.getPartialMatchList();
+                if(partialMatchList != null){
+                    List<PartialMatch> matches = partialMatchList.getPartialMatchList();
+                    for(PartialMatch match : matches){
+                        List<Integer> pointers = match.getRecordPointers();
+                        Tuple t = new Tuple(pointers.size());
+                        for(int ptr : pointers){
+                            byte[] record = eventCache.get(ptr);
+                            String event = schema.byteEventToString(record);
+                            t.addEvent(event);
                         }
+                        ans.add(t);
                     }
                 }
             }
         }
         return ans;
     }
+
     public int countTuple(){
         int cnt = 0;
         // find results from final states
         for(State state : stateMap.values()){
             if(state.getIsFinal()){
-                PartialMatchBuffer buff = state.getBuffer();
-                if(buff != null){
-                    List<PartialMatch> fullMatches = buff.getPartialMatches();
-                    if(!fullMatches.isEmpty()){
-                        cnt += fullMatches.size();
-                    }
+                PartialMatchList partialMatchList = state.getPartialMatchList();
+                if(partialMatchList != null){
+                    List<PartialMatch> fullMatches = partialMatchList.getPartialMatchList();
+                    cnt += fullMatches.size();
                 }
             }
         }
@@ -287,18 +294,17 @@ public class NFA {
         }
     }
 
-    public void displayNFA(){
+    public void display(){
         State initialState = stateMap.get(0);
         System.out.println("--------All NFA paths-------");
         int cnt = 1;
-        for(Transaction t : initialState.getTransactions()){
-            System.out.println("path number: " + cnt);
-            System.out.println("start state: " + initialState);
+        for(Transition t : initialState.getTransactions()){
+            System.out.println("$$path number: " + cnt);
+            System.out.println("> start state: " + initialState);
             cnt++;
             t.print();
             State nextState = t.getNextState();
             nextState.recursiveDisplayState();
         }
-
     }
 }

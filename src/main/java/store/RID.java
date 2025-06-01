@@ -9,6 +9,10 @@ package store;
  */
 public record RID(int page, short offset) implements Comparable<RID> {
 
+    public long getLongValue(){
+        return ((long) page << 16) | offset;
+    }
+
     @Override
     public String toString() {
         return "page: " + page + " offset: " + offset;
@@ -24,7 +28,7 @@ public record RID(int page, short offset) implements Comparable<RID> {
     }
 
     public long getLongKey(){
-        return (page << 16) + offset;
+        return ((long) page << 16) + offset;
     }
 }
 

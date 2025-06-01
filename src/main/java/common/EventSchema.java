@@ -7,27 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 这个类很重要，所以才加上中文解释
  * The attNameMap is used to find where the attribute name exists
  * For example: ticker TYPE, open FLOAT. 2, volume INT, time TIMESTAMP
- * AttNameMap. get (ticker)=0; AttNameMap. get (volume)=2; AttNameMap.get (time)=3;
+ * AttNameMap.get(ticker)=0; AttNameMap.get(volume)=2; AttNameMap.get(time)=3;
  * TypeMap is used to convert event types of string types into integers
  * Note that the maximum and minimum values are converted
  */
 public class EventSchema {
-    // 已经分配的类型id
     private int hasAssignedId;                          // event type is String, so we assign an integer id to an event type
-    private short storeRecordSize;                      // number of bytes required to store a record
+    private short fixedRecordSize;                      // number of bytes required to store a record
+    private short timestampIdx = -1;                    // timestamp position
     private String schemaName;                          // schema name
     private String[] attrNames;                         // attribute name
-    // 中文注释：支持CHAR.x 也就是说最多有多少个单词
     private String[] attrTypes;                         // attribute type, like INT, DOUBLE, LONG, TIMESTAMP
-    // 中文注释：如果是char类型的，则表示其字符个数
-    private int[] decimalLens;                          // decimal lengths
-    // 把字节解析成int, long, char用
+    private int[] decimalLens;                          // decimal lengths, if type is VARCHAR, its value is char length
     private StorePos[] positions;                       // type store position
     private final List<String> allEventTypes;           // typeId corresponding to an event type
-    // 中文注释：每个table对应的一个store（文件）
     private EventStore store;                           // stored file
     private final HashMap<String, Integer> attrNameMap; // attNameMap is used to find where the attribute name exists
     private final HashMap<String, Integer> typeMap;     //event type map
@@ -36,7 +31,7 @@ public class EventSchema {
         attrNameMap = new HashMap<>();
         typeMap = new HashMap<>();
         hasAssignedId = 0;
-        storeRecordSize = -1;
+        fixedRecordSize = -1;
         allEventTypes = new ArrayList<>();
         // Because we assign IDs starting from 1, we add null
         allEventTypes.add("null");
@@ -50,8 +45,8 @@ public class EventSchema {
         this.schemaName = schemaName;
     }
 
-    public short getStoreRecordSize() {
-        return storeRecordSize;
+    public short getFixedRecordSize() {
+        return fixedRecordSize;
     }
 
     public EventStore getStore() {
@@ -84,28 +79,29 @@ public class EventSchema {
             if(attrTypes[i].equals("INT") || attrTypes[i].equals("TYPE")){
                 positions[i] = new StorePos(startPos, 4);
                 startPos += 4;
-            }else if(attrTypes[i].contains("FLOAT") || attrTypes[i].contains("DOUBLE") || attrTypes[i].equals("TIMESTAMP")){
+            }else if(attrTypes[i].contains("FLOAT") || attrTypes[i].contains("DOUBLE")){
                 positions[i] = new StorePos(startPos, 8);
                 startPos += 8;
-            }else{
+            }else if(attrTypes[i].equals("TIMESTAMP")){
+                positions[i] = new StorePos(startPos, 8);
+                timestampIdx = (short) i;
+                startPos += 8;
+            }else if(attrTypes[i].equals("VARCHAR")){
+                int offset = decimalLens[i];
+                positions[i] = new StorePos(startPos, offset);
+                startPos += (short) offset;
+            }
+            else{
                 throw new RuntimeException("Do not support this type'" + attrTypes[i] + "'.");
             }
         }
-        storeRecordSize = startPos;
+        fixedRecordSize = startPos;
         //System.out.println("recordSize: " + storeRecordSize);
     }
 
     public void setDecimalLens(int[] decimalLens) {
         this.decimalLens = decimalLens;
     }
-
-//    public void setAttrMinValues(long[] attrMinValues) {
-//        this.attrMinValues = attrMinValues;
-//    }
-
-//    public void setAttrMaxValues(long[] attrMaxValues) {
-//        this.attrMaxValues = attrMaxValues;
-//    }
 
     public void insertAttrName(String attrName, int idx){
         attrNameMap.put(attrName, idx);
@@ -119,23 +115,7 @@ public class EventSchema {
         return attrTypes[idx];
     }
 
-//    public long getIthAttrMinValue(int idx){
-//        return attrMinValues[idx];
-//    }
-//
-//    public void setIthAttrMinValue(int idx, long minValue){
-//        attrMinValues[idx] = minValue;
-//    }
-//
-//    public long getIthAttrMaxValue(int idx){
-//        return attrMaxValues[idx];
-//    }
-//
-//    public void setIthAttrMaxValue(int idx, long minValue){
-//        attrMaxValues[idx] = minValue;
-//    }
-
-    public int  getIthDecimalLens(int idx) {
+    public int getIthDecimalLens(int idx) {
         return decimalLens[idx];
     }
 
@@ -157,20 +137,15 @@ public class EventSchema {
 
     public int getPageStoreRecordNum(){
         int pageSize = store.getPageSize();
-        return pageSize / storeRecordSize;
+        return pageSize / fixedRecordSize;
     }
-
 
     public int getTimestampIdx(){
-        for(int i = 0; i < attrTypes.length; ++i){
-            String attrType = attrTypes[i];
-            if(attrType.equals("TIMESTAMP")){
-                return i;
-            }
+        if(timestampIdx == -1){
+            throw new IllegalStateException("This schema is missing the timestamp attribute.");
         }
-        throw new IllegalStateException("This schema is missing the timestamp attribute.");
+        return timestampIdx;
     }
-
 
     public int getTypeIdx(){
         for(int i = 0; i < attrTypes.length; ++i){
@@ -182,15 +157,12 @@ public class EventSchema {
         throw new IllegalStateException("This schema is missing the timestamp attribute.");
     }
 
-    /**
-     * convert string type records to byte type arrays
-     */
+    // convert string type records to byte type arrays
     public byte[] convertToBytes(String[] attrValues){
-
-        if(storeRecordSize == -1){
+        if(fixedRecordSize == -1){
             throw new RuntimeException("wrong state");
         }
-        byte[] ans = new byte[storeRecordSize];
+        byte[] ans = new byte[fixedRecordSize];
         int ptr = 0;
         for(int i = 0; i < attrTypes.length; ++i){
             String attrType = attrTypes[i];
@@ -224,11 +196,14 @@ public class EventSchema {
                 byte[] b = Converter.longToBytes(timestamp);
                 System.arraycopy(b, 0, ans, ptr, 8);
                 ptr += 8;
+            }else if(attrType.contains("VARCHAR")){
+                System.arraycopy(attrValues[i].getBytes(), 0, ans, ptr, attrValues[i].length());
+                ptr += decimalLens[i];
             }else{
                 throw new RuntimeException("Do not support this type'" + attrType + "'.");
             }
         }
-        if(storeRecordSize != ptr){
+        if(fixedRecordSize != ptr){
             throw new RuntimeException("convert has exception.");
         }
         return ans;
@@ -240,7 +215,7 @@ public class EventSchema {
      * @param typeIdx   column number where the type is located
      * @return          event type
      */
-    public final String getTypeFromBytesRecord(byte[] record, int typeIdx){
+    public String getTypeFromBytesRecord(byte[] record, int typeIdx){
         int start = positions[typeIdx].startPos();
         int offset = positions[typeIdx].offset();
         byte[] bytes = new byte[offset];
@@ -250,12 +225,42 @@ public class EventSchema {
         return allEventTypes.get(v);
     }
 
-    public final long getValueFromBytesRecord(byte[] record, int colIdx){
+    /**
+     * [updated + awaiting optimization] used for interval scan method
+     * @param record        an event
+     * @return              timestamp
+     */
+    public long getTimestampFromRecord(byte[] record){
+        int start = positions[timestampIdx].startPos();
+        int offset = positions[timestampIdx].offset();
+        //if(offset != 8){ throw new RuntimeException("offset is not 8.");}
+        byte[] bytes = new byte[offset];
+        System.arraycopy(record, start, bytes, 0, offset);
+        return Converter.bytesToLong(bytes);
+    }
+
+    public long getValueFromBytesRecord(byte[] record, int colIdx){
         int start = positions[colIdx].startPos();
         int offset = positions[colIdx].offset();
         byte[] bytes = new byte[offset];
         System.arraycopy(record, start, bytes, 0, offset);
         return Converter.bytesToLong(bytes);
+    }
+
+    public String getStringValue(byte[] record, int colIdx){
+        int start = positions[colIdx].startPos();
+        int offset = positions[colIdx].offset();
+        byte[] string = new byte[offset];
+        System.arraycopy(record, start, string, 0, offset);
+
+        int stopPos = offset;
+        for(int i = 0; i < offset; ++i){
+            if(string[i] == 0){
+                stopPos = i;
+                break;
+            }
+        }
+        return new String(string, 0, stopPos);
     }
 
     /**
@@ -265,7 +270,6 @@ public class EventSchema {
      */
     public String byteEventToString(byte[] record){
         String ans = "";
-
         int ptr = 0;
         for(int i = 0; i < attrTypes.length; ++i) {
             String attrType = attrTypes[i];
@@ -280,6 +284,7 @@ public class EventSchema {
                 System.arraycopy(record, ptr, b, 0, 8);
                 long v = Converter.bytesToLong(b);
                 float scale = (float) Math.pow(10, getIthDecimalLens(i));
+                // ==> format
                 float rawValue = v / scale;
                 ans = (i == 0) ? (ans + rawValue) : (ans + "," + rawValue);
                 ptr += 8;
@@ -295,7 +300,6 @@ public class EventSchema {
                 byte[] b = new byte[4];
                 System.arraycopy(record, ptr, b, 0, 4);
                 int v = Converter.bytesToInt(b);
-
                 String type = allEventTypes.get(v);
                 ans = (i == 0) ? (ans + type) : (ans + "," + type);
                 ptr += 4;
@@ -305,7 +309,24 @@ public class EventSchema {
                 long v = Converter.bytesToLong(b);
                 ans = (i == 0) ? (ans + v) : (ans + "," + v);
                 ptr += 8;
-            } else {
+            } else if(attrType.equals("VARCHAR")){
+                int charLen = decimalLens[i];
+                byte[] b = new byte[charLen];
+                System.arraycopy(record, ptr, b, 0, charLen);
+                int stopPos = charLen;
+                for(int idx = 0; idx < charLen; ++idx){
+                    // System.out.println("b["+idx+"] = "+b[idx]);
+                    if(b[idx] == 0){
+                        stopPos = idx;
+                        break;
+                    }
+                }
+                // System.out.println("stopPos: " + stopPos);
+                String v = new String(b, 0, stopPos);
+                ans = (i == 0) ? (ans + v) : (ans + "," + v);
+                ptr += charLen;
+            }
+            else {
                 throw new RuntimeException("Do not support this type'" + attrType + "'.");
             }
         }
@@ -328,24 +349,67 @@ public class EventSchema {
     }
 
     public void print(){
-        System.out.println("schema_name: '" +  schemaName + "'");
-        System.out.println("-------------------------------------------------------------");
-        System.out.printf("|%-12s|", "AttrName");
+        System.out.println("--------------------------------------");
+        String header = "schema_name: '" +  schemaName + "'";
+        System.out.printf("|%-36s|%n", header);
+        System.out.println("--------------------------------------");
+        System.out.printf("|%-16s|", "AttrName");
         System.out.printf("%-12s|", "AttrType");
-        System.out.printf("%-16s|", "MinValue");
-        System.out.printf("%-16s|%n", "MaxValue");
-        System.out.println("-------------------------------------------------------------");
+        System.out.printf("%-6s|%n", "Size");
+        System.out.println("--------------------------------------");
 
         for(int i = 0; i < attrNames.length; i++){
-            System.out.printf("|%-12s|", attrNames[i]);
+            System.out.printf("|%-16s|", attrNames[i]);
             System.out.printf("%-12s|", attrTypes[i]);
-//            System.out.printf("%-16s|", attrMinValues[i]);
-//            System.out.printf("%-16s|%n", attrMaxValues[i]);
+            if(attrTypes[i].equals("INT")){
+                System.out.printf("%-6s|%n", 4);
+            }else if(attrTypes[i].contains("FLOAT")){
+                System.out.printf("%-6s|%n", 8);
+            }else if(attrTypes[i].contains("DOUBLE")){
+                System.out.printf("%-6s|%n", 8);
+            }else if(attrTypes[i].equals("TYPE")){
+                System.out.printf("%-6s|%n", 4);
+            }else if(attrTypes[i].equals("TIMESTAMP")){
+                System.out.printf("%-6s|%n", 8);
+            }else if(attrTypes[i].equals("VARCHAR")){
+                System.out.printf("%-6s|%n", decimalLens[i]);
+            }else{
+                throw new RuntimeException("Do not support this type'" + attrTypes[i] + "'.");
+            }
         }
-        System.out.println("-------------------------------------------------------------");
-
+        System.out.println("--------------------------------------");
+        System.out.println("fixed record length: " + fixedRecordSize + ", timestampIdx: " + timestampIdx);
         typeMap.forEach((k, v) -> System.out.println("Event type: " + k + " type id: " + v));
 
     }
 
 }
+
+
+/*
+removed code lines:
+-------------------------------------------------------------
+    public void setAttrMinValues(long[] attrMinValues) {
+        this.attrMinValues = attrMinValues;
+    }
+
+    public void setAttrMaxValues(long[] attrMaxValues) {
+        this.attrMaxValues = attrMaxValues;
+    }
+
+    public long getIthAttrMinValue(int idx){
+        return attrMinValues[idx];
+    }
+
+    public void setIthAttrMinValue(int idx, long minValue){
+        attrMinValues[idx] = minValue;
+    }
+
+    public long getIthAttrMaxValue(int idx){
+        return attrMaxValues[idx];
+    }
+
+    public void setIthAttrMaxValue(int idx, long minValue){
+        attrMaxValues[idx] = minValue;
+    }
+ */

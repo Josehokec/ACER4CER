@@ -8,6 +8,7 @@ import common.IndexValuePair;
 
 /**
  * SortedIntervalSet stores time interval
+ * please note that intervals are inserted in ordered
  * an interval has start time and end time
  */
 
@@ -273,7 +274,7 @@ public class SortedIntervalSet{
         return containList;
     }
 
-    public final boolean overlap(long s1, long e1, long s2, long e2){
+    public static boolean overlap(long s1, long e1, long s2, long e2){
         if(s1 > e1 || s2 > e2){
             throw new RuntimeException("input cannot generate legal interval," +
                     " two intervals is : [" + s1 + ", " + e1 + "] and [" + s2 + ", " + e2 + "]");

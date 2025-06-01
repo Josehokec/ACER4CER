@@ -1,6 +1,6 @@
 package acer;
 
-import common.Tuple;
+import automaton.Tuple;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -413,11 +413,11 @@ public class DependentConstraint extends Constraint{
     @Override
     public void print() {
         switch (cmp) {
-            case GT -> System.out.println(leftPart() + " > " + rightPart());
-            case GE -> System.out.println(leftPart() + " >= " + rightPart());
-            case LE -> System.out.println(leftPart() + " <= " + rightPart());
-            case LT -> System.out.println(leftPart() + " < " + rightPart());
-            case EQ -> System.out.println(leftPart() + " = " + rightPart());
+            case GT -> System.out.print(leftPart() + " > " + rightPart() + ";");
+            case GE -> System.out.print(leftPart() + " >= " + rightPart() + ";");
+            case LE -> System.out.print(leftPart() + " <= " + rightPart() + ";");
+            case LT -> System.out.print(leftPart() + " < " + rightPart() + ";");
+            case EQ -> System.out.print(leftPart() + " = " + rightPart() + ";");
         }
     }
 
