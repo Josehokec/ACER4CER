@@ -71,7 +71,7 @@ that uses bitmap index structures to accelerate [complex event recognition](http
 
 ## Section 1 Running
 
-Open ```ACER4CER``` folder with IDEA, then you can run the target java file (please decompress dataset files and create `store` folder).
+Open `ACER4CER` folder with IDEA, then you can run the target java file (**please decompress dataset files and create `store` folder**).
 
 **Example**. Suppose you want to run ```Test_ACER.java```,then you will see the code in the main function.
 
