@@ -127,7 +127,7 @@ class Test_ACER_Cluster {
         String sep = File.separator;
         String prefixPath = System.getProperty("user.dir") + sep + "src" + sep + "main" + sep;
 
-        // 1. create table, alter attribute range
+        // 1. create table
         Test_ACER_Cluster.createSchema();
         // 2. create index
         Index index = Test_ACER_Cluster.createIndex();
