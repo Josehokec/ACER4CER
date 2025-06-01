@@ -9,11 +9,7 @@
 
 * Using range bitmap to index attribute value
 * Aggregating same type events as a cluster, building synopsis information for each cluster to skip unnecessary access
-* Developing a two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
-
-Note that the great performance of ACER lies in the efficient range query performance provided by Range bitmap.
-
-In addition, due to the space limitations of the paper, our paper is no detailed introduction to Range Bitmap. The author [Richard Startin](https://github.com/richardstartin) of Range Bimtap also pointed out that there are some errors in the detailed description of Range Bitmap in our paper. Thus, to avoid misleading readers, a link to [Range Bitmap blog](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index) is attached here. Thanks for his insightful advice.
+* Developing two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
 
 **ACER characteristic：**
 
@@ -123,9 +119,15 @@ number of tuples: 268                     // number of matched tuples
 | NASDAQ             | Test_ACER_Nasdaq.java<br/>Test_FullScan_Nasdaq.java       |
 | Synthetic          | Test_ACER_Synthetic.java<br/>Test_FullScan_Synthetic.java |
 
+## Section 3 Base-2 Bit Sliced Range Encoded Bitmap (Range Bitmap)
 
+[Range bitmap blog url](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index)
 
-## Section 3: Experimental Datasets
+**Range bitmap paper:**
+
+[1] Chee Yong Chan, Yannis E. Ioannidis. Bitmap Index Design and Evaluation. SIGMOD. 1998, p355-366.
+
+## Section 4: Experimental Datasets
 
 Our paper used both synthetic and real datasets.
 We provided the download URLs for the real dataset.
@@ -146,7 +148,7 @@ We provided the download URLs for the real dataset.
 |           | IntervalScan | a1, a2, a3, type, timestamp                                 |
 |           | NaiveIndex   | a1, a2, a3, type                                            |
 
-###  Section 3.1 Real-world datasets
+###  Section 4.1 Real-world datasets
 
 **Real-world dataset overview**
 
@@ -162,7 +164,7 @@ For `Crime` dataset, we choose 7 columns ```Primary Type (String), ID (int), Bea
 
 For `NASDAQ` dataset, we only choose 15 famous stocks (*e,g,* MSFT, GOOG, AAPL, TSLA, *et.al.*) rather than all stocks. The dataset records each stock price change per minute in trade time.
 
-### Section 3.2  Synthetic dataset
+### Section 4.2  Synthetic dataset
 
 We have written a synthetic data generator to automatically generate synthetic data of a specified size. `Generator` folder has a `SyntheticQueryGenerator.java` file that can generate synthetic datasets.
 
@@ -199,14 +201,14 @@ We used a leading commercial database (referred to as `DBMS` here due to copyrig
 **Create schema**
 
 ```sql
-CREATE TABLE Crimes(
-                     primary_type VARCHAR(64),
-                     id int,
-                     beat int NOT NULL,
-                     dis int NOT NULL,
-                     lat Binary_double,
-                     lon Binary_double,
-                     timestamp NUMBER NOT NULL
+CREATE TABLE Crimes( 
+  primary_type VARCHAR(64), 
+  id int, 
+  beat int NOT NULL, 
+  dis int NOT NULL, 
+  lat Binary_double, 
+  lon Binary_double, 
+  timestamp NUMBER NOT NULL 
 );
 ```
 
@@ -214,49 +216,49 @@ CREATE TABLE Crimes(
 
 ```sql
 SELECT * FROM Crimes MATCH_RECOGNIZE(
-                                     MEASURES R.id AS RID, B.id AS BID, M.id AS MID
+    MEASURES R.id AS RID, B.id AS BID, M.id AS MID
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (R Z* B Z* M)
     DEFINE 
         R AS R.primary_type = 'ROBBERY',
-                                     B AS B.primary_type = 'BATTERY'
+        B AS B.primary_type = 'BATTERY'
             AND B.lon BETWEEN R.lon - 0.05 AND R.lon + 0.05
             AND B.lat BETWEEN R.lat - 0.02 AND R.lat + 0.02,
-                                     M AS M.primary_type = 'MOTOR_VEHICLE_THEFT'
+        M AS M.primary_type = 'MOTOR_VEHICLE_THEFT'
             AND M.lon BETWEEN R.lon - 0.05 AND R.lon + 0.05
             AND M.lat BETWEEN R.lat - 0.02 AND R.lat + 0.02
             AND M.timestamp - R.timestamp <= 1800
-  );
+);
 ```
 
 **Improved Query**
 
 ```sql
 WITH filter_events AS(
-  SELECT primary_type, id, lat, lon, timestamp
-FROM Crimes
-WHERE primary_type = 'ROBBERY'
-   OR primary_type = 'BATTERY'
-   OR primary_type = 'MOTOR_VEHICLE_THEFT'
-  )
-SELECT *
+    SELECT primary_type, id, lat, lon, timestamp
+    FROM Crimes
+    WHERE primary_type = 'ROBBERY' 
+       OR primary_type = 'BATTERY' 
+       OR primary_type = 'MOTOR_VEHICLE_THEFT'
+)
+SELECT * 
 FROM filter_events MATCH_RECOGNIZE(
-                                   MEASURES R.id AS RID, B.id AS BID, M.id AS MID
+    MEASURES R.id AS RID, B.id AS BID, M.id AS MID
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (R Z* B Z* M)
     DEFINE 
         R AS R.primary_type = 'ROBBERY',
-                                   B AS B.primary_type = 'BATTERY'
+        B AS B.primary_type = 'BATTERY'
             AND B.lon BETWEEN R.lon - 0.05 AND R.lon + 0.05
             AND B.lat BETWEEN R.lat - 0.02 AND R.lat + 0.02
             AND B.timestamp - R.timestamp <= 1800,
-                                   M AS M.primary_type = 'MOTOR_VEHICLE_THEFT'
+        M AS M.primary_type = 'MOTOR_VEHICLE_THEFT'
             AND M.lon BETWEEN R.lon - 0.05 AND R.lon + 0.05
             AND M.lat BETWEEN R.lat - 0.02 AND R.lat + 0.02
             AND M.timestamp - R.timestamp <= 1800
-  );
+);
 ```
 
 **Join-based Query (please see VLDB'23 - High-Performance Row Pattern Recognition Using Joins)**
@@ -264,48 +266,48 @@ FROM filter_events MATCH_RECOGNIZE(
 ```sql
 WITH input_bucketized AS(
   SELECT primary_type, id, lat, lon, timestamp, FLOOR(timestamp / 1800) AS bk
-FROM Crimes
-  ), filter_r AS(
-SELECT FLOOR(timestamp / 1800) AS bk
-FROM Crimes
-WHERE primary_type = 'ROBBERY'
-  ), filter_m AS(
-SELECT FLOOR(timestamp / 1800) AS bk
-FROM Crimes
-WHERE primary_type = 'MOTOR_VEHICLE_THEFT'
-  ), ranges AS(
-SELECT R.bk AS bk_s, M.bk AS bk_e
-FROM filter_r R, filter_m M
-WHERE R.bk = M.bk
-UNION
-SELECT R.bk AS bk_s, M.bk AS bk_e
-FROM filter_r R, filter_m M
-WHERE R.bk + 1 = M.bk
-  ), buckets AS(
-SELECT DISTINCT n FROM ranges
+  FROM Crimes
+), filter_r AS(
+  SELECT FLOOR(timestamp / 1800) AS bk
+  FROM Crimes
+  WHERE primary_type = 'ROBBERY'
+), filter_m AS(
+  SELECT FLOOR(timestamp / 1800) AS bk
+  FROM Crimes
+  WHERE primary_type = 'MOTOR_VEHICLE_THEFT'
+), ranges AS(
+  SELECT R.bk AS bk_s, M.bk AS bk_e
+  FROM filter_r R, filter_m M
+  WHERE R.bk = M.bk
+  UNION
+  SELECT R.bk AS bk_s, M.bk AS bk_e
+  FROM filter_r R, filter_m M
+  WHERE R.bk + 1 = M.bk
+), buckets AS(
+  SELECT DISTINCT n FROM ranges
   CROSS JOIN generate_series(bk_s, bk_e)
-ORDER by n
-  ), prefilter AS(
-SELECT i.*
-FROM input_bucketized i, buckets b
-WHERE i.bk = b.n
-  )
+  ORDER by n
+), prefilter AS(
+  SELECT i.*
+ FROM input_bucketized i, buckets b
+ WHERE i.bk = b.n
+)
 SELECT *
 FROM prefilter MATCH_RECOGNIZE(
-                               MEASURES R.id AS RID, B.id AS BID, M.id AS MID
+    MEASURES R.id AS RID, B.id AS BID, M.id AS MID
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (R Z* B Z* M)
     DEFINE 
         R AS R.primary_type = 'ROBBERY',
-                               B AS B.primary_type = 'BATTERY'
+        B AS B.primary_type = 'BATTERY'
             AND B.lon BETWEEN R.lon - 0.05 AND R.lon + 0.05
             AND B.lat BETWEEN R.lat - 0.02 AND R.lat + 0.02,
-                               M AS M.primary_type = 'MOTOR_VEHICLE_THEFT'
+        M AS M.primary_type = 'MOTOR_VEHICLE_THEFT'
             AND M.lon BETWEEN R.lon - 0.05 AND R.lon + 0.05
             AND M.lat BETWEEN R.lat - 0.02 AND R.lat + 0.02
             AND M.timestamp - R.timestamp <= 1800
-  );
+);
 ```
 
 ### Section 4.2 Flink example for crimes dataset
@@ -313,40 +315,40 @@ FROM prefilter MATCH_RECOGNIZE(
 ```java
 Pattern<CrimesEvent, ?> pattern = Pattern.<CrimesEvent>begin("v0").where(
         new SimpleCondition<CrimesEvent>() {
-          @Override
-          public boolean filter(CrimesEvent event){
-            return event.getPrimaryType().equals("ROBBERY");
-          }
+            @Override
+            public boolean filter(CrimesEvent event){
+                return event.getPrimaryType().equals("ROBBERY");
+            }
         }
 ).followedByAny("v1").where(
         new IterativeCondition<CrimesEvent>() {
-          @Override
-          public boolean filter(CrimesEvent event, Context<CrimesEvent> ctx) throws Exception {
-            boolean ic = event.getPrimaryType().equals("BATTERY");
-            boolean dc = false;
-            for(CrimesEvent v0Event : ctx.getEventsForPattern("v0")){
-              dc = event.getLongitude() >= v0Event.getLongitude() - 0.05 &&
-                      event.getLongitude() <= v0Event.getLongitude() + 0.05 &&
-                      event.getLatitude() >= v0Event.getLatitude() - 0.02 &&
-                      event.getLatitude() <= v0Event.getLatitude() + 0.02;
+            @Override
+            public boolean filter(CrimesEvent event, Context<CrimesEvent> ctx) throws Exception {
+                boolean ic = event.getPrimaryType().equals("BATTERY");
+                boolean dc = false;
+                for(CrimesEvent v0Event : ctx.getEventsForPattern("v0")){
+                    dc = event.getLongitude() >= v0Event.getLongitude() - 0.05 &&
+                            event.getLongitude() <= v0Event.getLongitude() + 0.05 &&
+                            event.getLatitude() >= v0Event.getLatitude() - 0.02 &&
+                            event.getLatitude() <= v0Event.getLatitude() + 0.02;
+                }
+                return dc && ic;
             }
-            return dc && ic;
-          }
         }
 ).followedByAny("v2").where(
         new IterativeCondition<CrimesEvent>() {
-          @Override
-          public boolean filter(CrimesEvent event, Context<CrimesEvent> ctx) throws Exception {
-            boolean ic = event.getPrimaryType().equals("MOTOR_VEHICLE_THEFT");
-            boolean dc = false;
-            for(CrimesEvent v0Event : ctx.getEventsForPattern("v0")){
-              dc = event.getLongitude() >= v0Event.getLongitude() - 0.05 &&
-                      event.getLongitude() <= v0Event.getLongitude() + 0.05 &&
-                      event.getLatitude() >= v0Event.getLatitude() - 0.02 &&
-                      event.getLatitude() <= v0Event.getLatitude() + 0.02;
+            @Override
+            public boolean filter(CrimesEvent event, Context<CrimesEvent> ctx) throws Exception {
+                boolean ic = event.getPrimaryType().equals("MOTOR_VEHICLE_THEFT");
+                boolean dc = false;
+                for(CrimesEvent v0Event : ctx.getEventsForPattern("v0")){
+                    dc = event.getLongitude() >= v0Event.getLongitude() - 0.05 &&
+                            event.getLongitude() <= v0Event.getLongitude() + 0.05 &&
+                            event.getLatitude() >= v0Event.getLatitude() - 0.02 &&
+                            event.getLatitude() <= v0Event.getLatitude() + 0.02;
+                }
+                return dc && ic;
             }
-            return dc && ic;
-          }
         }
 ).within(Time.milliseconds(108001));
 ```
@@ -356,14 +358,14 @@ Pattern<CrimesEvent, ?> pattern = Pattern.<CrimesEvent>begin("v0").where(
 **Create schema**
 
 ```sql
-CREATE TABLE Crimes(
-                     ticker VARCHAR(16),
-                     open Binary_double,
-                     high Binary_double,
-                     low Binary_double,
-                     close Binary_double,
-                     vol int NOT NULL,
-                     timestamp NUMBER NOT NULL
+CREATE TABLE Crimes( 
+  ticker VARCHAR(16), 
+  open Binary_double, 
+  high Binary_double,
+  low Binary_double,
+  close Binary_double,
+  vol int NOT NULL, 
+  timestamp NUMBER NOT NULL 
 );
 ```
 
@@ -371,46 +373,46 @@ CREATE TABLE Crimes(
 
 ```sql
 SELECT * FROM NASDAQ MATCH_RECOGNIZE(
-                                     MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
+    MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (V1 Z* V2 Z* V3 Z* V4)
     DEFINE 
         V1 AS V1.ticker = 'MSFT' AND V1.open BETWEEN 326 AND 334,
-                                     V2 AS V2.ticker = 'GOOG' AND V2.open BETWEEN 120 AND 130,
-                                     V3 AS V3.ticker = 'MSFT' AND V3.open >= V1.open * 1.007,
-                                     V4 AS V4.ticker = 'GOOG' AND V4.open <= V2.open * 0.993,
-                                     AND V4.timestamp - V1.timestamp <= 720
-  );
+        V2 AS V2.ticker = 'GOOG' AND V2.open BETWEEN 120 AND 130,
+  		  V3 AS V3.ticker = 'MSFT' AND V3.open >= V1.open * 1.007,
+        V4 AS V4.ticker = 'GOOG' AND V4.open <= V2.open * 0.993,
+            AND V4.timestamp - V1.timestamp <= 720
+);
 ```
 
 **Improved Query**
 
 ```sql
 WITH filter_events AS(
-  SELECT ticker, open, timestamp
-FROM NASDAQ
-WHERE primary_type = 'MSFT' OR primary_type = 'GOOG'
-  )
-SELECT *
+    SELECT ticker, open, timestamp
+    FROM NASDAQ
+    WHERE primary_type = 'MSFT' OR primary_type = 'GOOG'
+)
+SELECT * 
 FROM filter_events MATCH_RECOGNIZE(
-                                   MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
+    MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (V1 Z* V2 Z* V3 Z* V4)
     DEFINE 
         V1 AS V1.ticker = 'MSFT' 
             AND V1.open BETWEEN 326 AND 334,
-                                   V2 AS V2.ticker = 'GOOG' 
+        V2 AS V2.ticker = 'GOOG' 
             AND V2.open BETWEEN 120 AND 130
             AND V2.timestamp - V1.timestamp <= 720,
-                                   V3 AS V3.ticker = 'MSFT' 
+  		  V3 AS V3.ticker = 'MSFT' 
             AND V3.open >= V1.open * 1.007
             AND V3.timestamp - V1.timestamp <= 720,
-                                   V3 AS V3.ticker = 'GOOG' 
+        V3 AS V3.ticker = 'GOOG' 
             AND V4.open <= V2.open * 0.993 
             AND V4.timestamp - V1.timestamp <= 720
-  );
+);
 ```
 
 **Join-based  Query (please see VLDB'23 - High-Performance Row Pattern Recognition Using Joins)**
@@ -418,45 +420,45 @@ FROM filter_events MATCH_RECOGNIZE(
 ```sql
 WITH input_bucketized AS(
   SELECT ticker, open, timestamp, FLOOR(timestamp / 720) AS bk
-FROM NASDAQ
-  ), filter_v1 AS(
-SELECT bk
-FROM input_bucketized
-WHERE ticker = 'MSFT' AND open BETWEEN 325 AND 335
-  ), filter_v3 AS(
-SELECT bk
-FROM input_bucketized
-WHERE ticker = 'GOOG' AND open BETWEEN 120 AND 130
-  ), ranges AS(
-SELECT V1.bk AS bk_start, V3.bk AS bk_end
-FROM filter_v1 V1, filter_v3 V3
-WHERE V1.bk = V3.bk
-UNION
-SELECT V1.bk AS bk_start, V3.bk AS bk_end
-FROM filter_v1 V1, filter_v3 V3
-WHERE V1.bk + 1 = V3.bk
-  ), buckets AS(
-SELECT DISTINCT n FROM ranges
+  FROM NASDAQ
+), filter_v1 AS(
+  SELECT bk
+  FROM input_bucketized
+  WHERE ticker = 'MSFT' AND open BETWEEN 325 AND 335
+), filter_v3 AS(
+  SELECT bk
+  FROM input_bucketized
+  WHERE ticker = 'GOOG' AND open BETWEEN 120 AND 130
+), ranges AS(
+  SELECT V1.bk AS bk_start, V3.bk AS bk_end
+  FROM filter_v1 V1, filter_v3 V3
+  WHERE V1.bk = V3.bk
+  UNION
+  SELECT V1.bk AS bk_start, V3.bk AS bk_end
+  FROM filter_v1 V1, filter_v3 V3
+  WHERE V1.bk + 1 = V3.bk
+), buckets AS(
+  SELECT DISTINCT n FROM ranges
   CROSS JOIN generate_series(bk_start, bk_end + 1)
-  ), prefilter AS(
-SELECT i.*
-FROM input_bucketized i, buckets b
-WHERE i.bk = b.n
-ORDER BY timestamp
-  )
-SELECT COUNT(*)
+), prefilter AS(
+  SELECT i.*
+  FROM input_bucketized i, buckets b
+  WHERE i.bk = b.n
+  ORDER BY timestamp
+)
+SELECT COUNT(*) 
 FROM prefilter MATCH_RECOGNIZE(
-                               MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
+    MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (V1 Z* V2 Z* V3 Z* V4)
     DEFINE 
         V1 AS V1.ticker = 'MSFT' AND V1.open BETWEEN 325 AND 335,
-                               V2 AS V2.ticker = 'GOOG' AND V2.open BETWEEN 120 AND 130,
-                               V3 AS V3.ticker = 'MSFT' AND V3.open >= V1.open * 1.003,
-                               V4 AS V4.ticker = 'GOOG' AND V4.open <= V2.open * 0.997
+        V2 AS V2.ticker = 'GOOG' AND V2.open BETWEEN 120 AND 130,
+        V3 AS V3.ticker = 'MSFT' AND V3.open >= V1.open * 1.003,
+        V4 AS V4.ticker = 'GOOG' AND V4.open <= V2.open * 0.997
             AND V4.timestamp - V1.timestamp <= 720
-  );
+);
 ```
 
 ### Section 4.4 Inconsistent evaluation results
