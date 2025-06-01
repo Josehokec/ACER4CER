@@ -10,7 +10,8 @@ import java.util.*;
 
 /**
  * [updated] ultra efficient NFA to extract matches
- * this engine is build on [SASE] (https://github.com/haopeng/sase)
+ * SASE engine (https://github.com/haopeng/sase) is really slow,
+ * we implement a fast engine to extract patterns
  * Notably, our automata does not support the kleene operator and negation operator.
  * This is a simplified automata, thus it has a fast process speed.
  * If you need to process more kleene operator and negation operator,

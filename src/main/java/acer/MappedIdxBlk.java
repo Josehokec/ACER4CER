@@ -174,16 +174,20 @@ public class MappedIdxBlk {
             }
             int ridStartPos = tsStartPos + sizes[ptr];
             byte[] tsBytes = new byte[sizes[ptr]];
-            tsListBuffer = entireBuffer.get(tsStartPos, tsBytes);
+            entireBuffer.get(tsStartPos, tsBytes);
+            tsListBuffer = ByteBuffer.wrap(tsBytes);
             byte[] ridBytes = new byte[sizes[ptr + 1]];
-            ridListBuffer = entireBuffer.get(ridStartPos, ridBytes);
+            entireBuffer.get(ridStartPos, ridBytes);
+            ridListBuffer = ByteBuffer.wrap(ridBytes);
         }else{
             int tsListPosition = rbStartPos[indexAttrNum];
             int ridListPosition = tsListPosition + sizes[indexAttrNum];
             byte[] tsBytes = new byte[sizes[indexAttrNum]];
-            tsListBuffer = entireBuffer.get(tsListPosition, tsBytes);
+            entireBuffer.get(tsListPosition, tsBytes);
+            tsListBuffer = ByteBuffer.wrap(tsBytes);
             byte[] ridBytes = new byte[sizes[indexAttrNum + 1]];
-            ridListBuffer = entireBuffer.get(ridListPosition, ridBytes);
+            entireBuffer.get(ridListPosition, ridBytes);
+            ridListBuffer = ByteBuffer.wrap(ridBytes);
         }
         long[] tsList;
         long[] ridList;
@@ -216,6 +220,9 @@ public class MappedIdxBlk {
                 clusterTsList[i] = tsList[startPos + i];
                 clusterRIDList[i] = ridList[startPos + i];
             }
+        }else{
+            clusterTsList = tsList;
+            clusterRIDList = ridList;
         }
     }
 

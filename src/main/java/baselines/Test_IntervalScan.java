@@ -16,7 +16,7 @@ class Test_IntervalScan {
 
     /**
      * [updated]
-     * @param datasetName       create index for different dataset (filename)
+     * @param datasetName       create index for a given dataset (filename)
      */
     private static void createSchema(String datasetName){
         String statement;

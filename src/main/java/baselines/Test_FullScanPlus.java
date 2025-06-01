@@ -19,7 +19,7 @@ public class Test_FullScanPlus {
 
     /**
      * [updated]
-     * @param datasetName       create index for different datasets
+     * @param datasetName       create index for a given dataset (filename)
      */
     private static void createSchema(String datasetName){
         String statement;

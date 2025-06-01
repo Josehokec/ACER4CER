@@ -4,6 +4,7 @@ Git limits the size of uploaded files, so we split the two datasets.
 ```shell
 ./file_split.sh nasdaq.csv 2
 ./file_split.sh crimes.csv 2
+./file_split.sh job.csv 2
 ```
 
 
@@ -11,5 +12,5 @@ Git limits the size of uploaded files, so we split the two datasets.
 ```shell
 ./file_recovery.sh nasdaq
 ./file_recovery.sh crimes
-gunzip job.csv.zip
+./file_recovery.sh job
 ```

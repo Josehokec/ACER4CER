@@ -15,7 +15,7 @@ import java.util.List;
 public class Test_ACER {
 
     /**
-     * @param dataset       create index for different dataset (filename)
+     * @param dataset       create index for a given dataset (filename)
      */
     private static void createSchema(String dataset){
         String statement;
@@ -172,26 +172,55 @@ public class Test_ACER {
     }
 
     public static void testExample(Index index) throws FileNotFoundException {
-        String query = """
-                PATTERN SEQ(AND(AMZN v0, BABA v1), AND(AMZN v2, BABA v3))
+        String query0 = """
+                PATTERN SEQ(CSCO v1, AMD v2)
                 FROM NASDAQ
                 USE SKIP_TILL_NEXT_MATCH
-                WHERE 122 <= v0.open <= 132 AND 82 <= v1.open <= 92 AND v2.open >= v0.open * 1.01 AND v3.open <= v1.open * 0.99
-                WITHIN 900 units
+                WHERE 0 <= v1.open <= 1000 AND 0 <= v2.vol <= 1000\s
+                WITHIN 60 units
                 RETURN COUNT(*)
                 """;
-        //String sep = File.separator;
-        //String prefixPath = System.getProperty("user.dir") + sep + "src" + sep + "main" + sep;
-        //PrintStream printStream = new PrintStream(prefixPath + "output" + sep + "debug.txt");
-        //System.setOut(printStream);
-        indexQuery(index, query);
+        int WARMUP = 20;
+        for(int i = 0; i < WARMUP; i++){
+            indexQuery(index, query0);
+        }
+
+        int LOOP = 10;
+
+        String query1 = """
+                PATTERN SEQ(MSFT v1, GOOG v2, MSFT v3, GOOG v4)
+                FROM NASDAQ
+                USE SKIP_TILL_NEXT_MATCH
+                WHERE 326 <= v1.open <= 334 AND 120 <= v2.open <= 130 AND v3.open >= v1.open * 1.003 AND v4.open <= v2.open * 0.997
+                WITHIN 12 minutes
+                RETURN COUNT(*)
+                """;
+        System.out.println("Q1: \n" + query1);
+        for(int i = 0; i < LOOP; i++){
+            indexQuery(index, query1);
+            System.out.println();
+        }
+
+        String query2 = """
+                PATTERN SEQ(MSFT v1, GOOG v2, MSFT v3, GOOG v4)
+                FROM NASDAQ
+                USE SKIP_TILL_NEXT_MATCH
+                WHERE 326 <= v1.open <= 334 AND 120 <= v2.open <= 130 AND v3.open >= v1.open * 1.003 AND v4.open <= v2.open * 0.997
+                WITHIN 6 minutes
+                RETURN COUNT(*)
+                """;
+        System.out.println("Q2: \n" + query2);
+        for(int i = 0; i < LOOP; i++){
+            indexQuery(index, query2);
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) throws FileNotFoundException {
         long startRunTs = System.currentTimeMillis();
         String sep = File.separator;
         String prefixPath = System.getProperty("user.dir") + sep + "src" + sep + "main" + sep;
-        //String[] datasets = {"crimes", "nasdaq", "job", "synthetic"};
+        //String[] datasets = {"crimes", "nasdaq", "job"};
         String datasetName = "crimes";
         String filename = datasetName + ".csv";
         String queryFilename = datasetName + "_query.json";
@@ -203,18 +232,8 @@ public class Test_ACER {
         Index index = Test_ACER.createIndex(datasetName);
         // 3. store events
         long buildCost;
-        if(datasetName.equals("synthetic")){
-            int eventNum = 1024 * 1024 * 1024; // about 10M
-            int batchSize = 512;
-            boolean inOrder = true;
-            boolean enableUpdate = false;
-            double ratio = 0;
-            buildCost = Test_ACER.storeEvents(eventNum, batchSize, inOrder, enableUpdate, ratio, index);
-        }
-        else{
-            String dataFilePath = prefixPath + "dataset" + sep + filename;
-            buildCost = Test_ACER.storeEvents(dataFilePath, index);
-        }
+        String dataFilePath = prefixPath + "dataset" + sep + filename;
+        buildCost = Test_ACER.storeEvents(dataFilePath, index);
 
         //testExample(index);System.exit(0);
 
@@ -253,23 +272,3 @@ public class Test_ACER {
 
 
 
-
-/*
-
-String query = """
-                PATTERN SEQ(AND(AMZN v0, BABA v1), AND(AMZN v2, BABA v3))
-                FROM NASDAQ
-                USE SKIP_TILL_NEXT_MATCH
-                WHERE 122 <= v0.open <= 132 AND 82 <= v1.open <= 92 AND v2.open >= v0.open * 1.01 AND v3.open <= v1.open * 0.99
-                WITHIN 900 units
-                RETURN tuples
-                """;
-
-//        String query = """
-//                PATTERN SEQ(MSFT v1, GOOG v2, MSFT v3, GOOG v4)
-//                FROM NASDAQ
-//                USE SKIP_TILL_NEXT_MATCH
-//                WHERE 326 <= v1.open <= 334 AND 120 <= v2.open <= 130 AND v3.open >= v1.open * 1.003 AND v4.open <= v2.open * 0.997
-//                WITHIN 720 units
-//                RETURN tuples""";
- */

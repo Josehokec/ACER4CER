@@ -28,6 +28,7 @@ public class DeltaSimple8BDecompressor {
 
         long[] input = new long[compressedLen];
 
+        // [can be improved] e.g., LongBuffer longBuffer = buffer.asLongBuffer();
         for(int i = 0; i < compressedLen; i++) {
             input[i] = in.getLong(64);
         }

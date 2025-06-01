@@ -20,6 +20,7 @@ import condition.IndependentConstraint;
 import pattern.QueryPattern;
 import store.EventStore;
 import store.RID;
+import systems.CrimesPatternQuery;
 
 /**
  * [updated] new version bring a faster query performance
@@ -234,11 +235,17 @@ public class ACER extends Index {
         System.out.println("scan cost: " + scanOutput + "ms");
 
         long matchStartTime = System.nanoTime();
+
+        int ans;
         nfa.generateNFAUsingQueryPattern(pattern);
         for(byte[] event : events){
             nfa.consume(schema, event, pattern.getStrategy());
         }
-        int ans = nfa.countTuple();
+        ans = nfa.countTuple();
+
+        // when you want to call flink, you can replace above 5 lines
+        // ans = CrimesPatternQuery.crimesFirstQuery(events, schema);
+
         long matchEndTime = System.nanoTime();
         String output = String.format("%.3f", (matchEndTime - matchStartTime + 0.0) / 1_000_000);
         System.out.println("match cost: " + output + "ms");
@@ -359,9 +366,10 @@ public class ACER extends Index {
         List<IndexValuePair> ans = null;
         for(int i = 0; i < patternLen; i++){
             String curVarName = varSelList.get(i).varName();
-            List<IndexValuePair> curPairs = varQueryResult.get(curVarName);
+            // since interval become shorter, we still can filter events
+            List<IndexValuePair> curPairs = intervalSet.updateAndFilter(varQueryResult.get(curVarName));
             // merge all curRidVarIdPair, aims to sequentially access disk
-            ans =  (ans == null) ? curPairs : NaiveIndex.mergeIndexValuePair(ans, intervalSet.updateAndFilter(curPairs));
+            ans =  (ans == null) ? curPairs : NaiveIndex.mergeIndexValuePair(ans, curPairs);
         }
         return ans;
     }
