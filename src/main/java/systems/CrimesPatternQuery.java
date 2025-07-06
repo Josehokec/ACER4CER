@@ -361,7 +361,7 @@ public class CrimesPatternQuery {
         return resCount;
     }
 
-    // SEQ(ROBBERY v1, BATTERY v2, KP(NARCOTICS v3), MOTOR_VEHICLE_THEFT v4)
+    // Q7: SEQ(ROBBERY v1, BATTERY v2, KP(NARCOTICS v3), MOTOR_VEHICLE_THEFT v4)
     public static int queryWithKP(List<byte[]> byteEvents, EventSchema schema){
         resCount = 0;
         Pattern<CrimesEvent, ?> pattern = Pattern.<CrimesEvent>begin("v1").where(
@@ -449,7 +449,7 @@ public class CrimesPatternQuery {
         return resCount;
     }
 
-    // SEQ(ROBBERY v1, BATTERY v2, KS(NARCOTICS v3), MOTOR_VEHICLE_THEFT v4)
+    // Q8: SEQ(ROBBERY v1, BATTERY v2, KS(NARCOTICS v3), MOTOR_VEHICLE_THEFT v4)
     public static int queryWithKS(List<byte[]> byteEvents, EventSchema schema){
         resCount = 0;
         Pattern<CrimesEvent, ?> pattern = Pattern.<CrimesEvent>begin("v1").where(
@@ -537,7 +537,7 @@ public class CrimesPatternQuery {
         return resCount;
     }
 
-    // SEQ(ROBBERY v1, BATTERY v2, NEG(NARCOTICS v3), MOTOR_VEHICLE_THEFT v4)
+    // Q9: SEQ(ROBBERY v1, BATTERY v2, NEG(NARCOTICS v3), MOTOR_VEHICLE_THEFT v4)
     public static int queryWithNEG(List<byte[]> byteEvents, EventSchema schema){
         resCount = 0;
         Pattern<CrimesEvent, ?> pattern = Pattern.<CrimesEvent>begin("v1").where(

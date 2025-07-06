@@ -37,8 +37,7 @@ that uses bitmap index structures to accelerate [complex event recognition](http
 
 * Easy to implement
 * Window-wise filtering
-* Low insertion & query latency
-* Low storage overhead
+* Low insertion latency, low query latency, and low storage overhead
 
 **Cite this paper**
 ```tex
@@ -244,9 +243,62 @@ The following table provides detailed information on how to build indexes for ea
 
 ### Section 5: Flink & DBMS Experiments
 
-**Unless otherwise stated, events are timestamp-ordered.**
+In our experiments, Q1-Q6 are
+```java
+String q1 = """
+        PATTERN SEQ(MSFT v1, GOOG v2, MSFT v3, GOOG v4)
+        FROM NASDAQ
+        USE SKIP_TILL_NEXT_MATCH
+        WHERE 326 <= v1.open <= 334 AND 120 <= v2.open <= 130 AND v3.open >= v1.open * 1.003 AND v4.open <= v2.open * 0.997
+        WITHIN 720 units
+        RETURN COUNT(*)
+        """;
+String q2 = """
+        PATTERN SEQ(MSFT v1, GOOG v2, MSFT v3, GOOG v4)
+        FROM NASDAQ
+        USE SKIP_TILL_NEXT_MATCH
+        WHERE 324 <= v1.open <= 334 AND 110 <= v2.open <= 140 AND v3.open >= v1.open * 1.003 AND v4.open <= v2.open * 0.997
+        WITHIN 1080 units
+        RETURN COUNT(*)
+        """;        
 
-We used `Flink` to perform nine queries on the three real-world datasets.
+String q3 = """
+        PATTERN SEQ(SUBMIT v1, SCHEDULE v2, KILL v3)
+        FROM job
+        USING SKIP_TILL_NEXT_MATCH
+        WHERE 2 <= v1.schedulingClass <= 2 AND 2 <= v2.schedulingClass <= 2 AND 2 <= v3.schedulingClass <= 2 AND v1.jobID = v2.jobID AND v2.jobID = v3.jobID
+        WITHIN 100 units
+        RETURN COUNT(*)
+        """;
+String q4 = """
+        PATTERN SEQ(SUBMIT v1, SCHEDULE v2, FINISH v3)
+        FROM job
+        USING SKIP_TILL_NEXT_MATCH
+        WHERE 0 <= v1.schedulingClass <= 0 AND 0 <= v2.schedulingClass <= 0 AND 0 <= v3.schedulingClass <= 0 AND v1.jobID = v2.jobID AND v2.jobID = v3.jobID
+        WITHIN 200 units
+        RETURN COUNT(*)
+        """;        
+
+String q5 = """
+        PATTERN SEQ(ROBBERY v1, BATTERY v2, MOTOR_VEHICLE_THEFT v3)
+        FROM Crimes
+        USE SKIP_TILL_NEXT_MATCH
+        WHERE 2030 <= v1.beat <= 2060 AND 2010 <= v2.beat <= 2080 AND 2010 <= v3.beat <= 2080 AND v2.beat >= v1.beat - 20 AND v2.beat <= v1.beat + 20 AND v2.beat >= v1.beat - 20 AND v3.beat <= v1.beat + 20
+        WITHIN 1800 units
+        RETURN COUNT(*)
+        """;
+String q6 = """
+        PATTERN SEQ(ROBBERY v1, BATTERY v2, MOTOR_VEHICLE_THEFT v3)
+        FROM Crimes
+        USE SKIP_TILL_NEXT_MATCH
+        WHERE 2000 <= v1.beat <= 2100 AND 2000 <= v2.beat <= 2100 AND 2000 <= v3.beat <= 2100 AND B.lon >= R.lon - 0.005 AND B.lon <= R.lon + 0.005 AND B.lat >= R.lat - 0.002 AND B.lat <= R.lat + 0.002 AND M.lon >= R.lon - 0.005 AND M.lon <= R.lon + 0.005 AND M.lat >= R.lat - 0.002 AND M.lat <= R.lat + 0.002
+        WITHIN 1800 units
+        RETURN COUNT(*)
+        """;
+```
+Q7-Q9 can be seen in [CrimesPatternQuery.java](src%2Fmain%2Fjava%2Fsystems%2FCrimesPatternQuery.java).
+
+Here, we used `Flink` to perform nine queries on the three real-world datasets.
 
 ### Section 5.1 Flink example
 Please refer to [systems](src%2Fmain%2Fjava%2Fsystems).
@@ -263,7 +315,7 @@ ans = nfa.countTuple();
 ```
 
 ### Section 5.2 DBMS example
-
+**Unless otherwise stated, events are timestamp-ordered.**
 #### Section 5.2.1 NASDAQ dataset
 **Step 1: Create schema**
 
