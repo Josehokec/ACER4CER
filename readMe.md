@@ -4,19 +4,10 @@
 - What are the new/important contributions of the submitted paper (beyond our previous publication)?
   * Support out-of-order insertion (still avoid sort operation during query)
   * Support update and deletion operations (logical rather than physical)
-  * Optimize index block layout and its reading operation
-  * Discuss how to handle special operators, i.e., negation and kleene operators
+  * Optimize index block layout, read/write operations, and variable processing order
+  * Support to handle special operators, i.e., negation and kleene operators
   * Analyze time and space complexity for the query algorithm of ACER
   * Conduct comprehensive experiments to verify the performance of ACER
-
-- What is the new content and in which sections does this content appear in the submission?
-  * Update and deletion
-  * Optimization (note that this subsection has new content): optimization of index block layout (i.e., arrange content in cluster-granularity) 
-    and optimization of index block reading (i.e., read index blocks on demand)
-  * Analysis and discussion (i.e.,  time and space complexity and special operator processing)
-  * More experiments include: (1) parameter setting; (2) impact of selectivity & window;
-    (3) out-of-order insertion; (4) update & deletion; (5) special operators;
-
 
 
 # Accelerating Complex Event Recognition via Range Bitmap-Based Indexes
@@ -571,7 +562,7 @@ FROM prefilter MATCH_RECOGNIZE(
 
 #### Section 5.2.3 JOB dataset
 
-**Step 1: **
+**Step 1: Create schema**
 
 ```sql
 CREATE TABLE Job( 
@@ -583,6 +574,10 @@ CREATE TABLE Job(
   jobName VARCHAR(48)
 );
 ```
+
+**Step 2: load dataset (omitted)**
+
+**Step 3: execute query**
 
 **Improved query**
 ```sql
