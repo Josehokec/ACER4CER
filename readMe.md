@@ -571,7 +571,7 @@ FROM prefilter MATCH_RECOGNIZE(
 
 #### Section 5.2.3 JOB dataset
 
-**Step 1: **
+**Step 1: Create schema**
 
 ```sql
 CREATE TABLE Job( 
@@ -583,6 +583,10 @@ CREATE TABLE Job(
   jobName VARCHAR(48)
 );
 ```
+
+**Step 2: load dataset (omitted)**
+
+**Step 3: execute query**
 
 **Improved query**
 ```sql
