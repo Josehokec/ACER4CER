@@ -327,7 +327,7 @@ CREATE TABLE Crimes(
   low Binary_double,
   close Binary_double,
   vol int NOT NULL, 
-  timestamp NUMBER NOT NULL 
+  ts NUMBER NOT NULL 
 );
 ```
 **Step 2: load dataset (omitted)**
@@ -338,7 +338,7 @@ CREATE TABLE Crimes(
 Notably, NASDAQ is timestamp-ordered, so we remove `ORDER BY timestamp`.
 ```sql
 SELECT * FROM NASDAQ MATCH_RECOGNIZE(
-    MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
+    MEASURES V1.ts AS T1, V2.ts AS T2, V3.ts AS T3, V4.ts AS T4
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (V1 Z* V2 Z* V3 Z* V4)
@@ -347,7 +347,7 @@ SELECT * FROM NASDAQ MATCH_RECOGNIZE(
         V2 AS V2.ticker = 'GOOG' AND V2.open BETWEEN 120 AND 130,
   		  V3 AS V3.ticker = 'MSFT' AND V3.open >= V1.open * 1.003,
         V4 AS V4.ticker = 'GOOG' AND V4.open <= V2.open * 0.997,
-            AND V4.timestamp - V1.timestamp <= 720
+            AND V4.ts - V1.ts <= 720
 );
 ```
 
@@ -413,7 +413,7 @@ end;
 **Then, you can submit the following query:**
 ```sql
 WITH input_bucketized AS(
-  SELECT ticker, open, timestamp, FLOOR(timestamp / 720) AS bk
+  SELECT ticker, open, timestamp, FLOOR(ts / 720) AS bk
   FROM NASDAQ
 ), filter_v1 AS(
   SELECT bk
@@ -442,8 +442,8 @@ WITH input_bucketized AS(
 )
 SELECT COUNT(*) 
 FROM prefilter MATCH_RECOGNIZE(
-    ORDER BY timestamp
-    MEASURES V1.timestamp AS T1, V2.timestamp AS T2, V3.timestamp AS T3, V4.timestamp AS T4
+    ORDER BY ts
+    MEASURES V1.ts AS T1, V2.ts AS T2, V3.ts AS T3, V4.ts AS T4
     ONE ROW PER MATCH
     AFTER MATCH SKIP TO NEXT ROW
     PATTERN (V1 Z* V2 Z* V3 Z* V4)
@@ -452,7 +452,7 @@ FROM prefilter MATCH_RECOGNIZE(
         V2 AS V2.ticker = 'GOOG' AND V2.open BETWEEN 120 AND 130,
         V3 AS V3.ticker = 'MSFT' AND V3.open >= V1.open * 1.003,
         V4 AS V4.ticker = 'GOOG' AND V4.open <= V2.open * 0.997
-            AND V4.timestamp - V1.timestamp <= 720
+            AND V4.ts - V1.ts <= 720
 );
 ```
 
@@ -499,7 +499,7 @@ WITH filter_events AS(
     SELECT primary_type, id, beat, ts
     FROM Crimes
     WHERE (primary_type = 'ROBBERY' AND beat BETWEEN 2030 AND 2060 )
-		  OR (primary_type = 'BATTERY' AND beat BETWEEN 2010 AND 2080)
+	    OR (primary_type = 'BATTERY' AND beat BETWEEN 2010 AND 2080)
   		OR (primary_type = 'MOTOR_VEHICLE_THEFT' AND beat BETWEEN 2010 AND 2080)
 ) 
 SELECT COUNT(*) FROM filter_events MATCH_RECOGNIZE(
