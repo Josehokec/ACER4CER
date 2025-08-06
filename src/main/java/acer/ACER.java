@@ -334,7 +334,19 @@ public class ACER extends Index {
         Map<String, List<IndexValuePair>> varQueryResult = new HashMap<>();
 
         // step2: choose the variable with minimum selectivity to query
+        double minWeight = Double.MAX_VALUE;
         String minVarName = varSelList.get(0).varName();
+        // new optimization: interval length first rather than selectivity first
+        for(SelectivityIndexPair pair : varSelList){
+            String curVarName = pair.varName();
+            int scale = pattern.isOnlyLeftMostNode(curVarName) || pattern.isOnlyRightMostNode(curVarName) ? 1 : 2;
+            double curWeight = pair.selectivity() * scale;
+            if(curWeight < minWeight){
+                minWeight = curWeight;
+                minVarName = curVarName;
+            }
+        }
+
         String minVarType = varTypeMap.get(minVarName);
         List<IndexValuePair> minSelPairs = queryVariableResult(minVarType, minVarName, pattern);
         varQueryResult.put(minVarName, minSelPairs);        // store results

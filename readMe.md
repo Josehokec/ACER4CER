@@ -19,7 +19,7 @@ that uses bitmap index structures to accelerate [complex event recognition](http
 
 **ACER key ideas:**
 
-* Using [range bitmap](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index) to index attribute value
+* Using elegant [range bitmap](https://richardstartin.github.io/posts/range-bitmap-index#implementing-a-range-index) to index attribute value
 * Aggregating same type events as a cluster (for fine-grained compression),
   building synopsis information for each cluster to skip unnecessary access
 * Developing two-phase filtering algorithm to avoid unnecessary disk access in indexes and events
@@ -45,13 +45,14 @@ that uses bitmap index structures to accelerate [complex event recognition](http
 **News**
 * [2025-6-25] We have added package `systems` to run FlinkCEP.
 * [2025-6-16] We have optimized page reading, i.e., always keep the file open and manually close it after reading is complete.
+  **As a result, the latency of all methods have significantly been reduced.**
 * [2025-6-1] We have conducted a significant refactoring of the entire project's code and added key comments.
 * [2025-5-20] We have significantly optimized ACER on index block layout,
   and conducted more experiments to verify the performance of ACER.
 * [2025-5-12] New feature: support update operation
 * [2025-4-20] We have optimized NFA engine, i.e.,
   matched tuples to store event references rather than the entire event information.
-* [2025-4-10] We appreciate [Richard Startin](https://github.com/richardstartin)'s comments,
+* [2025-4-10] We sincerely appreciate [Richard Startin](https://github.com/richardstartin)'s insightful comments,
   he pointed out that there are some errors in the detailed description of Range Bitmap in our KDD paper.
   We would like to apologize to the readers for this matter.
   We will fix these errors in our journal version.
