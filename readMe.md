@@ -62,7 +62,7 @@ that uses bitmap index structures to accelerate [complex event recognition](http
 
 **We thank all anonymous reviewers and readers for their valuable comments and suggestions!!!**
 
-## Section 1 Start to Run
+## Section 1. Start to Run
 
 Open `ACER4CER` folder with IDEA, then you can run the target java file (**please decompress dataset files and create `store` folder**).
 
@@ -102,9 +102,9 @@ number of tuples: 268                     // number of matched tuples
 122-th query cost: 18ms.                  // pattern query latency
 ```
 
-## Section 2 Program Structure
+## Section 2. Program Structure
 
-### Section 2.1: Package
+### Section 2.1. Package
 
 | Name      | Explanation                                                                |
 |-----------|----------------------------------------------------------------------------|
@@ -128,7 +128,7 @@ More details about baselines can refer to the following two papers:
 
 [2] Michael Körber, Nikolaus Glombiewski, Bernhard Seeger. Index-accelerated pattern matching in event stores. In SIGMOD, 2021.
 
-### Section 2.2: Key java files for running
+### Section 2.2. Key java files for running
 
 | Method       | Location                                                                        |
 |--------------|---------------------------------------------------------------------------------|
@@ -138,7 +138,7 @@ More details about baselines can refer to the following two papers:
 | IntervalScan | [Test_IntervalScan.java](src%2Fmain%2Fjava%2Fbaselines%2FTest_IntervalScan.java) |
 
 
-## Section 3: Layout of Index Block
+## Section 3. Layout of Index Block
 
 When obtaining the query result of a variable, we only access one cluster from the Index Blocks, 
 but we decompress the entire Ts and RID lists, which wastes computing resources.
@@ -173,13 +173,13 @@ This algorithm is suitable for unsigned integers with a small range.
 More details can see [Compressing Time Series Data](https://tdengine.com/compressing-time-series-data/)
 
 
-## Section 4: Experimental Datasets
+## Section 4. Experimental Datasets
 
 Our paper used both synthetic and real datasets.
 We provided the download URLs for the real dataset.
 
 
-###  Section 4.1 Real-world datasets
+###  Section 4.1. Real-world datasets
 
 **[Real-world dataset](src%2Fmain%2Fdataset) overview**
 
@@ -195,7 +195,7 @@ We provided the download URLs for the real dataset.
 
 - For `NASDAQ` dataset, we only choose 15 famous stocks (*e,g,* MSFT, GOOG, AAPL, TSLA, *et.al.*) rather than all stocks. The dataset records each stock price change per minute in trade time.
 
-### Section 4.2  Synthetic dataset
+### Section 4.2.  Synthetic dataset
 
 We have written a synthetic data generator to automatically generate synthetic data of a specified size. `Generator` folder has a `SyntheticQueryGenerator.java` file that can generate synthetic datasets.
 
@@ -233,7 +233,7 @@ The following table provides detailed information on how to build indexes for ea
 
 
 
-### Section 5: Flink & DBMS Experiments
+### Section 5. Flink & DBMS Experiments
 
 In our experiments, Q1-Q6 are
 ```java
@@ -292,7 +292,7 @@ Q7-Q9 can be seen in [CrimesPatternQuery.java](src%2Fmain%2Fjava%2Fsystems%2FCri
 
 Here, we used `Flink` to perform nine queries on the three real-world datasets.
 
-### Section 5.1 Flink example
+### Section 5.1. Flink example
 Please refer to [systems](src%2Fmain%2Fjava%2Fsystems).
 
 In [ACER.java](src%2Fmain%2Fjava%2Facer%2FACER.java), you only need to replace the following code with 
@@ -306,9 +306,9 @@ for(byte[] event : events){
 ans = nfa.countTuple();
 ```
 
-### Section 5.2 DBMS example
+### Section 5.2. DBMS example
 **Unless otherwise stated, events are timestamp-ordered.**
-#### Section 5.2.1 NASDAQ dataset
+#### Section 5.2.1. NASDAQ dataset
 **Step 1: Create schema**
 
 ```sql
@@ -448,7 +448,7 @@ FROM prefilter MATCH_RECOGNIZE(
 );
 ```
 
-#### Section 5.2.2 Crimes dataset
+#### Section 5.2.2. Crimes dataset
 
 **Step 1: Create schema**
 ```sql
@@ -561,7 +561,7 @@ FROM prefilter MATCH_RECOGNIZE(
 );
 ```
 
-#### Section 5.2.3 JOB dataset
+#### Section 5.2.3. JOB dataset
 
 **Step 1: Create schema**
 
